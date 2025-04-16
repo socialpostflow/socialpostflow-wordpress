@@ -1,0 +1,112 @@
+@media only screen and (max-width: 1200px) {
+	/**
+	 * Settings UI: Upgrade
+	 * - Drop to 2 columns
+	 */
+	.wpzinc-upgrade {
+		ul {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+}	
+
+@media only screen and (max-width: 768px) {
+	/**
+	 * Settings UI - Horizontal Tabbed Interface
+	 * - Extends WordPress' .nav-tab-wrapper class
+	 */
+	h2.wpzinc-horizontal-tabbed-ui.nav-tab-wrapper {
+		a.nav-tab {
+			margin-right: 10px;
+
+			&:last-child {
+				margin-right: 0;
+			}
+			
+			span.text {
+				display: none;
+			}
+			span.text-mobile {
+				display: inline-block;
+			}
+			.dashicons {
+				font-size: 24px;
+
+				&.dashicons-yes {
+					font-size: 20px;
+				}
+			}
+		}
+	}
+
+	/**
+	 * Settings UI - Vertical Tabbed Interface
+	 */
+	div.wpzinc-vertical-tabbed-ui {
+		grid-template-columns: $wpzinc-vertical-tabbed-ui-width-mobile auto;
+
+		ul.wpzinc-nav-tabs {
+			li.wpzinc-nav-tab {
+				a,
+				a.wpzinc-nav-tab-vertical-active,
+				a:hover {
+					width: $wpzinc-vertical-tabbed-ui-width-mobile;
+					height: $wpzinc-vertical-tabbed-ui-width-mobile;
+					margin: 0;
+					padding: 0;
+					text-indent: -9999px;
+					background-position: center;
+				}
+
+				a {
+					span.dashicons {
+						top: 0;
+						right: 0;
+						text-indent: 0;
+					}
+
+					&:hover {
+						border-top: none;
+
+						span.dashicons {
+							right: 0;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.wpzinc-option {
+		display: block;
+
+		div.left {
+			width: 100%;
+		}
+		div.right {
+			width: 100%;
+		}
+
+		select.right,
+		input.right {
+			float: none;
+			width: 100%;
+			margin: 0 0 10px 0 !important;
+		}
+		select {
+			width: 100%;
+		}
+	}
+
+	/**
+	 * Settings UI: Upgrade
+	 * - Drop to a single column
+	 * - Reduce font sizes and spacing
+	 */
+	.wpzinc-upgrade {
+		ul {
+			grid-template-columns: repeat(1, 1fr);
+		}
+	}
+}

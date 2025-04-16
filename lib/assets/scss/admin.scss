@@ -1,0 +1,550 @@
+body.wpzinc {
+	/**
+	* Progress Bar
+	*/
+	.wpzinc-option.progressbar {
+		@import "progressbar";
+	}
+}
+
+/**
+ * Menu Icon
+ */
+li.toplevel_page_wp-to-buffer-pro-settings,
+li.toplevel_page_wp-to-buffer-pro,
+li.toplevel_page_wp-to-buffer-settings,
+li.toplevel_page_wp-to-buffer,
+li.toplevel_page_wp-to-hootsuite-pro-settings,
+li.toplevel_page_wp-to-hootsuite-pro,
+li.toplevel_page_wp-to-hootsuite-settings,
+li.toplevel_page_wp-to-hootsuite,
+li.toplevel_page_wp-to-socialpilot-pro-settings,
+li.toplevel_page_wp-to-socialpilot-pro,
+li.toplevel_page_wp-to-socialpilot-settings,
+li.toplevel_page_wp-to-socialpilot {
+    a {
+		div.wp-menu-image {
+			img {
+				width: 16px;
+				height: 16px;
+			}
+		}
+	}
+}
+
+/**
+* Post Meta
+*/
+body.post-php,
+body.post-new-php {
+	#wp-to-buffer,
+	#wp-to-buffer-pro,
+	#wp-to-hootsuite,
+	#wp-to-hootsuite-pro,
+	#wp-to-socialpilot,
+	#wp-to-socialpilot-pro {
+		/**
+		 * Force Gutenberg Show / Hide Arrow Button to display over h2.hndle,
+		 * otherwise .hndle background will hide this button
+		 */
+		> .handlediv {
+			position: relative;
+			z-index: 2;
+		}
+
+		> .hndle {
+			background: #fff;
+			border-top: 1px solid #e5e5e5;
+			border-right: 1px solid #e5e5e5;
+			border-left: 1px solid #e5e5e5;	
+		}
+
+		div.inside {
+			margin: 0;
+			padding: 0;
+
+			#wp-to-buffer-pro-override,
+			#wp-to-hootsuite-pro-override,
+			#wp-to-socialpilot-pro-override {
+				display: none;
+				margin-top: -1px;
+				border-bottom: 1px solid #dfdfdf;
+			}
+		}
+	}
+
+	/**
+	 * Image
+	 */
+	#wp-to-buffer-pro-image,
+	#wp-to-hootsuite-pro-image,
+	#wp-to-socialpilot-pro-image {
+		div.inside {
+			margin: 0;
+			padding: 0;
+		}
+	}
+}
+
+/**
+* Log
+*/
+#wp-to-buffer-log,
+#wp-to-buffer-pro-log,
+#wp-to-hootsuite-log,
+#wp-to-hootsuite-pro-log,
+#wp-to-socialpilot-log,
+#wp-to-socialpilot-pro-log {
+	div.inside {
+		margin: 0;
+		padding: 0;	
+	
+		div.wpzinc-option {
+			table.wp-to-social-log {
+				thead {
+					tr {
+						th {
+							font-weight: 700;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+table.wp-to-social-log {
+	tbody {
+		tr {
+			&.success {
+				td, th {
+					background: #ddfede;
+				}
+
+				&.alternate {
+					td, th {
+						background: #cafcbb;
+					}
+				}
+			}
+
+			&.warning {
+				td, th {
+					background: #ffa500;
+				}
+
+				&.alternate {
+					td, th {
+						background: #e6a62e;
+					}
+				}
+			}
+
+			&.error {
+				td, th {
+					background: #ffcdcd;
+				}
+
+				&.alternate {
+					td, th {
+						background: #fcbbbb;
+					}
+				}
+
+				a {
+					text-decoration: none;
+				}
+			}
+		}
+	}
+}
+
+/**
+* Gutenberg Meta Boxes
+*/
+body.block-editor-page {
+	#wp-to-buffer,
+	#wp-to-buffer-pro,
+	#wp-to-hootsuite,
+	#wp-to-hootsuite-pro,
+	#wp-to-socialpilot,
+	#wp-to-socialpilot-pro,
+	#wp-to-buffer-log,
+	#wp-to-buffer-pro-log,
+	#wp-to-hootsuite-log,
+	#wp-to-hootsuite-pro-log,
+	#wp-to-socialpilot-log,
+	#wp-to-socialpilot-pro-log {
+		margin-bottom: 20px;
+	}
+}
+
+/**
+* Settings Header Icon
+*/
+body.wpzinc.wp-to-buffer,
+body.wpzinc.wp-to-buffer-pro {
+	div.wrap {
+		h1.wp-heading-inline {
+			background-image: url(../images/icons/buffer-light.svg);
+			background-position: 25px 50%;
+			background-repeat: no-repeat;
+			background-size: 32px 32px;
+		}
+	}
+}
+body.wpzinc.wp-to-hootsuite,
+body.wpzinc.wp-to-hootsuite-pro {
+	div.wrap {
+		h1.wp-heading-inline {
+			background-image: url(../images/icons/hootsuite-light.svg);
+			background-position: 25px 50%;
+			background-repeat: no-repeat;
+			background-size: 32px 32px;
+		}
+	}
+}
+body.wpzinc.wp-to-socialpilot,
+body.wpzinc.wp-to-socialpilot-pro {
+	div.wrap {
+		h1.wp-heading-inline {
+			background-image: url(../images/icons/socialpilot-light.svg);
+			background-position: 25px 50%;
+			background-repeat: no-repeat;
+			background-size: 32px 32px;
+		}
+	}
+}
+
+/**
+* Settings (Post Meta and Settings Screen)
+*/
+#wp-to-buffer,
+#wp-to-buffer-pro,
+#wp-to-hootsuite,
+#wp-to-hootsuite-pro,
+#wp-to-socialpilot,
+#wp-to-socialpilot-pro {
+	ul.wpzinc-nav-tabs {
+		li {		
+			/**
+			* Settings
+			*/
+			&.image {
+				a {
+					background-image: url(../../../_modules/dashboard/feather/image.svg);
+					background-size: 16px 16px;
+				}
+			}
+			&.lock {
+				a {
+					background-image: url(../../../_modules/dashboard/feather/lock.svg);
+					background-size: 16px 16px;
+				}
+			}
+			&.arrow-right-circle {
+				a {
+					background-image: url(../../../_modules/dashboard/feather/arrow-right-circle.svg);
+					background-size: 16px 16px;
+				}
+			}
+			&.file-text {
+				a {
+					background-image: url(../../../_modules/dashboard/feather/file-text.svg);
+					background-size: 16px 16px;
+				}
+			}
+			&.users {
+				a {
+					background-image: url(../../../_modules/dashboard/feather/users.svg);
+					background-size: 16px 16px;
+				}
+			}
+			&.tag {
+				a {
+					background-image: url(../../../_modules/dashboard/feather/tag.svg);
+					background-size: 16px 16px;
+				}
+			}
+
+			/**
+			* Post Types
+			*/
+			&.default {
+				a {
+					background-image: url(../../../_modules/dashboard/feather/settings.svg);
+					background-size: 16px 16px;
+				}
+			}
+			&.facebook {
+				a {
+					background-image: url(../../../_modules/dashboard/feather/facebook.svg);
+					background-size: 16px 16px;
+				}
+			}
+			&.threads {
+				a {
+					background-image: url(../../../_modules/dashboard/feather/at-sign.svg);
+					background-size: 16px 16px;
+				}
+			}
+			&.twitter {
+				a {
+					background-image: url(../../../_modules/dashboard/feather/twitter.svg);
+					background-size: 16px 16px;
+				}
+			}
+			&.linkedin {
+				a {
+					background-image: url(../../../_modules/dashboard/feather/linkedin.svg);
+					background-size: 16px 16px;
+				}
+			}
+			&.google {
+				a {
+					background-image: url(../../../_modules/dashboard/feather/google.svg);
+					background-size: 16px 16px;
+				}
+			}
+			&.mastodon {
+				a {
+					background-image: url(../../../_modules/dashboard/feather/mastodon.svg);
+					background-size: 16px 16px;
+				}
+			}
+			&.pinterest {
+				a {
+					background-image: url(../../../_modules/dashboard/feather/pinterest.svg);
+					background-size: 16px 16px;
+				}
+			}
+			&.googlebusiness {
+				a {
+					background-image: url(../../../_modules/dashboard/feather/home.svg);
+					background-size: 16px 16px;
+				}
+			}
+			&.instagram {
+				a {
+					background-image: url(../../../_modules/dashboard/feather/instagram.svg);
+					background-size: 16px 16px;
+				}
+			}
+			&.bluesky {
+				a {
+					background-image: url(../../../_modules/dashboard/feather/bluesky.svg);
+					background-size: 16px 16px;
+				}
+			}
+
+			&.tumblr {
+				a {
+					background-image: url(../../../_modules/dashboard/feather/tumblr.svg);
+					background-size: 16px 16px;
+				}
+			}
+			&.vk {
+				a {
+					background-image: url(../../../_modules/dashboard/feather/vk.svg);
+					background-size: 16px 16px;
+				}
+			}
+		}
+	}
+
+	ul.wpzinc-nav-tabs,
+	ul.wpzinc-nav-tabs-horizontal {
+		li {
+			a {
+				span.dashicons.dashicons-yes {
+					display: none;
+				}
+				&.enabled {
+					span.dashicons.dashicons-yes {
+						display: inline-block;
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Media Library
+	 */
+	.wpzinc-media-library {
+		width: 150px;
+	}
+
+	/**
+	* Postbox
+	*/
+	div.postbox {
+		width: 100%;
+
+		/**
+		* Statuses
+		*/
+		div.statuses {
+			/**
+			* Status
+			*/
+			tr.status {
+				/**
+				* Don't display first status' delete button
+				*/		
+				&.first {
+					td.actions {
+						a.delete-status {
+							display: none;
+						}
+					}
+				}
+
+				/**
+				* Columns
+				*/
+				td {
+					&.count {
+						width: 20px;
+					}
+					&.actions {
+						width: 80px;
+					}
+					&.text {
+
+					}
+					&.image {
+
+					}
+					&.schedule {
+
+					}
+					&.conditions {
+
+					}
+				}
+			}
+
+			/**
+			 * Status Form Container Row
+			 */
+			tr.status-form-container {
+				> td {
+					padding: 0;
+				}
+			}
+		}
+	}
+}
+
+/**
+* Status Form
+*/
+body.wpzinc {
+	.wrap {
+		.wp-to-social-pro-status-form {
+			> .wpzinc-option {
+				padding: 20px 30px;
+			}
+
+			div.notice-inline {
+				margin: 5px 0 15px 0;
+				border-top: 1px solid #ccd0d4;
+				border-right: 1px solid #ccd0d4;
+				border-bottom: 1px solid #ccd0d4;
+
+				p {
+					margin: .5em 0;
+				}
+			}
+
+			div.images {
+				margin: 0 0 10px 0;
+
+				select.right {
+					margin: 0 0 0 5px;
+				}
+			}
+
+			div.tags {
+				margin: 0 0 10px 0;
+			}
+
+			/**
+			 * Character Count
+			 */
+			small.characters {
+				display: inline-block;
+				line-height: 1;
+			}
+
+			h3 {
+				margin: 0;
+			}
+
+			/**
+			 * Status
+			 */
+			div.status,
+			div.scheduling,
+			div.pinterest,
+			div.googlebusiness,
+			div.images,
+			div.text-to-image {
+				select,
+				input[type=text],
+				textarea {
+					margin: 0 0 7px 0;
+				}
+			}
+
+			/**
+			 * Scheduling
+			 */
+			div.schedule {
+				label,
+				.custom {
+					display: inline-block;
+					vertical-align: middle;
+				}
+
+				input[type=number] {
+					width: 50px;
+				}
+			}
+
+			/**
+			* Section divider
+			*/
+			div.section {
+				margin: 15px 0 0 0;
+				padding: 15px 0 0 0;
+				border-top: 1px solid #dfdfdf;
+
+				table {
+					th.actions,
+					td.actions {
+						width: 71px;
+					}
+				}
+			}
+		}
+	}
+}
+
+/**
+* Table Row Repeaters (Custom Fields, Custom Tags)
+*/
+table {
+	tr.hide-delete-button {
+		td {
+			.wpzinc-delete-table-row {
+				display: none;
+			}
+		}
+	}
+}
+
+/**
+* Responsive
+*/
+@import "responsive";

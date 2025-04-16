@@ -1,0 +1,11 @@
+.DS_Store
+.env
+.env.testing
+config.codekit3
+codeception.yml
+composer.lock
+phpstan.neon
+tests/_output
+tests/Support/_generated
+vendor
+*.zip

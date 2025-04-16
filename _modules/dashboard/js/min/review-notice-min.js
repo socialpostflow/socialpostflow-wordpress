@@ -1,0 +1,1 @@
+jQuery(document).ready((function($){$("div.wpzinc-review-"+wpzinc_admin_review_notice.plugin_name).on("click","a, button.notice-dismiss",(function(i){$.post(ajaxurl,{action:wpzinc_admin_review_notice.action,nonce:wpzinc_admin_review_notice.nonce},(function(i){})),$("div.wpzinc-review-"+wpzinc_admin_review_notice.plugin_name).hide()}))}));

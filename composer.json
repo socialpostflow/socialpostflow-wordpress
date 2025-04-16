@@ -1,0 +1,49 @@
+{
+    "name": "n7studios/wp-social-post-flow",
+    "description": "Social Post Flow Plugin",
+    "type": "project",
+    "require-dev": {
+        "php-webdriver/webdriver": "^1.0",
+        "wp-coding-standards/wpcs": "^3.0.0",
+        "phpstan/phpstan": "^1.0 || ^2.0",
+        "szepeviktor/phpstan-wordpress": "^1.0 || ^2.0",
+        "lucatume/wp-browser": "^3.0 || ^4.0",
+        "gumlet/php-image-resize": "^1.6"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "archive": {
+        "exclude": [
+            "!vendor/*",
+            ".circleci",
+            ".github",
+            "bin",
+            "tests",
+            ".distignore",
+            ".env",
+            ".gitignore",
+            ".git",
+            ".wordpress-org",
+            ".travis.yml",
+            "circle.yml",
+            "codeception.dist.yml",
+            "composer.json",
+            "composer.lock",
+            "Gruntfile.js",
+            "log.txt",
+            "package.json",
+            "package-lock.json",
+            "phpcs.xml.dist",
+            "phpunit.xml",
+            "phpunit.xml.dist",
+            "node_modules",
+            "readme.md",
+            "tags"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    }
+}

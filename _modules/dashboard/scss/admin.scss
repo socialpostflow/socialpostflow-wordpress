@@ -1,0 +1,1412 @@
+/**
+* This file contains global Admin UI CSS that's used across all Plugins.
+*
+* If an Admin UI element is used in the majority of our plugins, then include its CSS
+* here.
+*
+* If an Admin UI element is used in one or a minority of our plugins, include its CSS
+* in its own admin.css file.
+*/
+
+/**
+ * Vars
+ */
+$wpzinc-option-label-width: 				140px;
+$wpzinc-vertical-tabbed-ui-width: 			180px;
+$wpzinc-vertical-tabbed-ui-width-mobile: 	60px;
+$wpzinc-border-color: 						#e5e5e5;
+
+/**
+ * wp_die() Screen
+ * - Adds styling when emulating wp_die() through JS
+ */
+body#wpzinc-error-page {
+	background: #f1f1f1;
+
+	div.wpzinc-die-message {
+		background: #fff;
+		border: 1px solid #ccd0d4;
+		color: #444;
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+		margin: 2em auto;
+		padding: 1em 2em;
+		max-width: 700px;
+		-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
+		box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
+	}
+}
+
+/**
+ * New Settings UI: Settings Screens
+ * - Excludes Post and Taxonomy Types.
+ */
+body.wpzinc {
+	background: #f0f0f1;
+
+	/**
+ 	 * Screen Options
+ 	 * - Add left margin so it's not tight to the admin menu
+ 	 */
+ 	#screen-meta {
+ 		margin-left: 22px;
+ 	}
+
+	#wpcontent {
+ 		padding-left: 0;
+ 	
+		#wpbody-content {
+			padding-left: 0;
+
+			/**
+			 * Header
+			 * - Used in settings screens and WP_List_Tables, excluding CPT's and
+			 * excluding Custom Taxonomies.
+			 */
+			> header {
+				height: 98px;
+				margin: 0 0 10px 0;
+				padding: 0 20px;
+				background-image: var(--wpzinc-logo);
+				background-size: 40px auto;
+				background-position: 30px 50%;
+				background-repeat: no-repeat;
+				background-color: var(--wpzinc-header-background-color, #ffffff);
+
+				h1 {
+					float: left;
+					margin: 0;
+					padding: 0;
+					font-size: 24px;
+					font-weight: 600;
+					color: var(--wpzinc-header-primary-text-color, #3d3d3d);
+					line-height: 98px;
+					text-indent: 70px;
+
+					span {
+						color: var(--wpzinc-header-secondary-text-color, #6e6e6e);
+					}
+				}
+
+				a.wpzinc-docs {
+					float: right;
+					line-height: 98px;
+					padding: 0 20px;
+					font-weight: 400;
+					color: #144264;
+					text-decoration: none;
+				}
+			}
+
+			/**
+			 * Content Wrap
+			 */
+			.wrap {
+				margin: 0;
+
+				/**
+				 * Notices immediately inside the .wrap have incorrect margins
+				 * applied to them in WordPress.
+				 */
+				> .notice,
+				> .js-notices > .notice {
+					margin: 5px 15px 2px 15px;
+				}
+
+				@import "custom-post-tax-types";
+
+				/**
+				 * Search Results Sub Title
+				 */
+				span.subtitle {
+					position: absolute;
+					left: 0;
+						right: 0;
+						margin: 20px 0;
+					font-style: italic;
+					max-width: 50%;
+				}
+
+				/**
+				 * Settings screens
+				 */
+				.wrap-inner {
+					margin: 0 20px;
+
+					form#posts-filter {
+						margin: 0;
+					}
+				}
+
+				/**
+				 * Section
+				 */
+				.postbox {
+					background: #fff;
+					margin: 0 0 30px 0;
+					padding: 0;
+				}
+
+				/**
+				 * Modern Settings Sections
+				 */
+				form.wpzinc-settings-ui {
+					.postbox {
+						margin: 0 0 30px 0;
+						padding: 30px;
+						font-size: 14px;
+						border-radius: 8px;
+						border: none;
+
+						h2 {
+							margin: 0 0 30px 0;
+						    padding: 0 0 30px 0;
+						    font-size: 24px;
+						    font-weight: 600;
+						    border-bottom: 1px solid #e3e3e3;
+						    color: #3d3d3d;
+						}
+					}
+				}
+
+				/**
+				 * Buttons
+				 */
+				p.submit {
+					margin-bottom: 20px;
+					padding: 0;
+				}
+				
+			}
+		}
+	}
+}
+
+/**
+* Settings UI: Gutenberg
+*/
+body.wpzinc {
+	/**
+	 * Force selectize elements to be 100% width
+	 */
+	.components-base-control {
+		&.wpzinc-selectize-freeform,
+		&.wpzinc-selectize-drag-drop,
+		&.wpzinc-selectize-search,
+		&.wpzinc-selectize-api,
+		&.wpzinc-selectize {
+			width: 100%;
+		}
+	}
+}
+
+/**
+ * TinyMCE and tribute.js Autocompleters
+ * - Same style as Gutenberg's Autocompleters
+ */
+.tribute-container,
+ul.wpzinc-tinymce-autocomplete {
+	position: absolute;
+	z-index: 999999;
+	display: block;
+	top: 0;
+	left: 0;
+	height: auto;
+	min-width: 220px;
+	max-width: 500px;
+	max-height: 300px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	box-sizing: border-box;
+
+	margin: 0;
+	padding: 16px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+	border-radius: 2px;
+}
+.tribute-container ul,
+ul.wpzinc-tinymce-autocomplete {
+	margin: 0;
+	list-style: none;
+	
+}
+.tribute-container ul li,
+ul.wpzinc-tinymce-autocomplete li {
+    width: 100%;
+    line-height: 24px;
+    margin: 0;
+    padding: 6px 12px;
+    font-size: 13px;
+    text-align: left;
+    border: 0;
+    border-radius: 2px;
+    color: #1e1e1e;
+    text-decoration: none;
+    cursor: pointer;
+    background: none;
+	transition: box-shadow .1s linear;
+	box-sizing: border-box;
+
+	&:hover {
+    	color: #007cba;
+    }
+    &:focus,
+    &.highlight {
+    	color: #007cba;
+		box-shadow: 0 0 0 2px #007cba;
+    	outline: 3px solid transparent;
+    }
+    &.highlight:hover {
+    	box-shadow: none;
+    	outline: 0;
+    }
+}
+ul.wpzinc-tinymce-autocomplete {
+	display: none;
+
+	&.displayed {
+		display: block;
+	}
+
+	li {
+		display: none; 
+
+		&.displayed {
+			display: block;
+		}
+	}
+}
+
+/**
+ * jQuery UI Autocomplete
+ * - Increase z-index on results so they appear over the TinyMCE Modal
+ * - Scroll results
+ */
+.ui-autocomplete {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !important;
+	font-size: 15px !important;
+	z-index: 9999999 !important;
+	max-height: 120px !important;
+	overflow-x: hidden !important;
+	overflow-y: auto !important;
+	border: 1px solid #dddddd !important;
+	background: #f2f2f2 !important;
+	color: #333333 !important;
+}
+
+/**
+ * Media Library: Insert/Delete Image
+ */
+ .wpzinc-media-library-selector {
+ 	ul {
+ 		margin: 0;
+ 		padding: 0;
+ 	}
+ 	
+ 	/**
+ 	 * Individual Attachment
+ 	 */
+	li.wpzinc-media-library-attachment {
+		position: relative;
+		border: 1px dashed #dfdfdf;
+		background-color: #fff;
+		padding: 5px 10px;
+
+		.wpzinc-media-library-insert {
+			img {
+				position: relative;
+				z-index: 2;
+				display: block;
+				width: 100%;
+				height: auto;
+			}
+		}
+
+		/**
+		 * Replace
+		 */
+		a.wpzinc-media-library-replace {
+			position: absolute;
+			z-index: 4;
+			top: -11px;
+			left: -12px;
+			width: 19px;
+			height: 19px;
+			background: url(../feather/edit-2.svg) center no-repeat #fff;
+			background-size: 15px 15px;
+			text-indent: -9999px;
+			border: 2px solid #000;
+			border-radius: 50%;
+		}
+
+		/**
+		 * Remove
+		 */
+		a.wpzinc-media-library-remove {
+			position: absolute;
+			z-index: 3;
+			top: -12px;
+			right: -12px;
+			width: 24px;
+			height: 24px;
+			background: url(../feather/x-circle.svg) center no-repeat #fff;
+			background-size: 24px 24px;
+			text-indent: -9999px;
+			border: none;
+			border-radius: 50%;
+		}
+	}
+
+	/**
+	 * Sortable Attachments
+	 */
+	ul.ui-sortable {
+		li.wpzinc-media-library-attachment {
+			cursor: move;
+		}
+	}
+
+	/**
+	 * Multiple Attachments
+	 */
+	&[data-multiple=true] {
+		ul {
+			display: grid;
+	    	grid-gap: 10px;
+	    	grid-template-columns: 1fr 1fr;
+	    }
+	}
+
+	/**
+	 * Image Attachments
+	 */
+	&[data-file-type=image] {
+		li.wpzinc-media-library-attachment {
+			--aspect-ratio: 1/1;
+			border: 1px dashed #dfdfdf;
+			background-color: #fff;
+			padding: 0;
+
+			&:before {
+				content: "";
+				display: inline-block;
+				width: 1px;
+				height: 0;
+				padding-bottom: calc(100% / (var(--aspect-ratio)));
+			}
+
+			.wpzinc-media-library-insert {
+				display: inline-block;
+				position: absolute;
+				z-index: 1;
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+}
+
+/**
+ * Settings UI - Horizontal Tabbed Interface
+ * - Extends WordPress' .nav-tab-wrapper class
+ */
+h2.wpzinc-horizontal-tabbed-ui.nav-tab-wrapper {
+	margin: 0 0 20px 0;
+	padding: 0;
+	border-bottom: 1px solid #d0d0cf;
+
+	&.needs-js {
+		display: none;
+	}
+
+	a.nav-tab {
+		position: relative;
+		display: inline-block;
+		margin: 0 5px 0 0;
+		padding: 0 20px;
+		height: 64px;
+		line-height: 64px;
+		text-decoration: none;
+		font-size: 14px;
+		font-weight: 600;
+		color: #565656;
+		border: none;
+		background: none;
+
+		&:hover {
+			color: #144264;
+			background: #e7e7e7
+		}
+		&.nav-tab-active {
+			color: #144264;
+			border-bottom: 1px solid #4c596d;
+		}
+		&.enabled {
+			color: green;
+		}
+		&.error {
+			color: red;
+		}
+		&.last {
+			float: right;
+			margin: 0;
+		}
+
+		/**
+		 * Remove focus shadow on tabs
+		 */
+		&:focus {
+			box-shadow: none;
+			-webkit-box-shadow: none;
+		}
+
+		span.text-mobile {
+			display: none;
+		}
+
+		/**
+		 * Dashicons
+		 */
+		span.dashicons {
+			vertical-align: middle;
+		}
+
+		/**
+		* OK Icon
+		*/
+		span.dashicons.dashicons-yes {
+			position: absolute;
+			display: none;
+			top: -8px;
+			right: -8px;
+			background-color: green;
+			color: white;
+			border-radius: 50%;
+
+			&::before {
+				margin-left: -2px;
+			}
+		}
+		&.enabled {
+			span.dashicons.dashicons-yes {
+				display: inline-block;
+			}
+		}
+
+		/**
+		* Warning Icon
+		*/
+		span.dashicons.dashicons-warning {
+			position: absolute;
+			display: inline-block;
+			top: -8px;
+			right: -8px;
+			color: red;
+			border-radius: 50%;
+		}
+	}
+}
+
+/**
+ * Settings UI - Vertical Tabbed Interface
+ */
+div.wpzinc-vertical-tabbed-ui {
+	display: grid;
+	grid-template-columns: $wpzinc-vertical-tabbed-ui-width auto;
+	grid-template-areas: "tabs content";
+
+	/**
+	 * We force styles here as Gutenberg meta boxes might not have borders etc
+	 */
+    border: 1px solid $wpzinc-border-color !important;
+	background: #f7f7f7 !important;
+
+	&.no-border {
+		border: none !important;
+	}
+
+	header {
+		border-bottom: 1px solid $wpzinc-border-color;
+	}
+
+	/**
+	 * Vertical Tabs
+	 */
+	ul.wpzinc-nav-tabs {
+		grid-area: tabs;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		border-right: 1px solid $wpzinc-border-color;
+
+		li.wpzinc-nav-tab {
+			width: 100%;
+			margin: 0;
+			padding: 0;
+
+			/**
+			 * Icons for dashboard elements e.g. Import & Export
+			 */
+			&.download {
+				a {
+					background-image: url(../feather/download.svg);
+					background-size: 16px 16px;
+				}
+			}
+			&.upload {
+				a {
+					background-image: url(../feather/upload.svg);
+					background-size: 16px 16px;
+				}
+			}
+
+			a {
+				position: relative;
+				display: block;
+	    		width: $wpzinc-vertical-tabbed-ui-width - 40;
+	    		margin: 0 20px;
+	    		padding: 20px 0 20px 25px;
+			    text-decoration: none;
+			    color: #999;
+			    border-bottom: 1px solid $wpzinc-border-color;
+			    box-sizing: border-box;
+			    transition: none;
+			    background-position: 0 50%;
+				background-repeat: no-repeat;
+
+				/**
+				* Status Icons
+				*/
+				span.dashicons {
+					position: absolute;
+					top: 16px;
+					right: 0;
+					display: inline-block;
+					border-radius: 50%;
+
+					&::before {
+						margin-left: -1px;
+					}
+
+					&.dashicons-yes {
+						background-color: green;
+						color: white;
+					}
+
+					&.dashicons-warning {
+						color: red;
+					}
+
+					&.hidden {
+						display: none;
+					}
+				}
+
+				/**
+				* Tag
+				*/
+				span.tag {
+					position: absolute;
+					top: 15px;
+					right: 0;
+					display: inline-block;
+					font-size: 13px;
+					background-color: #999;
+					color: #fff;
+					border-radius: 3px;
+					padding: 3px;
+				}
+
+				/**
+			     * Enabled + Error Styles
+			     */
+			    &.enabled {
+					color: green;
+
+					span.dashicons {
+						&.hidden {
+							display: inline-block;
+						}
+					}
+				}
+				&.error {
+					color: red;
+
+					span.dashicons {
+						&.hidden {
+							display: inline-block;
+						}
+					}
+				}
+
+			    &.wpzinc-nav-tab-vertical-active,
+			    &:hover {
+			    	width: $wpzinc-vertical-tabbed-ui-width + 1;
+				    margin: -1px 0 0 0;
+				    padding: 20px 20px 20px 45px;
+				    text-decoration: none;
+				    color: #444;
+				    border-top: 1px solid $wpzinc-border-color;
+				    border-bottom: 1px solid $wpzinc-border-color;
+				    border-right: 1px solid #f9f7f4;
+				    background-color: #fff;
+				    background-position: 20px 50%;
+					background-repeat: no-repeat;
+
+					span.dashicons {
+						right: 20px;
+					}
+
+					span.tag {
+						right: 20px;
+						font-weight: normal;
+					}
+			    }
+
+			    &.wpzinc-nav-tab-vertical-active {
+			    	font-weight: 700;
+			    }
+
+			    &:hover {
+			    	background-color: #f9f7f4;
+			    }
+
+			    &:focus {
+			    	box-shadow: none;
+			    }
+			}
+
+			&:last-child {
+				a {
+					border-bottom: none;
+				}
+			}
+		}
+	}
+
+	/**
+	 * Content
+	 */
+	div.wpzinc-nav-tabs-content {
+		grid-area: content;
+		margin: 0;
+		background: #fff;
+	    border-left: 1px solid $wpzinc-border-color;
+
+	    &:after {
+	    	content: "";
+    		display: table;
+    		clear: both;
+	    }
+
+	    div.postbox {
+	    	margin: 0;
+	    	padding: 0;
+	    	border: none;
+	    	background-color: transparent;
+
+	    	+ div.postbox {
+    			border-top: 1px solid $wpzinc-border-color;
+    		}
+
+	    	header {
+	    		padding: 19px 15px 18px 15px;
+
+	    		h3 {
+	    			/* Defined so h3's style consistently in TinyMCE modals */
+	    			display: block;
+	    			margin: 0;
+	    			font-size: 1.3em;
+	    			font-weight: 600;
+	    			color: #23282d;
+	    		
+					/**
+					* Checkboxes in Titles
+					*/
+					label {
+						float: right;
+						font-weight: normal;
+					}
+	    		}
+	    		p.description {
+	    			margin: 10px 0 0 0;
+	    		}
+	    	}
+	    }
+	}
+
+	/**
+	 * Horizontal Tabs
+	 */
+	ul.wpzinc-nav-tabs-horizontal {
+		display: inline-block;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		background-color: #f7f7f7;
+
+		li.wpzinc-nav-tab-horizontal {
+			float: left;
+			margin: 0;
+			padding: 0;
+		
+			a {
+				position: relative;
+				float: left;
+				height: 54px;
+				line-height: 54px;
+	    		margin: 0;
+	    		padding: 0 20px;
+			    text-decoration: none;
+			    color: #999;
+			    
+			    box-sizing: border-box;
+			    transition: none;
+			    background-position: 0 50%;
+				background-repeat: no-repeat;
+
+				/**
+			    * Enabled + Error Styles
+			    */
+			    &.enabled {
+					color: green;
+				}
+				&.error {
+					color: red;
+				}
+
+				/**
+				* Status Icons
+				*/
+				span.dashicons {
+					display: inline-block;
+					width: 16px;
+					height: 16px;
+					font-size: 17px;
+					margin: 18px 0 0 0;
+					border-radius: 50%;
+
+					&::before {
+						margin-left: -1px;
+					}
+
+					&.dashicons-yes {
+						margin: 18px 0 0 10px;
+						background-color: green;
+						color: white;
+					}
+
+					&.dashicons-warning {
+						margin: 18px 0 0 10px;
+						color: red;
+					}
+				}
+
+			    &.wpzinc-nav-tab-horizontal-active,
+			    &:hover {
+				    text-decoration: none;
+				    color: #444;
+				    background-color: #fff;
+				    background-position: 20px 50%;
+					background-repeat: no-repeat;
+
+					span.dashicons {
+						right: 20px;
+					}
+			    }
+
+			    &.wpzinc-nav-tab-horizontal-active {
+			    	font-weight: 700;
+			    }
+
+			    &:focus {
+			    	box-shadow: none;
+			    }
+			}
+		}
+	}
+}
+
+/**
+ * Settings UI - Admin Interface
+ */
+@import "option";
+
+/**
+ * Settings UI - Horizontal Selection
+ */
+.wpzinc-horizontal-selection {
+	display: flex;
+	flex-wrap: wrap;
+	
+	label {
+		width: 300px;
+		text-align: center;
+		margin: 0 20px 20px 0;
+		padding: 20px;
+		background-color: #fcfcfc;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		cursor: pointer;
+
+		.image {
+			min-height: 105px;
+		}
+
+		span {
+			display: block;
+			
+			&.description {
+				margin: 20px 0 0 0;
+				color: #646970;
+				font-size: 13px;
+			}
+		}
+
+		input[type=radio] {
+			margin: 20px 0 0 0;
+		}
+	}
+}
+
+/**
+* Settings UI - Items in Headers
+*/
+.postbox {
+	.hndle {
+		.right {
+			float: right;
+
+			/**
+			* Buttons
+			*/
+			&.button {
+				margin-top: -3px;
+			}
+		}
+
+		/**
+		* Input & Select
+		*/
+		input.right,
+		select.right {
+			margin-top: -3px;
+		}	
+	}
+}
+
+/**
+* Settings UI - TinyMCE Popups
+*/
+#wpzinc-tinymce-modal {
+	#wpzinc-tinymce-modal-body {
+		/* Scroll inner contents so that modal height doesn't need to exceed screen resolution. */
+		overflow-y: auto;
+	}
+	div.mce-foot {
+		div.mce-insert {
+			
+		}
+		div.mce-cancel {
+			left: 10px !important;
+		}
+	}
+}
+
+/**
+* Settings UI - TinyMCE and QuickTags
+*/
+form.wpzinc-tinymce-popup {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	
+	/**
+	 * Vertical Tabbed UI
+	 */
+	div.wpzinc-vertical-tabbed-ui {
+		border: none !important;
+	}
+
+	/**
+	* Text Wrapping
+	*/
+	p.description {
+		white-space: normal;
+		margin: 2px 0 5px;
+    	color: #666;
+		font-size: 13px;
+    	font-style: italic;
+	}
+
+	/**
+	 * Imports to override greedy TinyMCE reset
+	 * - Settings UI
+	 * - Selectize
+	 */
+	@import "option";
+	@import "selectize";
+
+	/**
+	 * Settings UI
+	 */
+	div.wpzinc-option {
+		&:last-child {
+			border-bottom: none;
+		}
+
+		.widefat {
+			width: 100%;
+			max-width: 100%;
+			box-sizing: border-box;
+		}
+
+		/**
+		* Inputs
+		*/
+		select {
+			background-color: #fff;
+		}
+		textarea {
+			padding: 5px; 
+			background-color: #fff;
+			border: 1px solid #7e8993;
+		}
+
+		/**
+		* One column layout
+		*/
+		.full {
+			clear: both;
+			display: block;
+			padding: 5px 0 0 0;
+		}
+
+		/**
+		 * Selectize
+		 * - Prevent control from dropping under tabs
+		 */
+		.selectize-control {
+			clear: none;
+		}
+
+		/**
+		* Footer Buttons
+		*/
+		&.buttons {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			border-top: 1px solid #ddd;
+			background-color: #f7f7f7;
+
+			&.has-wpzinc-vertical-tabbed-ui {
+				border-top: 1px solid #ddd;
+				background-color: #f7f7f7;
+			}
+		}
+	}
+}
+
+/**
+* TinyMCE - dashicons for Visual Editor Buttons
+*/
+i.mce-i-wpzinc-icon {
+	font: normal 20px/1 'dashicons';
+	padding: 0;
+	vertical-align: top;
+	speak: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	margin-left: -2px;
+	padding-right: 2px;
+}
+
+/**
+ * Warning Notices
+ */
+div.notice.warning {
+	border-left-color: #ffb900;
+}
+
+/**
+ * Settings UI: Upgrade
+ */
+.wpzinc-upgrade-hr {
+	padding: 20px 0 0 0;
+	border-bottom: none;
+}
+.wpzinc-upgrade {
+	background: #f7f7f7;
+	border: 1px solid #e5e5e5;
+	padding: 20px;
+
+	h3 {
+		margin: 0 0 30px 0;
+		padding: 0;
+	}
+
+	ul {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		column-gap: 20px;
+		row-gap: 20px;
+
+		li {
+			background: url(../feather/check-circle.svg) top left no-repeat;
+			background-size: 20px 20px;
+			padding: 0 0 0 30px;
+			
+
+			strong {
+				display: block;
+				font-size: 15px;
+				margin: 0 0 5px 0;
+			}
+		}
+	}
+
+	a.button {
+		margin: 20px 0 0 0;
+	}
+}
+
+/**
+ * Gutenberg Editor Styling
+ * - gutenberg-editor-page is for WP 4.9.x w/ Gutenberg Plugin
+ * - block-editor-page is for WP 5.x
+ */
+body.wpzinc.gutenberg-editor-page,
+body.wpzinc.block-editor-page {
+	.edit-post-layout__metaboxes:not(:empty) {
+		margin: 0;
+		padding: 0;
+	}
+
+	.edit-post-meta-boxes-area {
+		margin: 0;
+
+		#poststuff {
+			.handlediv {
+				/* Required so open/close button sits above and isn't covered by background color below */
+				position: relative;
+				z-index: 2;
+			}
+			h2.hndle {
+				z-index: 1; /* Required so open/close button sits above and isn't covered by background color below */
+				background-color: #fcfcfc;
+			}
+		}
+
+		.wpzinc-option {
+			background-color: transparent;
+			border: none;
+			
+			&:nth-child(odd) {
+				background-color: transparent;	
+			}
+		}
+	}
+}
+
+/**
+* Modals
+*/
+.wpzinc-modal-overlay {
+	display: none;
+	position: fixed;
+	z-index: 99999999;
+	top: 0;
+	left: 0;
+	opacity: 0.5;
+	width: 100vw;
+	height: 100vh;
+	background-color: #000;
+}
+.wpzinc-modal {
+	display: none;
+	position: fixed;
+	z-index: 100000000;
+
+	top: 50vh;
+	left: 50vw;
+	width: 50vw;
+	height: 180px;
+	margin: -90px 0 0 -25vw;
+
+	box-sizing: border-box;
+	background-color: #f7f7f7;
+	padding: 20px;
+
+	&.wpzinc-modal-mini {
+		top: 50vh;
+		left: 50vw;
+		width: 200px;
+		height: 70px;
+		margin: -35px 0 0 -85px;
+	}
+
+	h2 {
+		font-size: 20px;
+		line-height: 25px;
+		font-weight: 700;
+		margin: 0 0 10px 0;
+		padding: 0;
+
+		div.spinner {
+			display: none;
+			visibility: hidden;
+			margin: 0;
+		}
+
+		div.tick {
+			display: none;
+			visibility: hidden;
+			float: right;
+			width: 20px;
+			height: 20px;
+			margin: 4px 10px 0 4px;
+		}
+	}
+	
+	p.message {
+		margin: 0 0 20px 0;
+		padding: 0;
+	}
+
+	.notice {
+		display: block !important;
+		margin: 0 0 20px 0;
+		padding: 10px;
+
+		&.warning {
+			border-left-color: orange;
+		}
+
+		p {
+			margin: 0;
+		}
+	}
+
+	button.close {
+		display: none;
+	}
+}
+
+/**
+* QuickTags Backbone Modal
+* - used by tinymce-modal.js
+* - override styles set by WordPress
+*/
+.wpzinc-backbone-modal {
+	.media-modal {
+		position: absolute;
+  		left: 50%;
+  		top: 50%;
+  		transform: translate(-50%, -50%);
+
+  		.media-frame-title {
+  			left: 0;
+  			height: 30px;
+  		}
+  		.media-frame-content {
+  			left: 0;
+  			top: 54px;
+  			bottom: 54px; /* 34px + .media-toolbar top and bottom padding */
+  		}
+  		.media-frame-toolbar {
+  			left: 0;
+  			bottom: 47px;
+  			background: #fff;
+
+  			.media-toolbar {
+  				padding: 10px;
+  			}
+  		}
+	}
+}
+
+/**
+ * Notifications
+ */
+.wpzinc-notification {
+	display: none;
+	position: fixed;
+	z-index: 9999999;
+	bottom: 20px;
+	right: 20px;
+	color: #fff;
+	background-color: #585e65;
+
+	padding: 10px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    box-shadow: 0 20px 30px -16px rgba(9,9,16,0.8);
+
+    &.wpzinc-notification-success {
+    	border-left: 4px solid #46b450;
+    }
+ 	&.wpzinc-notification-warning {
+ 		border-left: 4px solid orange;
+    }
+    &.wpzinc-notification-error {
+    	border-left: 4px solid #dc3232;
+    }
+}
+
+/**
+ * Red Button
+ */
+.wp-core-ui {
+	@import "buttons";
+}
+@import "buttons";
+
+/**
+* Taxonomy Term Checkboxes
+*/
+.tax-selection {
+	.tabs-panel { 
+		height: 200px !important;
+		overflow: auto; 
+		padding: 10px 15px;
+		border-left: none;
+		border-top: none;
+		border-right: none;
+		border-bottom: none;
+		background: #fff;
+
+		ul.categorychecklist {
+			margin: 0;
+			padding: 0;
+		}
+	}
+}
+
+/**
+ * Onboarding UI
+ */
+#wpzinc-onboarding {
+	max-width: 900px;
+	margin: 0 auto;
+	padding: 40px 0;
+	
+	#wpzinc-onboarding-progress {
+		text-align: center;
+		padding: 40px 0;
+
+		ol {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+
+			li {
+				position: relative;
+				display: inline-block;
+				width: 135px;
+				text-align: center;
+				line-height: 3em;
+
+				/**
+				 * Lines
+				 */
+				&:after {
+					position: absolute;
+					display: block;
+					z-index: 1;
+					top: -2px;
+					left: -65px;
+					height: 2px;
+					width: 135px;
+					content: "";
+					background-color: #dfdfdf;
+				}
+
+				/**
+				 * Bullets
+				 */
+				&:before {
+					position: absolute;
+					z-index: 2;
+					top: -6px;
+					left: 65px;
+					height: 10px;
+					width: 10px;
+					border-radius: 1.2em;
+					border: none;
+					line-height: 1.2em;
+					content: " ";
+					background-color: #dfdfdf;
+				}
+
+	  			&:first-child {
+	    			&:after {
+	      				display: none;
+	    			}
+	  			}
+
+	  			/**
+	  			 * Completed Item
+	  			 */
+	  			&.done {
+	  				color: #1c9bd7;
+
+	  				&:after,
+	  				&:before {
+	  					background-color: #1c9bd7;
+	  				}
+	  			}
+			}
+		}
+	}
+	#wpzinc-onboarding-form {
+		padding: 20px 80px 80px 80px;
+		background-color: #fff;
+		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+
+		#wpzinc-onboarding-content {
+			h1 {
+				margin: 60px 0 20px 0;
+			}
+			p {
+				font-size: 16px;
+
+				&.description {
+					font-size: 13px;
+				}
+			}
+			> div {
+				margin: 0 0 20px 0;
+			
+				label {
+					display: block;
+					margin-bottom: 10px;
+					font-size: 16px;
+					font-weight: 500;
+				}
+			}
+			
+		}
+		#wpzinc-onboarding-footer {
+			display: grid;
+			grid-template-columns: repeat(2,1fr);
+			grid-template-areas: "left right";
+			padding: 40px 0 0 0;
+
+			.left {
+				grid-area: left;
+				text-align: left;
+			}
+			.right {
+				grid-area: right;
+				text-align: right;
+			} 
+		}
+	}
+}
+
+/**
+* Responsive
+*/
+@import "responsive";
