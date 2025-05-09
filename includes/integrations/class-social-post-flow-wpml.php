@@ -98,14 +98,14 @@ class Social_Post_Flow_WPML {
 				</label>
 			</td>
 			<td>
-				<select name="<?php echo esc_attr( 'social-post-flow' ); ?>_wpml[compare]" id="wpml_compare" data-id="wpml_compare_index" size="1" class="widefat">
+				<select name="social-post-flow_wpml[compare]" id="wpml_compare" data-id="wpml_compare_index" size="1" class="widefat">
 					<option value="0"><?php esc_attr_e( 'No Conditions', 'social-post-flow' ); ?></option>
 					<option value="="><?php esc_attr_e( 'Equals', 'social-post-flow' ); ?></option>
 					<option value="!="><?php esc_attr_e( 'Does not Equal', 'social-post-flow' ); ?></option>
 				</select>
 			</td>
 			<td>
-				<select name="<?php echo esc_attr( 'social-post-flow' ); ?>_wpml[value]" id="wpml_value" size="1" class="widefat">
+				<select name="social-post-flow_wpml[value]" id="wpml_value" size="1" class="widefat">
 					<option value=""><?php esc_attr_e( '(Any Language)', 'social-post-flow' ); ?></option>
 					<?php
 					foreach ( $languages as $language_code => $language ) {

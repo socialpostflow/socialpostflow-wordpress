@@ -69,7 +69,7 @@
 									?>
 									<li>
 										<label class="selectit">
-											<input type="checkbox" name="<?php echo esc_attr( 'social-post-flow' ); ?>[posts][<?php echo esc_attr( $bulk_publish_post_id ); ?>]" value="<?php echo esc_attr( $bulk_publish_post_id ); ?>" />
+											<input type="checkbox" name="social-post-flow[posts][<?php echo esc_attr( $bulk_publish_post_id ); ?>]" value="<?php echo esc_attr( $bulk_publish_post_id ); ?>" />
 											<?php echo esc_html( get_the_title( $bulk_publish_post_id ) ); ?>      
 										</label>
 									</li>

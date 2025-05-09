@@ -13,4 +13,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 
-<div id="<?php echo esc_attr( 'social-post-flow' ); ?>-notification" class="wpzinc-notification"></div>
+<div id="social-post-flow-notification" class="wpzinc-notification"></div>

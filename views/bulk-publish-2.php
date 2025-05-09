@@ -18,14 +18,7 @@
 		<div class="full">
 			<p>
 				<?php
-				echo esc_html(
-					sprintf(
-					/* translators: %1$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot), %2$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-						__( 'Please be patient while Post(s) are published to %1$s. This can take a while if your server is slow (inexpensive hosting), or if you have chosen a lot of Posts and Statuses. Do not navigate away from this page until this script is done or all statuses will not be sent to %2$s. You will be notified via this page when the process is completed.', 'social-post-flow' ),
-						$this->base->plugin->account,
-						$this->base->plugin->account
-					)
-				);
+				esc_html_e( 'Please be patient while Post(s) are published to Social Post Flow. This can take a while if your server is slow (inexpensive hosting), or if you have chosen a lot of Posts and Statuses. Do not navigate away from this page until this script is done or all statuses will not be sent to Social Post Flow. You will be notified via this page when the process is completed.', 'social-post-flow' );
 				?>
 			</p>
 
@@ -35,7 +28,7 @@
 	</div>
 
 	<!-- Log -->	
-	<div id="<?php echo esc_attr( 'social-post-flow' ); ?>-log">
+	<div id="social-post-flow-log">
 		<div class="inside">
 			<div class="wpzinc-option">
 				<div class="full">
@@ -50,24 +43,12 @@
 								<th><?php esc_html_e( 'Response', 'social-post-flow' ); ?></th>
 								<th>
 									<?php
-									echo esc_html(
-										sprintf(
-										/* translators: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-											__( '%s: Status Created At', 'social-post-flow' ),
-											$this->base->plugin->account
-										)
-									);
+									esc_html_e( 'Social Post Flow: Status Created At', 'social-post-flow' );
 									?>
 								</th>
 								<th>
 									<?php
-									echo esc_html(
-										sprintf(
-											/* translators: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-											__( '%s: Status Scheduled For', 'social-post-flow' ),
-											$this->base->plugin->account
-										)
-									);
+									esc_html_e( 'Social Post Flow: Status Scheduled For', 'social-post-flow' );
 									?>
 								</th>
 							</tr>

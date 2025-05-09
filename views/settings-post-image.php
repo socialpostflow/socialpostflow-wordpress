@@ -12,7 +12,7 @@
 ?>
 <div class="wpzinc-option">
 	<div class="full wpzinc-media-library-selector"
-			data-input-name="<?php echo esc_attr( 'social-post-flow' ); ?>[additional_images][]"
+			data-input-name="social-post-flow[additional_images][]"
 			data-file-type="image"
 			data-output-size="small"
 			data-multiple="<?php echo esc_attr( $this->base->supports( 'additional_images' ) ? 'true' : 'false' ); ?>"
@@ -28,7 +28,7 @@
 				?>
 				<li class="wpzinc-media-library-attachment">
 					<div class="wpzinc-media-library-insert">
-						<input type="hidden" name="<?php echo esc_attr( 'social-post-flow' ); ?>[additional_images][]" value="<?php echo esc_attr( ! $image['id'] ? '' : $image['id'] ); ?>" />
+						<input type="hidden" name="social-post-flow[additional_images][]" value="<?php echo esc_attr( ! $image['id'] ? '' : $image['id'] ); ?>" />
 						<img src="<?php echo esc_attr( ! $image['thumbnail_url'] ? '' : $image['thumbnail_url'] ); ?>" />
 					</div>
 					<a href="#" class="wpzinc-media-library-remove" title="<?php esc_attr_e( 'Remove', 'social-post-flow' ); ?>"><?php esc_html_e( 'Remove', 'social-post-flow' ); ?></a>
@@ -78,7 +78,7 @@
 			<?php
 			esc_html_e( 'Drag and drop images to reorder. The number of additional images included in a status will depend on the social network. Refer to the ', 'social-post-flow' );
 			?>
-			<a href="<?php echo esc_attr( $this->base->plugin->documentation_url ); ?>/featured-image-settings/" target="_blank"><?php esc_html_e( 'Documentation', 'social-post-flow' ); ?></a>
+			<a href="https://www.socialpostflow.com/documentation/wordpress/featured-image-settings/" target="_blank"><?php esc_html_e( 'Documentation', 'social-post-flow' ); ?></a>
 		</p>
 		<?php
 	} elseif ( $supports_opengraph ) {

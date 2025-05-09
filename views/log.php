@@ -9,7 +9,7 @@
 ?>
 <header>
 	<h1>
-		<?php echo esc_html( $this->base->plugin->displayName ); ?>
+	<?php echo esc_html_e( 'Social Post Flow', 'social-post-flow' ); ?>
 
 		<span>
 			<?php esc_html_e( 'Logs', 'social-post-flow' ); ?>
@@ -29,7 +29,7 @@
 	}
 	?>
 
-	<form action="admin.php?page=<?php echo esc_attr( 'social-post-flow' ); ?>-log" method="post" id="posts-filter">
+	<form action="admin.php?page=social-post-flow-log" method="post" id="posts-filter">
 		<?php
 		// Output Search Box.
 		$table->search_box( __( 'Search', 'social-post-flow' ), 'wp-to-social-log' );

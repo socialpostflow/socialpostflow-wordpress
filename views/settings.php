@@ -37,7 +37,7 @@
 		<!-- Tabs -->
 		<h2 class="nav-tab-wrapper wpzinc-horizontal-tabbed-ui">
 			<!-- Settings -->
-			<a href="admin.php?page=<?php echo esc_attr( 'social-post-flow' ); ?>-settings" class="nav-tab<?php echo esc_attr( $tab === 'auth' ? ' nav-tab-active' : '' ) . ( ! empty( $access_token ) ? ' enabled' : ' error' ); ?>" title="<?php esc_attr_e( 'Settings', 'social-post-flow' ); ?>">
+			<a href="admin.php?page=social-post-flow-settings" class="nav-tab<?php echo esc_attr( $tab === 'auth' ? ' nav-tab-active' : '' ) . ( ! empty( $access_token ) ? ' enabled' : ' error' ); ?>" title="<?php esc_attr_e( 'Settings', 'social-post-flow' ); ?>">
 				<span class="dashicons dashicons-lock"></span> 
 				<?php
 				if ( ! empty( $access_token ) ) {
@@ -71,7 +71,7 @@
 					// Determine if the Post Type is set to post.
 					$is_post_type_enabled = social_post_flow()->get_class( 'settings' )->is_post_type_enabled( $public_post_type );
 					?>
-					<a href="admin.php?page=<?php echo esc_attr( 'social-post-flow' ); ?>-settings&amp;tab=post&amp;type=<?php echo esc_attr( $public_post_type ); ?>" class="nav-tab<?php echo esc_attr( $post_type === $public_post_type ? ' nav-tab-active' : '' ) . ( $is_post_type_enabled ? ' enabled' : '' ); ?>" title="<?php echo esc_attr( $post_type_obj->labels->name ); ?>" data-post-type="<?php echo esc_attr( $public_post_type ); ?>">
+					<a href="admin.php?page=social-post-flow-settings&amp;tab=post&amp;type=<?php echo esc_attr( $public_post_type ); ?>" class="nav-tab<?php echo esc_attr( $post_type === $public_post_type ? ' nav-tab-active' : '' ) . ( $is_post_type_enabled ? ' enabled' : '' ); ?>" title="<?php echo esc_attr( $post_type_obj->labels->name ); ?>" data-post-type="<?php echo esc_attr( $public_post_type ); ?>">
 						<span class="<?php echo esc_attr( $icon ); ?>"></span>
 						<span class="dashicons dashicons-yes"></span>
 						<span class="text">
@@ -99,7 +99,7 @@
 		<?php
 		// id is deliberate; to ensure CSS, JS etc. works for all versions.
 		?>
-		<form name="post" method="post" action="<?php echo ( isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '' ); ?>" id="<?php echo esc_attr( 'social-post-flow' ); ?>" class="wp-to-social-pro">      
+		<form name="post" method="post" action="<?php echo ( isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '' ); ?>" id="social-post-flow" class="wp-to-social-pro">      
 			<div id="poststuff">
 				<div id="post-body" class="metabox-holder columns-1">
 					<!-- Content -->

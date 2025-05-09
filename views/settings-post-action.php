@@ -26,7 +26,7 @@
 			?>
 
 			<label for="<?php echo esc_attr( $profile_id ); ?>_<?php echo esc_attr( $post_action ); ?>_enabled">
-				<input type="checkbox" id="<?php echo esc_attr( $profile_id ); ?>_<?php echo esc_attr( $post_action ); ?>_enabled" class="enable" name="<?php echo esc_attr( 'social-post-flow' ); ?>[<?php echo esc_attr( $profile_id ); ?>][<?php echo esc_attr( $post_action ); ?>][enabled]" value="1"<?php checked( $this->get_setting( $post_type, '[' . $profile_id . '][' . $post_action . '][enabled]', 0 ), 1, true ); ?> data-tab="profile-<?php echo esc_attr( $profile_id ); ?>-<?php echo esc_attr( $post_action ); ?>" data-conditional="<?php echo esc_attr( $post_type ); ?>-<?php echo esc_attr( $profile_id ); ?>-<?php echo esc_attr( $post_action ); ?>-statuses" />
+				<input type="checkbox" id="<?php echo esc_attr( $profile_id ); ?>_<?php echo esc_attr( $post_action ); ?>_enabled" class="enable" name="social-post-flow[<?php echo esc_attr( $profile_id ); ?>][<?php echo esc_attr( $post_action ); ?>][enabled]" value="1"<?php checked( $this->get_setting( $post_type, '[' . $profile_id . '][' . $post_action . '][enabled]', 0 ), 1, true ); ?> data-tab="profile-<?php echo esc_attr( $profile_id ); ?>-<?php echo esc_attr( $post_action ); ?>" data-conditional="<?php echo esc_attr( $post_type ); ?>-<?php echo esc_attr( $profile_id ); ?>-<?php echo esc_attr( $post_action ); ?>-statuses" />
 				<?php esc_html_e( 'Enabled', 'social-post-flow' ); ?>
 			</label>
 		</h3>

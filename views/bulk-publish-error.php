@@ -11,8 +11,7 @@
 ?>
 <header>
 	<h1>
-		<?php echo esc_html( $this->base->plugin->displayName ); ?>
-
+		<?php echo esc_html_e( 'Social Post Flow', 'social-post-flow' ); ?>
 		<span>
 			<?php esc_html_e( 'Bulk Publish', 'social-post-flow' ); ?>
 		</span>

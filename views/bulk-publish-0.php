@@ -34,9 +34,9 @@
 				</div>
 				<div class="right">
 					<?php esc_html_e( 'Between', 'social-post-flow' ); ?>
-					<input type="date" name="<?php echo esc_attr( 'social-post-flow' ); ?>[start_date]" id="start_date" />
+					<input type="date" name="social-post-flow[start_date]" id="start_date" />
 					<?php esc_html_e( 'and', 'social-post-flow' ); ?>
-					<input type="date" name="<?php echo esc_attr( 'social-post-flow' ); ?>[end_date]" />
+					<input type="date" name="social-post-flow[end_date]" />
 				</div>
 			</div>
 
@@ -46,7 +46,7 @@
 					<label for="authors"><?php esc_html_e( 'Authors', 'social-post-flow' ); ?></label>
 				</div>
 				<div class="right">
-					<input type="text" name="<?php echo esc_attr( 'social-post-flow' ); ?>[authors]" id="authors" class="widefat wpzinc-selectize" style="width:100%;" data-action="social_post_flow_search_authors" data-nonce-key="search_authors_nonce" />
+					<input type="text" name="social-post-flow[authors]" id="authors" class="widefat wpzinc-selectize" style="width:100%;" data-action="social_post_flow_search_authors" data-nonce-key="search_authors_nonce" />
 				</div>
 			</div>
 
@@ -79,10 +79,10 @@
 						<tbody>
 							<tr class="custom-field hide-delete-button">
 								<td>
-									<input type="text" name="<?php echo esc_attr( 'social-post-flow' ); ?>[meta][key][]" id="custom_field_meta_key" placeholder="<?php esc_attr_e( 'Meta Key', 'social-post-flow' ); ?>" class="widefat" />
+									<input type="text" name="social-post-flow[meta][key][]" id="custom_field_meta_key" placeholder="<?php esc_attr_e( 'Meta Key', 'social-post-flow' ); ?>" class="widefat" />
 								</td>
 								<td>
-									<select name="<?php echo esc_attr( 'social-post-flow' ); ?>[meta][compare][]" size="1">
+									<select name="social-post-flow[meta][compare][]" size="1">
 										<?php
 										foreach ( $custom_field_comparison_operators as $key => $label ) {
 											?>
@@ -93,7 +93,7 @@
 									</select>
 								</td>
 								<td>
-									<input type="text" name="<?php echo esc_attr( 'social-post-flow' ); ?>[meta][value][]" placeholder="<?php esc_attr_e( 'Meta Value', 'social-post-flow' ); ?>" class="widefat" />
+									<input type="text" name="social-post-flow[meta][value][]" placeholder="<?php esc_attr_e( 'Meta Value', 'social-post-flow' ); ?>" class="widefat" />
 								</td>
 								<td>
 									<a href="#" class="wpzinc-delete-table-row button small">
@@ -112,7 +112,7 @@
 					<label for="s"><?php esc_html_e( 'Search Terms', 'social-post-flow' ); ?></label>
 				</div>
 				<div class="right">
-					<input type="text" name="<?php echo esc_attr( 'social-post-flow' ); ?>[s]" id="s" class="widefat" />
+					<input type="text" name="social-post-flow[s]" id="s" class="widefat" />
 
 					<p class="description">
 						<?php
@@ -139,7 +139,7 @@
 					</div>
 
 					<div class="right">
-						<input type="text" name="<?php echo esc_attr( 'social-post-flow' ); ?>[taxonomies][<?php echo esc_attr( $taxonomy_name ); ?>]" size="1" multiple="multiple" id="<?php echo esc_attr( $taxonomy_name ); ?>" class="widefat wpzinc-selectize" style="width:100%;" data-taxonomy="<?php echo esc_attr( $taxonomy_name ); ?>" data-action="social_post_flow_search_terms" data-nonce-key="search_terms_nonce">
+						<input type="text" name="social-post-flow[taxonomies][<?php echo esc_attr( $taxonomy_name ); ?>]" size="1" multiple="multiple" id="<?php echo esc_attr( $taxonomy_name ); ?>" class="widefat wpzinc-selectize" style="width:100%;" data-taxonomy="<?php echo esc_attr( $taxonomy_name ); ?>" data-action="social_post_flow_search_terms" data-nonce-key="search_terms_nonce">
 					</div>
 				</div>
 				<?php
@@ -152,7 +152,7 @@
 					<label for="orderby"><?php esc_html_e( 'Order By', 'social-post-flow' ); ?></label>
 				</div>
 				<div class="right">
-					<select name="<?php echo esc_attr( 'social-post-flow' ); ?>[orderby]" id="orderby" size="1">
+					<select name="social-post-flow[orderby]" id="orderby" size="1">
 						<?php
 						foreach ( $orderby as $key => $label ) {
 							?>
@@ -175,7 +175,7 @@
 					<label for="order"><?php esc_html_e( 'Order', 'social-post-flow' ); ?></label>
 				</div>
 				<div class="right">
-					<select name="<?php echo esc_attr( 'social-post-flow' ); ?>[order]" id="order" size="1">
+					<select name="social-post-flow[order]" id="order" size="1">
 						<?php
 						foreach ( $order as $key => $label ) {
 							?>

@@ -127,7 +127,7 @@ class Social_Post_Flow_Modern_Events_Calendar {
 		// Output Modern Events Calendar specific settings.
 		?>
 		<span class="modern_events_calendar">
-			<select name="<?php echo esc_attr( 'social-post-flow' ); ?>_schedule_mec_relation" size="1">
+			<select name="social-post-flow_schedule_mec_relation" size="1">
 				<option value="before"><?php esc_attr_e( 'Before Event Date', 'social-post-flow' ); ?></option>
 				<option value="after"><?php esc_attr_e( 'After Event Date', 'social-post-flow' ); ?></option>
 			</select> 

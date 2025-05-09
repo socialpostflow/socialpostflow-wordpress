@@ -119,7 +119,7 @@ class Social_Post_Flow_Events_Manager {
 		// Output Events Manager specific settings.
 		?>
 		<span class="events_manager">
-			<select name="<?php echo esc_attr( 'social-post-flow' ); ?>_schedule_em_relation" size="1">
+			<select name="social-post-flow_schedule_em_relation" size="1">
 				<option value="before"><?php esc_attr_e( 'Before Event Date', 'social-post-flow' ); ?></option>
 				<option value="after"><?php esc_attr_e( 'After Event Date', 'social-post-flow' ); ?></option>
 			</select> 

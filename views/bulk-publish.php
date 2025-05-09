@@ -11,7 +11,7 @@
 ?>
 <header>
 	<h1>
-		<?php echo esc_html( $this->base->plugin->displayName ); ?>
+		<?php echo esc_html_e( 'Social Post Flow', 'social-post-flow' ); ?>
 
 		<span>
 			<?php esc_html_e( 'Bulk Publish', 'social-post-flow' ); ?>
@@ -47,7 +47,7 @@
 							$icon = 'dashicons dashicons-admin-' . $public_post_type;
 					}
 					?>
-					<a href="admin.php?page=<?php echo esc_attr( 'social-post-flow' ); ?>-bulk-publish&amp;tab=post&amp;type=<?php echo esc_attr( $public_post_type ); ?>" class="nav-tab<?php echo esc_attr( $post_type === $public_post_type ? ' nav-tab-active' : '' ); ?>" title="<?php echo esc_attr( $post_type_obj->labels->name ); ?>">
+					<a href="admin.php?page=social-post-flow-bulk-publish&amp;tab=post&amp;type=<?php echo esc_attr( $public_post_type ); ?>" class="nav-tab<?php echo esc_attr( $post_type === $public_post_type ? ' nav-tab-active' : '' ); ?>" title="<?php echo esc_attr( $post_type_obj->labels->name ); ?>">
 						<span class="<?php echo esc_attr( $icon ); ?>"></span>
 						<span class="text">
 							<?php echo esc_attr( $post_type_obj->labels->name ); ?>
@@ -60,7 +60,7 @@
 		</h2>
 
 		<!-- Form Start -->
-		<form name="post" method="post" action="<?php echo ( isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '' ); ?>" id="<?php echo esc_attr( 'social-post-flow' ); ?>">    
+		<form name="post" method="post" action="<?php echo ( isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '' ); ?>" id="social-post-flow">    
 			<div id="poststuff">
 				<div id="post-body" class="metabox-holder columns-1">
 					<!-- Content -->

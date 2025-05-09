@@ -8,15 +8,15 @@
  */
 
 ?>
-<div id="<?php echo esc_attr( 'social-post-flow' ); ?>-status-form-container" class="hidden">
-	<div id="<?php echo esc_attr( 'social-post-flow' ); ?>-status-form" class="wp-to-social-pro-status-form">
+<div id="social-post-flow-status-form-container" class="hidden">
+	<div id="social-post-flow-status-form" class="wp-to-social-pro-status-form">
 		<div class="wpzinc-option">
 			<div class="notice-inline notice-warning pinterest hidden">
 				<p>
 					<?php
 					esc_html_e( 'You need to create at least one Pinterest Board, and then refresh the screen to choose the board to post this status to.', 'social-post-flow' );
 					?>
-					<a href="<?php echo esc_attr( $this->base->plugin->documentation_url ); ?>/status-settings/#status--choose-a-pinterest-board" target="_blank">
+					<a href="https://www.socialpostflow.com/documentation/wordpress/status-settings/#status--choose-a-pinterest-board" target="_blank">
 						<?php echo esc_html_e( 'Click here for instructions on creating a Pinterest board.', 'social-post-flow' ); ?>
 					</a>
 				</p>
@@ -37,7 +37,7 @@
 				// Instagram update type.
 				if ( $this->base->supports( 'instagram_update_type' ) ) {
 					?>
-					<select name="<?php echo esc_attr( 'social-post-flow' ); ?>_update_type" size="1" class="right">
+					<select name="social-post-flow_update_type" size="1" class="right">
 						<option value=""><?php esc_html_e( 'Post', 'social-post-flow' ); ?></option>
 						<option value="story"><?php esc_html_e( 'Story', 'social-post-flow' ); ?></option>
 					</select>
@@ -45,7 +45,7 @@
 				}
 				?>
 
-				<textarea name="<?php echo esc_attr( 'social-post-flow' ); ?>_message" rows="3" class="widefat wpzinc-autosize-js message"></textarea>
+				<textarea name="social-post-flow_message" rows="3" class="widefat wpzinc-autosize-js message"></textarea>
 
 				<?php
 				// If we're editing a Post, Page or CPT, show the chararcter count.
@@ -59,7 +59,7 @@
 				}
 				?>
 			
-				<select name="<?php echo esc_attr( 'social-post-flow' ); ?>_schedule" size="1" class="schedule widefat">
+				<select name="social-post-flow_schedule" size="1" class="schedule widefat">
 					<?php
 					foreach ( social_post_flow()->get_class( 'common' )->get_schedule_options( $post_type, $is_post_screen ) as $schedule_option => $label ) {
 						?>
@@ -72,18 +72,18 @@
 				<div class="schedule">
 					<span class="hours_mins_secs">
 						<!-- Days, Hours, Minutes -->
-						<input type="number" name="<?php echo esc_attr( 'social-post-flow' ); ?>_days" id="days" min="0" max="9999" step="1" value="" />
+						<input type="number" name="social-post-flow_days" id="days" min="0" max="9999" step="1" value="" />
 						<label for="<?php echo esc_attr( $profile_id ); ?>_status_<?php echo esc_attr( $key ); ?>_days"><?php esc_html_e( 'Days, ', 'social-post-flow' ); ?></label>
 
-						<input type="number" name="<?php echo esc_attr( 'social-post-flow' ); ?>_hours" id="hours" />
+						<input type="number" name="social-post-flow_hours" id="hours" />
 						<label for="<?php echo esc_attr( $profile_id ); ?>_status_<?php echo esc_attr( $key ); ?>_hours"><?php esc_html_e( 'Hours, ', 'social-post-flow' ); ?></label>
 
-						<input type="number" name="<?php echo esc_attr( 'social-post-flow' ); ?>_minutes" id="minutes" />
+						<input type="number" name="social-post-flow_minutes" id="minutes" />
 						<label for="<?php echo esc_attr( $profile_id ); ?>_status_<?php echo esc_attr( $key ); ?>_minutes"><?php esc_html_e( 'Minutes', 'social-post-flow' ); ?></label>
 					</span>
 
 					<span class="relative">
-						<select name="<?php echo esc_attr( 'social-post-flow' ); ?>_schedule_relative_day" id="schedule_relative_day" size="1">
+						<select name="social-post-flow_schedule_relative_day" id="schedule_relative_day" size="1">
 							<?php
 							foreach ( social_post_flow()->get_class( 'common' )->get_schedule_relative_days() as $day => $label ) {
 								?>
@@ -95,13 +95,13 @@
 
 						<?php esc_html_e( 'at', 'social-post-flow' ); ?>
 
-						<input type="time" name="<?php echo esc_attr( 'social-post-flow' ); ?>_schedule_relative_time" id="schedule_relative_time" />
+						<input type="time" name="social-post-flow_schedule_relative_time" id="schedule_relative_time" />
 					</span>
 
 					<span class="custom"></span>
 
 					<span class="custom_field">
-						<select name="<?php echo esc_attr( 'social-post-flow' ); ?>_schedule_custom_field_relation" size="1">
+						<select name="social-post-flow_schedule_custom_field_relation" size="1">
 							<?php
 							foreach ( social_post_flow()->get_class( 'common' )->get_schedule_custom_relation_options() as $schedule_option => $label ) {
 								?>
@@ -110,7 +110,7 @@
 							}
 							?>
 						</select> 
-						<input type="text" name="<?php echo esc_attr( 'social-post-flow' ); ?>_schedule_custom_field_name" placeholder="<?php esc_attr_e( 'Custom Meta Field Name', 'social-post-flow' ); ?>" />
+						<input type="text" name="social-post-flow_schedule_custom_field_name" placeholder="<?php esc_attr_e( 'Custom Meta Field Name', 'social-post-flow' ); ?>" />
 					</span>
 
 					<?php
@@ -125,7 +125,7 @@
 					?>
 
 					<span class="specific">
-						<input type="datetime-local" name="<?php echo esc_attr( 'social-post-flow' ); ?>_schedule_specific" class="widefat" placeholder="<?php esc_attr_e( 'Date and Time', 'social-post-flow' ); ?>" />   
+						<input type="datetime-local" name="social-post-flow_schedule_specific" class="widefat" placeholder="<?php esc_attr_e( 'Date and Time', 'social-post-flow' ); ?>" />   
 					</span>
 				</div>
 			</div>
@@ -145,14 +145,14 @@
 							<tbody>
 								<tr>
 									<td width="20%">
-										<label for="<?php echo esc_attr( 'social-post-flow' ); ?>_sub_profile">
+										<label for="social-post-flow_sub_profile">
 											<?php esc_html_e( 'Board', 'social-post-flow' ); ?>
 										</label>
 									</td>
 									<td>
 										<!-- Pinterest: Sub Profile -->
-										<select name="<?php echo esc_attr( 'social-post-flow' ); ?>_sub_profile" id="<?php echo esc_attr( 'social-post-flow' ); ?>_sub_profile" size="1" class="widefat"></select> 
-										<input type="url" name="<?php echo esc_attr( 'social-post-flow' ); ?>_sub_profile" id="<?php echo esc_attr( 'social-post-flow' ); ?>_sub_profile" placeholder="<?php esc_attr_e( 'Pinterest Board URL', 'social-post-flow' ); ?>" class="widefat" />
+										<select name="social-post-flow_sub_profile" id="social-post-flow_sub_profile" size="1" class="widefat"></select> 
+										<input type="url" name="social-post-flow_sub_profile" id="social-post-flow_sub_profile" placeholder="<?php esc_attr_e( 'Pinterest Board URL', 'social-post-flow' ); ?>" class="widefat" />
 									</td>
 								</tr>
 
@@ -166,7 +166,7 @@
 											</label>
 										</td>
 										<td>
-											<input type="text" name="<?php echo esc_attr( 'social-post-flow' ); ?>_title" id="pinterest_title" placeholder="<?php esc_attr_e( 'Pin Title', 'social-post-flow' ); ?>" class="widefat" />
+											<input type="text" name="social-post-flow_title" id="pinterest_title" placeholder="<?php esc_attr_e( 'Pin Title', 'social-post-flow' ); ?>" class="widefat" />
 											<p class="description">
 												<?php esc_html_e( 'An optional title. Text Tags are supported.', 'social-post-flow' ); ?>
 											</p>
@@ -184,7 +184,7 @@
 											</label>
 										</td>
 										<td>
-											<input type="text" name="<?php echo esc_attr( 'social-post-flow' ); ?>_source_url" id="pinterest_source_url" placeholder="<?php esc_attr_e( 'e.g. https://example.com or use {url}', 'social-post-flow' ); ?>" class="widefat" />
+											<input type="text" name="social-post-flow_source_url" id="pinterest_source_url" placeholder="<?php esc_attr_e( 'e.g. https://example.com or use {url}', 'social-post-flow' ); ?>" class="widefat" />
 											<p class="description">
 												<?php esc_html_e( 'The URL to link the Pin to. If no URL is entered, the Post\'s URL will be used. Text Tags are supported.', 'social-post-flow' ); ?>
 											</p>
@@ -222,7 +222,7 @@
 											</label>
 										</td>
 										<td>
-											<select name="<?php echo esc_attr( 'social-post-flow' ); ?>_googlebusiness[post_type]" id="googlebusiness_post_type" size="1" class="widefat">
+											<select name="social-post-flow_googlebusiness[post_type]" id="googlebusiness_post_type" size="1" class="widefat">
 												<option value="whats_new"><?php esc_attr_e( 'What\'s New', 'social-post-flow' ); ?></option>
 												<option value="offer"><?php esc_attr_e( 'Offer', 'social-post-flow' ); ?></option>
 												<option value="event"><?php esc_attr_e( 'Event', 'social-post-flow' ); ?></option>
@@ -236,7 +236,7 @@
 											</label>
 										</td>
 										<td>
-											<select name="<?php echo esc_attr( 'social-post-flow' ); ?>_googlebusiness[cta]" id="googlebusiness_cta" size="1" class="widefat">
+											<select name="social-post-flow_googlebusiness[cta]" id="googlebusiness_cta" size="1" class="widefat">
 												<option value="book"><?php esc_attr_e( 'Book', 'social-post-flow' ); ?></option>
 												<option value="order"><?php esc_attr_e( 'Order', 'social-post-flow' ); ?></option>
 												<option value="shop"><?php esc_attr_e( 'Shop', 'social-post-flow' ); ?></option>
@@ -252,7 +252,7 @@
 											</label>
 										</td>
 										<td>
-											<select name="<?php echo esc_attr( 'social-post-flow' ); ?>_googlebusiness[start_date_option]" id="googlebusiness_start_date_option" size="1" class="widefat">
+											<select name="social-post-flow_googlebusiness[start_date_option]" id="googlebusiness_start_date_option" size="1" class="widefat">
 												<?php
 												foreach ( social_post_flow()->get_class( 'common' )->get_google_business_start_date_options( $post_type ) as $schedule_option => $label ) {
 													?>
@@ -262,7 +262,7 @@
 												?>
 											</select>
 
-											<input type="text" name="<?php echo esc_attr( 'social-post-flow' ); ?>_googlebusiness[start_date]" id="googlebusiness_start_date" placeholder="<?php esc_attr_e( 'Custom Meta Field Name', 'social-post-flow' ); ?>" />
+											<input type="text" name="social-post-flow_googlebusiness[start_date]" id="googlebusiness_start_date" placeholder="<?php esc_attr_e( 'Custom Meta Field Name', 'social-post-flow' ); ?>" />
 										</td>
 									</tr>
 									<tr class="offer event">
@@ -272,7 +272,7 @@
 											</label>
 										</td>
 										<td>
-											<select name="<?php echo esc_attr( 'social-post-flow' ); ?>_googlebusiness[end_date_option]" id="googlebusiness_end_date_option" size="1" class="widefat">
+											<select name="social-post-flow_googlebusiness[end_date_option]" id="googlebusiness_end_date_option" size="1" class="widefat">
 												<?php
 												foreach ( social_post_flow()->get_class( 'common' )->get_google_business_end_date_options( $post_type ) as $schedule_option => $label ) {
 													?>
@@ -282,7 +282,7 @@
 												?>
 											</select>
 
-											<input type="text" name="<?php echo esc_attr( 'social-post-flow' ); ?>_googlebusiness[end_date]" id="googlebusiness_end_date" placeholder="<?php esc_attr_e( 'Custom Meta Field Name', 'social-post-flow' ); ?>" />
+											<input type="text" name="social-post-flow_googlebusiness[end_date]" id="googlebusiness_end_date" placeholder="<?php esc_attr_e( 'Custom Meta Field Name', 'social-post-flow' ); ?>" />
 										</td>
 									</tr>
 									<tr class="offer event">
@@ -292,7 +292,7 @@
 											</label>
 										</td>
 										<td>
-											<input type="text" name="<?php echo esc_attr( 'social-post-flow' ); ?>_googlebusiness[title]" id="googlebusiness_title" class="widefat" />
+											<input type="text" name="social-post-flow_googlebusiness[title]" id="googlebusiness_title" class="widefat" />
 										</td>
 									</tr>
 									<tr class="offer">
@@ -302,7 +302,7 @@
 											</label>
 										</td>
 										<td>
-											<input type="text" name="<?php echo esc_attr( 'social-post-flow' ); ?>_googlebusiness[code]" id="googlebusiness_code" class="widefat" />
+											<input type="text" name="social-post-flow_googlebusiness[code]" id="googlebusiness_code" class="widefat" />
 										</td>
 									</tr>
 									<tr class="offer">
@@ -312,7 +312,7 @@
 											</label>
 										</td>
 										<td>
-											<input type="text" name="<?php echo esc_attr( 'social-post-flow' ); ?>_googlebusiness[terms]" id="googlebusiness_terms" class="widefat" />
+											<input type="text" name="social-post-flow_googlebusiness[terms]" id="googlebusiness_terms" class="widefat" />
 										</td>
 									</tr>
 								</tbody>
@@ -337,12 +337,12 @@
 							<tbody>
 								<tr>
 									<td width="20%">
-										<label for="<?php echo esc_attr( 'social-post-flow' ); ?>_image">
+										<label for="social-post-flow_image">
 											<?php esc_html_e( 'Image', 'social-post-flow' ); ?>
 										</label>
 									</td>
 									<td>
-										<select id="<?php echo esc_attr( 'social-post-flow' ); ?>_image" name="<?php echo esc_attr( 'social-post-flow' ); ?>_image" size="1" class="image">
+										<select id="social-post-flow_image" name="social-post-flow_image" size="1" class="image">
 											<?php
 											foreach ( social_post_flow()->get_class( 'image' )->get_featured_image_options( $post_type ) as $value => $label ) {
 												?>
@@ -355,12 +355,12 @@
 								</tr>
 								<tr class="additional-images">
 									<td width="20%">
-										<label for="<?php echo esc_attr( 'social-post-flow' ); ?>_image_additional">
+										<label for="social-post-flow_image_additional">
 											<?php esc_html_e( 'Additional Images', 'social-post-flow' ); ?>
 										</label>
 									</td>
 									<td>
-										<select id="<?php echo esc_attr( 'social-post-flow' ); ?>_image_additional" name="<?php echo esc_attr( 'social-post-flow' ); ?>_image_additional" size="1">
+										<select id="social-post-flow_image_additional" name="social-post-flow_image_additional" size="1">
 											<option value=""><?php esc_html_e( 'Specified in Post settings', 'social-post-flow' ); ?></option>
 											<option value="1"><?php esc_html_e( 'Auto populate from Post content', 'social-post-flow' ); ?></option>
 										</select>
@@ -385,12 +385,12 @@
 								</tr>
 								<tr class="additional-images">
 									<td width="20%">
-										<label for="<?php echo esc_attr( 'social-post-flow' ); ?>_image_additional_limit">
+										<label for="social-post-flow_image_additional_limit">
 											<?php esc_html_e( 'Limit', 'social-post-flow' ); ?>
 										</label>
 									</td>
 									<td>
-										<input type="number" id="<?php echo esc_attr( 'social-post-flow' ); ?>_image_additional_limit" name="<?php echo esc_attr( 'social-post-flow' ); ?>_image_additional_limit" min="1" max="9 step="1" />
+										<input type="number" id="social-post-flow_image_additional_limit" name="social-post-flow_image_additional_limit" min="1" max="9 step="1" />
 										<p class="description">
 											<?php
 											esc_html_e( 'The maximum number of images to include with this status. If this exceeds the social media platform\'s limit, the extra images will be ignored.', 'social-post-flow' );
@@ -400,7 +400,7 @@
 								</tr>
 								<tr class="text-to-image">
 									<td width="20%">
-										<label for="<?php echo esc_attr( 'social-post-flow' ); ?>_text_to_image">
+										<label for="social-post-flow_text_to_image">
 											<?php esc_html_e( 'Text to Image', 'social-post-flow' ); ?>
 										</label>
 									</td>
@@ -410,7 +410,7 @@
 										require 'settings-post-action-status-tags.php';
 										?>
 									
-										<textarea id="<?php echo esc_attr( 'social-post-flow' ); ?>_text_to_image" name="<?php echo esc_attr( 'social-post-flow' ); ?>_text_to_image" rows="3" class="widefat wpzinc-autosize-js text-to-image"></textarea>
+										<textarea id="social-post-flow_text_to_image" name="social-post-flow_text_to_image" rows="3" class="widefat wpzinc-autosize-js text-to-image"></textarea>
 										<p class="description">
 											<?php
 											esc_html_e( 'Define the text to convert to an image, which will be sent with this status.', 'social-post-flow' );
@@ -420,12 +420,12 @@
 								</tr>
 								<tr class="text-to-image">
 									<td width="20%">
-										<label for="<?php echo esc_attr( 'social-post-flow' ); ?>_text_to_image_background_image">
+										<label for="social-post-flow_text_to_image_background_image">
 											<?php esc_html_e( 'Background Image', 'social-post-flow' ); ?>
 										</label>
 									</td>
 									<td>
-										<select id="<?php echo esc_attr( 'social-post-flow' ); ?>_text_to_image_background_image" name="<?php echo esc_attr( 'social-post-flow' ); ?>_text_to_image_type" size="1" data-conditional="text_to_image_background_image" data-conditional-value="background">
+										<select id="social-post-flow_text_to_image_background_image" name="social-post-flow_text_to_image_type" size="1" data-conditional="text_to_image_background_image" data-conditional-value="background">
 											<option value=""><?php esc_attr_e( 'Use Plugin Settings', 'social-post-flow' ); ?></option>
 											<option value="featured"><?php esc_attr_e( 'Use Post\'s Featured Image', 'social-post-flow' ); ?></option>
 											<option value="background"><?php esc_attr_e( 'Use Background Image', 'social-post-flow' ); ?></option>
@@ -520,7 +520,7 @@
 										</label>
 									</td>
 									<td>
-										<select name="<?php echo esc_attr( 'social-post-flow' ); ?>_post_title[compare]" id="post_title_compare" data-id="post_title_compare_index" size="1" class="widefat">
+										<select name="social-post-flow_post_title[compare]" id="post_title_compare" data-id="post_title_compare_index" size="1" class="widefat">
 											<option value="0"><?php esc_attr_e( 'No Conditions', 'social-post-flow' ); ?></option>
 											<?php
 											foreach ( social_post_flow()->get_class( 'common' )->get_comparison_operators() as $comparison_key => $label ) {
@@ -532,7 +532,7 @@
 										</select>
 									</td>
 									<td>
-										<input type="text" name="<?php echo esc_attr( 'social-post-flow' ); ?>_post_title[value]" class="widefat" />    
+										<input type="text" name="social-post-flow_post_title[value]" class="widefat" />    
 									</td>
 									<td class="actions">&nbsp;</td>
 								</tr>
@@ -544,7 +544,7 @@
 										</label>
 									</td>
 									<td>
-										<select name="<?php echo esc_attr( 'social-post-flow' ); ?>_post_excerpt[compare]" id="post_excerpt_compare" data-id="post_excerpt_compare_index" size="1" class="widefat">
+										<select name="social-post-flow_post_excerpt[compare]" id="post_excerpt_compare" data-id="post_excerpt_compare_index" size="1" class="widefat">
 											<option value="0"><?php esc_html_e( 'No Conditions', 'social-post-flow' ); ?></option>
 											<?php
 											foreach ( social_post_flow()->get_class( 'common' )->get_custom_field_comparison_operators() as $comparison_key => $label ) {
@@ -556,7 +556,7 @@
 										</select>
 									</td>
 									<td>
-										<input type="text" name="<?php echo esc_attr( 'social-post-flow' ); ?>_post_excerpt[value]" class="widefat" />    
+										<input type="text" name="social-post-flow_post_excerpt[value]" class="widefat" />    
 									</td>
 									<td class="actions">&nbsp;</td>
 								</tr>
@@ -568,7 +568,7 @@
 										</label>
 									</td>
 									<td>
-										<select name="<?php echo esc_attr( 'social-post-flow' ); ?>_post_content[compare]" id="post_content_compare" data-id="post_content_compare_index" size="1" class="widefat">
+										<select name="social-post-flow_post_content[compare]" id="post_content_compare" data-id="post_content_compare_index" size="1" class="widefat">
 											<option value="0"><?php esc_html_e( 'No Conditions', 'social-post-flow' ); ?></option>
 											<?php
 											foreach ( social_post_flow()->get_class( 'common' )->get_custom_field_comparison_operators() as $comparison_key => $label ) {
@@ -580,7 +580,7 @@
 										</select>
 									</td>
 									<td>
-										<input type="text" name="<?php echo esc_attr( 'social-post-flow' ); ?>_post_content[value]" class="widefat" />    
+										<input type="text" name="social-post-flow_post_content[value]" class="widefat" />    
 									</td>
 									<td class="actions">&nbsp;</td>
 								</tr>
@@ -592,7 +592,7 @@
 										</label>
 									</td>
 									<td>
-										<select name="<?php echo esc_attr( 'social-post-flow' ); ?>_start_date[month]" id="start_date_compare" data-id="start_date_compare_index" size="1" class="widefat">
+										<select name="social-post-flow_start_date[month]" id="start_date_compare" data-id="start_date_compare_index" size="1" class="widefat">
 											<option value=""><?php esc_html_e( 'Any Month', 'social-post-flow' ); ?></option>
 											<?php
 											for ( $month = 1; $month <= 12; $month++ ) {
@@ -604,7 +604,7 @@
 										</select>
 									</td>
 									<td>
-										<input type="number" name="<?php echo esc_attr( 'social-post-flow' ); ?>_start_date[day]" placeholder="<?php esc_attr_e( 'e.g. 1', 'social-post-flow' ); ?>" class="widefat" />    
+										<input type="number" name="social-post-flow_start_date[day]" placeholder="<?php esc_attr_e( 'e.g. 1', 'social-post-flow' ); ?>" class="widefat" />    
 									</td>
 									<td>&nbsp;</td>
 								</tr>
@@ -616,7 +616,7 @@
 										</label>
 									</td>
 									<td>
-										<select name="<?php echo esc_attr( 'social-post-flow' ); ?>_end_date[month]" id="end_date_compare" data-id="end_date_compare_index" size="1" class="widefat">
+										<select name="social-post-flow_end_date[month]" id="end_date_compare" data-id="end_date_compare_index" size="1" class="widefat">
 											<option value=""><?php esc_html_e( 'Any Month', 'social-post-flow' ); ?></option>
 											<?php
 											for ( $month = 1; $month <= 12; $month++ ) {
@@ -628,7 +628,7 @@
 										</select>
 									</td>
 									<td>
-										<input type="number" name="<?php echo esc_attr( 'social-post-flow' ); ?>_end_date[day]" placeholder="<?php esc_attr_e( 'e.g. 30', 'social-post-flow' ); ?>" class="widefat" />    
+										<input type="number" name="social-post-flow_end_date[day]" placeholder="<?php esc_attr_e( 'e.g. 30', 'social-post-flow' ); ?>" class="widefat" />    
 									</td>
 									<td>&nbsp;</td>
 								</tr>
@@ -657,7 +657,7 @@
 												</label>
 											</td>
 											<td>
-												<select name="<?php echo esc_attr( 'social-post-flow' ); ?>_conditions[<?php echo esc_attr( $taxonomy_name ); ?>]" id="<?php echo esc_attr( $taxonomy_name ); ?>_compare" data-id="<?php echo esc_attr( $taxonomy_name ); ?>_compare_index" size="1" class="widefat" data-conditional="terms" class="widefat">
+												<select name="social-post-flow_conditions[<?php echo esc_attr( $taxonomy_name ); ?>]" id="<?php echo esc_attr( $taxonomy_name ); ?>_compare" data-id="<?php echo esc_attr( $taxonomy_name ); ?>_compare_index" size="1" class="widefat" data-conditional="terms" class="widefat">
 													<?php
 													foreach ( (array) social_post_flow()->get_class( 'common' )->get_condition_options() as $value => $label ) {
 														?>
@@ -668,7 +668,7 @@
 												</select>
 											</td>
 											<td>
-												<input type="text" name="<?php echo esc_attr( 'social-post-flow' ); ?>_terms[<?php echo esc_attr( $taxonomy_name ); ?>]" id="<?php echo esc_attr( $taxonomy_name ); ?>" class="widefat wpzinc-selectize" style="width:100%;" data-action="<?php echo esc_attr( $this->base->plugin->filter_name ); ?>_search_terms"  data-nonce-key="search_terms_nonce" data-taxonomy="<?php echo esc_attr( $taxonomy_name ); ?>" />
+												<input type="text" name="social-post-flow_terms[<?php echo esc_attr( $taxonomy_name ); ?>]" id="<?php echo esc_attr( $taxonomy_name ); ?>" class="widefat wpzinc-selectize" style="width:100%;" data-action="social_post_flow_search_terms"  data-nonce-key="search_terms_nonce" data-taxonomy="<?php echo esc_attr( $taxonomy_name ); ?>" />
 											</td>
 											<td>&nbsp;</td>
 										</tr>
@@ -682,10 +682,10 @@
 								?>
 								<tr class="custom-field hide-delete-button">
 									<td>
-										<input type="text" name="<?php echo esc_attr( 'social-post-flow' ); ?>_custom_fields[key][]" data-name="<?php echo esc_attr( 'social-post-flow' ); ?>_custom_fields[key][]" placeholder="<?php esc_attr_e( 'Meta Key', 'social-post-flow' ); ?>" class="widefat" />
+										<input type="text" name="social-post-flow_custom_fields[key][]" data-name="social-post-flow_custom_fields[key][]" placeholder="<?php esc_attr_e( 'Meta Key', 'social-post-flow' ); ?>" class="widefat" />
 									</td>
 									<td>
-										<select name="<?php echo esc_attr( 'social-post-flow' ); ?>_custom_fields[compare][]" data-name="<?php echo esc_attr( 'social-post-flow' ); ?>_custom_fields[compare][]" size="1" class="widefat">
+										<select name="social-post-flow_custom_fields[compare][]" data-name="social-post-flow_custom_fields[compare][]" size="1" class="widefat">
 											<?php
 											foreach ( social_post_flow()->get_class( 'common' )->get_custom_field_comparison_operators() as $comparison_key => $label ) {
 												?>
@@ -696,7 +696,7 @@
 										</select>
 									</td>
 									<td>
-										<input type="text" name="<?php echo esc_attr( 'social-post-flow' ); ?>_custom_fields[value][]" data-name="<?php echo esc_attr( 'social-post-flow' ); ?>_custom_fields[value][]" placeholder="<?php esc_attr_e( 'Meta Value', 'social-post-flow' ); ?>" class="widefat" />
+										<input type="text" name="social-post-flow_custom_fields[value][]" data-name="social-post-flow_custom_fields[value][]" placeholder="<?php esc_attr_e( 'Meta Value', 'social-post-flow' ); ?>" class="widefat" />
 									</td>
 									<td>
 										<a href="#" class="wpzinc-delete-table-row button small">
@@ -750,35 +750,35 @@
 							<tbody>
 								<tr>
 									<td width="20%">
-										<label for="<?php echo esc_attr( 'social-post-flow' ); ?>_authors_compare" data-for="authors_index">
+										<label for="social-post-flow_authors_compare" data-for="authors_index">
 											<?php esc_html_e( 'Author', 'social-post-flow' ); ?>
 										</label>
 									</td>
 									<td>
-										<select id="<?php echo esc_attr( 'social-post-flow' ); ?>_authors_compare" name="<?php echo esc_attr( 'social-post-flow' ); ?>_authors_compare" size="1" class="widefat">
+										<select id="social-post-flow_authors_compare" name="social-post-flow_authors_compare" size="1" class="widefat">
 											<option value="="><?php esc_html_e( 'Equals', 'social-post-flow' ); ?></option>
 											<option value="!="><?php esc_html_e( 'Does not Equal', 'social-post-flow' ); ?></option>
 										</select>
 									</td>
 									<td>
-										<input type="text" name="<?php echo esc_attr( 'social-post-flow' ); ?>_authors" id="authors" class="widefat wpzinc-selectize" style="width:100%;" data-action="<?php echo esc_attr( $this->base->plugin->filter_name ); ?>_search_authors" data-nonce-key="search_authors_nonce" />
+										<input type="text" name="social-post-flow_authors" id="authors" class="widefat wpzinc-selectize" style="width:100%;" data-action="social_post_flow_search_authors" data-nonce-key="search_authors_nonce" />
 									</td>
 									<td>&nbsp;</td>
 								</tr>
 								<tr>
 									<td>
-										<label for="<?php echo esc_attr( 'social-post-flow' ); ?>_authors_roles_compare" data-for="authors_role_index">
+										<label for="social-post-flow_authors_roles_compare" data-for="authors_role_index">
 											<?php esc_html_e( 'Role', 'social-post-flow' ); ?>
 										</label>
 									</td>
 									<td>
-										<select id="<?php echo esc_attr( 'social-post-flow' ); ?>_authors_roles_compare" name="<?php echo esc_attr( 'social-post-flow' ); ?>_authors_roles_compare" size="1" class="widefat">
+										<select id="social-post-flow_authors_roles_compare" name="social-post-flow_authors_roles_compare" size="1" class="widefat">
 											<option value="="><?php esc_html_e( 'Equals', 'social-post-flow' ); ?></option>
 											<option value="!="><?php esc_html_e( 'Does not Equal', 'social-post-flow' ); ?></option>
 										</select>
 									</td>
 									<td>
-										<input type="text" name="<?php echo esc_attr( 'social-post-flow' ); ?>_authors_roles" id="authors_roles" class="widefat wpzinc-selectize" style="width:100%;" data-action="<?php echo esc_attr( $this->base->plugin->filter_name ); ?>_search_roles" data-nonce-key="search_roles_nonce" />
+										<input type="text" name="social-post-flow_authors_roles" id="authors_roles" class="widefat wpzinc-selectize" style="width:100%;" data-action="social_post_flow_search_roles" data-nonce-key="search_roles_nonce" />
 									</td>
 									<td class="actions">&nbsp;</td>
 								</tr>
@@ -790,10 +790,10 @@
 								?>
 								<tr class="authors-custom-field hide-delete-button">
 									<td>
-										<input type="text" name="<?php echo esc_attr( 'social-post-flow' ); ?>_authors_custom_fields[key][]" data-name="<?php echo esc_attr( 'social-post-flow' ); ?>_authors_custom_fields[key][]" placeholder="<?php esc_attr_e( 'Author Meta Key', 'social-post-flow' ); ?>" class="widefat" />
+										<input type="text" name="social-post-flow_authors_custom_fields[key][]" data-name="social-post-flow_authors_custom_fields[key][]" placeholder="<?php esc_attr_e( 'Author Meta Key', 'social-post-flow' ); ?>" class="widefat" />
 									</td>
 									<td>
-										<select name="<?php echo esc_attr( 'social-post-flow' ); ?>_authors_custom_fields[compare][]" data-name="<?php echo esc_attr( 'social-post-flow' ); ?>_authors_custom_fields[compare][]" size="1" class="widefat">
+										<select name="social-post-flow_authors_custom_fields[compare][]" data-name="social-post-flow_authors_custom_fields[compare][]" size="1" class="widefat">
 											<?php
 											foreach ( social_post_flow()->get_class( 'common' )->get_custom_field_comparison_operators() as $comparison_key => $label ) {
 												?>
@@ -804,7 +804,7 @@
 										</select>
 									</td>
 									<td>
-										<input type="text" name="<?php echo esc_attr( 'social-post-flow' ); ?>_authors_custom_fields[value][]" data-name="<?php echo esc_attr( 'social-post-flow' ); ?>_authors_custom_fields[value][]" placeholder="<?php esc_attr_e( 'Author Meta Value', 'social-post-flow' ); ?>" class="widefat" />
+										<input type="text" name="social-post-flow_authors_custom_fields[value][]" data-name="social-post-flow_authors_custom_fields[value][]" placeholder="<?php esc_attr_e( 'Author Meta Value', 'social-post-flow' ); ?>" class="widefat" />
 									</td>
 									<td>
 										<a href="#" class="wpzinc-delete-table-row button small">

@@ -120,7 +120,7 @@ class Social_Post_Flow_Log_Table extends WP_List_Table {
 		);
 		?>
 
-		<a href="<?php echo esc_url( $clear_logs_url ); ?>" class="<?php echo esc_attr( 'social-post-flow' ); ?>-clear-log button wpzinc-button-red" data-message="<?php esc_html_e( 'Are you sure you want to clear ALL logs?', 'social-post-flow' ); ?>">
+		<a href="<?php echo esc_url( $clear_logs_url ); ?>" class="social-post-flow-clear-log button wpzinc-button-red" data-message="<?php esc_html_e( 'Are you sure you want to clear ALL logs?', 'social-post-flow' ); ?>">
 			<?php esc_html_e( 'Clear Log', 'social-post-flow' ); ?>
 		</a>
 		<?php

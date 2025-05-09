@@ -12,27 +12,27 @@
 	<!-- Second level tabs -->
 	<ul class="wpzinc-nav-tabs wpzinc-js-tabs" data-panels-container="#settings-container" data-panel=".panel" data-active="wpzinc-nav-tab-vertical-active">
 		<li class="wpzinc-nav-tab lock">
-			<a href="#authentication" class="wpzinc-nav-tab-vertical-active" data-documentation="<?php echo esc_attr( $this->base->plugin->documentation_url ); ?>/authentication-settings/">
+			<a href="#authentication" class="wpzinc-nav-tab-vertical-active" data-documentation="https://www.socialpostflow.com/documentation/wordpress/authentication-settings/">
 				<?php esc_html_e( 'Authentication', 'social-post-flow' ); ?>
 			</a>
 		</li>
 		<li class="wpzinc-nav-tab default">
-			<a href="#general-settings" data-documentation="<?php echo esc_attr( $this->base->plugin->documentation_url ); ?>/general-settings/">
+			<a href="#general-settings" data-documentation="https://www.socialpostflow.com/documentation/wordpress/general-settings/">
 				<?php esc_html_e( 'General Settings', 'social-post-flow' ); ?>
 			</a>
 		</li>
 		<li class="wpzinc-nav-tab image">
-			<a href="#image-settings" data-documentation="<?php echo esc_attr( $this->base->plugin->documentation_url ); ?>/text-to-image-settings/">
+			<a href="#image-settings" data-documentation="https://www.socialpostflow.com/documentation/wordpress/text-to-image-settings/">
 				<?php esc_html_e( 'Text to Image', 'social-post-flow' ); ?>
 			</a>
 		</li>
 		<li class="wpzinc-nav-tab file-text">
-			<a href="#log-settings" data-documentation="<?php echo esc_attr( $this->base->plugin->documentation_url ); ?>/log-settings/">
+			<a href="#log-settings" data-documentation="https://www.socialpostflow.com/documentation/wordpress/log-settings/">
 				<?php esc_html_e( 'Log Settings', 'social-post-flow' ); ?>
 			</a>
 		</li>
 		<li class="wpzinc-nav-tab arrow-right-circle">
-			<a href="#repost-settings" data-documentation="<?php echo esc_attr( $this->base->plugin->documentation_url ); ?>/repost-settings/">
+			<a href="#repost-settings" data-documentation="https://www.socialpostflow.com/documentation/wordpress/repost-settings/">
 				<?php esc_html_e( 'Repost Settings', 'social-post-flow' ); ?>
 			</a>
 		</li>
@@ -41,7 +41,7 @@
 		if ( ! empty( $access_token ) ) {
 			?>
 			<li class="wpzinc-nav-tab users">
-				<a href="#user-access" data-documentation="<?php echo esc_attr( $this->base->plugin->documentation_url ); ?>/user-access-settings/">
+				<a href="#user-access" data-documentation="https://www.socialpostflow.com/documentation/wordpress/user-access-settings/">
 					<?php esc_html_e( 'User Access', 'social-post-flow' ); ?>
 				</a>
 			</li>
@@ -49,7 +49,7 @@
 		}
 		?>
 		<li class="wpzinc-nav-tab tag">
-			<a href="#custom-tags" data-documentation="<?php echo esc_attr( $this->base->plugin->documentation_url ); ?>/custom-tags-settings/">
+			<a href="#custom-tags" data-documentation="https://www.socialpostflow.com/documentation/wordpress/custom-tags-settings/">
 				<?php esc_html_e( 'Custom Tags', 'social-post-flow' ); ?>
 			</a>
 		</li>
@@ -65,14 +65,7 @@
 
 					<p class="description">
 						<?php
-						echo esc_html(
-							sprintf(
-							/* translators: %1$s: Plugin Name, %2$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-								__( 'Authentication allows %1$s to post to %2$s', 'social-post-flow' ),
-								$this->base->plugin->displayName,
-								$this->base->plugin->account
-							)
-						);
+						esc_html_e( 'Authentication allows Social Post Flow to post to your social media profiles.', 'social-post-flow' );
 						?>
 					</p>
 				</header>
@@ -80,19 +73,13 @@
 				<div class="wpzinc-option">
 					<div class="full">
 						<?php
-						echo esc_html(
-							sprintf(
-							/* translators: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-								__( 'Thanks - you\'ve authorized the plugin to post updates to your %s account.', 'social-post-flow' ),
-								$this->base->plugin->account
-							)
-						);
+						esc_html_e( 'Thanks - you\'ve authorized the plugin to post updates to your Social Post Flow account.', 'social-post-flow' );
 						?>
 					</div>
 				</div>
 				<div class="wpzinc-option">
 					<div class="full">
-						<a href="admin.php?page=<?php echo esc_attr( 'social-post-flow' ); ?>-settings&amp;<?php echo esc_attr( 'social-post-flow' ); ?>-disconnect=1" class="button wpzinc-button-red">
+						<a href="admin.php?page=social-post-flow-settings&amp;social-post-flow-disconnect=1" class="button wpzinc-button-red">
 							<?php esc_html_e( 'Deauthorize Plugin', 'social-post-flow' ); ?>
 						</a>
 					</div>
@@ -119,45 +106,11 @@
 
 						<p class="description">
 							<?php
-							echo esc_html(
-								sprintf(
-								/* translators: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-									__( 'If enabled, status(es) are not sent to %s, but will appear in the Log, if logging is enabled. This is useful to test status text, conditions etc.', 'social-post-flow' ),
-									$this->base->plugin->account
-								)
-							);
+							esc_html_e( 'If enabled, status(es) are not sent to Social Post Flow, but will appear in the Log, if logging is enabled. This is useful to test status text, conditions etc.', 'social-post-flow' );
 							?>
 						</p>
 					</div>
 				</div>
-
-				<?php
-				if ( $this->base->supports( 'drafts' ) ) {
-					?>
-					<div class="wpzinc-option">
-						<div class="left">
-							<label for="is_draft"><?php esc_html_e( 'Send to Drafts', 'social-post-flow' ); ?></label>
-						</div>
-						<div class="right">
-							<input type="checkbox" name="is_draft" id="is_draft" value="1" <?php checked( $this->get_setting( '', 'is_draft' ), 1 ); ?> />
-
-							<p class="description">
-								<?php
-								echo esc_html(
-									sprintf(
-										/* translators: %1$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot), %2$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-										__( 'If enabled, status(es) are stored in %1$s as drafts.  You\'ll then need to approve them in %2$s for publishing to the social media profile(s).', 'social-post-flow' ),
-										$this->base->plugin->account,
-										$this->base->plugin->account
-									)
-								);
-								?>
-							</p>
-						</div>
-					</div>
-					<?php
-				}
-				?>
 
 				<div class="wpzinc-option">
 					<div class="left">
@@ -172,26 +125,13 @@
 								'%1$s <strong>%2$s</strong> %3$s',
 								esc_html__( 'When enabled, status updates triggered by', 'social-post-flow' ),
 								esc_html__( 'publishing or updating', 'social-post-flow' ),
-								esc_html(
-									sprintf(
-										/* translators: %1$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot), %2$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-										__( 'a Post will be asynchronously scheduled to send to %1$s using the WordPress Cron, instead of being sent to %2$s immediately.', 'social-post-flow' ),
-										$this->base->plugin->account,
-										$this->base->plugin->account
-									)
-								)
+								esc_html__( 'a Post will be asynchronously scheduled to send to Social Post Flow using the WordPress Cron, instead of being sent immediately.', 'social-post-flow' )
 							);
 							?>
 						</p>
 						<p class="description">
 							<?php
-							echo esc_html(
-								sprintf(
-								/* translators: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-									__( 'This improves plugin performance on WordPress Post / Page edit screens.  Status updates may take a few minutes (or longer, on sites with low traffic volumes) to appear on %s.', 'social-post-flow' ),
-									$this->base->plugin->account
-								)
-							);
+							esc_html_e( 'This improves plugin performance on WordPress Post / Page edit screens.  Status updates may take a few minutes (or longer, on sites with low traffic volumes) to appear on Social Post Flow.', 'social-post-flow' );
 							?>
 						</p>
 						<p class="description">
@@ -201,7 +141,7 @@
 								esc_html__( 'This setting is', 'social-post-flow' ),
 								esc_html__( 'required', 'social-post-flow' ),
 								esc_html__( 'if using any frontend post submission, feed importer or autoblogging Plugin e.g. User Submitted Posts, WP Property Feed, WPeMatico etc.', 'social-post-flow' ),
-								esc_html( $this->base->plugin->documentation_url . '/using-frontend-post-submission-and-autoblogging-plugins/' ),
+								esc_html( 'https://www.socialpostflow.com/documentation/wordpress/using-frontend-post-submission-and-autoblogging-plugins/' ),
 								esc_html__( 'See Documentation', 'social-post-flow' )
 							);
 							?>
@@ -213,13 +153,7 @@
 								esc_html__( 'Use', 'social-post-flow' ),
 								'https://en-gb.wordpress.org/plugins/wp-crontrol/',
 								esc_html__( 'WP Crontrol', 'social-post-flow' ),
-								esc_html(
-									sprintf(
-										/* translators: Plugin Name */
-										__( 'to monitor Cron Jobs. %1$s will display its jobs with the Hook Name', 'social-post-flow' ),
-										$this->base->plugin->displayName
-									)
-								),
+								esc_html__( 'to monitor Cron Jobs. Social Post Flow will display its jobs with the Hook Name', 'social-post-flow' ),
 								esc_html( 'social_post_flow_publish_cron' )
 							);
 							?>
@@ -240,33 +174,6 @@
 						</p>
 					</div>
 				</div>
-
-				<?php
-				if ( $this->base->supports( 'url_shortening' ) ) {
-					?>
-					<div class="wpzinc-option">
-						<div class="left">
-							<label for="disable_url_shortening"><?php esc_html_e( 'Disable URL Shortening?', 'social-post-flow' ); ?></label>
-						</div>
-						<div class="right">
-							<input type="checkbox" name="disable_url_shortening" id="disable_url_shortening" value="1" <?php checked( $this->get_setting( '', 'disable_url_shortening' ), 1 ); ?> />
-
-							<p class="description">
-								<?php
-								echo esc_html(
-									sprintf(
-									/* translators: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-										__( 'If enabled, any URLs in statuses will not be shortened by %s', 'social-post-flow' ),
-										$this->base->plugin->account
-									)
-								);
-								?>
-							</p>
-						</div>
-					</div>
-					<?php
-				}
-				?>
 
 				<div class="wpzinc-option">
 					<div class="left">
@@ -316,14 +223,7 @@
 
 						<p class="description">
 							<?php
-							echo esc_html(
-								sprintf(
-								/* translators: %1$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot), %2$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-									__( 'If enabled, statuses sent to %1$s are performed through our proxy. This is useful if your ISP or host\'s country prevents access to %1$s.', 'social-post-flow' ),
-									$this->base->plugin->account,
-									$this->base->plugin->account
-								)
-							);
+							esc_html_e( 'If enabled, statuses sent to Social Post Flow are performed through our proxy. This is useful if your ISP or host\'s country prevents access to Social Post Flow.', 'social-post-flow' );
 							?>
 							<br />
 							<?php esc_html_e( 'You may still need to use a VPN for initial Authentication when setting up the Plugin for the first time.', 'social-post-flow' ); ?>
@@ -350,13 +250,7 @@
 
 						<p class="description">
 							<?php
-							echo esc_html(
-								sprintf(
-								/* translators: Plugin Name */
-									__( 'Determines the default option to be selected in the %s metabox when adding/editing Pages, Posts and Custom Post Types.  A user can always change this on a per-Post basis.', 'social-post-flow' ),
-									$this->base->plugin->displayName
-								)
-							);
+							esc_html_e( 'Determines the default option to be selected in the Social Post Flow metabox when adding/editing Pages, Posts and Custom Post Types.  A user can always change this on a per-Post basis.', 'social-post-flow' );
 							?>
 						</p>
 					</div>
@@ -624,23 +518,11 @@
 									esc_html__( 'If enabled, the', 'social-post-flow' ),
 									esc_html( admin_url( 'admin.php?page=social-post-flow-log' ) ),
 									esc_html__( 'Plugin Logs', 'social-post-flow' ),
-									esc_html(
-										sprintf(
-											/* translators: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-											__( 'will detail status(es) sent to %s, including any errors or reasons why no status(es) were sent.', 'social-post-flow' ),
-											$this->base->plugin->account
-										)
-									)
+									esc_html__( 'will detail status(es) sent to Social Post Flow, including any errors or reasons why no status(es) were sent.', 'social-post-flow' )
 								);
 							} else {
 								// Don't link "Plugin Log" text, as Logs are disabled so it won't show anything.
-								echo esc_html(
-									sprintf(
-									/* translators: %1$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-										__( 'If enabled, the Plugin Logs will detail status(es) sent to %1$s, including any errors or reasons why no status(es) were sent.', 'social-post-flow' ),
-										$this->base->plugin->account
-									)
-								);
+								esc_html_e( 'If enabled, the Plugin Logs will detail status(es) sent to Social Post Flow, including any errors or reasons why no status(es) were sent.', 'social-post-flow' );
 							}
 							?>
 						</p>
@@ -777,13 +659,8 @@
 							<?php esc_html_e( 'Provides general options for when to run the WordPress Repost Cron Event on this WordPress installation, and to disable the Repost cron entirely.', 'social-post-flow' ); ?><br />
 							<?php
 							printf(
-								'%1$s <a href="%2$s/repost-settings" target="_blank">%3$s</a>',
-								sprintf(
-									/* translators: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-									esc_html__( 'When Post(s) are scheduled on %1$s will depend on the', 'social-post-flow' ),
-									esc_html( $this->base->plugin->account )
-								),
-								esc_html( $this->base->plugin->documentation_url ),
+								'%1$s <a href="https://www.socialpostflow.com/documentation/wordpress/repost-settings/" target="_blank">%2$s</a>',
+								esc_html__( 'When Post(s) are scheduled on Social Post Flow will depend on the', 'social-post-flow' ),
 								esc_html__( 'Repost Status Settings', 'social-post-flow' )
 							);
 							?>
@@ -907,7 +784,7 @@
 									esc_html( 'social_post_flow_repost_cron' ),
 									esc_html__( 'Cron event /', 'social-post-flow' ),
 									esc_html( 'social-post-flow-repost' ),
-									esc_html( $this->base->plugin->documentation_url . '/wp-cli' ),
+									esc_html( 'https://www.socialpostflow.com/documentation/wordpress/wp-cli/' ),
 									esc_html__( 'CLI', 'social-post-flow' ),
 									esc_html__( 'command', 'social-post-flow' )
 								);
@@ -1256,7 +1133,7 @@
 							printf(
 								'%1$s <a href="%2$s" target="_blank">%3$s</a> %4$s <strong>%5$s</strong> %6$s',
 								esc_html__( 'To hide', 'social-post-flow' ),
-								esc_html( $this->base->plugin->documentation_url . '/per-post-settings' ),
+								esc_html( 'https://www.socialpostflow.com/documentation/wordpress/per-post-settings/' ),
 								esc_html__( 'Per-Post Settings', 'social-post-flow' ),
 								esc_html__( 'by the', 'social-post-flow' ),
 								esc_html__( 'Post\'s Author\'s Role', 'social-post-flow' ),
@@ -1325,8 +1202,8 @@
 						<p class="description">
 							<?php
 							printf(
-								'<a href="%1$s" target="_blank">%2$s</a>%3$s <strong>%4$s</strong> %5$s',
-								esc_html( $this->base->plugin->documentation_url . '/per-post-settings' ),
+								'<a href="%1$s" target="_blank">%3$s</a>%4$s <strong>%5$s</strong> %6$s',
+								esc_html( 'https://www.socialpostflow.com/documentation/wordpress/per-post-settings/' ),
 								esc_html__( 'Per-Post Settings', 'social-post-flow' ),
 								esc_html__( ', Additional Images and the Log are hidden when editing Posts and the', 'social-post-flow' ),
 								esc_html__( 'logged in WordPress User\'s Role', 'social-post-flow' ),

@@ -154,7 +154,7 @@ class Social_Post_Flow_Post {
 		?>
 		<div class="wpzinc-option ignore-nth-child">
 			<p>
-				<select name="<?php echo esc_attr( 'social-post-flow' ); ?>[override]" size="1" data-conditional="<?php echo esc_attr( 'social-post-flow' ); ?>-override" data-conditional-value="1">
+				<select name="social-post-flow[override]" size="1" data-conditional="social-post-flow-override" data-conditional-value="1">
 					<?php
 					foreach ( social_post_flow()->get_class( 'common' )->get_override_options() as $value => $label ) {
 						?>
@@ -209,7 +209,7 @@ class Social_Post_Flow_Post {
 			$original_statuses = social_post_flow()->get_class( 'settings' )->get_settings( $post_type );
 		}
 		?>
-		<div id="<?php echo esc_attr( 'social-post-flow' ); ?>-override" class="wpzinc-option">
+		<div id="social-post-flow-override" class="wpzinc-option">
 			<?php
 			// Load Post Settings View (Tabs + Statuses for each Profile).
 			require SOCIAL_POST_FLOW_PLUGIN_PATH . 'lib/views/settings-post.php';
@@ -217,7 +217,7 @@ class Social_Post_Flow_Post {
 		</div>
 		<div class="wpzinc-option">
 			<div class="full">
-				<button class="<?php echo esc_attr( 'social-post-flow' ); ?>-save-post-statuses button button-primary">
+				<button class="social-post-flow-save-post-statuses button button-primary">
 					<?php esc_html_e( 'Save', 'social-post-flow' ); ?>
 				</button>
 			</div>

@@ -10,7 +10,7 @@
 ?>
 <header>
 	<h1>
-		<?php echo esc_html( $this->base->plugin->displayName ); ?>
+		<?php esc_html_e( 'Social Post Flow', 'social-post-flow' ); ?>
 
 		<span>
 			<?php esc_html_e( 'Settings', 'social-post-flow' ); ?>
@@ -31,28 +31,15 @@
 							<div class="wpzinc-option">
 								<p class="description">
 									<?php
-									echo esc_html(
-										sprintf(
-										/* translators: %1$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot), %2$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-											__( 'To allow this Plugin to post updates to your social media profiles using %1$s, please authorize %2$s below.', 'social-post-flow' ),
-											$this->base->plugin->account,
-											$this->base->plugin->account
-										)
-									);
+									esc_html_e( 'To allow this Plugin to post updates to your social media profiles using Social Post Flow, please authorize Social Post Flow below.', 'social-post-flow' );
 									?>
 								</p>
 								<p class="description">
 									<?php
-									echo esc_html(
-										sprintf(
-										/* translators: %1$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-											__( 'Don\'t have a %1$s account?', 'social-post-flow' ),
-											$this->base->plugin->account
-										)
-									);
+									esc_html_e( 'Don\'t have a Social Post Flow account?', 'social-post-flow' );
 									?>
 									<a href="<?php echo esc_attr( social_post_flow()->get_class( 'api' )->get_registration_url() ); ?>" target="_blank" rel="nofollow noopener">
-										<?php esc_html_e( 'Sign up for free', 'social-post-flow' ); ?>
+										<?php esc_html_e( 'Sign up', 'social-post-flow' ); ?>
 									</a>
 								</p>
 							</div>

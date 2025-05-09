@@ -150,7 +150,7 @@
 		?>
 
 		<!-- Submitted Form Data -->
-		<input type="hidden" name="<?php echo esc_attr( 'social-post-flow' ); ?>[statuses]" value='<?php echo wp_json_encode( $original_statuses, JSON_HEX_APOS ); ?>' />
+		<input type="hidden" name="social-post-flow[statuses]" value='<?php echo wp_json_encode( $original_statuses, JSON_HEX_APOS ); ?>' />
 	</div>
 </div>
 <!-- /post_type -->
