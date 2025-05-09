@@ -41,11 +41,11 @@ jQuery( document ).ready(
 		if ( $( '#progress-bar' ).length > 0 ) {
 			$( '#progress-bar' ).synchronous_request(
 				{
-					url: 				wp_to_social_pro_bulk_publish.ajax,
-					number_requests: 	wp_to_social_pro_bulk_publish.number_of_requests,
-					action: 			wp_to_social_pro_bulk_publish.action,
-					nonce: 				wp_to_social_pro_bulk_publish.nonce,
-					ids:  				wp_to_social_pro_bulk_publish.post_ids,
+					url: 				social_post_flow_bulk_publish.ajax,
+					number_requests: 	social_post_flow_bulk_publish.number_of_requests,
+					action: 			social_post_flow_bulk_publish.action,
+					nonce: 				social_post_flow_bulk_publish.nonce,
+					ids:  				social_post_flow_bulk_publish.post_ids,
 					stop_on_error:  	-1, // Continue to next request if an error/warning.
 
 					/**
@@ -87,9 +87,9 @@ jQuery( document ).ready(
 					onFinished: function () {
 
 						if ( this.cancelled ) {
-							$( 'tbody', $( this.log ) ).append( '<tr><td colspan="8">' + wp_to_social_pro_bulk_publish.finished + '</td></tr>' );
+							$( 'tbody', $( this.log ) ).append( '<tr><td colspan="8">' + social_post_flow_bulk_publish.finished + '</td></tr>' );
 						} else {
-							$( 'tbody', $( this.log ) ).append( '<tr><td colspan="8">' + wp_to_social_pro_bulk_publish.finished + '</td></tr>' );
+							$( 'tbody', $( this.log ) ).append( '<tr><td colspan="8">' + social_post_flow_bulk_publish.finished + '</td></tr>' );
 						}
 
 					}

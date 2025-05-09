@@ -10,18 +10,7 @@ body.wpzinc {
 /**
  * Menu Icon
  */
-li.toplevel_page_wp-to-buffer-pro-settings,
-li.toplevel_page_wp-to-buffer-pro,
-li.toplevel_page_wp-to-buffer-settings,
-li.toplevel_page_wp-to-buffer,
-li.toplevel_page_wp-to-hootsuite-pro-settings,
-li.toplevel_page_wp-to-hootsuite-pro,
-li.toplevel_page_wp-to-hootsuite-settings,
-li.toplevel_page_wp-to-hootsuite,
-li.toplevel_page_wp-to-socialpilot-pro-settings,
-li.toplevel_page_wp-to-socialpilot-pro,
-li.toplevel_page_wp-to-socialpilot-settings,
-li.toplevel_page_wp-to-socialpilot {
+li.toplevel_page_social-post-flow {
     a {
 		div.wp-menu-image {
 			img {
@@ -33,16 +22,25 @@ li.toplevel_page_wp-to-socialpilot {
 }
 
 /**
+* Header Icon
+*/
+body.wpzinc.social-post-flow {
+	div.wrap {
+		h1.wp-heading-inline {
+			background-image: url(../images/icons/social-post-flow-dark.svg);
+			background-position: 25px 50%;
+			background-repeat: no-repeat;
+			background-size: 32px 32px;
+		}
+	}
+}
+
+/**
 * Post Meta
 */
 body.post-php,
 body.post-new-php {
-	#wp-to-buffer,
-	#wp-to-buffer-pro,
-	#wp-to-hootsuite,
-	#wp-to-hootsuite-pro,
-	#wp-to-socialpilot,
-	#wp-to-socialpilot-pro {
+	#social-post-flow {
 		/**
 		 * Force Gutenberg Show / Hide Arrow Button to display over h2.hndle,
 		 * otherwise .hndle background will hide this button
@@ -63,9 +61,7 @@ body.post-new-php {
 			margin: 0;
 			padding: 0;
 
-			#wp-to-buffer-pro-override,
-			#wp-to-hootsuite-pro-override,
-			#wp-to-socialpilot-pro-override {
+			#social-post-flow-pro-override {
 				display: none;
 				margin-top: -1px;
 				border-bottom: 1px solid #dfdfdf;
@@ -76,9 +72,7 @@ body.post-new-php {
 	/**
 	 * Image
 	 */
-	#wp-to-buffer-pro-image,
-	#wp-to-hootsuite-pro-image,
-	#wp-to-socialpilot-pro-image {
+	#social-post-flow-image {
 		div.inside {
 			margin: 0;
 			padding: 0;
@@ -89,12 +83,7 @@ body.post-new-php {
 /**
 * Log
 */
-#wp-to-buffer-log,
-#wp-to-buffer-pro-log,
-#wp-to-hootsuite-log,
-#wp-to-hootsuite-pro-log,
-#wp-to-socialpilot-log,
-#wp-to-socialpilot-pro-log {
+#social-post-flow-log {
 	div.inside {
 		margin: 0;
 		padding: 0;	
@@ -162,68 +151,16 @@ table.wp-to-social-log {
 * Gutenberg Meta Boxes
 */
 body.block-editor-page {
-	#wp-to-buffer,
-	#wp-to-buffer-pro,
-	#wp-to-hootsuite,
-	#wp-to-hootsuite-pro,
-	#wp-to-socialpilot,
-	#wp-to-socialpilot-pro,
-	#wp-to-buffer-log,
-	#wp-to-buffer-pro-log,
-	#wp-to-hootsuite-log,
-	#wp-to-hootsuite-pro-log,
-	#wp-to-socialpilot-log,
-	#wp-to-socialpilot-pro-log {
+	#social-post-flow,
+	#social-post-flow-log {
 		margin-bottom: 20px;
-	}
-}
-
-/**
-* Settings Header Icon
-*/
-body.wpzinc.wp-to-buffer,
-body.wpzinc.wp-to-buffer-pro {
-	div.wrap {
-		h1.wp-heading-inline {
-			background-image: url(../images/icons/buffer-light.svg);
-			background-position: 25px 50%;
-			background-repeat: no-repeat;
-			background-size: 32px 32px;
-		}
-	}
-}
-body.wpzinc.wp-to-hootsuite,
-body.wpzinc.wp-to-hootsuite-pro {
-	div.wrap {
-		h1.wp-heading-inline {
-			background-image: url(../images/icons/hootsuite-light.svg);
-			background-position: 25px 50%;
-			background-repeat: no-repeat;
-			background-size: 32px 32px;
-		}
-	}
-}
-body.wpzinc.wp-to-socialpilot,
-body.wpzinc.wp-to-socialpilot-pro {
-	div.wrap {
-		h1.wp-heading-inline {
-			background-image: url(../images/icons/socialpilot-light.svg);
-			background-position: 25px 50%;
-			background-repeat: no-repeat;
-			background-size: 32px 32px;
-		}
 	}
 }
 
 /**
 * Settings (Post Meta and Settings Screen)
 */
-#wp-to-buffer,
-#wp-to-buffer-pro,
-#wp-to-hootsuite,
-#wp-to-hootsuite-pro,
-#wp-to-socialpilot,
-#wp-to-socialpilot-pro {
+#social-post-flow {
 	ul.wpzinc-nav-tabs {
 		li {		
 			/**
@@ -441,7 +378,7 @@ body.wpzinc.wp-to-socialpilot-pro {
 */
 body.wpzinc {
 	.wrap {
-		.wp-to-social-pro-status-form {
+		#social-post-flow-status-form {
 			> .wpzinc-option {
 				padding: 20px 30px;
 			}

@@ -15,7 +15,7 @@
 			data-input-name="social-post-flow[additional_images][]"
 			data-file-type="image"
 			data-output-size="small"
-			data-multiple="<?php echo esc_attr( $this->base->supports( 'additional_images' ) ? 'true' : 'false' ); ?>"
+			data-multiple="true"
 			data-limit="10">
 		<ul class="images">
 			<?php
@@ -40,74 +40,36 @@
 
 		<button class="wpzinc-media-library-insert button button-secondary">
 			<?php
-			if ( $this->base->supports( 'additional_images' ) ) {
-				esc_html_e( 'Select Images', 'social-post-flow' );
-			} else {
-				esc_html_e( 'Select Image', 'social-post-flow' );
-			}
+			esc_html_e( 'Select Images', 'social-post-flow' );
 			?>
 		</button>
 	</div>
 
-	<?php
-	// Output description depending on whether additional images are supported, or just the featured image.
-	if ( $this->base->supports( 'additional_images' ) ) {
-		?>
-		<p class="description">
-			<?php
-			if ( $supports_opengraph ) {
-				echo esc_html(
-					sprintf(
-					/* translators: Post Type Singular */
-						__( 'The first image only replaces the Featured Image in a status where a status\' option is not set to "Use OpenGraph Settings". Additional images only work where a status\' option is set to "Use Featured Image, not Linked to %s".', 'social-post-flow' ),
-						$post_type_object->labels->singular_name
-					)
-				);
-			} else {
-				echo esc_html(
-					sprintf(
-					/* translators: Post Type Singular */
-						__( 'The first image only replaces the Featured Image in a status where a status\' option is not set to "No Image". Additional images only work where a status\' option is set to "Use Featured Image, not Linked to %s".', 'social-post-flow' ),
-						$post_type_object->labels->singular_name
-					)
-				);
-			}
-			?>
-		</p>
-		<p class="description">
-			<?php
-			esc_html_e( 'Drag and drop images to reorder. The number of additional images included in a status will depend on the social network. Refer to the ', 'social-post-flow' );
-			?>
-			<a href="https://www.socialpostflow.com/documentation/wordpress/featured-image-settings/" target="_blank"><?php esc_html_e( 'Documentation', 'social-post-flow' ); ?></a>
-		</p>
+	<p class="description">
 		<?php
-	} elseif ( $supports_opengraph ) {
-		?>
-		<p class="description">
-			<?php
+		if ( $supports_opengraph ) {
 			echo esc_html(
 				sprintf(
-					__( 'This image only replaces the Featured Image in a status where a status\' option is not set to "Use OpenGraph Settings".', 'social-post-flow' ),
+				/* translators: Post Type Singular */
+					__( 'The first image only replaces the Featured Image in a status where a status\' option is not set to "Use OpenGraph Settings". Additional images only work where a status\' option is set to "Use Featured Image, not Linked to %s".', 'social-post-flow' ),
 					$post_type_object->labels->singular_name
 				)
 			);
-			?>
-		</p>
-		<?php
-	} else {
-		?>
-		<p class="description">
-			<?php
+		} else {
 			echo esc_html(
 				sprintf(
-					/* translators: Post Type Singular */
-					__( 'This image only replaces the Featured Image in a status where a status\' option is not set to "No Image".', 'social-post-flow' ),
+				/* translators: Post Type Singular */
+					__( 'The first image only replaces the Featured Image in a status where a status\' option is not set to "No Image". Additional images only work where a status\' option is set to "Use Featured Image, not Linked to %s".', 'social-post-flow' ),
 					$post_type_object->labels->singular_name
 				)
 			);
-			?>
-		</p>
+		}
+		?>
+	</p>
+	<p class="description">
 		<?php
-	}
-	?>
+		esc_html_e( 'Drag and drop images to reorder. The number of additional images included in a status will depend on the social network. Refer to the ', 'social-post-flow' );
+		?>
+		<a href="https://www.socialpostflow.com/documentation/wordpress/featured-image-settings/" target="_blank"><?php esc_html_e( 'Documentation', 'social-post-flow' ); ?></a>
+	</p>
 </div>

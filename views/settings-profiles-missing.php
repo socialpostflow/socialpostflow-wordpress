@@ -13,13 +13,7 @@
 	<div class="wpzinc-option">
 		<p class="description">
 			<?php
-			echo esc_html(
-				sprintf(
-					/* translators: %1$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-					__( 'You must connect at least one social media account in %1$s for this Plugin to send status updates to it.', 'social-post-flow' ),
-					$this->base->plugin->account
-				)
-			);
+			esc_html_e__( 'You must connect at least one social media account in Social Post Flow for this Plugin to send status updates to it.', 'social-post-flow' );
 			?>
 		</p>
 		<p class="description">

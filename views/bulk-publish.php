@@ -36,8 +36,8 @@
 		<h2 class="nav-tab-wrapper wpzinc-horizontal-tabbed-ui">
 			<?php
 			// Go through all Post Types, if API is authenticated.
-			$access_token = $this->get_setting( '', 'access_token' );
-			if ( ! empty( $access_token ) ) {
+			$api_key = social_post_flow()->get_class( 'settings' )->get_api_key();
+			if ( ! empty( $api_key ) ) {
 				foreach ( $post_types as $public_post_type => $post_type_obj ) {
 					// Work out the icon to display.
 					$icon = '';
@@ -68,7 +68,7 @@
 						<div id="normal-sortables" class="meta-box-sortables ui-sortable publishing-defaults">  
 							<?php
 							// Load sub view.
-							require_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'lib/views/bulk-publish-' . $stage . '.php';
+							require_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/bulk-publish-' . $stage . '.php';
 
 							// Nonce.
 							wp_nonce_field( 'social-post-flow', 'social_post_flow_nonce' );

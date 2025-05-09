@@ -13,12 +13,12 @@
  *
  * @since 	3.9.6
  */
-function wpToSocialProReinitAutosize() {
+function socialPostFlowReinitAutosize() {
 
 	( function ( $ ) {
 
 		// Bail if no autosize instances exist.
-		if ( $( '.wpzinc-autosize-js', $( wp_to_social_pro.status_form ) ).length == 0 ) {
+		if ( $( '.wpzinc-autosize-js', $( social_post_flow.status_form ) ).length == 0 ) {
 			return;
 		}
 
@@ -34,7 +34,7 @@ function wpToSocialProReinitAutosize() {
  *
  * @since 	3.9.6
  */
-function wpToSocialProReinitAutocomplete() {
+function socialPostFlowReinitAutocomplete() {
 
 	wp_zinc_autocomplete_destroy();
 	wp_zinc_autocomplete_setup();
@@ -47,25 +47,25 @@ function wpToSocialProReinitAutocomplete() {
  *
  * @since 	3.9.6
  */
-function wpToSocialProInitTags() {
+function socialPostFlowInitTags() {
 
 	( function ( $ ) {
 
 		// Bail if no tag instances exist.
-		if ( $( 'select.tags', $( wp_to_social_pro.status_form ) ).length == 0 ) {
+		if ( $( 'select.tags', $( social_post_flow.status_form ) ).length == 0 ) {
 			return;
 		}
 
-		$( 'select.tags', $( wp_to_social_pro.status_form ) ).each(
+		$( 'select.tags', $( social_post_flow.status_form ) ).each(
 			function () {
 				$( this ).on(
-					'change.wp-to-social-pro',
+					'change.social-post-flow',
 					function ( e ) {
 						// Insert tag into required textarea.
 						var tag  = $( this ).val(),
 						textarea = $( this ).attr( 'data-textarea' ),
 						option   = $( 'option:selected', $( this ) ),
-						status   = $( this ).closest( '.wp-to-social-pro-status-form' ),
+						status   = $( this ).closest( '#social-post-flow-status-form' ),
 						sel      = $( textarea, $( status ) ),
 						val      = $( sel ).val();
 
@@ -124,7 +124,7 @@ function wpToSocialProInitTags() {
  * @param 	string 	selector 	Initialize .wpzinc-selectize instances within the given DOM selector.
  * @param 	object 	options 	Options for each selectize instance, keyed by input ID.
  */
-function wpToSocialProInitSelectize( selector, profile_id, action, status_index ) {
+function socialPostFlowInitSelectize( selector, profile_id, action, status_index ) {
 
 	( function ( $ ) {
 
@@ -177,7 +177,7 @@ function wpToSocialProInitSelectize( selector, profile_id, action, status_index 
 									data: {
 										action: 	action,
 										taxonomy: 	taxonomy,
-										nonce:  	wp_to_social_pro[ nonce_key ],
+										nonce:  	social_post_flow[ nonce_key ],
 										q: 			query,
 										page: 		10
 									},
@@ -231,7 +231,7 @@ function wpToSocialProInitSelectize( selector, profile_id, action, status_index 
  *
  * @since 	4.4.0
  */
-function wpToSocialProDestroySelectize( selector ) {
+function socialPostFlowDestroySelectize( selector ) {
 
 	( function ( $ ) {
 
@@ -256,7 +256,7 @@ function wpToSocialProDestroySelectize( selector ) {
  *
  * @param 	string 	statuses_container 	Profile and Action Statuses Container, containing the statuses to reindex.
  */
-function wpToSocialProReindexStatuses( statuses_container ) {
+function socialPostFlowReindexStatuses( statuses_container ) {
 
 	( function ( $ ) {
 
@@ -290,123 +290,123 @@ function wpToSocialProReindexStatuses( statuses_container ) {
  *
  * @param 	string 	action 	Action (publish,update,repost,bulk_publish)
  */
-function wpToSocialProUpdateScheduleOptions( action ) {
+function socialPostFlowUpdateScheduleOptions( action ) {
 
 	( function ( $ ) {
 
 		// Bail if no schedule dropdowns exist.
-		if ( $( 'select.schedule', $( wp_to_social_pro.status_form ) ).length == 0 ) {
+		if ( $( 'select.schedule', $( social_post_flow.status_form ) ).length == 0 ) {
 			return;
 		}
 
 		// Show / hide schedule options.
-		switch ( $( 'select.schedule', $( wp_to_social_pro.status_form ) ).val() ) {
+		switch ( $( 'select.schedule', $( social_post_flow.status_form ) ).val() ) {
 			case 'custom':
-				$( 'div.schedule', $( wp_to_social_pro.status_form ) ).show();
-				$( 'span.schedule', $( wp_to_social_pro.status_form ) ).show();
-				$( 'span.hours_mins_secs', $( wp_to_social_pro.status_form ) ).show();
-				$( 'span.relative', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.custom', $( wp_to_social_pro.status_form ) ).text( 'after ' + action ).show();
-				$( 'span.custom_field', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.the_events_calendar', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.events_manager', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.modern_events_calendar', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.specific', $( wp_to_social_pro.status_form ) ).hide();
+				$( 'div.schedule', $( social_post_flow.status_form ) ).show();
+				$( 'span.schedule', $( social_post_flow.status_form ) ).show();
+				$( 'span.hours_mins_secs', $( social_post_flow.status_form ) ).show();
+				$( 'span.relative', $( social_post_flow.status_form ) ).hide();
+				$( 'span.custom', $( social_post_flow.status_form ) ).text( 'after ' + action ).show();
+				$( 'span.custom_field', $( social_post_flow.status_form ) ).hide();
+				$( 'span.the_events_calendar', $( social_post_flow.status_form ) ).hide();
+				$( 'span.events_manager', $( social_post_flow.status_form ) ).hide();
+				$( 'span.modern_events_calendar', $( social_post_flow.status_form ) ).hide();
+				$( 'span.specific', $( social_post_flow.status_form ) ).hide();
 				break;
 
 			case 'custom_relative':
-				$( 'div.schedule', $( wp_to_social_pro.status_form ) ).show();
-				$( 'span.schedule', $( wp_to_social_pro.status_form ) ).show();
-				$( 'span.hours_mins_secs', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.relative', $( wp_to_social_pro.status_form ) ).show();
-				$( 'span.custom', $( wp_to_social_pro.status_form ) ).text( 'after ' + action ).show();
-				$( 'span.custom_field', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.the_events_calendar', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.events_manager', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.modern_events_calendar', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.specific', $( wp_to_social_pro.status_form ) ).hide();
+				$( 'div.schedule', $( social_post_flow.status_form ) ).show();
+				$( 'span.schedule', $( social_post_flow.status_form ) ).show();
+				$( 'span.hours_mins_secs', $( social_post_flow.status_form ) ).hide();
+				$( 'span.relative', $( social_post_flow.status_form ) ).show();
+				$( 'span.custom', $( social_post_flow.status_form ) ).text( 'after ' + action ).show();
+				$( 'span.custom_field', $( social_post_flow.status_form ) ).hide();
+				$( 'span.the_events_calendar', $( social_post_flow.status_form ) ).hide();
+				$( 'span.events_manager', $( social_post_flow.status_form ) ).hide();
+				$( 'span.modern_events_calendar', $( social_post_flow.status_form ) ).hide();
+				$( 'span.specific', $( social_post_flow.status_form ) ).hide();
 				break;
 
 			case 'custom_field':
-				$( 'div.schedule', $( wp_to_social_pro.status_form ) ).show();
-				$( 'span.schedule', $( wp_to_social_pro.status_form ) ).show();
-				$( 'span.hours_mins_secs', $( wp_to_social_pro.status_form ) ).show();
-				$( 'span.relative', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.custom', $( wp_to_social_pro.status_form ) ).text( '' ).hide();
-				$( 'span.custom_field', $( wp_to_social_pro.status_form ) ).show();
-				$( 'span.the_events_calendar', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.events_manager', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.modern_events_calendar', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.specific', $( wp_to_social_pro.status_form ) ).hide();
+				$( 'div.schedule', $( social_post_flow.status_form ) ).show();
+				$( 'span.schedule', $( social_post_flow.status_form ) ).show();
+				$( 'span.hours_mins_secs', $( social_post_flow.status_form ) ).show();
+				$( 'span.relative', $( social_post_flow.status_form ) ).hide();
+				$( 'span.custom', $( social_post_flow.status_form ) ).text( '' ).hide();
+				$( 'span.custom_field', $( social_post_flow.status_form ) ).show();
+				$( 'span.the_events_calendar', $( social_post_flow.status_form ) ).hide();
+				$( 'span.events_manager', $( social_post_flow.status_form ) ).hide();
+				$( 'span.modern_events_calendar', $( social_post_flow.status_form ) ).hide();
+				$( 'span.specific', $( social_post_flow.status_form ) ).hide();
 				break;
 
 			case '_EventStartDate':
 			case '_EventEndDate':
-				$( 'div.schedule', $( wp_to_social_pro.status_form ) ).show();
-				$( 'span.schedule', $( wp_to_social_pro.status_form ) ).show();
-				$( 'span.hours_mins_secs', $( wp_to_social_pro.status_form ) ).show();
-				$( 'span.relative', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.custom', $( wp_to_social_pro.status_form ) ).text( '' ).hide();
-				$( 'span.custom_field', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.the_events_calendar', $( wp_to_social_pro.status_form ) ).show();
-				$( 'span.events_manager', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.modern_events_calendar', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.specific', $( wp_to_social_pro.status_form ) ).hide();
+				$( 'div.schedule', $( social_post_flow.status_form ) ).show();
+				$( 'span.schedule', $( social_post_flow.status_form ) ).show();
+				$( 'span.hours_mins_secs', $( social_post_flow.status_form ) ).show();
+				$( 'span.relative', $( social_post_flow.status_form ) ).hide();
+				$( 'span.custom', $( social_post_flow.status_form ) ).text( '' ).hide();
+				$( 'span.custom_field', $( social_post_flow.status_form ) ).hide();
+				$( 'span.the_events_calendar', $( social_post_flow.status_form ) ).show();
+				$( 'span.events_manager', $( social_post_flow.status_form ) ).hide();
+				$( 'span.modern_events_calendar', $( social_post_flow.status_form ) ).hide();
+				$( 'span.specific', $( social_post_flow.status_form ) ).hide();
 				break;
 
 			case '_event_start_date':
 			case '_event_end_date':
-				$( 'div.schedule', $( wp_to_social_pro.status_form ) ).show();
-				$( 'span.schedule', $( wp_to_social_pro.status_form ) ).show();
-				$( 'span.hours_mins_secs', $( wp_to_social_pro.status_form ) ).show();
-				$( 'span.relative', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.custom', $( wp_to_social_pro.status_form ) ).text( '' ).hide();
-				$( 'span.custom_field', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.the_events_calendar', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.events_manager', $( wp_to_social_pro.status_form ) ).show();
-				$( 'span.modern_events_calendar', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.specific', $( wp_to_social_pro.status_form ) ).hide();
+				$( 'div.schedule', $( social_post_flow.status_form ) ).show();
+				$( 'span.schedule', $( social_post_flow.status_form ) ).show();
+				$( 'span.hours_mins_secs', $( social_post_flow.status_form ) ).show();
+				$( 'span.relative', $( social_post_flow.status_form ) ).hide();
+				$( 'span.custom', $( social_post_flow.status_form ) ).text( '' ).hide();
+				$( 'span.custom_field', $( social_post_flow.status_form ) ).hide();
+				$( 'span.the_events_calendar', $( social_post_flow.status_form ) ).hide();
+				$( 'span.events_manager', $( social_post_flow.status_form ) ).show();
+				$( 'span.modern_events_calendar', $( social_post_flow.status_form ) ).hide();
+				$( 'span.specific', $( social_post_flow.status_form ) ).hide();
 				break;
 
 			case 'mec_start_datetime':
 			case 'mec_end_datetime':
-				$( 'div.schedule', $( wp_to_social_pro.status_form ) ).show();
-				$( 'span.schedule', $( wp_to_social_pro.status_form ) ).show();
-				$( 'span.hours_mins_secs', $( wp_to_social_pro.status_form ) ).show();
-				$( 'span.relative', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.custom', $( wp_to_social_pro.status_form ) ).text( '' ).hide();
-				$( 'span.custom_field', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.the_events_calendar', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.events_manager', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.modern_events_calendar', $( wp_to_social_pro.status_form ) ).show();
-				$( 'span.specific', $( wp_to_social_pro.status_form ) ).hide();
+				$( 'div.schedule', $( social_post_flow.status_form ) ).show();
+				$( 'span.schedule', $( social_post_flow.status_form ) ).show();
+				$( 'span.hours_mins_secs', $( social_post_flow.status_form ) ).show();
+				$( 'span.relative', $( social_post_flow.status_form ) ).hide();
+				$( 'span.custom', $( social_post_flow.status_form ) ).text( '' ).hide();
+				$( 'span.custom_field', $( social_post_flow.status_form ) ).hide();
+				$( 'span.the_events_calendar', $( social_post_flow.status_form ) ).hide();
+				$( 'span.events_manager', $( social_post_flow.status_form ) ).hide();
+				$( 'span.modern_events_calendar', $( social_post_flow.status_form ) ).show();
+				$( 'span.specific', $( social_post_flow.status_form ) ).hide();
 				break;
 
 			case 'specific':
-				$( 'div.schedule', $( wp_to_social_pro.status_form ) ).show();
-				$( 'span.schedule', $( wp_to_social_pro.status_form ) ).show();
-				$( 'span.hours_mins_secs', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.relative', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.custom', $( wp_to_social_pro.status_form ) ).text( '' ).hide();
-				$( 'span.custom_field', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.the_events_calendar', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.events_manager', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.modern_events_calendar', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.specific', $( wp_to_social_pro.status_form ) ).show();
+				$( 'div.schedule', $( social_post_flow.status_form ) ).show();
+				$( 'span.schedule', $( social_post_flow.status_form ) ).show();
+				$( 'span.hours_mins_secs', $( social_post_flow.status_form ) ).hide();
+				$( 'span.relative', $( social_post_flow.status_form ) ).hide();
+				$( 'span.custom', $( social_post_flow.status_form ) ).text( '' ).hide();
+				$( 'span.custom_field', $( social_post_flow.status_form ) ).hide();
+				$( 'span.the_events_calendar', $( social_post_flow.status_form ) ).hide();
+				$( 'span.events_manager', $( social_post_flow.status_form ) ).hide();
+				$( 'span.modern_events_calendar', $( social_post_flow.status_form ) ).hide();
+				$( 'span.specific', $( social_post_flow.status_form ) ).show();
 				break;
 
 			default:
 				// Hide additonal schedule options.
-				$( 'div.schedule', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.schedule', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.hours_mins_secs', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.relative', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.custom', $( wp_to_social_pro.status_form ) ).text( '' ).hide();
-				$( 'span.custom_field', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.the_events_calendar', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.events_manager', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.modern_events_calendar', $( wp_to_social_pro.status_form ) ).hide();
-				$( 'span.specific', $( wp_to_social_pro.status_form ) ).hide();
+				$( 'div.schedule', $( social_post_flow.status_form ) ).hide();
+				$( 'span.schedule', $( social_post_flow.status_form ) ).hide();
+				$( 'span.hours_mins_secs', $( social_post_flow.status_form ) ).hide();
+				$( 'span.relative', $( social_post_flow.status_form ) ).hide();
+				$( 'span.custom', $( social_post_flow.status_form ) ).text( '' ).hide();
+				$( 'span.custom_field', $( social_post_flow.status_form ) ).hide();
+				$( 'span.the_events_calendar', $( social_post_flow.status_form ) ).hide();
+				$( 'span.events_manager', $( social_post_flow.status_form ) ).hide();
+				$( 'span.modern_events_calendar', $( social_post_flow.status_form ) ).hide();
+				$( 'span.specific', $( social_post_flow.status_form ) ).hide();
 				break;
 		}
 
@@ -419,38 +419,38 @@ function wpToSocialProUpdateScheduleOptions( action ) {
  *
  * @since 	4.2.0
  */
-function wpToSocialProUpdateImageOptions() {
+function socialPostFlowUpdateImageOptions() {
 
 	( function ( $ ) {
 
 		// Bail if no image dropdowns exist.
-		if ( $( 'select.image', $( wp_to_social_pro.status_form ) ).length == 0 ) {
+		if ( $( 'select.image', $( social_post_flow.status_form ) ).length == 0 ) {
 			return;
 		}
 
-		switch ( $( 'select.image', $( wp_to_social_pro.status_form ) ).val() ) {
+		switch ( $( 'select.image', $( social_post_flow.status_form ) ).val() ) {
 			/**
 			 * Use Feat. Image, not linked to Post
 			 */
 			case '2':
-				$( '.additional-images', $( wp_to_social_pro.status_form ) ).show();
-				$( '.text-to-image', $( wp_to_social_pro.status_form ) ).hide();
+				$( '.additional-images', $( social_post_flow.status_form ) ).show();
+				$( '.text-to-image', $( social_post_flow.status_form ) ).hide();
 				break;
 
 			/**
 			 * Use Text to Image, linked to Post
 			 */
 			case '3':
-				$( '.additional-images', $( wp_to_social_pro.status_form ) ).hide();
-				$( '.text-to-image', $( wp_to_social_pro.status_form ) ).show();
+				$( '.additional-images', $( social_post_flow.status_form ) ).hide();
+				$( '.text-to-image', $( social_post_flow.status_form ) ).show();
 				break;
 
 			/**
 			 * Use Text to Image, not linked to Post
 			 */
 			case '4':
-				$( '.additional-images', $( wp_to_social_pro.status_form ) ).hide();
-				$( '.text-to-image', $( wp_to_social_pro.status_form ) ).show();
+				$( '.additional-images', $( social_post_flow.status_form ) ).hide();
+				$( '.text-to-image', $( social_post_flow.status_form ) ).show();
 				break;
 
 			/**
@@ -459,8 +459,8 @@ function wpToSocialProUpdateImageOptions() {
 			 * Use Feat. Image, linked to Post
 			 */
 			default:
-				$( '.additional-images', $( wp_to_social_pro.status_form ) ).hide();
-				$( '.text-to-image', $( wp_to_social_pro.status_form ) ).hide();
+				$( '.additional-images', $( social_post_flow.status_form ) ).hide();
+				$( '.text-to-image', $( social_post_flow.status_form ) ).hide();
 				break;
 		}
 
@@ -473,22 +473,22 @@ function wpToSocialProUpdateImageOptions() {
  *
  * @since 	4.9.0
  */
-function wpToSocialProUpdateGoogleBusinessOptions() {
+function socialPostFlowUpdateGoogleBusinessOptions() {
 
 	( function ( $ ) {
 
 		// Bail if no Google Business Post Type dropdown exists.
-		if ( $( 'select#googlebusiness_post_type', $( wp_to_social_pro.status_form ) ).length == 0 ) {
+		if ( $( 'select#googlebusiness_post_type', $( social_post_flow.status_form ) ).length == 0 ) {
 			return;
 		}
 
 		// Hide all table rows.
-		$( 'tr.whats_new', $( wp_to_social_pro.status_form ) ).hide();
-		$( 'tr.event', $( wp_to_social_pro.status_form ) ).hide();
-		$( 'tr.offer', $( wp_to_social_pro.status_form ) ).hide();
+		$( 'tr.whats_new', $( social_post_flow.status_form ) ).hide();
+		$( 'tr.event', $( social_post_flow.status_form ) ).hide();
+		$( 'tr.offer', $( social_post_flow.status_form ) ).hide();
 
 		// Show table rows matching the post type.
-		$( 'tr.' + $( 'select#googlebusiness_post_type', $( wp_to_social_pro.status_form ) ).val(), $( wp_to_social_pro.status_form ) ).show();
+		$( 'tr.' + $( 'select#googlebusiness_post_type', $( social_post_flow.status_form ) ).val(), $( social_post_flow.status_form ) ).show();
 
 	} )( jQuery );
 
@@ -503,7 +503,7 @@ function wpToSocialProUpdateGoogleBusinessOptions() {
  * @param 	string 	profile_id 	Profile ID.
  * @param 	string 	Action 		Action.
  */
-function wpToSocialProAddStatus( profile_id, action ) {
+function socialPostFlowAddStatus( profile_id, action ) {
 
 	( function ( $ ) {
 
@@ -517,10 +517,10 @@ function wpToSocialProAddStatus( profile_id, action ) {
 		$( statuses_table_body ).first().after( $( last_status ).clone() );
 
 		// Reindex statuses.
-		wpToSocialProReindexStatuses( statuses_container );
+		socialPostFlowReindexStatuses( statuses_container );
 
 		// Populate hidden field with all statuses' data.
-		wpToSocialProUpdateStatuses();
+		socialPostFlowUpdateStatuses();
 
 	} )( jQuery );
 
@@ -539,34 +539,34 @@ function wpToSocialProAddStatus( profile_id, action ) {
  * @param 	object 	status 			Status.
  * @param 	object 	label 			Labels for selectize inputs.
  */
-function wpToSocialProEditStatus( profile_id, profile, action, status_index, status ) {
+function socialPostFlowEditStatus( profile_id, profile, action, status_index, status ) {
 
 	// Destroy selectize.
-	wpToSocialProDestroySelectize( wp_to_social_pro.status_form );
+	socialPostFlowDestroySelectize( social_post_flow.status_form );
 
 	// Populate form values.
-	wpToSocialProPopulateStatusForm( profile_id, profile, action, status_index, status );
+	socialPostFlowPopulateStatusForm( profile_id, profile, action, status_index, status );
 
 	// Update schedule options.
-	wpToSocialProUpdateScheduleOptions( action );
+	socialPostFlowUpdateScheduleOptions( action );
 
 	// Update image options.
-	wpToSocialProUpdateImageOptions();
+	socialPostFlowUpdateImageOptions();
 
 	// Update Google Business options.
-	wpToSocialProUpdateGoogleBusinessOptions();
+	socialPostFlowUpdateGoogleBusinessOptions();
 
 	// Display form.
-	wpToSocialProDisplayStatusForm( profile_id, action, status_index );
+	socialPostFlowDisplayStatusForm( profile_id, action, status_index );
 
 	// Reinit autosize.
-	wpToSocialProReinitAutosize();
+	socialPostFlowReinitAutosize();
 
 	// Reinit autocomplete.
-	wpToSocialProReinitAutocomplete();
+	socialPostFlowReinitAutocomplete();
 
 	// Init selectize.
-	wpToSocialProInitSelectize( wp_to_social_pro.status_form, profile_id, action, status_index );
+	socialPostFlowInitSelectize( social_post_flow.status_form, profile_id, action, status_index );
 
 }
 
@@ -579,12 +579,12 @@ function wpToSocialProEditStatus( profile_id, profile, action, status_index, sta
  * @param 	string 	action 			Action (publish,update,repost,bulk_publish).
  * @param 	int 	status_index 	Zero based index of this status relative to all statuses for the Profile ID and Action.
  */
-function wpToSocialProDeleteStatus( profile_id, action, status_index ) {
+function socialPostFlowDeleteStatus( profile_id, action, status_index ) {
 
 	( function ( $ ) {
 
 		// Confirm deletion.
-		var result = confirm( wp_to_social_pro.delete_status_message );
+		var result = confirm( social_post_flow.delete_status_message );
 		if ( ! result ) {
 			return;
 		}
@@ -597,10 +597,10 @@ function wpToSocialProDeleteStatus( profile_id, action, status_index ) {
 		$( row ).remove();
 
 		// Reindex statuses.
-		wpToSocialProReindexStatuses( statuses_container );
+		socialPostFlowReindexStatuses( statuses_container );
 
 		// Populate hidden field with all statuses' data.
-		wpToSocialProUpdateStatuses();
+		socialPostFlowUpdateStatuses();
 
 	} )( jQuery );
 
@@ -615,7 +615,7 @@ function wpToSocialProDeleteStatus( profile_id, action, status_index ) {
  * @param 	string 	Action 			Action.
  * @param 	int 	status_index 	Zero based index of this status relative to all statuses for the Profile ID and Action.
  */
-function wpToSocialProUpdateStatus( profile_id, action, status_index ) {
+function socialPostFlowUpdateStatus( profile_id, action, status_index ) {
 
 	( function ( $ ) {
 
@@ -633,20 +633,20 @@ function wpToSocialProUpdateStatus( profile_id, action, status_index ) {
 
 		// Iterate through the status form, building the status object.
 		$.each(
-			$( wp_to_social_pro.status_form ).find( 'input, select, textarea' ).serializeArray(),
+			$( social_post_flow.status_form ).find( 'input, select, textarea' ).serializeArray(),
 			function ( index, field ) {
 
 				// Remove prepended Plugin Name from Field Name.
-				field.name = field.name.replace( wp_to_social_pro.plugin_name + '_', '' );
+				field.name = field.name.replace( social_post_flow.plugin_name + '_', '' );
 
 				switch ( field.name ) {
 
 					case 'sub_profile':
 						// Check both <select> and <input> for a value.
-						if ( $( 'input[name="' + wp_to_social_pro.plugin_name + '_' + field.name + '"]', $( wp_to_social_pro.status_form ) ).val() !== '' ) {
-							status[ field.name ] = $( 'input[name="' + wp_to_social_pro.plugin_name + '_' + field.name + '"]', $( wp_to_social_pro.status_form ) ).val();
-						} else if ( $( 'select[name="' + wp_to_social_pro.plugin_name + '_' + field.name + '"]', $( wp_to_social_pro.status_form ) ).val() ) {
-							status[ field.name ] = $( 'select[name="' + wp_to_social_pro.plugin_name + '_' + field.name + '"]', $( wp_to_social_pro.status_form ) ).val();
+						if ( $( 'input[name="' + social_post_flow.plugin_name + '_' + field.name + '"]', $( social_post_flow.status_form ) ).val() !== '' ) {
+							status[ field.name ] = $( 'input[name="' + social_post_flow.plugin_name + '_' + field.name + '"]', $( social_post_flow.status_form ) ).val();
+						} else if ( $( 'select[name="' + social_post_flow.plugin_name + '_' + field.name + '"]', $( social_post_flow.status_form ) ).val() ) {
+							status[ field.name ] = $( 'select[name="' + social_post_flow.plugin_name + '_' + field.name + '"]', $( social_post_flow.status_form ) ).val();
 						}
 						break;
 
@@ -783,7 +783,7 @@ function wpToSocialProUpdateStatus( profile_id, action, status_index ) {
 		$( row ).data( 'status', JSON.stringify( status ) ).attr( 'data-status', JSON.stringify( status ) );
 
 		// Populate hidden field with all statuses' data.
-		wpToSocialProUpdateStatuses();
+		socialPostFlowUpdateStatuses();
 
 		// Fetch row cells data via AJAX.
 		$.ajax(
@@ -792,15 +792,15 @@ function wpToSocialProUpdateStatus( profile_id, action, status_index ) {
 				type: 		'POST',
 				async:    	true,
 				data: 		{
-					action: 	wp_to_social_pro.get_status_row_action,
-					nonce: 		wp_to_social_pro.get_status_row_nonce,
-					post_type: 	wp_to_social_pro.post_type,
+					action: 	social_post_flow.get_status_row_action,
+					nonce: 		social_post_flow.get_status_row_nonce,
+					post_type: 	social_post_flow.post_type,
 					post_action:action,
 					status: 	JSON.stringify( status )
 				},
 				error: function ( xhr, status, error ) {
 
-					alert( 'wpToSocialProUpdateStatus(): error: ' + xhr.status + ' ' + xhr.statusText );
+					alert( 'socialPostFlowUpdateStatus(): error: ' + xhr.status + ' ' + xhr.statusText );
 
 				},
 				success: function ( result ) {
@@ -838,21 +838,21 @@ function wpToSocialProUpdateStatus( profile_id, action, status_index ) {
  * @param 	int 	status_index 	Zero based index of this status relative to all statuses for the Profile ID and Action.
  * @param 	object 	status 			Status.
  */
-function wpToSocialProPopulateStatusForm( profile_id, profile, action, status_index, status ) {
+function socialPostFlowPopulateStatusForm( profile_id, profile, action, status_index, status ) {
 
 	( function ( $ ) {
 
 		// Hide all conditional elements.
-		$( 'div.conditional', $( wp_to_social_pro.status_form ) ).addClass( 'hidden' );
+		$( 'div.conditional', $( social_post_flow.status_form ) ).addClass( 'hidden' );
 
 		// Display conditional elements matching the profile's service - for example, Google Business Profiles
 		// (googlebusiness).
 		if ( profile !== '' ) {
-			$( 'div.conditional.' + profile.service, $( wp_to_social_pro.status_form ) ).removeClass( 'hidden' );
+			$( 'div.conditional.' + profile.service, $( social_post_flow.status_form ) ).removeClass( 'hidden' );
 		}
 
 		// Iterate through form fields.
-		$( 'input, select, textarea', $( wp_to_social_pro.status_form ) ).each(
+		$( 'input, select, textarea', $( social_post_flow.status_form ) ).each(
 			function () {
 
 				var field = $( this ).attr( 'name' ),
@@ -864,7 +864,7 @@ function wpToSocialProPopulateStatusForm( profile_id, profile, action, status_in
 				}
 
 				// Remove prepended Plugin Name from Field Name.
-				field = field.replace( wp_to_social_pro.plugin_name + '_', '' );
+				field = field.replace( social_post_flow.plugin_name + '_', '' );
 
 				// Depending on the attribute, populate the field.
 				switch ( field ) {
@@ -933,29 +933,29 @@ function wpToSocialProPopulateStatusForm( profile_id, profile, action, status_in
 							// If there are no submprofiles, the Pinterest account has no boards attached to it yet.
 							// Show a message.
 							if ( ! Object.keys( profile.subprofiles ).length ) {
-								$( 'div.notice-inline.pinterest', $( wp_to_social_pro.status_form ) ).removeClass( 'hidden' );
-								$( 'select[name="' + wp_to_social_pro.plugin_name + '_sub_profile"]', $( wp_to_social_pro.status_form ) ).addClass( 'hidden' );
-								$( 'input[name="' + wp_to_social_pro.plugin_name + '_sub_profile"]', $( wp_to_social_pro.status_form ) ).addClass( 'hidden' );
+								$( 'div.notice-inline.pinterest', $( social_post_flow.status_form ) ).removeClass( 'hidden' );
+								$( 'select[name="' + social_post_flow.plugin_name + '_sub_profile"]', $( social_post_flow.status_form ) ).addClass( 'hidden' );
+								$( 'input[name="' + social_post_flow.plugin_name + '_sub_profile"]', $( social_post_flow.status_form ) ).addClass( 'hidden' );
 							} else {
 								// Populate <select> dropdown of subprofiles.
-								$( 'option', $( 'select[name="' + wp_to_social_pro.plugin_name + '_sub_profile"]', $( wp_to_social_pro.status_form ) ) ).remove();
+								$( 'option', $( 'select[name="' + social_post_flow.plugin_name + '_sub_profile"]', $( social_post_flow.status_form ) ) ).remove();
 								for ( let key in profile.subprofiles ) {
-									$( 'select[name="' + wp_to_social_pro.plugin_name + '_sub_profile"]', $( wp_to_social_pro.status_form ) ).append(
+									$( 'select[name="' + social_post_flow.plugin_name + '_sub_profile"]', $( social_post_flow.status_form ) ).append(
 										$( '<option></option>' ).attr( 'value', profile.subprofiles[ key ].id ).text( profile.subprofiles[ key ].name )
 									);
 								}
 
 								// Show <select> to allow Pinterest Board selection.
-								$( 'select[name="' + wp_to_social_pro.plugin_name + '_sub_profile"]', $( wp_to_social_pro.status_form ) ).removeClass( 'hidden' );
-								$( 'input[name="' + wp_to_social_pro.plugin_name + '_sub_profile"]', $( wp_to_social_pro.status_form ) ).addClass( 'hidden' );
-								$( 'select[name="' + wp_to_social_pro.plugin_name + '_sub_profile"]', $( wp_to_social_pro.status_form ) ).val( status[ field ] );
+								$( 'select[name="' + social_post_flow.plugin_name + '_sub_profile"]', $( social_post_flow.status_form ) ).removeClass( 'hidden' );
+								$( 'input[name="' + social_post_flow.plugin_name + '_sub_profile"]', $( social_post_flow.status_form ) ).addClass( 'hidden' );
+								$( 'select[name="' + social_post_flow.plugin_name + '_sub_profile"]', $( social_post_flow.status_form ) ).val( status[ field ] );
 							}
 						} else {
 							// The API doesn't provide the Boards we can post to.
 							// Show <input> to allow Pinterest Board URL instead.
-							$( 'select[name="' + wp_to_social_pro.plugin_name + '_sub_profile"]', $( wp_to_social_pro.status_form ) ).addClass( 'hidden' );
-							$( 'input[name="' + wp_to_social_pro.plugin_name + '_sub_profile"]', $( wp_to_social_pro.status_form ) ).removeClass( 'hidden' );
-							$( 'input[name="' + wp_to_social_pro.plugin_name + '_sub_profile"]', $( wp_to_social_pro.status_form ) ).val( status[ field ] );
+							$( 'select[name="' + social_post_flow.plugin_name + '_sub_profile"]', $( social_post_flow.status_form ) ).addClass( 'hidden' );
+							$( 'input[name="' + social_post_flow.plugin_name + '_sub_profile"]', $( social_post_flow.status_form ) ).removeClass( 'hidden' );
+							$( 'input[name="' + social_post_flow.plugin_name + '_sub_profile"]', $( social_post_flow.status_form ) ).val( status[ field ] );
 						}
 						break;
 
@@ -973,8 +973,8 @@ function wpToSocialProPopulateStatusForm( profile_id, profile, action, status_in
 						}
 
 						// Show <select> to allow Update Type selection.
-						$( 'select[name="' + wp_to_social_pro.plugin_name + '_update_type"]', $( wp_to_social_pro.status_form ) ).removeClass( 'hidden' );
-						$( 'select[name="' + wp_to_social_pro.plugin_name + '_update_type"]', $( wp_to_social_pro.status_form ) ).val( status[ field ] );
+						$( 'select[name="' + social_post_flow.plugin_name + '_update_type"]', $( social_post_flow.status_form ) ).removeClass( 'hidden' );
+						$( 'select[name="' + social_post_flow.plugin_name + '_update_type"]', $( social_post_flow.status_form ) ).val( status[ field ] );
 						break;
 
 					/**
@@ -991,10 +991,10 @@ function wpToSocialProPopulateStatusForm( profile_id, profile, action, status_in
 					case 'text_to_image_background_image_url':
 						if ( typeof status[ 'text_to_image_background_image_url' ] !== 'undefined' ) {
 							$( this ).val( status[ field ] );
-							$( '.wpzinc-media-library-insert img', $( wp_to_social_pro.status_form ) ).attr( 'src', status[ 'text_to_image_background_image_url' ] );
+							$( '.wpzinc-media-library-insert img', $( social_post_flow.status_form ) ).attr( 'src', status[ 'text_to_image_background_image_url' ] );
 						} else {
 							$( this ).val( '' );
-							$( '.wpzinc-media-library-insert img', $( wp_to_social_pro.status_form ) ).attr( 'src', '' );
+							$( '.wpzinc-media-library-insert img', $( social_post_flow.status_form ) ).attr( 'src', '' );
 						}
 						break;
 
@@ -1004,9 +1004,9 @@ function wpToSocialProPopulateStatusForm( profile_id, profile, action, status_in
 					case 'custom_fields[key][]':
 						// Display Custom Field Rows.
 						for ( let custom_field_index in status['custom_fields'] ) {
-							$( 'input[name="' + wp_to_social_pro.plugin_name + '_custom_fields[key][]"]', $( wp_to_social_pro.status_form ) ).last().val( status['custom_fields'][ custom_field_index ]['key'] );
-							$( 'select[name="' + wp_to_social_pro.plugin_name + '_custom_fields[compare][]"]', $( wp_to_social_pro.status_form ) ).last().val( status['custom_fields'][ custom_field_index ]['compare'] );
-							$( 'input[name="' + wp_to_social_pro.plugin_name + '_custom_fields[value][]"]', $( wp_to_social_pro.status_form ) ).last().val( status['custom_fields'][ custom_field_index ]['value'] );
+							$( 'input[name="' + social_post_flow.plugin_name + '_custom_fields[key][]"]', $( social_post_flow.status_form ) ).last().val( status['custom_fields'][ custom_field_index ]['key'] );
+							$( 'select[name="' + social_post_flow.plugin_name + '_custom_fields[compare][]"]', $( social_post_flow.status_form ) ).last().val( status['custom_fields'][ custom_field_index ]['compare'] );
+							$( 'input[name="' + social_post_flow.plugin_name + '_custom_fields[value][]"]', $( social_post_flow.status_form ) ).last().val( status['custom_fields'][ custom_field_index ]['value'] );
 
 							// Add New Table Row for the next Custom Field Condition, if there are additional
 							// Custom Field Conditions to display.
@@ -1063,9 +1063,9 @@ function wpToSocialProPopulateStatusForm( profile_id, profile, action, status_in
 					case 'authors_custom_fields[key][]':
 						// Display Custom Field Rows.
 						for ( let authors_custom_field_index in status['authors_custom_fields'] ) {
-							$( 'input[name="' + wp_to_social_pro.plugin_name + '_authors_custom_fields[key][]"]', $( wp_to_social_pro.status_form ) ).last().val( status['authors_custom_fields'][ authors_custom_field_index ]['key'] );
-							$( 'select[name="' + wp_to_social_pro.plugin_name + '_authors_custom_fields[compare][]"]', $( wp_to_social_pro.status_form ) ).last().val( status['authors_custom_fields'][ authors_custom_field_index ]['compare'] );
-							$( 'input[name="' + wp_to_social_pro.plugin_name + '_authors_custom_fields[value][]"]', $( wp_to_social_pro.status_form ) ).last().val( status['authors_custom_fields'][ authors_custom_field_index ]['value'] );
+							$( 'input[name="' + social_post_flow.plugin_name + '_authors_custom_fields[key][]"]', $( social_post_flow.status_form ) ).last().val( status['authors_custom_fields'][ authors_custom_field_index ]['key'] );
+							$( 'select[name="' + social_post_flow.plugin_name + '_authors_custom_fields[compare][]"]', $( social_post_flow.status_form ) ).last().val( status['authors_custom_fields'][ authors_custom_field_index ]['compare'] );
+							$( 'input[name="' + social_post_flow.plugin_name + '_authors_custom_fields[value][]"]', $( social_post_flow.status_form ) ).last().val( status['authors_custom_fields'][ authors_custom_field_index ]['value'] );
 
 							// Add New Table Row for the next Custom Field Condition, if there are additional
 							// Custom Field Conditions to display.
@@ -1123,12 +1123,12 @@ function wpToSocialProPopulateStatusForm( profile_id, profile, action, status_in
 		);
 
 		// Add the profile id, action and status index to the form.
-		$( wp_to_social_pro.status_form ).data( 'profile-id', profile_id ).attr( 'data-profile-id', profile_id );
-		$( wp_to_social_pro.status_form ).data( 'action', action ).attr( 'data-action', action );
-		$( wp_to_social_pro.status_form ).data( 'status-index', status_index ).attr( 'data-status-index', status_index );
+		$( social_post_flow.status_form ).data( 'profile-id', profile_id ).attr( 'data-profile-id', profile_id );
+		$( social_post_flow.status_form ).data( 'action', action ).attr( 'data-action', action );
+		$( social_post_flow.status_form ).data( 'status-index', status_index ).attr( 'data-status-index', status_index );
 
 		// Re-initialize any conditionals for e.g. Media Library image selection.
-		$( 'input, select', $( wp_to_social_pro.status_form ) ).conditional();
+		$( 'input, select', $( social_post_flow.status_form ) ).conditional();
 
 	} )( jQuery );
 
@@ -1143,7 +1143,7 @@ function wpToSocialProPopulateStatusForm( profile_id, profile, action, status_in
  * @param 	string 	action 			Action (publish,update,repost,bulk_publish).
  * @param 	int 	status_index 	Zero based index of this status relative to all statuses for the Profile ID and Action.
  */
-function wpToSocialProDisplayStatusForm( profile_id, action, status_index ) {
+function socialPostFlowDisplayStatusForm( profile_id, action, status_index ) {
 
 	( function ( $ ) {
 
@@ -1152,7 +1152,7 @@ function wpToSocialProDisplayStatusForm( profile_id, action, status_index ) {
 			status_form_container_row = $( 'div.statuses[data-profile-id="' + profile_id + '"][data-action="' + action + '"] tr.status-form-container' );
 
 		// Move status form inside edit form row.
-		$( 'td', status_form_container_row ).append( $( wp_to_social_pro.status_form ).removeClass( 'hidden' ) );
+		$( 'td', status_form_container_row ).append( $( social_post_flow.status_form ).removeClass( 'hidden' ) );
 
 		// Move edit form row to immediately below the status row we're editing.
 		$( row ).after( $( status_form_container_row ).removeClass( 'hidden' ) );
@@ -1166,26 +1166,26 @@ function wpToSocialProDisplayStatusForm( profile_id, action, status_index ) {
  *
  * @since 	4.4.0
  */
-function wpToSocialProSaveAndHideStatusForm() {
+function socialPostFlowSaveAndHideStatusForm() {
 
 	( function ( $ ) {
 
 		// If the status form is visible, save its values now.
-		if ( $( 'div.statuses div.wp-to-social-pro-status-form' ).length > 0 ) {
-			wpToSocialProUpdateStatus(
-				$( 'div.statuses tr.status-form-container div.wp-to-social-pro-status-form' ).data( 'profile-id' ),
-				$( 'div.statuses tr.status-form-container div.wp-to-social-pro-status-form' ).data( 'action' ),
-				$( 'div.statuses tr.status-form-container div.wp-to-social-pro-status-form' ).data( 'status-index' )
+		if ( $( 'div.statuses div.social-post-flow-status-form' ).length > 0 ) {
+			socialPostFlowUpdateStatus(
+				$( 'div.statuses tr.status-form-container #social-post-flow-status-form' ).data( 'profile-id' ),
+				$( 'div.statuses tr.status-form-container #social-post-flow-status-form' ).data( 'action' ),
+				$( 'div.statuses tr.status-form-container #social-post-flow-status-form' ).data( 'status-index' )
 			);
 		}
 
 		// Reset Profile ID, Action and Status on Form.
-		$( wp_to_social_pro.status_form ).data( 'profile-id', '' ).attr( 'data-profile-id', '' );
-		$( wp_to_social_pro.status_form ).data( 'action', '' ).attr( 'data-action', '' );
-		$( wp_to_social_pro.status_form ).data( 'status-index', '' ).attr( 'data-status-index', '' );
+		$( social_post_flow.status_form ).data( 'profile-id', '' ).attr( 'data-profile-id', '' );
+		$( social_post_flow.status_form ).data( 'action', '' ).attr( 'data-action', '' );
+		$( social_post_flow.status_form ).data( 'status-index', '' ).attr( 'data-status-index', '' );
 
 		// Move form into container.
-		$( wp_to_social_pro.status_form_container ).append( $( wp_to_social_pro.status_form ) );
+		$( social_post_flow.status_form_container ).append( $( social_post_flow.status_form ) );
 
 	} )( jQuery );
 
@@ -1196,12 +1196,12 @@ function wpToSocialProSaveAndHideStatusForm() {
  *
  * @since 	4.4.0
  */
-function wpToSocialProClearStatusForm() {
+function socialPostFlowClearStatusForm() {
 
 	( function ( $ ) {
 
 		// Clear all values.
-		$( 'input, select, textarea', $( wp_to_social_pro.status_form ) ).each(
+		$( 'input, select, textarea', $( social_post_flow.status_form ) ).each(
 			function () {
 
 				$( this ).val( '' );
@@ -1210,7 +1210,7 @@ function wpToSocialProClearStatusForm() {
 		);
 
 		// Remove Custom Field Condition Rows.
-		$( 'tr.custom-field:not(.hide-delete-button)', $( wp_to_social_pro.status_form ) ).each(
+		$( 'tr.custom-field:not(.hide-delete-button)', $( social_post_flow.status_form ) ).each(
 			function () {
 
 				$( this ).remove();
@@ -1219,7 +1219,7 @@ function wpToSocialProClearStatusForm() {
 		);
 
 		// Remove Author Custom Field Condition Rows.
-		$( 'tr.authors-custom-field:not(.hide-delete-button)', $( wp_to_social_pro.status_form ) ).each(
+		$( 'tr.authors-custom-field:not(.hide-delete-button)', $( social_post_flow.status_form ) ).each(
 			function () {
 
 				$( this ).remove();
@@ -1237,7 +1237,7 @@ function wpToSocialProClearStatusForm() {
  *
  * @since 	4.4.0
  */
-function wpToSocialProGetStatuses() {
+function socialPostFlowGetStatuses() {
 
 	var statuses = {};
 
@@ -1253,15 +1253,15 @@ function wpToSocialProGetStatuses() {
 					statuses[ profile ] = {};
 				} else {
 					statuses[ profile ] = {
-						'enabled': 	$( 'input[name="' + wp_to_social_pro.plugin_name + '[' + profile + '][enabled]"]' ).is( ':checked' ),
+						'enabled': 	$( 'input[name="' + social_post_flow.plugin_name + '[' + profile + '][enabled]"]' ).is( ':checked' ),
 					};
 
 					// Determine override value, which can be in a checkbox (if the user can choose) or a hidden field (if we require override
 					// for e.g. Pinterest).
-					if ( $( 'input[type="checkbox"][name="' + wp_to_social_pro.plugin_name + '[' + profile + '][override]"]' ).length > 0 ) {
-						statuses[ profile ]['override'] = $( 'input[type="checkbox"][name="' + wp_to_social_pro.plugin_name + '[' + profile + '][override]"]' ).is( ':checked' );
+					if ( $( 'input[type="checkbox"][name="' + social_post_flow.plugin_name + '[' + profile + '][override]"]' ).length > 0 ) {
+						statuses[ profile ]['override'] = $( 'input[type="checkbox"][name="' + social_post_flow.plugin_name + '[' + profile + '][override]"]' ).is( ':checked' );
 					} else {
-						statuses[ profile ]['override'] = ( $( 'input[type="hidden"][name="' + wp_to_social_pro.plugin_name + '[' + profile + '][override]"]' ).val() == '1' ? true : false );
+						statuses[ profile ]['override'] = ( $( 'input[type="hidden"][name="' + social_post_flow.plugin_name + '[' + profile + '][override]"]' ).val() == '1' ? true : false );
 					}
 				}
 
@@ -1272,7 +1272,7 @@ function wpToSocialProGetStatuses() {
 						var action = $( this ).attr( 'href' ).split( '#profile-' + profile + '-' ).pop();
 
 						statuses[ profile ][ action ] = {
-							'enabled': $( 'input[name="' + wp_to_social_pro.plugin_name + '[' + profile + '][' + action + '][enabled]"]' ).is( ':checked' ),
+							'enabled': $( 'input[name="' + social_post_flow.plugin_name + '[' + profile + '][' + action + '][enabled]"]' ).is( ':checked' ),
 							'status': []
 						}
 
@@ -1306,17 +1306,17 @@ function wpToSocialProGetStatuses() {
  *
  * @since 	4.4.0
  */
-function wpToSocialProUpdateStatuses() {
+function socialPostFlowUpdateStatuses() {
 
 	var statuses;
 
 	( function ( $ ) {
 
 		// Get statuses.
-		statuses = wpToSocialProGetStatuses();
+		statuses = socialPostFlowGetStatuses();
 
 		// Update hidden field.
-		$( 'input[name="' + wp_to_social_pro.plugin_name + '[statuses]"][type="hidden"]' ).val( JSON.stringify( statuses ) );
+		$( 'input[name="' + social_post_flow.plugin_name + '[statuses]"][type="hidden"]' ).val( JSON.stringify( statuses ) );
 
 	} )( jQuery );
 
@@ -1332,17 +1332,17 @@ function wpToSocialProUpdateStatuses() {
  *
  * @param 	string 	post_type 	Post Type
  */
-function wpToSocialProSaveStatuses( post_type, tab ) {
+function socialPostFlowSaveStatuses( post_type, tab ) {
 
 	var statuses;
 
 	( function ( $ ) {
 
 		// Get statuses.
-		statuses = wpToSocialProGetStatuses();
+		statuses = socialPostFlowGetStatuses();
 
 		// Show modal and overlay.
-		wpzinc_modal_open( wp_to_social_pro.save_statuses_modal.title, '' );
+		wpzinc_modal_open( social_post_flow.save_statuses_modal.title, '' );
 
 		// Send via AJAX.
 		$.ajax(
@@ -1351,14 +1351,14 @@ function wpToSocialProSaveStatuses( post_type, tab ) {
 				type: 		'POST',
 				async:    	true,
 				data: 		{
-					action: 	wp_to_social_pro.save_statuses_action,
-					nonce: 		wp_to_social_pro.save_statuses_nonce,
+					action: 	social_post_flow.save_statuses_action,
+					nonce: 		social_post_flow.save_statuses_nonce,
 					post_type: 	post_type,
 					statuses: 	JSON.stringify( statuses )
 				},
 				error: function ( xhr, status, error ) {
 
-					wpzinc_modal_show_error_message_and_exit( 'wpToSocialProSaveStatuses(): error: ' + xhr.status + ' ' + xhr.statusText );
+					wpzinc_modal_show_error_message_and_exit( 'socialPostFlowSaveStatuses(): error: ' + xhr.status + ' ' + xhr.statusText );
 
 				},
 				success: function ( result ) {
@@ -1379,7 +1379,7 @@ function wpToSocialProSaveStatuses( post_type, tab ) {
 					}
 
 					// Show success message and close.
-					wpzinc_modal_show_success_and_exit( wp_to_social_pro.save_statuses_modal.title_success );
+					wpzinc_modal_show_success_and_exit( social_post_flow.save_statuses_modal.title_success );
 
 				}
 			}
@@ -1399,17 +1399,17 @@ function wpToSocialProSaveStatuses( post_type, tab ) {
  * @param 	int 	featured_image 		Featured Image.
  * @param 	array 	additional_images 	Additonal Images.
  */
-function wpToSocialProSavePostStatuses( post_id, override, featured_image, additional_images ) {
+function socialPostFlowSavePostStatuses( post_id, override, featured_image, additional_images ) {
 
 	var statuses;
 
 	( function ( $ ) {
 
 		// Get statuses.
-		statuses = wpToSocialProGetStatuses();
+		statuses = socialPostFlowGetStatuses();
 
 		// Show modal and overlay.
-		wpzinc_modal_open( wp_to_social_pro.save_statuses_modal.title, '' );
+		wpzinc_modal_open( social_post_flow.save_statuses_modal.title, '' );
 
 		// Send via AJAX.
 		$.ajax(
@@ -1418,8 +1418,8 @@ function wpToSocialProSavePostStatuses( post_id, override, featured_image, addit
 				type: 		'POST',
 				async:    	true,
 				data: 		{
-					action: 			wp_to_social_pro.save_statuses_action,
-					nonce: 				wp_to_social_pro.save_statuses_nonce,
+					action: 			social_post_flow.save_statuses_action,
+					nonce: 				social_post_flow.save_statuses_nonce,
 					post_id: 			post_id,
 					override: 			override,
 					featured_image: 	featured_image,
@@ -1439,7 +1439,7 @@ function wpToSocialProSavePostStatuses( post_id, override, featured_image, addit
 					}
 
 					// Show success message and close.
-					wpzinc_modal_show_success_and_exit( wp_to_social_pro.save_statuses_modal.title_success );
+					wpzinc_modal_show_success_and_exit( social_post_flow.save_statuses_modal.title_success );
 
 				}
 			}
@@ -1449,33 +1449,33 @@ function wpToSocialProSavePostStatuses( post_id, override, featured_image, addit
 
 }
 
-var wpToSocialProCharacterCounting = false;
+var socialPostFlowCharacterCounting = false;
 
 /**
  * Character Count
  *
  * @since 	3.9.6
  */
-function wpToSocialProCharacterCount( textarea ) {
+function socialPostFlowCharacterCount( textarea ) {
 
 	( function ( $ ) {
 
 		// If we're currently running an AJAX request, don't run another one.
-		if ( wpToSocialProCharacterCounting ) {
+		if ( socialPostFlowCharacterCounting ) {
 			return;
 		}
 
 		// Set a flag so we know we're performing an AJAX request.
-		wpToSocialProCharacterCounting = true;
+		socialPostFlowCharacterCounting = true;
 
 		// Send an AJAX request to fetch the parsed statuses and character counts for each status.
 		$.post(
-			wp_to_social_pro.ajax,
+			social_post_flow.ajax,
 			{
-				'action': 	wp_to_social_pro.character_count_action,
-				'post_id': 	wp_to_social_pro.post_id,
+				'action': 	social_post_flow.character_count_action,
+				'post_id': 	social_post_flow.post_id,
 				'status': 	$( textarea ).val(),
-				'nonce': 	wp_to_social_pro.character_count_nonce
+				'nonce': 	social_post_flow.character_count_nonce
 			},
 			function ( response ) {
 
@@ -1485,7 +1485,7 @@ function wpToSocialProCharacterCount( textarea ) {
 				setTimeout(
 					function () {
 
-						wpToSocialProCharacterCounting = false;
+						socialPostFlowCharacterCounting = false;
 
 					},
 					3000
@@ -1504,11 +1504,11 @@ function wpToSocialProCharacterCount( textarea ) {
  *
  * @since 	4.5.5
  */
-function wpToSocialProEnableNotSavedPrompt() {
+function socialPostFlowEnableNotSavedPrompt() {
 
 	// Don't do anything if we're not on the Settings screen.
 	// This prevents the prompt wrongly displaying on the Post Edit screen.
-	if ( ! wp_to_social_pro.prompt_unsaved_changes ) {
+	if ( ! social_post_flow.prompt_unsaved_changes ) {
 		return;
 	}
 
@@ -1524,7 +1524,7 @@ function wpToSocialProEnableNotSavedPrompt() {
  *
  * @since 	4.5.5
  */
-function wpToSocialProDisableNotSavedPrompt() {
+function socialPostFlowDisableNotSavedPrompt() {
 
 	window.onbeforeunload = null;
 
@@ -1537,37 +1537,37 @@ jQuery( document ).ready(
 	function ( $ ) {
 
 		// Tags dropdown.
-		wpToSocialProInitTags();
+		socialPostFlowInitTags();
 
 		// Image dropdown.
-		$( wp_to_social_pro.status_form ).on(
-			'change.' + wp_to_social_pro.status_form,
+		$( social_post_flow.status_form ).on(
+			'change.' + social_post_flow.status_form,
 			'select.image',
 			function ( e ) {
 
-				wpToSocialProUpdateImageOptions();
+				socialPostFlowUpdateImageOptions();
 
 			}
 		);
 
 		// Schedule dropdown.
-		$( wp_to_social_pro.status_form ).on(
-			'change.' + wp_to_social_pro.status_form,
+		$( social_post_flow.status_form ).on(
+			'change.' + social_post_flow.status_form,
 			'select.schedule',
 			function ( e ) {
 
-				wpToSocialProUpdateScheduleOptions( $( this ).closest( 'div.statuses' ).data( 'action' ) );
+				socialPostFlowUpdateScheduleOptions( $( this ).closest( 'div.statuses' ).data( 'action' ) );
 
 			}
 		);
 
 		// Google Business Profile Post Type.
-		$( wp_to_social_pro.status_form ).on(
-			'change.' + wp_to_social_pro.status_form,
+		$( social_post_flow.status_form ).on(
+			'change.' + social_post_flow.status_form,
 			'select#googlebusiness_post_type',
 			function ( e ) {
 
-				wpToSocialProUpdateGoogleBusinessOptions();
+				socialPostFlowUpdateGoogleBusinessOptions();
 
 			}
 		);
@@ -1589,13 +1589,13 @@ jQuery( document ).ready(
 					$( 'a[href="#' + tab_href + '"]' ).removeClass( 'enabled' );
 				}
 
-				wpToSocialProSaveAndHideStatusForm();
+				socialPostFlowSaveAndHideStatusForm();
 
-				wpToSocialProClearStatusForm();
+				socialPostFlowClearStatusForm();
 
-				wpToSocialProUpdateStatuses();
+				socialPostFlowUpdateStatuses();
 
-				wpToSocialProEnableNotSavedPrompt();
+				socialPostFlowEnableNotSavedPrompt();
 
 			}
 		);
@@ -1607,13 +1607,13 @@ jQuery( document ).ready(
 			'change',
 			function ( e ) {
 
-				wpToSocialProSaveAndHideStatusForm();
+				socialPostFlowSaveAndHideStatusForm();
 
-				wpToSocialProClearStatusForm();
+				socialPostFlowClearStatusForm();
 
-				wpToSocialProUpdateStatuses();
+				socialPostFlowUpdateStatuses();
 
-				wpToSocialProEnableNotSavedPrompt();
+				socialPostFlowEnableNotSavedPrompt();
 
 			}
 		);
@@ -1625,9 +1625,9 @@ jQuery( document ).ready(
 			'click',
 			function () {
 
-				wpToSocialProSaveAndHideStatusForm();
+				socialPostFlowSaveAndHideStatusForm();
 
-				wpToSocialProClearStatusForm();
+				socialPostFlowClearStatusForm();
 
 			}
 		);
@@ -1642,16 +1642,16 @@ jQuery( document ).ready(
 
 				e.preventDefault();
 
-				wpToSocialProSaveAndHideStatusForm();
+				socialPostFlowSaveAndHideStatusForm();
 
-				wpToSocialProClearStatusForm();
+				socialPostFlowClearStatusForm();
 
-				wpToSocialProAddStatus(
+				socialPostFlowAddStatus(
 					$( this ).closest( 'div.statuses' ).data( 'profile-id' ),
 					$( this ).closest( 'div.statuses' ).data( 'action' )
 				);
 
-				wpToSocialProEnableNotSavedPrompt();
+				socialPostFlowEnableNotSavedPrompt();
 
 			}
 		);
@@ -1666,11 +1666,11 @@ jQuery( document ).ready(
 
 				e.preventDefault();
 
-				wpToSocialProSaveAndHideStatusForm();
+				socialPostFlowSaveAndHideStatusForm();
 
-				wpToSocialProClearStatusForm();
+				socialPostFlowClearStatusForm();
 
-				wpToSocialProEditStatus(
+				socialPostFlowEditStatus(
 					$( this ).closest( 'div.statuses' ).data( 'profile-id' ),
 					$( this ).closest( 'div.statuses' ).data( 'profile' ),
 					$( this ).closest( 'div.statuses' ).data( 'action' ),
@@ -1678,7 +1678,7 @@ jQuery( document ).ready(
 					JSON.parse( $( this ).closest( 'tr' ).attr( 'data-status' ) )
 				);
 
-				wpToSocialProEnableNotSavedPrompt();
+				socialPostFlowEnableNotSavedPrompt();
 
 			}
 		);
@@ -1686,18 +1686,18 @@ jQuery( document ).ready(
 		/**
 		 * Editing Status Update
 		 */
-		$( wp_to_social_pro.status_form ).on(
+		$( social_post_flow.status_form ).on(
 			'change',
 			'input, select, textarea',
 			function ( e ) {
 
-				wpToSocialProUpdateStatus(
-					$( wp_to_social_pro.status_form ).data( 'profile-id' ),
-					$( wp_to_social_pro.status_form ).data( 'action' ),
-					$( wp_to_social_pro.status_form ).data( 'status-index' )
+				socialPostFlowUpdateStatus(
+					$( social_post_flow.status_form ).data( 'profile-id' ),
+					$( social_post_flow.status_form ).data( 'action' ),
+					$( social_post_flow.status_form ).data( 'status-index' )
 				);
 
-				wpToSocialProEnableNotSavedPrompt();
+				socialPostFlowEnableNotSavedPrompt();
 
 			}
 		);
@@ -1707,21 +1707,21 @@ jQuery( document ).ready(
 			function ( e ) {
 
 				// Ignore Media Library events outside of the status form.
-				if ( typeof $( wp_to_social_pro.status_form ).data( 'profile-id' ) === 'undefined' ) {
+				if ( typeof $( social_post_flow.status_form ).data( 'profile-id' ) === 'undefined' ) {
 					return;
 				}
 
-				console.log( $( wp_to_social_pro.status_form ).data( 'profile-id' ) );
-				console.log( $( wp_to_social_pro.status_form ).data( 'action' ) );
-				console.log( $( wp_to_social_pro.status_form ).data( 'status-index' ) );
+				console.log( $( social_post_flow.status_form ).data( 'profile-id' ) );
+				console.log( $( social_post_flow.status_form ).data( 'action' ) );
+				console.log( $( social_post_flow.status_form ).data( 'status-index' ) );
 
-				wpToSocialProUpdateStatus(
-					$( wp_to_social_pro.status_form ).data( 'profile-id' ),
-					$( wp_to_social_pro.status_form ).data( 'action' ),
-					$( wp_to_social_pro.status_form ).data( 'status-index' )
+				socialPostFlowUpdateStatus(
+					$( social_post_flow.status_form ).data( 'profile-id' ),
+					$( social_post_flow.status_form ).data( 'action' ),
+					$( social_post_flow.status_form ).data( 'status-index' )
 				);
 
-				wpToSocialProEnableNotSavedPrompt();
+				socialPostFlowEnableNotSavedPrompt();
 
 			}
 		);
@@ -1730,13 +1730,13 @@ jQuery( document ).ready(
 			'wpzinc-table-row-delete',
 			function ( e ) {
 
-				wpToSocialProUpdateStatus(
-					$( wp_to_social_pro.status_form ).data( 'profile-id' ),
-					$( wp_to_social_pro.status_form ).data( 'action' ),
-					$( wp_to_social_pro.status_form ).data( 'status-index' )
+				socialPostFlowUpdateStatus(
+					$( social_post_flow.status_form ).data( 'profile-id' ),
+					$( social_post_flow.status_form ).data( 'action' ),
+					$( social_post_flow.status_form ).data( 'status-index' )
 				);
 
-				wpToSocialProEnableNotSavedPrompt();
+				socialPostFlowEnableNotSavedPrompt();
 
 			}
 		);
@@ -1751,17 +1751,17 @@ jQuery( document ).ready(
 
 				e.preventDefault();
 
-				wpToSocialProSaveAndHideStatusForm();
+				socialPostFlowSaveAndHideStatusForm();
 
-				wpToSocialProClearStatusForm();
+				socialPostFlowClearStatusForm();
 
-				wpToSocialProDeleteStatus(
+				socialPostFlowDeleteStatus(
 					$( this ).closest( 'div.statuses' ).data( 'profile-id' ),
 					$( this ).closest( 'div.statuses' ).data( 'action' ),
 					$( this ).closest( 'tr' ).data( 'status-index' )
 				);
 
-				wpToSocialProEnableNotSavedPrompt();
+				socialPostFlowEnableNotSavedPrompt();
 
 			}
 		);
@@ -1780,12 +1780,12 @@ jQuery( document ).ready(
 							statuses_container = $( status ).closest( 'div.statuses' );
 
 						// Reindex statuses.
-						wpToSocialProReindexStatuses( $( statuses_container ) );
+						socialPostFlowReindexStatuses( $( statuses_container ) );
 
 						// Populate hidden field with all statuses' data.
-						wpToSocialProUpdateStatuses();
+						socialPostFlowUpdateStatuses();
 
-						wpToSocialProEnableNotSavedPrompt();
+						socialPostFlowEnableNotSavedPrompt();
 					}
 				}
 			);
@@ -1810,12 +1810,12 @@ jQuery( document ).ready(
 		 *
 		 * @since 	3.0.0
 		 */
-		if ( wp_to_social_pro.post_id > 0 ) {
-			$( 'textarea.message', $( wp_to_social_pro.status_form ) ).on(
+		if ( social_post_flow.post_id > 0 ) {
+			$( 'textarea.message', $( social_post_flow.status_form ) ).on(
 				'keyup change',
 				function ( e ) {
 
-					wpToSocialProCharacterCount( this );
+					socialPostFlowCharacterCount( this );
 
 				}
 			);
@@ -1824,7 +1824,7 @@ jQuery( document ).ready(
 		/**
 		 * Plugin Settings: Save Post Type Statuses via AJAX
 		 */
-		$( 'form.wp-to-social-pro' ).on(
+		$( 'form#social-post-flow' ).on(
 			'submit',
 			function ( e ) {
 
@@ -1832,13 +1832,13 @@ jQuery( document ).ready(
 				e.preventDefault();
 
 				// Disable the not saved prompt, as we're about to save.
-				wpToSocialProDisableNotSavedPrompt();
+				socialPostFlowDisableNotSavedPrompt();
 
 				// Populate hidden field with all statuses' data.
-				wpToSocialProUpdateStatuses();
+				socialPostFlowUpdateStatuses();
 
 				// Save Post Type statuses.
-				wpToSocialProSaveStatuses( wp_to_social_pro.post_type, $( 'h2.nav-tab-wrapper a[data-post-type="' + wp_to_social_pro.post_type + '"]' ) );
+				socialPostFlowSaveStatuses( social_post_flow.post_type, $( 'h2.nav-tab-wrapper a[data-post-type="' + social_post_flow.post_type + '"]' ) );
 
 			}
 		);
@@ -1846,7 +1846,7 @@ jQuery( document ).ready(
 		/**
 		 * Post Settings: Save Post Statuses via AJAX
 		 */
-		$( 'button.' + wp_to_social_pro.plugin_name + '-save-post-statuses' ).on(
+		$( 'button.' + social_post_flow.plugin_name + '-save-post-statuses' ).on(
 			'click',
 			function ( e ) {
 
@@ -1854,26 +1854,26 @@ jQuery( document ).ready(
 				e.preventDefault();
 
 				// Disable the not saved prompt, as we're about to save.
-				wpToSocialProDisableNotSavedPrompt();
+				socialPostFlowDisableNotSavedPrompt();
 
 				// Populate hidden field with all statuses' data.
-				wpToSocialProUpdateStatuses();
+				socialPostFlowUpdateStatuses();
 
 				// Get Additional Images.
 				var additional_images = [];
 				for ( i = 0; i <= 10; i++ ) {
-					if ( ! $( 'input[name="' + wp_to_social_pro.plugin_name + '[additional_images][' + i + ']"]' ).length ) {
+					if ( ! $( 'input[name="' + social_post_flow.plugin_name + '[additional_images][' + i + ']"]' ).length ) {
 						continue;
 					}
 
-					additional_images.push( $( 'input[name="' + wp_to_social_pro.plugin_name + '[additional_images][' + i + ']"]' ).val() );
+					additional_images.push( $( 'input[name="' + social_post_flow.plugin_name + '[additional_images][' + i + ']"]' ).val() );
 				}
 
 				// Save Post statuses.
-				wpToSocialProSavePostStatuses(
-					wp_to_social_pro.post_id,
-					$( 'select[name="' + wp_to_social_pro.plugin_name + '[override]"]' ).val(),
-					$( 'input[name="' + wp_to_social_pro.plugin_name + '[featured_image]"]' ).val(),
+				socialPostFlowSavePostStatuses(
+					social_post_flow.post_id,
+					$( 'select[name="' + social_post_flow.plugin_name + '[override]"]' ).val(),
+					$( 'input[name="' + social_post_flow.plugin_name + '[featured_image]"]' ).val(),
 					additional_images
 				);
 

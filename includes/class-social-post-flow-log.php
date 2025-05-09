@@ -342,7 +342,7 @@ class Social_Post_Flow_Log {
 		$log = $this->get( $post->ID );
 
 		// Load View.
-		include_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'lib/views/post-log.php';
+		include_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/post-log.php';
 
 	}
 

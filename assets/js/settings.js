@@ -57,7 +57,7 @@ jQuery( document ).ready(
 		 *
 		 * @since 	4.1.8
 		 */
-		$( 'body.wpzinc form#wp-to-buffer, body.wpzinc form#wp-to-buffer-pro, body.wpzinc form#wp-to-hootsuite, body.wpzinc form#wp-to-hootsuite-pro, body.wpzinc form#wp-to-socialpilot, body.wpzinc form#wp-to-socialpilot-pro' ).on(
+		$( 'body.wpzinc form#social-post-flow' ).on(
 			'click',
 			'a.repost-test',
 			function ( e ) {
@@ -66,7 +66,7 @@ jQuery( document ).ready(
 				e.preventDefault();
 
 				// Show modal and overlay.
-				wpzinc_modal_open( wp_to_social_pro.repost_test_modal.title, '' );
+				wpzinc_modal_open( social_post_flow.repost_test_modal.title, '' );
 
 				// Send via AJAX.
 				$.ajax(
@@ -75,8 +75,8 @@ jQuery( document ).ready(
 						type: 		'POST',
 						async:    	true,
 						data: 		{
-							action: 	wp_to_social_pro.repost_test_action,
-							nonce: 		wp_to_social_pro.repost_test_nonce
+							action: 	social_post_flow.repost_test_action,
+							nonce: 		social_post_flow.repost_test_nonce
 						},
 						error: function ( xhr, status, error ) {
 
@@ -93,7 +93,7 @@ jQuery( document ).ready(
 							$( 'textarea[name=repost_test_log]' ).text( result.data.join( "\n" ) );
 
 							// Show success message and close.
-							wpzinc_modal_show_success_and_exit( wp_to_social_pro.repost_test_modal.title_success );
+							wpzinc_modal_show_success_and_exit( social_post_flow.repost_test_modal.title_success );
 
 						}
 					}
@@ -101,55 +101,5 @@ jQuery( document ).ready(
 
 			}
 		);
-
-		/**
-		 * Twitter ID to Username
-		 */
-		if ( $( 'a[data-wp-to-social-pro-twitter-id]' ).length > 0 ) {
-			// Initialize WebSocket connection.
-			let socket = new WebSocket( 'wss://twiteridfinder.com/ws' );
-
-			// Wait for the hello.
-			socket.onmessage = function (event) {
-				// If we receive a 'hello', send the ID now.
-				if ( event.data === 'hello' ) {
-					// Iterate through Twitter IDs we need to fetch usernames for.
-					$( 'a[data-wp-to-social-pro-twitter-id]' ).each(
-						function () {
-							let id = $( this ).attr( 'data-wp-to-social-pro-twitter-id' );
-							socket.send( id );
-						}
-					);
-
-					// Don't do anything else.
-					return;
-				}
-
-				// If here, the response should be Twitter data for a given ID.
-				let result = event.data.split( '||' );
-
-				// Update UI.
-				$( 'a[data-wp-to-social-pro-twitter-id="' + result[1] + '"] span.formatted-username' ).text( result[2] );
-
-				// Send result via AJAX to store in the API.
-				$.ajax(
-					{
-						url: 		ajaxurl,
-						type: 		'POST',
-						async:    	true,
-						data: 		{
-							action: 	wp_to_social_pro.username_save_twitter_action,
-							nonce: 		wp_to_social_pro.username_save_twitter_nonce,
-							user_id:    result[1],
-							username:   result[2]
-						},
-						error: function ( xhr, status, error ) {
-						},
-						success: function ( result ) {
-						}
-					}
-				);
-			};
-		}
 	}
 );

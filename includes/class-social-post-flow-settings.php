@@ -607,80 +607,15 @@ class Social_Post_Flow_Settings {
 	}
 
 	/**
-	 * Runs the given individual status settings through validation - for example,
-	 * ensuring that a custom time is at least 5 minutes when using Hootsuite,
-	 * to ensure compatibility with the API.
-	 *
-	 * @since   3.7.3
-	 *
-	 * @param   array $status     Status Message Settings.
-	 * @return  array               Status Message Settings
-	 */
-	private function validate_status( $status ) {
-
-		// If we're using Hootsuite, with a custom time, it must be set to at least 5 minutes.
-		if ( class_exists( 'WP_To_Hootsuite' ) || class_exists( 'WP_To_Hootsuite_Pro' ) ) {
-			if ( $status['schedule'] === 'custom' && ! $status['days'] && ! $status['hours'] ) {
-				if ( $status['minutes'] < 5 ) {
-					$status['minutes'] = 5;
-				}
-			}
-		}
-
-		/**
-		 * Filters status settings during validation, allowing them to be changed.
-		 *
-		 * @since   3.7.3
-		 *
-		 * @param   array   $status     Status.
-		 */
-		$status = apply_filters( 'social_post_flow_settings_validate_status', $status );
-
-		// Return.
-		return $status;
-
-	}
-
-	/**
-	 * Stores the given access token and refresh token into the options table.
-	 *
-	 * @since   3.5.0
-	 *
-	 * @param   string $access_token    Access Token.
-	 * @param   string $refresh_token   Refresh Token.
-	 * @param   mixed  $token_expires   Token Expires (false | timestamp).
-	 */
-	public function update_tokens( $access_token = '', $refresh_token = '', $token_expires = false ) {
-
-		$this->update_access_token( $access_token );
-		$this->update_refresh_token( $refresh_token );
-		$this->update_token_expires( $token_expires );
-
-	}
-
-	/**
-	 * Deletes the access, refresh and toke expiry values from the options table.
-	 *
-	 * @since   3.5.0
-	 */
-	public function delete_tokens() {
-
-		$this->delete_access_token();
-		$this->delete_refresh_token();
-		$this->delete_token_expires();
-
-	}
-
-	/**
 	 * Retrieves the access token from the options table
 	 *
 	 * @since   3.0.0
 	 *
 	 * @return  string  Access Token
 	 */
-	public function get_access_token() {
+	public function get_api_key() {
 
-		return get_option( $this->settings_name . '-access-token' );
+		return get_option( $this->settings_name . '-api-key' );
 
 	}
 
@@ -689,22 +624,22 @@ class Social_Post_Flow_Settings {
 	 *
 	 * @since   3.0.0
 	 *
-	 * @param   string $access_token   Access Token.
+	 * @param   string $api_key   API Key.
 	 * @return  bool                    Success
 	 */
-	public function update_access_token( $access_token ) {
+	public function update_api_key( $api_key ) {
 
 		/**
 		 * Filters the API access token before saving.
 		 *
 		 * @since   3.0.0
 		 *
-		 * @param   array   $access_token   Access Token.
+		 * @param   array   $api_key   API Key.
 		 */
-		$access_token = apply_filters( 'social_post_flow_update_access_token', $access_token );
+		$api_key = apply_filters( 'social_post_flow_update_api_key', $api_key );
 
 		// Return result.
-		return update_option( $this->settings_name . '-access-token', $access_token );
+		return update_option( $this->settings_name . '-api-key', $api_key );
 
 	}
 
@@ -715,10 +650,10 @@ class Social_Post_Flow_Settings {
 	 *
 	 * @return  bool    Success
 	 */
-	public function delete_access_token() {
+	public function delete_api_key() {
 
 		// Return result.
-		return delete_option( $this->settings_name . '-access-token' );
+		return delete_option( $this->settings_name . '-api-key' );
 
 	}
 

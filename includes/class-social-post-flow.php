@@ -75,18 +75,10 @@ class Social_Post_Flow {
 		$this->plugin->upgrade_url       = 'https://www.wpzinc.com/plugins/wordpress-social-post-flow';
 
 		// Logo.
-		$this->plugin->logo                        = SOCIAL_POST_FLOW_PLUGIN_URL . 'lib/assets/images/icons/social-post-flow-dark.svg';
+		$this->plugin->logo                        = SOCIAL_POST_FLOW_PLUGIN_URL . 'assets/images/icons/logo-dark.svg';
 		$this->plugin->header_background_color     = '#ffffff';
 		$this->plugin->header_primary_text_color   = '#3d3d3d';
 		$this->plugin->header_secondary_text_color = '#6e6e6e';
-
-		// Review.
-		$this->plugin->review_name   = 'social-post-flow';
-		$this->plugin->review_notice = sprintf(
-			'Thanks for using %s to schedule your social media statuses on %s!',
-			$this->plugin->displayName,
-			$this->plugin->account
-		);
 
 		// Dashboard Submodule.
 		if ( ! class_exists( 'WPZincDashboardWidget' ) ) {
@@ -96,7 +88,6 @@ class Social_Post_Flow {
 
 		// Defer loading of Plugin Classes.
 		add_action( 'init', array( $this, 'initialize' ), 1 );
-		add_action( 'init', array( $this, 'upgrade' ), 2 );
 
 		// Admin Menus.
 		add_action( 'social_post_flow_admin_admin_menu', array( $this, 'admin_menus' ) );
@@ -114,7 +105,6 @@ class Social_Post_Flow {
 
 		// Settings.
 		add_menu_page( $this->plugin->displayName, $this->plugin->displayName, $minimum_capability, $this->plugin->name, array( $this->get_class( 'admin' ), 'settings_screen' ), $this->plugin->logo );
-		add_submenu_page( $this->plugin->name, __( 'Settings', 'social-post-flow' ), __( 'Settings', 'social-post-flow' ), $minimum_capability, $this->plugin->name . '-settings', array( $this->get_class( 'admin' ), 'settings_screen' ) );
 
 		// Only show Bulk Publish and Logs if connected to the API.
 		if ( $this->get_class( 'validation' )->api_connected() ) {
@@ -129,10 +119,10 @@ class Social_Post_Flow {
 		}
 
 		// Import & Export.
-		do_action( $this->plugin->filter_name . '_admin_menu_import_export' );
+		do_action( 'social_post_flow_admin_menu_import_export' );
 
 		// Support.
-		do_action( $this->plugin->filter_name . '_admin_menu_support' );
+		do_action( 'social_post_flow_admin_menu_support' );
 
 	}
 
@@ -179,18 +169,6 @@ class Social_Post_Flow {
 		$this->classes->woocommerce            = new Social_Post_Flow_WooCommerce( self::$instance );
 		$this->classes->wpml                   = new Social_Post_Flow_WPML( self::$instance );
 		$this->classes->yoast_seo              = new Social_Post_Flow_Yoast_SEO( self::$instance );
-
-	}
-
-	/**
-	 * Runs the upgrade routine once the plugin has loaded
-	 *
-	 * @since   1.0.0
-	 */
-	public function upgrade() {
-
-		// Run upgrade routine.
-		$this->get_class( 'install' )->upgrade();
 
 	}
 

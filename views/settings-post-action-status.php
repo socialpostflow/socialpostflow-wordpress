@@ -9,7 +9,7 @@
 
 ?>
 <div id="social-post-flow-status-form-container" class="hidden">
-	<div id="social-post-flow-status-form" class="wp-to-social-pro-status-form">
+	<div id="social-post-flow-status-form">
 		<div class="wpzinc-option">
 			<!-- Status Message -->
 			<div class="full status">
@@ -273,13 +273,7 @@
 				<h3><?php esc_html_e( 'Post Conditions', 'social-post-flow' ); ?></h3>
 				<p class="description">
 					<?php
-					echo esc_html(
-						sprintf(
-							/* translators: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-							__( 'Optional: Define Post conditions that are required for this status to be sent to %s. All conditions must be met.', 'social-post-flow' ),
-							$this->base->plugin->account
-						)
-					);
+					esc_html_e( 'Optional: Define Post conditions that are required for this status to be sent to Social Post Flow. All conditions must be met.', 'social-post-flow' );
 					?>
 				</p>
 
@@ -509,13 +503,7 @@
 				<h3><?php esc_html_e( 'Author Conditions', 'social-post-flow' ); ?></h3>
 				<p class="description">
 					<?php
-					echo esc_html(
-						sprintf(
-							/* translators: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-							__( 'Optional: Define the Post\'s Author conditions that are required for this status to be sent to %s. All conditions must be met.', 'social-post-flow' ),
-							$this->base->plugin->account
-						)
-					);
+					esc_html_e( 'Optional: Define the Post\'s Author conditions that are required for this status to be sent to Social Post Flow. All conditions must be met.', 'social-post-flow' );
 					?>
 				</p>
 

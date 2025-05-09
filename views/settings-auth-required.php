@@ -31,7 +31,7 @@
 							<div class="wpzinc-option">
 								<p class="description">
 									<?php
-									esc_html_e( 'To allow this Plugin to post updates to your social media profiles using Social Post Flow, please authorize Social Post Flow below.', 'social-post-flow' );
+									esc_html_e( 'To allow this Plugin to post updates to your social media profiles using Social Post Flow, please authorize Social Post Flow below by entering your API Key.', 'social-post-flow' );
 									?>
 								</p>
 								<p class="description">
@@ -44,17 +44,12 @@
 								</p>
 							</div>
 
-							<?php
-							/**
-							 * Allow the API to output its authentication button link or form, to authenticate
-							 * with the API.
-							 *
-							 * @since   4.2.0
-							 *
-							 * @param   array   $schedule   Schedule Options
-							 */
-							do_action( 'social_post_flow_output_auth' );
-							?>
+
+							<div class="wpzinc-option">
+								<div class="full">
+									<input type="text" name="social_post_flow_api_key" id="social_post_flow_api_key" value="<?php echo esc_attr( social_post_flow()->get_class( 'settings' )->get_api_key() ); ?>" />
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

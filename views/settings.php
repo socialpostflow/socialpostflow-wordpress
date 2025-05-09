@@ -9,7 +9,7 @@
 ?>
 <header>
 	<h1>
-		<?php echo esc_html( $this->base->plugin->displayName ); ?>
+		<?php echo esc_html_e( 'Social Post Flow', 'social-post-flow' ); ?>
 
 		<span>
 			<?php esc_html_e( 'Settings', 'social-post-flow' ); ?>
@@ -24,7 +24,7 @@
 	social_post_flow()->get_class( 'notices' )->output_notices();
 
 	// Get access token.
-	$access_token = $this->get_setting( '', 'access_token' );
+	$api_key = social_post_flow()->get_class( 'settings' )->get_api_key();
 	?>
 
 	<!-- Container for JS notices -->
@@ -37,10 +37,10 @@
 		<!-- Tabs -->
 		<h2 class="nav-tab-wrapper wpzinc-horizontal-tabbed-ui">
 			<!-- Settings -->
-			<a href="admin.php?page=social-post-flow-settings" class="nav-tab<?php echo esc_attr( $tab === 'auth' ? ' nav-tab-active' : '' ) . ( ! empty( $access_token ) ? ' enabled' : ' error' ); ?>" title="<?php esc_attr_e( 'Settings', 'social-post-flow' ); ?>">
+			<a href="admin.php?page=social-post-flow-settings" class="nav-tab<?php echo esc_attr( $tab === 'auth' ? ' nav-tab-active' : '' ) . ( ! empty( $api_key ) ? ' enabled' : ' error' ); ?>" title="<?php esc_attr_e( 'Settings', 'social-post-flow' ); ?>">
 				<span class="dashicons dashicons-lock"></span> 
 				<?php
-				if ( ! empty( $access_token ) ) {
+				if ( ! empty( $api_key ) ) {
 					?>
 					<span class="dashicons dashicons-yes"></span>
 					<?php
@@ -58,7 +58,7 @@
 			<!-- Public Post Types -->
 			<?php
 			// Go through all Post Types, if authenticated.
-			if ( ! empty( $access_token ) ) {
+			if ( ! empty( $api_key ) ) {
 				foreach ( $post_types as $public_post_type => $post_type_obj ) {
 					// Work out the icon to display.
 					$icon = '';
@@ -96,10 +96,7 @@
 		</h2>
 
 		<!-- Form Start -->
-		<?php
-		// id is deliberate; to ensure CSS, JS etc. works for all versions.
-		?>
-		<form name="post" method="post" action="<?php echo ( isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '' ); ?>" id="social-post-flow" class="wp-to-social-pro">      
+		<form name="post" method="post" action="<?php echo ( isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '' ); ?>" id="social-post-flow">      
 			<div id="poststuff">
 				<div id="post-body" class="metabox-holder columns-1">
 					<!-- Content -->
@@ -107,7 +104,7 @@
 						<div id="normal-sortables" class="meta-box-sortables ui-sortable publishing-defaults">  
 							<?php
 							// Load sub view.
-							require_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'lib/views/settings-' . $tab . '.php';
+							require_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/settings-' . $tab . '.php';
 							?>
 						</div>
 						<!-- /normal-sortables -->

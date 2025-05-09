@@ -35,7 +35,6 @@ class Social_Post_Flow_Admin {
 	public function __construct() {
 
 		// Actions.
-		add_action( 'init', array( $this, 'oauth' ) );
 		add_action( 'init', array( $this, 'check_plugin_setup' ) );
 		add_action( 'admin_notices', array( $this, 'admin_notices' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts_css' ) );
@@ -108,7 +107,7 @@ class Social_Post_Flow_Admin {
 		$screen = social_post_flow()->get_class( 'screen' )->get_current_screen();
 
 		// CSS - always load.
-		wp_enqueue_style( 'social-post-flow', SOCIAL_POST_FLOW_PLUGIN_URL . 'lib/assets/css/admin.css', array(), SOCIAL_POST_FLOW_PLUGIN_VERSION );
+		wp_enqueue_style( 'social-post-flow', SOCIAL_POST_FLOW_PLUGIN_URL . 'assets/css/admin.css', array(), SOCIAL_POST_FLOW_PLUGIN_VERSION );
 
 		// Define CSS variables for design.
 		wp_register_style( 'social-post-flow-vars', false, array(), SOCIAL_POST_FLOW_PLUGIN_VERSION );
@@ -135,11 +134,11 @@ class Social_Post_Flow_Admin {
 		$minified = social_post_flow()->dashboard->should_load_minified_js();
 
 		// Define JS and localization.
-		wp_register_script( 'social-post-flow-bulk-publish', SOCIAL_POST_FLOW_PLUGIN_URL . 'lib/assets/js/' . ( $minified ? 'min/' : '' ) . 'bulk-publish' . ( $minified ? '-min' : '' ) . '.js', array( 'jquery' ), SOCIAL_POST_FLOW_PLUGIN_VERSION, true );
-		wp_register_script( 'social-post-flow-log', SOCIAL_POST_FLOW_PLUGIN_URL . 'lib/assets/js/' . ( $minified ? 'min/' : '' ) . 'log' . ( $minified ? '-min' : '' ) . '.js', array( 'jquery' ), SOCIAL_POST_FLOW_PLUGIN_VERSION, true );
-		wp_register_script( 'social-post-flow-quick-edit', SOCIAL_POST_FLOW_PLUGIN_URL . 'lib/assets/js/' . ( $minified ? 'min/' : '' ) . 'quick-edit' . ( $minified ? '-min' : '' ) . '.js', array( 'jquery' ), SOCIAL_POST_FLOW_PLUGIN_VERSION, true );
-		wp_register_script( 'social-post-flow-settings', SOCIAL_POST_FLOW_PLUGIN_URL . 'lib/assets/js/' . ( $minified ? 'min/' : '' ) . 'settings' . ( $minified ? '-min' : '' ) . '.js', array( 'jquery', 'wp-color-picker' ), SOCIAL_POST_FLOW_PLUGIN_VERSION, true );
-		wp_register_script( 'social-post-flow-statuses', SOCIAL_POST_FLOW_PLUGIN_URL . 'lib/assets/js/' . ( $minified ? 'min/' : '' ) . 'statuses' . ( $minified ? '-min' : '' ) . '.js', array( 'jquery' ), SOCIAL_POST_FLOW_PLUGIN_VERSION, true );
+		wp_register_script( 'social-post-flow-bulk-publish', SOCIAL_POST_FLOW_PLUGIN_URL . 'assets/js/' . ( $minified ? 'min/' : '' ) . 'bulk-publish' . ( $minified ? '-min' : '' ) . '.js', array( 'jquery' ), SOCIAL_POST_FLOW_PLUGIN_VERSION, true );
+		wp_register_script( 'social-post-flow-log', SOCIAL_POST_FLOW_PLUGIN_URL . 'assets/js/' . ( $minified ? 'min/' : '' ) . 'log' . ( $minified ? '-min' : '' ) . '.js', array( 'jquery' ), SOCIAL_POST_FLOW_PLUGIN_VERSION, true );
+		wp_register_script( 'social-post-flow-quick-edit', SOCIAL_POST_FLOW_PLUGIN_URL . 'assets/js/' . ( $minified ? 'min/' : '' ) . 'quick-edit' . ( $minified ? '-min' : '' ) . '.js', array( 'jquery' ), SOCIAL_POST_FLOW_PLUGIN_VERSION, true );
+		wp_register_script( 'social-post-flow-settings', SOCIAL_POST_FLOW_PLUGIN_URL . 'assets/js/' . ( $minified ? 'min/' : '' ) . 'settings' . ( $minified ? '-min' : '' ) . '.js', array( 'jquery', 'wp-color-picker' ), SOCIAL_POST_FLOW_PLUGIN_VERSION, true );
+		wp_register_script( 'social-post-flow-statuses', SOCIAL_POST_FLOW_PLUGIN_URL . 'assets/js/' . ( $minified ? 'min/' : '' ) . 'statuses' . ( $minified ? '-min' : '' ) . '.js', array( 'jquery' ), SOCIAL_POST_FLOW_PLUGIN_VERSION, true );
 
 		// Define localization for statuses.
 		$localization = array(
@@ -223,8 +222,8 @@ class Social_Post_Flow_Admin {
 						$localization['save_statuses_nonce']    = wp_create_nonce( 'social-post-flow-save-statuses-post' );
 
 						// Localize.
-						wp_localize_script( 'social-post-flow-log', 'wp_to_social_pro', $localization );
-						wp_localize_script( 'social-post-flow-statuses', 'wp_to_social_pro', $localization );
+						wp_localize_script( 'social-post-flow-log', 'social_post_flow', $localization );
+						wp_localize_script( 'social-post-flow-statuses', 'social_post_flow', $localization );
 
 						// Localize Autocomplete.
 						wp_localize_script( 'wpzinc-admin-autocomplete', 'wpzinc_autocomplete', $this->get_autocomplete_configuration( $localization['post_type'] ) );
@@ -270,7 +269,7 @@ class Social_Post_Flow_Admin {
 						$localization['repost_test_nonce']  = wp_create_nonce( 'social-post-flow-repost-test' );
 
 						// Localize.
-						wp_localize_script( 'social-post-flow-settings', 'wp_to_social_pro', $localization );
+						wp_localize_script( 'social-post-flow-settings', 'social_post_flow', $localization );
 						break;
 
 					/**
@@ -292,7 +291,7 @@ class Social_Post_Flow_Admin {
 						$localization['username_save_twitter_nonce']  = wp_create_nonce( 'social-post-flow-username-save-twitter' );
 
 						// Localize.
-						wp_localize_script( 'social-post-flow-settings', 'wp_to_social_pro', $localization );
+						wp_localize_script( 'social-post-flow-settings', 'social_post_flow', $localization );
 
 						// Add Post Type, Action and Nonce to allow AJAX saving.
 						$localization['post_type']              = $this->get_post_type_tab();
@@ -305,7 +304,7 @@ class Social_Post_Flow_Admin {
 						$localization['save_statuses_nonce']    = wp_create_nonce( 'social-post-flow-save-statuses' );
 
 						// Localize Statuses.
-						wp_localize_script( 'social-post-flow-statuses', 'wp_to_social_pro', $localization );
+						wp_localize_script( 'social-post-flow-statuses', 'social_post_flow', $localization );
 
 						// Localize Autocomplete.
 						wp_localize_script( 'wpzinc-admin-autocomplete', 'wpzinc_autocomplete', $this->get_autocomplete_configuration( $localization['post_type'] ) );
@@ -332,7 +331,7 @@ class Social_Post_Flow_Admin {
 				wp_enqueue_script( 'social-post-flow-statuses' );
 
 				// Localization.
-				wp_localize_script( 'social-post-flow-statuses', 'wp_to_social_pro', $localization );
+				wp_localize_script( 'social-post-flow-statuses', 'social_post_flow', $localization );
 
 				// CSS.
 				wp_enqueue_style( 'wpzinc-admin-selectize' );
@@ -346,7 +345,7 @@ class Social_Post_Flow_Admin {
 				wp_enqueue_script( 'social-post-flow-log' );
 
 				// Localize.
-				wp_localize_script( 'social-post-flow-log', 'wp_to_social_pro', $localization );
+				wp_localize_script( 'social-post-flow-log', 'social_post_flow', $localization );
 				break;
 		}
 
@@ -520,11 +519,9 @@ class Social_Post_Flow_Admin {
 		}
 
 		// Authentication.
-		$access_token  = social_post_flow()->get_class( 'settings' )->get_access_token();
-		$refresh_token = social_post_flow()->get_class( 'settings' )->get_refresh_token();
-		$expires       = social_post_flow()->get_class( 'settings' )->get_token_expires();
-		if ( ! empty( $access_token ) ) {
-			social_post_flow()->get_class( 'api' )->set_tokens( $access_token, $refresh_token, $expires );
+		$api_key = social_post_flow()->get_class( 'settings' )->get_api_key();
+		if ( ! empty( $api_key ) ) {
+			social_post_flow()->get_class( 'api' )->set_api_key( $api_key );
 		}
 
 		// Profiles.
@@ -631,7 +628,7 @@ class Social_Post_Flow_Admin {
 		}
 
 		// Load View.
-		include_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'lib/views/settings.php';
+		include_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/settings.php';
 
 		// Add footer action to output overlay modal markup.
 		add_action( 'admin_footer', array( $this, 'output_modal' ) );
@@ -647,7 +644,7 @@ class Social_Post_Flow_Admin {
 	public function auth_screen() {
 
 		// Load View.
-		include_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'lib/views/settings-auth-required.php';
+		include_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/settings-auth-required.php';
 
 	}
 
@@ -674,10 +671,8 @@ class Social_Post_Flow_Admin {
 		social_post_flow()->get_class( 'notices' )->set_key_prefix( 'social_post_flow_' . wp_get_current_user()->ID );
 
 		// Set access and refresh tokens.
-		social_post_flow()->get_class( 'api' )->set_tokens(
-			social_post_flow()->get_class( 'settings' )->get_access_token(),
-			social_post_flow()->get_class( 'settings' )->get_refresh_token(),
-			social_post_flow()->get_class( 'settings' )->get_token_expires()
+		social_post_flow()->get_class( 'api' )->set_api_key(
+			social_post_flow()->get_class( 'settings' )->get_api_key()
 		);
 
 		// Get Profiles.
@@ -687,7 +682,7 @@ class Social_Post_Flow_Admin {
 			social_post_flow()->get_class( 'notices' )->add_error_notice( $profiles->get_error_message() );
 
 			// Load view.
-			include_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'lib/views/bulk-publish-error.php';
+			include_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/bulk-publish-error.php';
 			return;
 		}
 
@@ -719,7 +714,7 @@ class Social_Post_Flow_Admin {
 					social_post_flow()->get_class( 'notices' )->add_error_notice( __( 'Nonce field is missing.', 'social-post-flow' ) );
 
 					// Load view.
-					include_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'lib/views/bulk-publish-error.php';
+					include_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/bulk-publish-error.php';
 					return;
 				}
 
@@ -729,7 +724,7 @@ class Social_Post_Flow_Admin {
 					social_post_flow()->get_class( 'notices' )->add_error_notice( __( 'Invalid nonce specified.', 'social-post-flow' ) );
 
 					// Load view.
-					include_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'lib/views/bulk-publish-error.php';
+					include_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/bulk-publish-error.php';
 					return;
 				}
 
@@ -826,7 +821,7 @@ class Social_Post_Flow_Admin {
 					social_post_flow()->get_class( 'notices' )->add_error_notice( __( 'Nonce field is missing.', 'social-post-flow' ) );
 
 					// Load view.
-					include_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'lib/views/bulk-publish-error.php';
+					include_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/bulk-publish-error.php';
 					return;
 				}
 
@@ -836,7 +831,7 @@ class Social_Post_Flow_Admin {
 					social_post_flow()->get_class( 'notices' )->add_error_notice( __( 'Invalid nonce specified. Settings NOT saved.', 'social-post-flow' ) );
 
 					// Load view.
-					include_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'lib/views/bulk-publish-error.php';
+					include_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/bulk-publish-error.php';
 					return;
 				}
 
@@ -871,7 +866,7 @@ class Social_Post_Flow_Admin {
 				// Localize Bulk Publish script.
 				wp_localize_script(
 					'social-post-flow-bulk-publish',
-					'wp_to_social_pro_bulk_publish',
+					'social_post_flow_bulk_publish',
 					array(
 						'ajax'               => admin_url( 'admin-ajax.php' ),
 						'action'             => 'social_post_flow_bulk_publish',
@@ -886,7 +881,7 @@ class Social_Post_Flow_Admin {
 		}
 
 		// Load View.
-		include_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'lib/views/bulk-publish.php';
+		include_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/bulk-publish.php';
 
 	}
 
@@ -927,7 +922,7 @@ class Social_Post_Flow_Admin {
 		$table->prepare_items();
 
 		// Load View.
-		include_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'lib/views/log.php';
+		include_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/log.php';
 
 	}
 
@@ -949,13 +944,8 @@ class Social_Post_Flow_Admin {
 		}
 
 		// Access token.
-		if ( $key === 'access_token' ) {
-			return social_post_flow()->get_class( 'settings' )->get_access_token();
-		}
-
-		// Refresh token.
-		if ( $key === 'refresh_token' ) {
-			return social_post_flow()->get_class( 'settings' )->get_refresh_token();
+		if ( $key === 'api_key' ) {
+			return social_post_flow()->get_class( 'settings' )->get_api_key();
 		}
 
 		// Depending on the type, return settings / options.
@@ -983,7 +973,7 @@ class Social_Post_Flow_Admin {
 	 */
 	public function disconnect() {
 
-		return social_post_flow()->get_class( 'settings' )->delete_tokens();
+		return social_post_flow()->get_class( 'settings' )->delete_api_key();
 
 	}
 
@@ -1004,7 +994,7 @@ class Social_Post_Flow_Admin {
 		// Missing nonce.
 		if ( ! isset( $_POST['social_post_flow_nonce'] ) ) {
 			return new WP_Error(
-				'wp_to_social_pro_admin_save_settings_error',
+				'social_post_flow_admin_save_settings_error',
 				__( 'Nonce field is missing. Settings NOT saved.', 'social-post-flow' )
 			);
 		}
@@ -1012,7 +1002,7 @@ class Social_Post_Flow_Admin {
 		// Invalid nonce.
 		if ( ! wp_verify_nonce( sanitize_key( $_POST['social_post_flow_nonce'] ), 'social-post-flow' ) ) {
 			return new WP_Error(
-				'wp_to_social_pro_admin_save_settings_error',
+				'social_post_flow_admin_save_settings_error',
 				__( 'Invalid nonce specified. Settings NOT saved.', 'social-post-flow' )
 			);
 		}
@@ -1095,7 +1085,7 @@ class Social_Post_Flow_Admin {
 			default:
 				if ( ! isset( $_POST['social-post-flow']['statuses'] ) ) {
 					return new WP_Error(
-						'wp_to_social_pro_admin_save_settings_error',
+						'social_post_flow_admin_save_settings_error',
 						__( 'Statuses field is missing. Settings NOT saved.', 'social-post-flow' )
 					);
 				}

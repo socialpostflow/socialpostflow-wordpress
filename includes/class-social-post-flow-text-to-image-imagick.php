@@ -168,20 +168,20 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 
 		// Bail if image could not be found.
 		if ( ! $image || ! $image_path ) {
-			return new WP_Error( 'wp_to_social_pro_load_attachment_missing', __( 'Could not find the background image.', 'social-post-flow' ) );
+			return new WP_Error( 'social_post_flow_load_attachment_missing', __( 'Could not find the background image.', 'social-post-flow' ) );
 		}
 
 		// Load MIME type.
 		$this->mime = get_post_mime_type( $attachment_id );
 		if ( ! $this->mime ) {
-			return new WP_Error( 'wp_to_social_pro_load_attachment_missing', __( 'Could not determine MIME type of the background image.', 'social-post-flow' ) );
+			return new WP_Error( 'social_post_flow_load_attachment_missing', __( 'Could not determine MIME type of the background image.', 'social-post-flow' ) );
 		}
 
 		// Load image.
 		try {
 			$this->im = new Imagick( $image_path );
 		} catch ( Exception $e ) {
-			return new WP_Error( 'wp_to_social_pro_load_attachment_error', $e->getMessage() );
+			return new WP_Error( 'social_post_flow_load_attachment_error', $e->getMessage() );
 		}
 
 		// Return width and height of image.
@@ -239,7 +239,7 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 	 */
 	public function save_tmp() {
 
-		$destination = get_temp_dir() . 'wp-to-social-pro-text-to-image-' . bin2hex( random_bytes( 5 ) );
+		$destination = get_temp_dir() . 'social-post-flow-text-to-image-' . bin2hex( random_bytes( 5 ) );
 		$this->im->writeImage( $destination );
 		return $destination;
 
@@ -388,7 +388,7 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 
 		// Bail if a font face wasn't defined.
 		if ( ! isset( $this->font_face ) ) {
-			return new WP_Error( 'wp_to_social_pro_imagick_text_draw_missing_font_face', __( 'You must specify a font file.', 'social-post-flow' ) );
+			return new WP_Error( 'social_post_flow_imagick_text_draw_missing_font_face', __( 'You must specify a font file.', 'social-post-flow' ) );
 		}
 
 		// Define lines of text based on the text wrapping setting.
@@ -502,7 +502,7 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 		}
 
 		return new WP_Error(
-			'wp_to_social_pro_imagick_text_hex_to_rgba_error',
+			'social_post_flow_imagick_text_hex_to_rgba_error',
 			sprintf(
 				/* translators: HEX Color */
 				__( 'Could not convert hex color %s to RGBA', 'social-post-flow' ),

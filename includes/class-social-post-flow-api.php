@@ -43,30 +43,15 @@ class Social_Post_Flow_API {
 	public $api_key = '';
 
 	/**
-	 * Constructor
+	 * Sets the API Key
 	 *
-	 * @since   3.4.7
-	 */
-	public function __construct() {
-
-		add_action( 'social_post_flow_output_auth', array( $this, 'output_api_key_field' ) );
-
-	}
-
-	/**
-	 * Outputs an API Key field on Settings > General, when the Plugin needs to be authenticated.
+	 * @since   1.0.0
 	 *
-	 * @since   4.2.0
+	 * @param   string $api_key   API Key.
 	 */
-	public function output_api_key_field() {
+	public function set_api_key( $api_key ) {
 
-		?>
-		<div class="wpzinc-option">
-			<div class="full">
-				API Key Field Here.
-			</div>
-		</div>
-		<?php
+		$this->api_key = $api_key;
 
 	}
 
@@ -207,7 +192,7 @@ class Social_Post_Flow_API {
 
 		// Check required parameters exist.
 		if ( empty( $this->api_key ) ) {
-			return new WP_Error( 'missing_access_token', __( 'No API Key was specified', 'social-post-flow' ) );
+			return new WP_Error( 'social_post_flow_no_api_key', __( 'No API Key was specified', 'social-post-flow' ) );
 		}
 
 		// Build endpoint URL.

@@ -35,13 +35,12 @@
 			<?php
 			echo esc_html(
 				sprintf(
-				/* translators: %1$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot), %2$s: Post Type, Singular, %3$s: Translated Action (Publish, Update, Repost, Bulk Publish), %4$s: Additional Translated Message */
-					__( 'If enabled, any status(es) defined here will be sent to %1$s when a WordPress %2$s is %3$s %4$s', 'social-post-flow' ),
-					$this->base->plugin->account,
+				/* translators: %1$s: Post Type, Singular, %2$s: Translated Action (Publish, Update, Repost, Bulk Publish), %3$s: Additional Translated Message */
+					__( 'If enabled, any status(es) defined here will be sent to Social Post Flow when a WordPress %1$s is %2$s %3$s', 'social-post-flow' ),
 					$post_type_object->labels->singular_name,
 					strtolower( $actions_plural[ $post_action ] ),
 					( $profile_id === 'default' ? '' : sprintf(
-					/* translators: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
+					/* translators: Profile username */
 						__( 'to %s. These override the status(es) specified on the Defaults tab.', 'social-post-flow' ),
 						$profile['formatted_username']
 					) )
@@ -77,7 +76,7 @@
 							$row    = social_post_flow()->get_class( 'settings' )->get_status_row( $status, $post_type, $post_action );
 
 							// Load sub view.
-							require SOCIAL_POST_FLOW_PLUGIN_PATH . 'lib/views/settings-post-action-status-row.php';
+							require SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/settings-post-action-status-row.php';
 						} else {
 							// Iterate through saved statuses.
 							foreach ( $statuses as $key => $status ) { // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
@@ -86,7 +85,7 @@
 								$row    = social_post_flow()->get_class( 'settings' )->get_status_row( $status, $post_type, $post_action );
 
 								// Load sub view.
-								require SOCIAL_POST_FLOW_PLUGIN_PATH . 'lib/views/settings-post-action-status-row.php';
+								require SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/settings-post-action-status-row.php';
 							}
 						}
 						?>

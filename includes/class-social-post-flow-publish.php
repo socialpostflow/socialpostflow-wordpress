@@ -633,18 +633,16 @@ class Social_Post_Flow_Publish {
 		$this->clear_search_replacements();
 
 		// Check a valid access token exists.
-		$access_token  = social_post_flow()->get_class( 'settings' )->get_access_token();
-		$refresh_token = social_post_flow()->get_class( 'settings' )->get_refresh_token();
-		$expires       = social_post_flow()->get_class( 'settings' )->get_token_expires();
-		if ( ! $access_token ) {
+		$api_key = social_post_flow()->get_class( 'settings' )->get_api_key();
+		if ( ! $api_key ) {
 			return new WP_Error(
-				'no_access_token',
-				__( 'The Plugin has not been authorized with Social Post Flow! Go to Social Post Flow > Settings to setup the plugin.', 'social-post-flow' )
+				'social_post_flow_no_api_key',
+				__( 'The Plugin has not been authorized with Social Post Flow. Go to Social Post Flow > Settings to setup the plugin.', 'social-post-flow' )
 			);
 		}
 
 		// Setup API.
-		social_post_flow()->get_class( 'api' )->set_tokens( $access_token, $refresh_token, $expires );
+		social_post_flow()->get_class( 'api' )->set_api_key( $api_key );
 
 		// Get Profiles.
 		$profiles = social_post_flow()->get_class( 'api' )->profiles( false, social_post_flow()->get_class( 'common' )->get_transient_expiration_time() );
@@ -675,13 +673,6 @@ class Social_Post_Flow_Publish {
 
 			// Skip if the Profile ID does not exist in the $profiles array, it's been removed from the API.
 			if ( $profile_id !== 'default' && ! isset( $profiles[ $profile_id ] ) ) {
-				continue;
-			}
-
-			// If the Profile's ID belongs to a Google Social Media Profile, skip it, as this is no longer supported
-			// as Google+ closed down.
-			// Allow this to go through for SocialPilot which supports GMB.
-			if ( $profile_id !== 'default' && $profiles[ $profile_id ]['service'] === 'google' && 'social-post-flow' !== 'wp-to-socialpilot-pro' ) {
 				continue;
 			}
 
@@ -2297,14 +2288,14 @@ class Social_Post_Flow_Publish {
 		}
 
 		// Get Font.
-		$font = SOCIAL_POST_FLOW_PLUGIN_PATH . 'lib/assets/fonts/OpenSans-Regular.ttf';
+		$font = SOCIAL_POST_FLOW_PLUGIN_PATH . 'assets/fonts/OpenSans-Regular.ttf';
 		if ( isset( $settings['font'] ) ) {
 			if ( ! $settings['font'] ) {
 				// Custom Font.
 				$font = get_attached_file( $settings['font_custom'] );
 			} else {
 				// Plugin Font.
-				$font = SOCIAL_POST_FLOW_PLUGIN_PATH . 'lib/assets/fonts/' . $settings['font'] . '.ttf';
+				$font = SOCIAL_POST_FLOW_PLUGIN_PATH . 'assets/fonts/' . $settings['font'] . '.ttf';
 			}
 		}
 
@@ -3982,10 +3973,8 @@ class Social_Post_Flow_Publish {
 		$errors = false;
 
 		// Setup API.
-		social_post_flow()->get_class( 'api' )->set_tokens(
-			social_post_flow()->get_class( 'settings' )->get_access_token(),
-			social_post_flow()->get_class( 'settings' )->get_refresh_token(),
-			social_post_flow()->get_class( 'settings' )->get_token_expires()
+		social_post_flow()->get_class( 'api' )->set_api_key(
+			social_post_flow()->get_class( 'settings' )->get_api_key()
 		);
 
 		// Setup logging.

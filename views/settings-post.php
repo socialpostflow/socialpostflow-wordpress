@@ -29,7 +29,7 @@
 				$profile_enabled = $this->get_setting( $post_type, '[' . $profile['id'] . '][enabled]', 0 );
 				?>
 				<li class="wpzinc-nav-tab <?php echo esc_attr( $profile['service'] ); ?>">
-					<a href="#profile-<?php echo esc_attr( $profile['id'] ); ?>"<?php echo ( $profile_enabled ? ' class="enabled"' : '' ); ?> title="<?php echo esc_attr( $profile['formatted_service'] . ': ' . $profile['formatted_username'] ); ?>"<?php echo ( empty( $profile['formatted_username'] ) ? ' data-wp-to-social-pro-twitter-id="' . esc_attr( $profile['social_network_id'] ) . '"' : '' ); ?>>
+					<a href="#profile-<?php echo esc_attr( $profile['id'] ); ?>"<?php echo ( $profile_enabled ? ' class="enabled"' : '' ); ?> title="<?php echo esc_attr( $profile['formatted_service'] . ': ' . $profile['formatted_username'] ); ?>">
 						<span class="formatted-username"><?php echo esc_html( $profile['formatted_username'] ); ?></span>
 						<span class="dashicons dashicons-yes"></span>
 					</a>
@@ -75,7 +75,7 @@
 					?>
 					<div id="profile-<?php echo esc_attr( $profile_id ); ?>-<?php echo esc_attr( $post_action ); ?>" class="action">
 						<?php
-						require SOCIAL_POST_FLOW_PLUGIN_PATH . 'lib/views/settings-post-action.php';
+						require SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/settings-post-action.php';
 						?>
 					</div>
 					<?php
@@ -99,7 +99,7 @@
 				?>
 				<div id="profile-<?php echo esc_attr( $profile_id ); ?>" class="profile <?php echo esc_attr( $profile['service'] ); ?>">
 					<?php
-					require SOCIAL_POST_FLOW_PLUGIN_PATH . 'lib/views/settings-post-actionheader.php';
+					require SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/settings-post-actionheader.php';
 					?>
 
 					<div id="<?php echo esc_attr( $post_type ); ?>-<?php echo esc_attr( $profile_id ); ?>-actions-panel">
@@ -129,7 +129,7 @@
 								?>
 								<div id="profile-<?php echo esc_attr( $profile_id ); ?>-<?php echo esc_attr( $post_action ); ?>" class="action">
 									<?php
-									require SOCIAL_POST_FLOW_PLUGIN_PATH . 'lib/views/settings-post-action.php';
+									require SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/settings-post-action.php';
 									?>
 								</div>
 								<?php
@@ -146,7 +146,7 @@
 
 		<!-- Status Editor -->
 		<?php
-		require SOCIAL_POST_FLOW_PLUGIN_PATH . 'lib/views/settings-post-action-status.php';
+		require SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/settings-post-action-status.php';
 		?>
 
 		<!-- Submitted Form Data -->

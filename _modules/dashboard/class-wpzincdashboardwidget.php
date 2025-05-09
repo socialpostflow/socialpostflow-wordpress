@@ -117,13 +117,6 @@ class WPZincDashboardWidget {
 		add_action( str_replace( '-', '_', $this->plugin->name ) . '_admin_menu_support', array( $this, 'register_support_menu' ), 99 );
 		add_action( str_replace( '-', '_', $this->plugin->name ) . '_admin_menu', array( $this, 'admin_menu' ), 99 );
 
-		// Reviews.
-		if ( $this->plugin->review_name !== false ) {
-			add_action( 'wp_ajax_' . str_replace( '-', '_', $this->plugin->name ) . '_dismiss_review', array( $this, 'dismiss_review' ) );
-			add_action( 'admin_notices', array( $this, 'maybe_display_review_request' ) );
-			add_filter( 'admin_footer_text', array( $this, 'maybe_display_footer_review_request' ) );
-		}
-
 		// Export and Support.
 		add_action( 'init', array( $this, 'export' ) );
 		add_action( 'plugins_loaded', array( $this, 'maybe_redirect' ) );
@@ -563,105 +556,6 @@ class WPZincDashboardWidget {
 			'<a href="' . $this->get_review_url() . '" target="_blank">WordPress.org</a>',
 			$this->plugin->displayName
 		);
-
-	}
-
-	/**
-	 * Flag to indicate whether a review has been requested.
-	 *
-	 * @since   1.0.0
-	 *
-	 * @return  bool    Review Requested
-	 */
-	public function requested_review() {
-
-		// If the review request is disabled, bail.
-		if ( ! $this->show_review_request ) {
-			return false;
-		}
-
-		$time = get_option( $this->plugin->review_name . '-review-request' );
-		if ( empty( $time ) ) {
-			return false;
-		}
-
-		// Check the current date and time matches or is later than the above value.
-		$now = time();
-		if ( $now >= ( $time + ( 3 * DAY_IN_SECONDS ) ) ) {
-			return true;
-		}
-
-		// We're not yet ready to show this review.
-		return false;
-
-	}
-
-	/**
-	 * Requests a review notification, which is displayed on subsequent page loads.
-	 *
-	 * @since   1.0.0
-	 */
-	public function request_review() {
-
-		// If the review request is disabled, bail.
-		if ( ! $this->show_review_request ) {
-			return;
-		}
-
-		// If a review has already been requested, bail.
-		$time = get_option( $this->plugin->review_name . '-review-request' );
-		if ( ! empty( $time ) ) {
-			return;
-		}
-
-		// Request a review, setting the value to the date and time now.
-		update_option( $this->plugin->review_name . '-review-request', time() );
-
-	}
-
-	/**
-	 * Flag to indicate whether a review request has been dismissed by the user.
-	 *
-	 * @since   1.0.0
-	 *
-	 * @return  bool    Review Dismissed.
-	 */
-	public function dismissed_review() {
-
-		return get_option( $this->plugin->review_name . '-review-dismissed' );
-
-	}
-
-	/**
-	 * Dismisses the review notification, so it isn't displayed again.
-	 *
-	 * @since   1.0.0
-	 */
-	public function dismiss_review() {
-
-		// Check nonce.
-		check_ajax_referer( 'wpzinc_admin_review_notice_dismiss_review', 'nonce' );
-
-		// Mark review as dismissed.
-		update_option( $this->plugin->review_name . '-review-dismissed', 1 );
-
-		// Send success response.
-		wp_send_json_success( 1 );
-
-	}
-
-	/**
-	 * Returns the Review URL for this Plugin.
-	 *
-	 * @since   1.0.0
-	 *
-	 * @return  string  Review URL
-	 */
-	public function get_review_url() {
-
-		$url = 'https://wordpress.org/support/plugin/' . $this->plugin->review_name . '/reviews/?filter=5#new-post';
-
-		return $url;
 
 	}
 

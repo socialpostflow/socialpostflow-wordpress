@@ -38,7 +38,7 @@
 		</li>
 		<?php
 		// Only display if we've auth'd and have profiles.
-		if ( ! empty( $access_token ) ) {
+		if ( ! empty( $api_key ) ) {
 			?>
 			<li class="wpzinc-nav-tab users">
 				<a href="#user-access" data-documentation="https://www.socialpostflow.com/documentation/wordpress/user-access-settings/">
@@ -1028,7 +1028,7 @@
 
 	<?php
 	// Only display if we've auth'd and have profiles.
-	if ( ! empty( $access_token ) ) {
+	if ( ! empty( $api_key ) ) {
 		// User Access.
 		?>
 		<!-- User Access -->

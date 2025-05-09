@@ -167,13 +167,13 @@ class Social_Post_Flow_Text_To_Image_GD {
 
 		// Bail if image could not be found.
 		if ( ! $image || ! $image_path ) {
-			return new WP_Error( 'wp_to_social_pro_load_attachment_missing', __( 'Could not find the background image.', 'social-post-flow' ) );
+			return new WP_Error( 'social_post_flow_load_attachment_missing', __( 'Could not find the background image.', 'social-post-flow' ) );
 		}
 
 		// Load as a JPEG or PNG.
 		$this->mime = get_post_mime_type( $attachment_id );
 		if ( ! $this->mime ) {
-			return new WP_Error( 'wp_to_social_pro_load_attachment_missing', __( 'Could not determine MIME type of the background image.', 'social-post-flow' ) );
+			return new WP_Error( 'social_post_flow_load_attachment_missing', __( 'Could not determine MIME type of the background image.', 'social-post-flow' ) );
 		}
 		switch ( $this->mime ) {
 			case 'image/png':
@@ -185,13 +185,13 @@ class Social_Post_Flow_Text_To_Image_GD {
 				break;
 
 			default:
-				return new WP_Error( 'wp_to_social_pro_load_attachment_missing', __( 'Unsupported MIME type for the background image.', 'social-post-flow' ) );
+				return new WP_Error( 'social_post_flow_load_attachment_missing', __( 'Unsupported MIME type for the background image.', 'social-post-flow' ) );
 		}
 
 		// If the background image is false, something went wrong.
 		if ( ! $background_image ) {
 			return new WP_Error(
-				'wp_to_social_pro_load_attachment_error',
+				'social_post_flow_load_attachment_error',
 				__( 'An error occured when attempting to to load the background image.', 'social-post-flow' )
 			);
 		}
@@ -272,7 +272,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	public function save_tmp() {
 
 		// Define temporary destination.
-		$destination = get_temp_dir() . 'wp-to-social-pro-text-to-image-' . bin2hex( random_bytes( 5 ) );
+		$destination = get_temp_dir() . 'social-post-flow-text-to-image-' . bin2hex( random_bytes( 5 ) );
 
 		// Save Image to Destination Path and File.
 		switch ( $this->mime ) {
@@ -435,7 +435,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 
 		// Bail if a font face wasn't defined.
 		if ( ! isset( $this->font_face ) ) {
-			return new WP_Error( 'wp_to_social_pro_gd_text_draw_missing_font_face', __( 'You must specify a font file.', 'social-post-flow' ) );
+			return new WP_Error( 'social_post_flow_gd_text_draw_missing_font_face', __( 'You must specify a font file.', 'social-post-flow' ) );
 		}
 
 		// Strip emojis from text, as they're not supported in GD.
@@ -541,7 +541,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 
 		// If here, we couldn't convert the hex to RGBA.
 		return new WP_Error(
-			'wp_to_social_pro_gd_text_hex_to_rgba_error',
+			'social_post_flow_gd_text_hex_to_rgba_error',
 			sprintf(
 				/* translators: HEX Color */
 				__( 'Could not convert hex color %s to RGBA', 'social-post-flow' ),

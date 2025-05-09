@@ -315,7 +315,7 @@ class Social_Post_Flow_Image {
 		}
 
 		// Save to temporary file on disk.
-		$resized_image = $image->save( get_temp_dir() . 'wp-to-social-pro-resized-' . bin2hex( random_bytes( 5 ) ) );
+		$resized_image = $image->save( get_temp_dir() . 'social-post-flow-resized-' . bin2hex( random_bytes( 5 ) ) );
 
 		// Bail if an error occured.
 		if ( is_wp_error( $resized_image ) ) {
@@ -383,7 +383,7 @@ class Social_Post_Flow_Image {
 		}
 
 		// Save to temporary file on disk.
-		$resized_image = $image->save( get_temp_dir() . 'wp-to-social-pro-resized-' . bin2hex( random_bytes( 5 ) ) );
+		$resized_image = $image->save( get_temp_dir() . 'social-post-flow-resized-' . bin2hex( random_bytes( 5 ) ) );
 
 		// Bail if an error occured.
 		if ( is_wp_error( $resized_image ) ) {

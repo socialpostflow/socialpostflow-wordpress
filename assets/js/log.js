@@ -15,7 +15,7 @@ jQuery( document ).ready(
 		 *
 		 * @since 	4.4.0
 		 */
-		$( 'a.' + wp_to_social_pro.plugin_name + '-refresh-log' ).on(
+		$( 'a.' + social_post_flow.plugin_name + '-refresh-log' ).on(
 			'click',
 			function ( e ) {
 
@@ -27,11 +27,11 @@ jQuery( document ).ready(
 
 				// Send AJAX request to clear log.
 				$.post(
-					wp_to_social_pro.ajax,
+					social_post_flow.ajax,
 					{
 						'action': 		$( button ).data( 'action' ),
-						'post': 		wp_to_social_pro.post_id,
-						'nonce': 		wp_to_social_pro.get_log_nonce
+						'post': 		social_post_flow.post_id,
+						'nonce': 		social_post_flow.get_log_nonce
 					},
 					function ( response ) {
 
@@ -48,7 +48,7 @@ jQuery( document ).ready(
 		 *
 		 * @since 	3.0.0
 		 */
-		$( 'a.' + wp_to_social_pro.plugin_name + '-clear-log' ).on(
+		$( 'a.' + social_post_flow.plugin_name + '-clear-log' ).on(
 			'click',
 			function ( e ) {
 
@@ -74,16 +74,16 @@ jQuery( document ).ready(
 
 				// Send AJAX request to clear log.
 				$.post(
-					wp_to_social_pro.ajax,
+					social_post_flow.ajax,
 					{
 						'action': 		$( button ).data( 'action' ),
 						'post': 		$( 'input[name=post_ID]' ).val(),
-						'nonce': 		wp_to_social_pro.clear_log_nonce
+						'nonce': 		social_post_flow.clear_log_nonce
 					},
 					function ( response ) {
 
 						// Clear Log.
-						$( 'table.widefat tbody', $( $( button ).data( 'target' ) ) ).html( '<tr><td colspan="8">' + wp_to_social_pro.clear_log_completed + '</td></tr>' );
+						$( 'table.widefat tbody', $( $( button ).data( 'target' ) ) ).html( '<tr><td colspan="8">' + social_post_flow.clear_log_completed + '</td></tr>' );
 
 					}
 				);

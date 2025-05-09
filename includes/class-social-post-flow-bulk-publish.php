@@ -34,10 +34,10 @@ class Social_Post_Flow_Bulk_Publish {
 	public function run( $post_type = false, $params = false, $test_mode = false ) {
 
 		// Check a valid access token exists.
-		$access_token = social_post_flow()->get_class( 'settings' )->get_access_token();
-		if ( ! $access_token ) {
+		$api_key = social_post_flow()->get_class( 'settings' )->get_api_key();
+		if ( ! $api_key ) {
 			return new WP_Error(
-				'no_access_token',
+				'social_post_flow_no_api_key',
 				__( 'The Plugin has not been authorized with Social Post Flow. Go to Social Post Flow > Settings to setup the plugin.', 'social-post-flow' )
 			);
 		}

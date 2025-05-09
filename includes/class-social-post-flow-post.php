@@ -179,10 +179,8 @@ class Social_Post_Flow_Post {
 		$is_post_screen = true; // Enables the 'specific' schedule option, which can only be used on individual Per-Post Settings.
 
 		// Authentication.
-		social_post_flow()->get_class( 'api' )->set_tokens(
-			social_post_flow()->get_class( 'settings' )->get_access_token(),
-			social_post_flow()->get_class( 'settings' )->get_refresh_token(),
-			social_post_flow()->get_class( 'settings' )->get_token_expires()
+		social_post_flow()->get_class( 'api' )->set_api_key(
+			social_post_flow()->get_class( 'settings' )->get_api_key()
 		);
 
 		// Get Profiles.
@@ -212,7 +210,7 @@ class Social_Post_Flow_Post {
 		<div id="social-post-flow-override" class="wpzinc-option">
 			<?php
 			// Load Post Settings View (Tabs + Statuses for each Profile).
-			require SOCIAL_POST_FLOW_PLUGIN_PATH . 'lib/views/settings-post.php';
+			require SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/settings-post.php';
 			?>
 		</div>
 		<div class="wpzinc-option">
@@ -248,7 +246,7 @@ class Social_Post_Flow_Post {
 		$supports_opengraph = social_post_flow()->get_class( 'image' )->supports_opengraph();
 
 		// Render view.
-		require SOCIAL_POST_FLOW_PLUGIN_PATH . 'lib/views/settings-post-image.php';
+		require SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/settings-post-image.php';
 
 	}
 
