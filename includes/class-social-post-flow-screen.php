@@ -56,11 +56,11 @@ class Social_Post_Flow_Screen {
 		// Get screen.
 		$screen = get_current_screen();
 
-		// Get screen ID without Plugin Display Name, which can be edited by whitelabelling.
+		// Get screen ID without Plugin Display Name.
 		$screen_id = str_replace(
 			array(
-				'toplevel_page_', // licensing = wp-to-xxx-pro.
-				sanitize_title( $this->base->plugin->displayName ) . '_page_',
+				'toplevel_page_',
+				sanitize_title( 'social_post_flow_page_' ),
 			),
 			'',
 			$screen->base

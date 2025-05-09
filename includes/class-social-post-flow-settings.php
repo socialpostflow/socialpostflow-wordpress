@@ -15,186 +15,7 @@
  */
 class Social_Post_Flow_Settings {
 
-	/**
-	 * Migrates settings from the free version or Pro version 2.x
-	 *
-	 * @since   3.0.0
-	 */
-	public function migrate_settings() {
-
-		// Define old settings key.
-		$old_settings_key = str_replace( '-pro', '', $this->base->plugin->settingsName );
-
-		// Check if we have any old settings.
-		$old_settings = get_option( $old_settings_key );
-
-		// If old settings are empty, bail.
-		if ( ! $old_settings ) {
-			return;
-		}
-
-		// Store the old settings in a backup option key, just in case.
-		update_option( $old_settings_key . '-v2', $old_settings );
-
-		// Migrate into new settings.
-		// Access token.
-		if ( ! empty( $old_settings['accessToken'] ) ) {
-			$this->update_access_token( $old_settings['accessToken'] );
-		}
-		if ( ! empty( $old_settings['refreshToken'] ) ) {
-			$this->update_refresh_token( $old_settings['refreshToken'] );
-		}
-
-		// Get Profiles.
-		social_post_flow()->get_class( 'api' )->set_tokens(
-			$this->get_access_token(),
-			$this->get_refresh_token(),
-			$this->get_token_expires()
-		);
-		$profiles = social_post_flow()->get_class( 'api' )->profiles( true, social_post_flow()->get_class( 'common' )->get_transient_expiration_time() );
-
-		// Get Actions.
-		$actions = social_post_flow()->get_class( 'common' )->get_post_actions();
-
-		// Iterate through each Post Type.
-		foreach ( $old_settings['enabled'] as $post_type => $old_actions ) {
-			$new_settings = array();
-
-			// Default profile.
-			$new_settings['default'] = array();
-
-			// Default profile: actions.
-			foreach ( $actions as $action => $action_label ) {
-				if ( $action === 'conditions' ) {
-					/**
-					 * Conditions (was Filters)
-					 */
-					$new_settings['default']['conditions']            = array();
-					$new_settings['default']['conditions']['enabled'] = ( isset( $old_settings['filter'][ $post_type ] ) ? $old_settings['filter'][ $post_type ] : 0 );
-					if ( $new_settings['default']['conditions']['enabled'] ) {
-						foreach ( $old_settings['tax'][ $post_type ] as $taxonomy => $items ) {
-							$new_settings['default']['conditions'][ $taxonomy ] = $items;
-						}
-					}
-				} else {
-					/**
-					 * Publish/Update
-					 */
-					$new_settings['default'][ $action ]             = array();
-					$new_settings['default'][ $action ]['enabled']  = ( isset( $old_settings['enabled'][ $post_type ][ $action ] ) ? $old_settings['enabled'][ $post_type ][ $action ] : 0 );
-					$new_settings['default'][ $action ]['status']   = array();
-					$new_settings['default'][ $action ]['status'][] = array(
-						'image'       => ( isset( $old_settings['image'][ $post_type ][ $action ] ) ? $old_settings['image'][ $post_type ][ $action ] : 0 ),
-						'sub_profile' => 0, // Pinterest not supported in free or v2.x.
-						'message'     => ( isset( $old_settings['message'][ $post_type ][ $action ] ) ? $old_settings['message'][ $post_type ][ $action ] : '' ),
-						'schedule'    => ( ( isset( $old_settings['enabled'][ $post_type ]['instant'] ) && $old_settings['enabled'][ $post_type ]['instant'] == 1 ) ? 'now' : 'queue_bottom' ),  // phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
-						'days'        => 0,
-						'hours'       => 0,
-						'minutes'     => 0,
-					);
-					if ( $old_settings['number'][ $post_type ][ $action ] === 2 ) {
-						// Alternate status.
-						$new_settings['default'][ $action ]['status'][] = array(
-							'image'       => ( isset( $old_settings['image'][ $post_type ][ $action ] ) ? $old_settings['image'][ $post_type ][ $action ] : 0 ),
-							'sub_profile' => 0, // Pinterest not supported in free or v2.x.
-							'message'     => ( isset( $old_settings['alternateMessage'][ $post_type ][ $action ] ) ? $old_settings['alternateMessage'][ $post_type ][ $action ] : '' ),
-							'schedule'    => ( ( isset( $old_settings['enabled'][ $post_type ]['instant'] ) && $old_settings['enabled'][ $post_type ]['instant'] == 1 ) ? 'now' : 'queue_bottom' ),  // phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
-							'days'        => 0,
-							'hours'       => 0,
-							'minutes'     => 0,
-						);
-					}
-					if ( $old_settings['number'][ $post_type ][ $action ] === 3 ) {
-						// Original status, again.
-						$new_settings['default'][ $action ]['status'][] = array(
-							'image'       => ( isset( $old_settings['image'][ $post_type ][ $action ] ) ? $old_settings['image'][ $post_type ][ $action ] : 0 ),
-							'sub_profile' => 0, // Pinterest not supported in free or v2.x.
-							'message'     => ( isset( $old_settings['message'][ $post_type ][ $action ] ) ? $old_settings['message'][ $post_type ][ $action ] : '' ),
-							'schedule'    => ( ( isset( $old_settings['enabled'][ $post_type ]['instant'] ) && $old_settings['enabled'][ $post_type ]['instant'] == 1 ) ? 'now' : 'queue_bottom' ),  // phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
-							'days'        => 0,
-							'hours'       => 0,
-							'minutes'     => 0,
-						);
-					}
-				}
-			}
-
-			// Iterate through Profiles.
-			foreach ( $profiles as $profile_id => $profile ) {
-				// Default profile.
-				$new_settings[ $profile_id ] = array();
-
-				// Default profile: actions.
-				foreach ( $actions as $action => $action_label ) {
-					if ( $action === 'conditions' ) {
-						/**
-						* Conditions (was Filters)
-						*/
-						$new_settings[ $profile_id ]['conditions']            = array();
-						$new_settings[ $profile_id ]['conditions']['enabled'] = ( isset( $old_settings[ $profile_id ]['filter'][ $post_type ] ) ? $old_settings[ $profile_id ]['filter'][ $post_type ] : 0 );
-						if ( $new_settings[ $profile_id ]['conditions']['enabled'] ) {
-							foreach ( $old_settings[ $profile_id ]['tax'][ $post_type ] as $taxonomy => $items ) {
-								$new_settings[ $profile_id ]['conditions'][ $taxonomy ] = $items;
-							}
-						}
-					} else {
-						/**
-						* Publish/Update
-						*/
-
-						// Profile enabled + overriding?
-						$new_settings[ $profile_id ]['enabled']  = ( isset( $old_settings['ids'][ $post_type ][ $profile_id ] ) ? 1 : 0 );
-						$new_settings[ $profile_id ]['override'] = ( isset( $old_settings['override'][ $post_type ][ $profile_id ] ) ? 1 : 0 );
-
-						// Profile action.
-						$new_settings[ $profile_id ][ $action ]             = array();
-						$new_settings[ $profile_id ][ $action ]['enabled']  = ( isset( $old_settings[ $profile_id ]['enabled'][ $post_type ][ $action ] ) ? 1 : 0 );
-						$new_settings[ $profile_id ][ $action ]['status']   = array();
-						$new_settings[ $profile_id ][ $action ]['status'][] = array(
-							'image'       => ( isset( $old_settings[ $profile_id ]['image'][ $post_type ][ $action ] ) ? $old_settings[ $profile_id ]['image'][ $post_type ][ $action ] : 0 ),
-							'sub_profile' => 0, // Pinterest not supported in free or v2.x.
-							'message'     => ( isset( $old_settings[ $profile_id ]['message'][ $post_type ][ $action ] ) ? $old_settings[ $profile_id ]['message'][ $post_type ][ $action ] : '' ),
-							'schedule'    => ( ( isset( $old_settings[ $profile_id ]['enabled'][ $post_type ]['instant'] ) && $old_settings[ $profile_id ]['enabled'][ $post_type ]['instant'] == 1 ) ? 'now' : 'queue_bottom' ),  // phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
-							'days'        => 0,
-							'hours'       => 0,
-							'minutes'     => 0,
-						);
-						if ( $old_settings['number'][ $post_type ][ $action ] === 2 ) {
-							// Alternate status.
-							$new_settings[ $profile_id ][ $action ]['status'][] = array(
-								'image'       => ( isset( $old_settings[ $profile_id ]['image'][ $post_type ][ $action ] ) ? $old_settings[ $profile_id ]['image'][ $post_type ][ $action ] : 0 ),
-								'sub_profile' => 0, // Pinterest not supported in free or v2.x.
-								'message'     => ( isset( $old_settings[ $profile_id ]['alternateMessage'][ $post_type ][ $action ] ) ? $old_settings[ $profile_id ]['alternateMessage'][ $post_type ][ $action ] : '' ),
-								'schedule'    => ( ( isset( $old_settings[ $profile_id ]['enabled'][ $post_type ]['instant'] ) && $old_settings[ $profile_id ]['enabled'][ $post_type ]['instant'] == 1 ) ? 'now' : 'queue_bottom' ),  // phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
-								'days'        => 0,
-								'hours'       => 0,
-								'minutes'     => 0,
-							);
-						}
-						if ( $old_settings['number'][ $post_type ][ $action ] === 3 ) {
-							// Original status, again.
-							$new_settings[ $profile_id ][ $action ]['status'][] = array(
-								'image'       => ( isset( $old_settings[ $profile_id ]['image'][ $post_type ][ $action ] ) ? $old_settings[ $profile_id ]['image'][ $post_type ][ $action ] : 0 ),
-								'sub_profile' => 0, // Pinterest not supported in free or v2.x.
-								'message'     => ( isset( $old_settings[ $profile_id ]['message'][ $post_type ][ $action ] ) ? $old_settings[ $profile_id ]['message'][ $post_type ][ $action ] : '' ),
-								'schedule'    => ( ( isset( $old_settings[ $profile_id ]['enabled'][ $post_type ]['instant'] ) && $old_settings[ $profile_id ]['enabled'][ $post_type ]['instant'] == 1 ) ? 'now' : 'queue_bottom' ),  // phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
-								'days'        => 0,
-								'hours'       => 0,
-								'minutes'     => 0,
-							);
-						}
-					}
-				}
-			}
-
-			// We now have a new settings array that's v3 compatible.
-			update_option( 'social-post-flow-' . $post_type, $new_settings );
-		} // Close post type.
-
-		// Clear old settings.
-		delete_option( $old_settings_key );
-
-	}
+	public $settings_name = 'social-post-flow';
 
 	/**
 	 * Retrieves a setting from the options table.
@@ -248,7 +69,7 @@ class Social_Post_Flow_Settings {
 	public function get_settings( $type ) {
 
 		// Get current settings.
-		$settings = get_option( $this->base->plugin->settingsName . '-' . $type );
+		$settings = get_option( $this->settings_name . '-' . $type );
 
 		/**
 		 * Filters Post Type Settings before they are returned.
@@ -853,7 +674,7 @@ class Social_Post_Flow_Settings {
 	 */
 	public function get_access_token() {
 
-		return get_option( $this->base->plugin->settingsName . '-access-token' );
+		return get_option( $this->settings_name . '-access-token' );
 
 	}
 
@@ -877,7 +698,7 @@ class Social_Post_Flow_Settings {
 		$access_token = apply_filters( 'social_post_flow_update_access_token', $access_token );
 
 		// Return result.
-		return update_option( $this->base->plugin->settingsName . '-access-token', $access_token );
+		return update_option( $this->settings_name . '-access-token', $access_token );
 
 	}
 
@@ -891,7 +712,7 @@ class Social_Post_Flow_Settings {
 	public function delete_access_token() {
 
 		// Return result.
-		return delete_option( $this->base->plugin->settingsName . '-access-token' );
+		return delete_option( $this->settings_name . '-access-token' );
 
 	}
 
@@ -904,7 +725,7 @@ class Social_Post_Flow_Settings {
 	 */
 	public function get_refresh_token() {
 
-		return get_option( $this->base->plugin->settingsName . '-refresh-token' );
+		return get_option( $this->settings_name . '-refresh-token' );
 
 	}
 
@@ -928,7 +749,7 @@ class Social_Post_Flow_Settings {
 		$refresh_token = apply_filters( 'social_post_flow_update_refresh_token', $refresh_token );
 
 		// Return result.
-		return update_option( $this->base->plugin->settingsName . '-refresh-token', $refresh_token );
+		return update_option( $this->settings_name . '-refresh-token', $refresh_token );
 
 	}
 
@@ -942,7 +763,7 @@ class Social_Post_Flow_Settings {
 	public function delete_refresh_token() {
 
 		// Return result.
-		return delete_option( $this->base->plugin->settingsName . '-refresh-token' );
+		return delete_option( $this->settings_name . '-refresh-token' );
 
 	}
 
@@ -955,7 +776,7 @@ class Social_Post_Flow_Settings {
 	 */
 	public function get_token_expires() {
 
-		return get_option( $this->base->plugin->settingsName . '-token-expires' );
+		return get_option( $this->settings_name . '-token-expires' );
 
 	}
 
@@ -979,7 +800,7 @@ class Social_Post_Flow_Settings {
 		$token_expires = apply_filters( 'social_post_flow_update_token_expires', $token_expires );
 
 		// Return result.
-		return update_option( $this->base->plugin->settingsName . '-token-expires', $token_expires );
+		return update_option( $this->settings_name . '-token-expires', $token_expires );
 
 	}
 
@@ -993,7 +814,7 @@ class Social_Post_Flow_Settings {
 	public function delete_token_expires() {
 
 		// Return result.
-		return delete_option( $this->base->plugin->settingsName . '-token-expires' );
+		return delete_option( $this->settings_name . '-token-expires' );
 
 	}
 
@@ -1008,7 +829,7 @@ class Social_Post_Flow_Settings {
 	 */
 	public function get_option( $key, $default_value = '' ) {
 
-		$result = get_option( $this->base->plugin->settingsName . '-' . $key );
+		$result = get_option( $this->settings_name . '-' . $key );
 		if ( ! $result ) {
 			return $default_value;
 		}
@@ -1065,7 +886,7 @@ class Social_Post_Flow_Settings {
 		$value = apply_filters( 'social_post_flow_update_option', $value, $key );
 
 		// Update.
-		update_option( $this->base->plugin->settingsName . '-' . $key, $value );
+		update_option( $this->settings_name . '-' . $key, $value );
 
 		return true;
 
@@ -1082,34 +903,34 @@ class Social_Post_Flow_Settings {
 
 		// Build array of option keys to export.
 		$keys = array(
-			$this->base->plugin->settingsName . '-access-token',
-			$this->base->plugin->settingsName . '-custom_tags',
-			$this->base->plugin->settingsName . '-cron',
-			$this->base->plugin->settingsName . '-disable_excerpt_fallback',
-			$this->base->plugin->settingsName . '-disable_url_shortening',
-			$this->base->plugin->settingsName . '-force_trailing_forwardslash',
-			$this->base->plugin->settingsName . '-hide_meta_box_by_roles',
-			$this->base->plugin->settingsName . '-image_custom',
-			$this->base->plugin->settingsName . '-image_dimensions',
-			$this->base->plugin->settingsName . '-log',
-			$this->base->plugin->settingsName . '-override',
-			$this->base->plugin->settingsName . '-proxy',
-			$this->base->plugin->settingsName . '-refresh-token',
-			$this->base->plugin->settingsName . '-repost',
-			$this->base->plugin->settingsName . '-repost_disable_cron',
-			$this->base->plugin->settingsName . '-repost_time',
-			$this->base->plugin->settingsName . '-restrict_post_types',
-			$this->base->plugin->settingsName . '-restrict_roles',
-			$this->base->plugin->settingsName . '-roles',
-			$this->base->plugin->settingsName . '-test_mode',
-			$this->base->plugin->settingsName . '-text_to_image',
-			$this->base->plugin->settingsName . '-token-expires',
+			$this->settings_name . '-access-token',
+			$this->settings_name . '-custom_tags',
+			$this->settings_name . '-cron',
+			$this->settings_name . '-disable_excerpt_fallback',
+			$this->settings_name . '-disable_url_shortening',
+			$this->settings_name . '-force_trailing_forwardslash',
+			$this->settings_name . '-hide_meta_box_by_roles',
+			$this->settings_name . '-image_custom',
+			$this->settings_name . '-image_dimensions',
+			$this->settings_name . '-log',
+			$this->settings_name . '-override',
+			$this->settings_name . '-proxy',
+			$this->settings_name . '-refresh-token',
+			$this->settings_name . '-repost',
+			$this->settings_name . '-repost_disable_cron',
+			$this->settings_name . '-repost_time',
+			$this->settings_name . '-restrict_post_types',
+			$this->settings_name . '-restrict_roles',
+			$this->settings_name . '-roles',
+			$this->settings_name . '-test_mode',
+			$this->settings_name . '-text_to_image',
+			$this->settings_name . '-token-expires',
 		);
 
 		// Add Post Type keys.
 		$post_types = social_post_flow()->get_class( 'common' )->get_post_types();
 		foreach ( $post_types as $type => $post_type_obj ) {
-			$keys[] = $this->base->plugin->settingsName . '-' . $type;
+			$keys[] = $this->settings_name . '-' . $type;
 		}
 
 		/**

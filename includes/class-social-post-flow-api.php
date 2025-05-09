@@ -160,8 +160,7 @@ class Social_Post_Flow_API {
 			'message'           => $result->message,
 			'status_text'       => $result->updates[0]->text,
 			'status_created_at' => $result->updates[0]->created_at,
-			// due_at won't exist if is_draft = 'true' when the update was created.
-			'due_at'            => ( isset( $result->updates[0]->due_at ) ? $result->updates[0]->due_at : '0000-00-00 00:00:00' ),
+			'scheduled_at'            => ( isset( $result->updates[0]->scheduled_at ) ? $result->updates[0]->scheduled_at : '0000-00-00 00:00:00' ),
 		);
 
 	}
@@ -483,11 +482,10 @@ class Social_Post_Flow_API {
 					);
 				} else {
 					$message[] = sprintf(
-						/* translators: %1$s: Link to WordPress General Settings, %2$s: Link to Social Media Scheduling Timezone Settings Screen, %3$s: Social Media Scheduler Name (Buffer, Hootsuite, SocialPilot) */
-						__( '<a href="%1$s">WordPress</a> and <a href="%2$s">%3$s</a> timezones must match.', 'social-post-flow' ),
+						/* translators: %1$s: Link to WordPress General Settings, %2$s: Link to Social Media Scheduling Timezone Settings Screen */
+						__( '<a href="%1$s">WordPress</a> and <a href="%2$s">Social Post Flow</a> timezones must match.', 'social-post-flow' ),
 						admin_url( 'options-general.php' ),
 						$this->get_timezone_settings_url( $params['profile_ids'][0] ),
-						$this->base->plugin->account
 					);
 				}
 				break;

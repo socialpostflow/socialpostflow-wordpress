@@ -185,16 +185,8 @@ class Social_Post_Flow_Log_Table extends WP_List_Table {
 			'status_text'       => __( 'Status Text', 'social-post-flow' ),
 			'result'            => __( 'Result', 'social-post-flow' ),
 			'result_message'    => __( 'Response', 'social-post-flow' ),
-			'status_created_at' => sprintf(
-				/* translators: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-				__( '%s: Status Created At', 'social-post-flow' ),
-				$this->base->plugin->account
-			),
-			'status_due_at'     => sprintf(
-				/* translators: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-				__( '%s: Status Scheduled For', 'social-post-flow' ),
-				$this->base->plugin->account
-			),
+			'status_created_at' => __( 'Social Post Flow: Status Created At', 'social-post-flow' ),
+			'status_scheduled_at'     => __( 'Social Post Flow: Status Scheduled For', 'social-post-flow' ),
 		);
 
 	}
@@ -217,7 +209,7 @@ class Social_Post_Flow_Log_Table extends WP_List_Table {
 			'result'            => array( 'result', true ),
 			'result_message'    => array( 'result_message', true ),
 			'status_created_at' => array( 'status_created_at', true ),
-			'status_due_at'     => array( 'status_due_at', true ),
+			'status_scheduled_at'     => array( 'status_scheduled_at', true ),
 		);
 
 	}

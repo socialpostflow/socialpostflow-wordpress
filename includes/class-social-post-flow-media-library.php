@@ -72,7 +72,7 @@ class Social_Post_Flow_Media_Library {
 		}
 
 		// Store the Plugin Name against the Attachment's meta.
-		update_post_meta( $image_id, '_' . $this->base->plugin->filter_name, 1 );
+		update_post_meta( $image_id, '_social_post_flow', 1 );
 
 		// If a title or caption has been defined, set them now.
 		if ( ! empty( $title ) || ! empty( $caption ) ) {
@@ -112,7 +112,7 @@ class Social_Post_Flow_Media_Library {
 			'posts_per_page' => -1,
 			'meta_query'     => array(
 				array(
-					'key'   => '_' . $this->base->plugin->filter_name,
+					'key'   => '_social_post_flow',
 					'value' => 1,
 				),
 			),

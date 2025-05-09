@@ -16,22 +16,13 @@
 class Social_Post_Flow_Log {
 
 	/**
-	 * Holds the base class object.
-	 *
-	 * @since   3.2.0
-	 *
-	 * @var     object
-	 */
-	public $base;
-
-	/**
 	 * Holds the DB table name
 	 *
 	 * @since   3.9.6
 	 *
 	 * @var     string
 	 */
-	private $table;
+	private $table = 'to_social_post_flow_log';
 
 	/**
 	 * Holds items added to the debug log using add_to_debug_log(),
@@ -48,9 +39,6 @@ class Social_Post_Flow_Log {
 	 * @since   3.0.0
 	 */
 	public function __construct() {
-
-		// Define the database table name.
-		$this->table = 'to_' . strtolower( $this->base->plugin->account ) . '_log';
 
 		// Actions.
 		add_filter( 'set-screen-option', array( $this, 'set_screen_options' ), 10, 3 );
@@ -87,7 +75,7 @@ class Social_Post_Flow_Log {
             `result_message` text,
             `status_text` text,
             `status_created_at` datetime DEFAULT NULL,
-            `status_due_at` datetime DEFAULT NULL,
+            `status_scheduled_at` datetime DEFAULT NULL,
             PRIMARY KEY (`id`),
             KEY `post_id` (`post_id`),
             KEY `action` (`action`),
@@ -160,7 +148,7 @@ class Social_Post_Flow_Log {
 		);
 
 		// Initialize Logs WP_List_Table, as this will trigger WP_List_Table to add column options.
-		$log_table = new Social_Post_Flow_Log_Table( $this->base );
+		$log_table = new Social_Post_Flow_Log_Table();
 
 	}
 
@@ -331,11 +319,7 @@ class Social_Post_Flow_Log {
 		foreach ( $post_types as $post_type => $post_type_obj ) {
 			add_meta_box(
 				'social-post-flow-log',
-				sprintf(
-					/* translators: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-					__( '%s Log', 'social-post-flow' ),
-					$this->base->plugin->displayName
-				),
+				__( 'Social Post Flow Log', 'social-post-flow' ),
 				array( $this, 'output_post_log' ),
 				$post_type,
 				'normal',
@@ -418,7 +402,7 @@ class Social_Post_Flow_Log {
 	 *    string          $result_message     Result Message.
 	 *    string          $status_text        Status Text.
 	 *    datetime        $status_created_at  Status Created At on API.
-	 *    datetime        $status_due_at      Status Scheduled for Publication to Profile.
+	 *    datetime        $status_scheduled_at      Status Scheduled for Publication to Profile.
 	 */
 	public function add( $post_id, $log ) {
 
@@ -976,12 +960,7 @@ class Social_Post_Flow_Log {
 			$html = '
                     <tr>
                         <td colspan="' . $colspan . '">' .
-							sprintf(
-								/* translators: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-								__( 'No log entries exist, or no status updates have been sent to %s.', 'social-post-flow' ),
-								$this->base->plugin->account
-							)
-							.
+							__( 'No log entries exist, or no status updates have been sent to Social Post Flow.', 'social-post-flow' ) .
 						'</td>
                     </tr>';
 
@@ -1019,19 +998,19 @@ class Social_Post_Flow_Log {
 				case 'success':
 					$html .= '  <td class="result_message column-result_message' . ( in_array( 'result_message', $hidden, true ) ? ' hidden' : '' ) . '">' . $result['result_message'] . '</td>
                                 <td class="status_created_at column-status_created_at' . ( in_array( 'status_created_at', $hidden, true ) ? ' hidden' : '' ) . '">' . get_date_from_gmt( $result['status_created_at'], get_option( 'date_format' ) . ' H:i:s' ) . '</td>
-                                <td class="status_due_at column-status_due_at' . ( in_array( 'status_due_at', $hidden, true ) ? ' hidden' : '' ) . '">' . ( ( $result['status_due_at'] !== '0000-00-00 00:00:00' ) ? get_date_from_gmt( $result['status_due_at'], get_option( 'date_format' ) . ' H:i:s' ) : '' ) . '</td>';
+                                <td class="status_scheduled_at column-status_scheduled_at' . ( in_array( 'status_scheduled_at', $hidden, true ) ? ' hidden' : '' ) . '">' . ( ( $result['status_scheduled_at'] !== '0000-00-00 00:00:00' ) ? get_date_from_gmt( $result['status_scheduled_at'], get_option( 'date_format' ) . ' H:i:s' ) : '' ) . '</td>';
 					break;
 
 				case 'test':
 					$html .= '  <td class="result_message column-result_message' . ( in_array( 'result_message', $hidden, true ) ? ' hidden' : '' ) . '">' . $result['result_message'] . '</td>
                                 <td class="status_created_at column-status_created_at' . ( in_array( 'status_created_at', $hidden, true ) ? ' hidden' : '' ) . '">' . get_date_from_gmt( $result['status_created_at'], get_option( 'date_format' ) . ' H:i:s' ) . '</td>
-                                <td class="status_due_at column-status_due_at' . ( in_array( 'status_due_at', $hidden, true ) ? ' hidden' : '' ) . '">' . ( ( $result['status_due_at'] !== '0000-00-00 00:00:00' ) ? get_date_from_gmt( $result['status_due_at'], get_option( 'date_format' ) . ' H:i:s' ) : '' ) . '</td>';
+                                <td class="status_scheduled_at column-status_scheduled_at' . ( in_array( 'status_scheduled_at', $hidden, true ) ? ' hidden' : '' ) . '">' . ( ( $result['status_scheduled_at'] !== '0000-00-00 00:00:00' ) ? get_date_from_gmt( $result['status_scheduled_at'], get_option( 'date_format' ) . ' H:i:s' ) : '' ) . '</td>';
 					break;
 
 				default:
 					$html .= '  <td class="result_message column-result_message' . ( in_array( 'result_message', $hidden, true ) ? ' hidden' : '' ) . '">' . nl2br( $result['result_message'] ) . '</td>
                                 <td class="status_created_at column-status_created_at' . ( in_array( 'status_created_at', $hidden, true ) ? ' hidden' : '' ) . '">&nbsp;</td>
-                                <td class="status_due_at column-status_due_at' . ( in_array( 'status_due_at', $hidden, true ) ? ' hidden' : '' ) . '">&nbsp;</td>';
+                                <td class="status_scheduled_at column-status_scheduled_at' . ( in_array( 'status_scheduled_at', $hidden, true ) ? ' hidden' : '' ) . '">&nbsp;</td>';
 					break;
 			}
 

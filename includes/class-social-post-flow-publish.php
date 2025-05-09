@@ -501,21 +501,21 @@ class Social_Post_Flow_Publish {
 	 */
 	public function schedule_publish( $post_id, $action ) {
 
-		social_post_flow()->get_class( 'log' )->add_to_debug_log( $this->base->plugin->displayName . ': schedule_publish(): Post ID: #' . $post_id );
-		social_post_flow()->get_class( 'log' )->add_to_debug_log( $this->base->plugin->displayName . ': schedule_publish(): Action: ' . $action );
+		social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Social Post Flow: schedule_publish(): Post ID: #' . $post_id );
+		social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Social Post Flow: schedule_publish(): Action: ' . $action );
 
 		// Get settings, validating the Post and Action.
 		$settings = $this->validate( $post_id, $action );
 
 		// If an error occured, bail.
 		if ( is_wp_error( $settings ) ) {
-			social_post_flow()->get_class( 'log' )->add_to_debug_log( $this->base->plugin->displayName . ': schedule_publish(): Settings Error: ' . $settings->get_error_message() );
+			social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Social Post Flow: schedule_publish(): Settings Error: ' . $settings->get_error_message() );
 			return $settings;
 		}
 
 		// If settings are false, we're not sending this Post, so there's no need to schedule an event.
 		if ( ! $settings ) {
-			social_post_flow()->get_class( 'log' )->add_to_debug_log( $this->base->plugin->displayName . ': schedule_publish(): Settings are blank, no event needs to be scheduled' );
+			social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Social Post Flow: schedule_publish(): Settings are blank, no event needs to be scheduled' );
 			return false;
 		}
 
@@ -565,7 +565,7 @@ class Social_Post_Flow_Publish {
 
 		// Bail if an error occured scheduling.
 		if ( is_wp_error( $event ) ) {
-			social_post_flow()->get_class( 'log' )->add_to_debug_log( $this->base->plugin->displayName . ': schedule_publish(): Event Error: ' . $event->get_error_message() );
+			social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Social Post Flow: schedule_publish(): Event Error: ' . $event->get_error_message() );
 			return $event;
 		}
 
@@ -577,12 +577,7 @@ class Social_Post_Flow_Publish {
 				'profile_id'     => false,
 				'profile_name'   => false,
 				'result'         => 'pending',
-				'result_message' => sprintf(
-					/* translators: %1$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot), %2$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-					__( 'Status added to WordPress Cron for sending to %1$s.  Check the Post\'s Log after the "Request Sent" date and time to confirm that the status has been added to %2$s', 'social-post-flow' ),
-					$this->base->plugin->account,
-					$this->base->plugin->account
-				),
+				'result_message' => __( 'Status added to WordPress Cron for sending to Social Post Flow. Check the Post\'s Log after the "Request Sent" date and time to confirm that the status has been added to Social Post Flow.', 'social-post-flow' ),
 				'status_text'    => false,
 			),
 		);
@@ -613,16 +608,16 @@ class Social_Post_Flow_Publish {
 	 */
 	public function publish( $post_id, $action, $test_mode = false ) {
 
-		social_post_flow()->get_class( 'log' )->add_to_debug_log( $this->base->plugin->displayName . ': publish(): Post ID: #' . $post_id );
-		social_post_flow()->get_class( 'log' )->add_to_debug_log( $this->base->plugin->displayName . ': publish(): Action: ' . $action );
-		social_post_flow()->get_class( 'log' )->add_to_debug_log( $this->base->plugin->displayName . ': publish(): Test Mode: ' . ( $test_mode ? 'Yes' : 'No' ) );
+		social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Social Post Flow: publish(): Post ID: #' . $post_id );
+		social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Social Post Flow: publish(): Action: ' . $action );
+		social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Social Post Flow: publish(): Test Mode: ' . ( $test_mode ? 'Yes' : 'No' ) );
 
 		// Get settings, validating the Post and Action.
 		$settings = $this->validate( $post_id, $action );
 
 		// If an error occured, bail.
 		if ( is_wp_error( $settings ) ) {
-			social_post_flow()->get_class( 'log' )->add_to_debug_log( $this->base->plugin->displayName . ': publish(): Settings Error: ' . $settings->get_error_message() );
+			social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Social Post Flow: publish(): Settings Error: ' . $settings->get_error_message() );
 			return $settings;
 		}
 
@@ -644,12 +639,7 @@ class Social_Post_Flow_Publish {
 		if ( ! $access_token ) {
 			return new WP_Error(
 				'no_access_token',
-				sprintf(
-					/* translators: %1$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot), %2$s: Plugin Name */
-					__( 'The Plugin has not been authorized with %1$s! Go to %2$s > Settings to setup the plugin.', 'social-post-flow' ),
-					$this->base->plugin->account,
-					$this->base->plugin->displayName
-				)
+				__( 'The Plugin has not been authorized with Social Post Flow! Go to Social Post Flow > Settings to setup the plugin.', 'social-post-flow' )
 			);
 		}
 
@@ -661,7 +651,7 @@ class Social_Post_Flow_Publish {
 
 		// Bail if the Profiles could not be fetched.
 		if ( is_wp_error( $profiles ) ) {
-			social_post_flow()->get_class( 'log' )->add_to_debug_log( $this->base->plugin->displayName . ': publish(): Profiles Error: ' . $profiles->get_error_message() );
+			social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Social Post Flow: publish(): Profiles Error: ' . $profiles->get_error_message() );
 			return $profiles;
 		}
 
@@ -827,7 +817,7 @@ class Social_Post_Flow_Publish {
 			}
 		}
 
-		social_post_flow()->get_class( 'log' )->add_to_debug_log( $this->base->plugin->displayName . ': publish(): Statuses: ' . print_r( $statuses, true ) ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions
+		social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Social Post Flow: publish(): Statuses: ' . print_r( $statuses, true ) ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions
 
 		// Check if any statuses exist.
 		// If not, exit.
@@ -845,20 +835,20 @@ class Social_Post_Flow_Publish {
 						/* translators: %1$s: Post Type Name, Singular, %2$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot), %3$s: Action (Publish, Update, Repost, Bulk Publish), %4$s, %5$s, %6$s: Post Type Name, Singular, %7$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot), %8$s: Plugin URL, %9$s: Plugin Name, %10$s: Post Type Name, Singular, %11$s: Action (Publish, Update, Repost, Bulk Publish) */
 						__( 'Status(es) exist for sending this %1$s to %2$s when you %3$s a %4$s, but no status was sent because the %5$s did not meet the status conditions. If you want this %6$s to be sent to %7$s, navigate to <a href="%8$s" target="_blank">%9$s > Settings > %10$s Tab > %11$s Action Tab</a>, ensuring that no Conditions are set on the defined statuses.', 'social-post-flow' ),
 						$post_type_object->labels->singular_name,
-						$this->base->plugin->account,
+						__( 'Social Post Flow', 'social-post-flow' ),
 						ucwords( str_replace( '_', ' ', $action ) ),
 						$post_type_object->labels->singular_name,
 						$post_type_object->labels->singular_name,
 						$post_type_object->labels->singular_name,
-						$this->base->plugin->account,
+						__( 'Social Post Flow', 'social-post-flow' ),
 						$plugin_url,
-						$this->base->plugin->displayName,
+						__( 'Social Post Flow', 'social-post-flow' ),
 						$post_type_object->labels->name,
 						ucwords( str_replace( '_', ' ', $action ) )
 					)
 				);
 
-				social_post_flow()->get_class( 'log' )->add_to_debug_log( $this->base->plugin->displayName . ': publish(): Statuses Error: ' . $error->get_error_message() );
+				social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Social Post Flow: publish(): Statuses Error: ' . $error->get_error_message() );
 
 				return $error;
 			} else {
@@ -871,12 +861,12 @@ class Social_Post_Flow_Publish {
 							__( 'No %1$s Settings are defined for sending this %2$s to %3$s when you %4$s. To send statuses to %5$s on %6$s, <a href="%7$s" target="_blank">Edit the Post</a>, navigate to %8$s > Defaults > %9$s Action Tab, tick "Enabled" and also enable at least one social media profile.', 'social-post-flow' ),
 							$post_type_object->labels->singular_name,
 							$post_type_object->labels->singular_name,
-							$this->base->plugin->account,
+							__( 'Social Post Flow', 'social-post-flow' ),
 							ucwords( str_replace( '_', ' ', $action ) ),
-							$this->base->plugin->account,
+							__( 'Social Post Flow', 'social-post-flow' ),
 							ucwords( str_replace( '_', ' ', $action ) ),
 							$post_url,
-							$this->base->plugin->displayName,
+							__( 'Social Post Flow', 'social-post-flow' ),
 							ucwords( str_replace( '_', ' ', $action ) )
 						)
 					);
@@ -887,20 +877,20 @@ class Social_Post_Flow_Publish {
 							/* translators: %1$s: Post Type Name, Singular, %2$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot), %3$s: Action (Publish, Update, Repost, Bulk Publish), %4$s, %5$s, %6$s: Post Type Name, Singular, %7$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot), %8$s: Plugin URL, %9$s: Plugin Name, %10$s: Post Type Name, Singular, %11$s: Action (Publish, Update, Repost, Bulk Publish) */
 							__( 'No Plugin Settings are defined for sending %1$s to %2$s when you %3$s a %4$s. To send statuses to %5$s on %6$s, navigate to <a href="%7$s" target="_blank">%8$s > Settings > %9$s Tab > %10$s Action Tab</a>, tick "Enabled", and also enable at least one social media profile.', 'social-post-flow' ),
 							$post_type_object->labels->name,
-							$this->base->plugin->account,
+							__( 'Social Post Flow', 'social-post-flow' ),
 							ucwords( str_replace( '_', ' ', $action ) ),
 							$post_type_object->labels->singular_name,
-							$this->base->plugin->account,
+							__( 'Social Post Flow', 'social-post-flow' ),
 							ucwords( str_replace( '_', ' ', $action ) ),
 							$plugin_url,
-							$this->base->plugin->displayName,
+							__( 'Social Post Flow', 'social-post-flow' ),
 							$post_type_object->labels->name,
 							ucwords( str_replace( '_', ' ', $action ) )
 						)
 					);
 				}
 
-				social_post_flow()->get_class( 'log' )->add_to_debug_log( $this->base->plugin->displayName . ': publish(): Statuses Error: ' . $error->get_error_message() );
+				social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Social Post Flow: publish(): Statuses Error: ' . $error->get_error_message() );
 
 				return $error;
 			}
@@ -952,7 +942,7 @@ class Social_Post_Flow_Publish {
 		$supported_actions = array_keys( social_post_flow()->get_class( 'common' )->get_post_actions() );
 		if ( ! in_array( $action, $supported_actions, true ) ) {
 			return new WP_Error(
-				'wp_to_social_pro_publish_invalid_action',
+				'wp_to_social_post_flow_publish_invalid_action',
 				sprintf(
 					/* translators: Action */
 					__( 'The %s action is not supported.', 'social-post-flow' ),
@@ -1599,44 +1589,14 @@ class Social_Post_Flow_Publish {
 	private function build_args( $post, $profile_id, $service, $status, $action ) {
 
 		// Build each API argument.
-		// Profile ID.
+		// @TODO Build to match API logic.
 		$args = array(
+			'post_type' => $status['update_type'] ?? 'post', // @TODO set to text,link,image,story.
+			'text' => $this->parse_text( $post, $status['message'] ),
+			'url' => $this->get_permalink( $post ),
 			'profile_ids' => array( $profile_id ),
+			'media_urls' => $this->parse_media_urls( $post, $status['media_urls'] ),
 		);
-
-		// Text.
-		$args['text'] = $this->parse_text( $post, $status['message'] );
-
-		// Shorten URLs.
-		if ( $this->base->supports( 'url_shortening' ) ) {
-			$disable_url_shortening = social_post_flow()->get_class( 'settings' )->get_option( 'disable_url_shortening', false );
-			$args['shorten']        = ( $disable_url_shortening ? 'false' : 'true' );
-		}
-
-		// Drafts.
-		if ( $this->base->supports( 'drafts' ) ) {
-			$is_draft         = social_post_flow()->get_class( 'settings' )->get_option( 'is_draft', false );
-			$args['is_draft'] = ( $is_draft ? 'true' : 'false' );
-		}
-
-		// Google Business Profiles.
-		if ( $this->base->supports( 'googlebusiness' ) && $service === 'googlebusiness' ) {
-			$args['channel_data'] = array(
-				'googlebusiness' => $this->parse_google_business( $post, $status ),
-			);
-
-			// Remove channel data if the configuration is false.
-			if ( ! $args['channel_data']['googlebusiness'] ) {
-				unset( $args['channel_data'] );
-			}
-		}
-
-		// Instagram Update Type.
-		if ( $this->base->supports( 'instagram_update_type' ) && $service === 'instagram' ) {
-			if ( array_key_exists( 'update_type', $status ) && $status['update_type'] === 'story' ) {
-				$args['update_type'] = $status['update_type'];
-			}
-		}
 
 		// Schedule.
 		switch ( $status['schedule'] ) {
@@ -1979,43 +1939,7 @@ class Social_Post_Flow_Publish {
 			}
 		}
 
-		// Pinterest.
-		if ( $service === 'pinterest' && isset( $status['sub_profile'] ) ) {
-			// Set Board ID.
-			$args['subprofile_ids'] = array(
-				$status['sub_profile'],
-			);
-
-			// Title.
-			if ( $this->base->supports( 'pinterest_title' ) ) {
-				if ( array_key_exists( 'title', $status ) ) {
-					$args['title'] = $this->parse_text( $post, $status['title'] );
-				}
-			}
-
-			// URL.
-			if ( $this->base->supports( 'pinterest_source_url' ) ) {
-				// Set Source URL.
-				if ( array_key_exists( 'source_url', $status ) ) {
-					$args['source_url'] = $this->parse_text( $post, $status['source_url'] );
-				}
-
-				// If no Source URL defined, fall back to the Post's URL.
-				if ( ! array_key_exists( 'source_url', $args ) || empty( $args['source_url'] ) ) {
-					$args['source_url'] = $this->get_permalink( $post );
-				}
-			}
-		}
-
-		// Instagram.
-		if ( $service === 'instagram' ) {
-			// Add 'link' parameter so this status has a link when viewed through shopgr.id.
-			$args['link'] = $this->get_permalink( $post );
-		}
-
 		// Replace Profile Tags.
-		// Link shortening may be disabled by this function, regardless of the Plugin's setting - otherwise our indicies will be incorrect when a
-		// Facebook Page mention exists and long link is changed to e.g.http://buff.ly/2k2vfeo by Buffer.
 		$args = $this->process_profile_mentions( $args, $post, $profile_id, $service, $status, $action );
 
 		/**
@@ -2093,11 +2017,6 @@ class Social_Post_Flow_Publish {
 	 * @return  bool|array
 	 */
 	private function get_additional_images( $post, $service, $status, $format ) {
-
-		// If the social media API doesn't support additional images, don't fetch any.
-		if ( ! $this->base->supports( 'additional_images' ) ) {
-			return false;
-		}
 
 		// Additional images are only supported if the status' image setting = Use Feat. Image, not linked to Post.
 		if ( $status['image'] != 2 ) { // phpcs:ignore Universal.Operators.StrictComparisons.LooseNotEqual
@@ -3197,11 +3116,6 @@ class Social_Post_Flow_Publish {
 	 */
 	private function process_profile_mentions( $args, $post, $profile_id, $service, $status, $action ) {
 
-		// Bail if Facebook Mentions aren't supported.
-		if ( ! $this->base->supports( 'facebook_mentions' ) ) {
-			return $args;
-		}
-
 		// Bail if this isn't a service we need to process/link profile mentions for.
 		if ( $service !== 'facebook' ) {
 			return $args;
@@ -4114,7 +4028,7 @@ class Social_Post_Flow_Publish {
 					'result_message'    => '',
 					'status_text'       => $status['text'],
 					'status_created_at' => date( 'Y-m-d H:i:s', strtotime( 'now' ) ), // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
-					'status_due_at'     => ( isset( $status['scheduled_at'] ) ? $status['scheduled_at'] : '' ),
+					'status_scheduled_at'     => ( isset( $status['scheduled_at'] ) ? $status['scheduled_at'] : '' ),
 				);
 
 				continue;
@@ -4148,7 +4062,7 @@ class Social_Post_Flow_Publish {
 					'result_message'    => $result['message'],
 					'status_text'       => $result['status_text'],
 					'status_created_at' => date( 'Y-m-d H:i:s', $result['status_created_at'] ), // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
-					'status_due_at'     => ( $result['due_at'] !== '0000-00-00 00:00:00' ? date( 'Y-m-d H:i:s', $result['due_at'] ) : '0000-00-00 00:00:00' ), // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+					'status_scheduled_at'     => ( $result['scheduled_at'] !== '0000-00-00 00:00:00' ? date( 'Y-m-d H:i:s', $result['scheduled_at'] ) : '0000-00-00 00:00:00' ), // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
 				);
 			}
 		}
@@ -4175,7 +4089,7 @@ class Social_Post_Flow_Publish {
 
 			// Request that the user review the plugin. Notification displayed later,
 			// can be called multiple times and won't re-display the notification if dismissed.
-			$this->base->dashboard->request_review();
+			social_post_flow()->dashboard->request_review();
 		} else {
 			update_post_meta( $post_id, '_' . 'social_post_flow_success', 0 );
 			update_post_meta( $post_id, '_' . 'social_post_flow_error', 1 );

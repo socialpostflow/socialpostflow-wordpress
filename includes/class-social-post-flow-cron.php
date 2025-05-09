@@ -287,20 +287,20 @@ class Social_Post_Flow_Cron {
 	 */
 	public function repost( $test_mode = false ) {
 
-		social_post_flow()->get_class( 'log' )->add_to_debug_log( $this->base->plugin->displayName . ': repost(): Started' );
-		social_post_flow()->get_class( 'log' )->add_to_debug_log( $this->base->plugin->displayName . ': repost(): Test Mode: ' . $test_mode );
+		social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Social Post Flow: repost(): Started' );
+		social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Social Post Flow: repost(): Test Mode: ' . $test_mode );
 
 		// Bail if repost cron is disabled.
 		// We shouldn't ever call this function if this is the case, but it's a useful sanity check.
 		if ( social_post_flow()->get_class( 'settings' )->get_setting( 'repost_disable_cron', 0 ) ) {
-			social_post_flow()->get_class( 'log' )->add_to_debug_log( $this->base->plugin->displayName . ': repost(): Stopped, as Settings > Repost Settings > Disable Repost Cron is selected' );
+			social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Social Post Flow: repost(): Stopped, as Settings > Repost Settings > Disable Repost Cron is selected' );
 			return;
 		}
 
 		// Bail if no Repost Schedule exists.
 		$repost_schedule = social_post_flow()->get_class( 'settings' )->get_option( 'repost_time', false );
 		if ( ! $repost_schedule ) {
-			social_post_flow()->get_class( 'log' )->add_to_debug_log( $this->base->plugin->displayName . ': repost(): Stopped, as Settings > Repost Settings > Repost Times are empty' );
+			social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Social Post Flow: repost(): Stopped, as Settings > Repost Settings > Repost Times are empty' );
 			return;
 		}
 
@@ -315,24 +315,24 @@ class Social_Post_Flow_Cron {
 
 		// Bail if no Repost Schedule exists for today.
 		if ( ! isset( $repost_schedule[ $current_day ] ) ) {
-			social_post_flow()->get_class( 'log' )->add_to_debug_log( $this->base->plugin->displayName . ': repost(): Stopped, as Settings > Repost Settings has no schedule for Day ' . $current_day );
+			social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Social Post Flow: repost(): Stopped, as Settings > Repost Settings has no schedule for Day ' . $current_day );
 			return;
 		}
 		if ( ! $repost_schedule[ $current_day ] ) {
-			social_post_flow()->get_class( 'log' )->add_to_debug_log( $this->base->plugin->displayName . ': repost(): Stopped, as Settings > Repost Settings has no schedule for Day ' . $current_day );
+			social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Social Post Flow: repost(): Stopped, as Settings > Repost Settings has no schedule for Day ' . $current_day );
 			return;
 		}
 
 		// Bail if this hour isn't in the Repost Schedule.
 		if ( ! in_array( $current_hour, $repost_schedule[ $current_day ], true ) ) {
-			social_post_flow()->get_class( 'log' )->add_to_debug_log( $this->base->plugin->displayName . ': repost(): Stopped, as Settings > Repost Settings is not set to run on Day ' . $current_day . ', Hour ' . $current_hour );
+			social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Social Post Flow: repost(): Stopped, as Settings > Repost Settings is not set to run on Day ' . $current_day . ', Hour ' . $current_hour );
 			return;
 		}
 
 		// If here, run the Repost action.
 		social_post_flow()->get_class( 'repost' )->run( false, $test_mode );
 
-		social_post_flow()->get_class( 'log' )->add_to_debug_log( $this->base->plugin->displayName . ': repost(): Finished' );
+		social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Social Post Flow: repost(): Finished' );
 
 	}
 

@@ -62,17 +62,9 @@ class Social_Post_Flow_Common {
 
 		// Build schedule options.
 		$schedule = array(
-			'queue_bottom'    => sprintf(
-				/* translators: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-				__( 'Add to End of %s Queue', 'social-post-flow' ),
-				$this->base->plugin->account
-			),
-			'queue_top'       => sprintf(
-				/* translators: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-				__( 'Add to Start of %s Queue', 'social-post-flow' ),
-				$this->base->plugin->account
-			),
-			'now'             => __( 'Post Immediately', 'social-post-flow' ),
+			'queue_end'    => __( 'Add to End of Social Post Flow Queue', 'social-post-flow' ),
+			'queue_start'       => __( 'Add to Start of Social Post Flow Queue', 'social-post-flow' ),
+			'immediate'             => __( 'Post Immediately', 'social-post-flow' ),
 			'custom'          => __( 'Custom Time', 'social-post-flow' ),
 			'custom_relative' => __( 'Custom Time (Relative Format)', 'social-post-flow' ),
 			'custom_field'    => __( 'Custom Time (based on Custom Field / Post Meta Value)', 'social-post-flow' ),
@@ -763,17 +755,9 @@ class Social_Post_Flow_Common {
 
 		// Build condition options.
 		$options = array(
-			'-1' => sprintf(
-				/* translators: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-				__( 'Do NOT Post to %s', 'social-post-flow' ),
-				$this->base->plugin->account
-			),
+			'-1' => __( 'Do NOT Post to Social Post Flow', 'social-post-flow' ),
 			'0'  => __( 'Use Plugin Settings', 'social-post-flow' ),
-			'1'  => sprintf(
-				/* translators: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-				__( 'Post to %s using Manual Settings', 'social-post-flow' ),
-				$this->base->plugin->account
-			),
+			'1'  => __( 'Post to Social Post Flow using Manual Settings', 'social-post-flow' ),
 		);
 
 		/**

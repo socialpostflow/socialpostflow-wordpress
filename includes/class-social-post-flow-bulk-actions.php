@@ -70,11 +70,7 @@ class Social_Post_Flow_Bulk_Actions {
 
 		// Define Actions.
 		$bulk_actions = array(
-			'social-post-flow' => sprintf(
-				/* translators: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-				__( 'Send to %s', 'social-post-flow' ),
-				$this->base->plugin->account
-			),
+			'social-post-flow' => __( 'Send to Social Post Flow', 'social-post-flow' ),
 		);
 
 		/**

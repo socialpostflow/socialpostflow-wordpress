@@ -65,7 +65,6 @@ class Social_Post_Flow {
 		$this->plugin->displayName       = 'Social Post Flow';
 		$this->plugin->description       = 'Send WordPress Pages, Posts or Custom Post Types to your Social Post Flow account for scheduled publishing to social networks.';
 		$this->plugin->author_name       = 'WP Zinc';
-		$this->plugin->settingsName      = 'social-post-flow';
 		$this->plugin->account           = 'Social Post Flow';
 		$this->plugin->version           = SOCIAL_POST_FLOW_PLUGIN_VERSION;
 		$this->plugin->buildDate         = SOCIAL_POST_FLOW_PLUGIN_BUILD_DATE;

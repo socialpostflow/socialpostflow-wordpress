@@ -845,10 +845,9 @@ class Social_Post_Flow_Admin {
 					// Revert back a stage with an error message.
 					social_post_flow()->get_class( 'notices' )->add_error_notice(
 						sprintf(
-							/* translators: %1$s: Post Type Singular Name, %2$s: Plugin Name */
-							__( 'Please select at least one %1$s to publish to %2$s.', 'social-post-flow' ),
-							$post_types[ $post_type ]->labels->singular_name,
-							$this->base->plugin->displayName
+							/* translators: %1$s: Post Type Singular Name */
+							__( 'Please select at least one %1$s to publish to Social Post Flow.', 'social-post-flow' ),
+							$post_types[ $post_type ]->labels->singular_name
 						)
 					);
 					$stage = 1;
@@ -924,7 +923,7 @@ class Social_Post_Flow_Admin {
 	public function log_screen() {
 
 		// Init table.
-		$table = new Social_Post_Flow_Log_Table( $this->base );
+		$table = new Social_Post_Flow_Log_Table();
 		$table->prepare_items();
 
 		// Load View.

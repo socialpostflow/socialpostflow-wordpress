@@ -74,14 +74,7 @@ class Social_Post_Flow_Post {
 			<div class="notice notice-success is-dismissible">
 				<p>
 					<?php
-					echo esc_html(
-						sprintf(
-						/* translators: %1$s: Plugin Name, %2$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-							__( '%1$s: Post successfully added to %2$s.', 'social-post-flow' ),
-							$this->base->plugin->displayName,
-							$this->base->plugin->account
-						)
-					);
+					esc_html_e__( 'Social Post Flow: Post successfully added to Social Post Flow.', 'social-post-flow' );
 					?>
 				</p>
 			</div>
@@ -97,14 +90,7 @@ class Social_Post_Flow_Post {
 			<div class="notice notice-error is-dismissible">
 				<p>
 					<?php
-					echo esc_html(
-						sprintf(
-						/* translators: %1$s: Plugin Name, %2$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot) */
-							__( '%1$s: Some status(es) could not be sent to %2$s', 'social-post-flow' ),
-							$this->base->plugin->displayName,
-							$this->base->plugin->account
-						)
-					);
+					esc_html_e( 'Social Post Flow: Some status(es) could not be sent to Social Post Flow', 'social-post-flow' );
 					?>
 					<br />
 					<?php
@@ -140,20 +126,7 @@ class Social_Post_Flow_Post {
 			wp_get_current_user()->roles[0]
 		);
 
-		// Determine the title for the Featured Image Meta Box, depending on whether the Plugin supports additional images.
-		if ( $this->base->supports( 'additional_images' ) ) {
-			$title = sprintf(
-				/* translators: Plugin Name */
-				__( '%s: Featured and Additional Images', 'social-post-flow' ),
-				$this->base->plugin->displayName
-			);
-		} else {
-			$title = sprintf(
-				/* translators: Plugin Name */
-				__( '%s: Featured Image', 'social-post-flow' ),
-				$this->base->plugin->displayName
-			);
-		}
+		$title = esc_html__( 'Social Post Flow: Featured and Additional Images', 'social-post-flow' );
 
 		// Add meta boxes for each Post Type.
 		foreach ( $post_types as $post_type => $post_type_obj ) {
@@ -161,7 +134,7 @@ class Social_Post_Flow_Post {
 			add_meta_box( 'social-post-flow-image', $title, array( $this, 'meta_image' ), $post_type, 'side', 'low' );
 
 			// Status Settings.
-			add_meta_box( 'social-post-flow', $this->base->plugin->displayName, array( $this, 'meta_settings' ), $post_type, 'normal', 'low' );
+			add_meta_box( 'social-post-flow', __( 'Social Post Flow', 'social-post-flow' ), array( $this, 'meta_settings' ), $post_type, 'normal', 'low' );
 		}
 
 	}
@@ -290,13 +263,9 @@ class Social_Post_Flow_Post {
 	 */
 	private function get_post_images( $post_id ) {
 
-		// If additional images are supported by the calling Plugin, allow 10 images
-		// in total to be defined.  Otherwise, only allow a single Featured Image.
-		$supported_images_total = ( $this->base->supports( 'additional_images' ) ? 10 : 1 );
-
 		// Fetch existing images that might have been assigned to this Post.
 		$images = array();
-		for ( $i = 0; $i < $supported_images_total; $i++ ) {
+		for ( $i = 0; $i < 10; $i++ ) {
 			switch ( $i ) {
 				case 0:
 					// For backward compat, the first image is stored in the featured_image key

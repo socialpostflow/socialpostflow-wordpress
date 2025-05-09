@@ -38,12 +38,7 @@ class Social_Post_Flow_Bulk_Publish {
 		if ( ! $access_token ) {
 			return new WP_Error(
 				'no_access_token',
-				sprintf(
-					/* translators: %1$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot), %2$s: Plugin Name */
-					__( 'The Plugin has not been authorized with %1$s! Go to %2$s > Settings to setup the plugin.', 'social-post-flow' ),
-					$this->base->plugin->account,
-					$this->base->plugin->displayName
-				)
+				__( 'The Plugin has not been authorized with Social Post Flow. Go to Social Post Flow > Settings to setup the plugin.', 'social-post-flow' )
 			);
 		}
 
