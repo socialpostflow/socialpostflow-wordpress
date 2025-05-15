@@ -87,6 +87,13 @@ class Social_Post_Flow_API {
 	 */
 	public $refresh_token = '';
 
+	/**
+	 * Returns the URL used to register a new account
+	 *
+	 * @since   1.0.0
+	 *
+	 * @return  string                 Registration URL
+	 */
 	public function get_registration_url() {
 
 		return 'https://socialpostflow.local/register';
@@ -457,23 +464,7 @@ class Social_Post_Flow_API {
 	 */
 	public function create_post( $params ) {
 
-		// Send request.
-		$result = $this->post( 'post', $params );
-
-		// Bail if the result is an error.
-		if ( is_wp_error( $result ) ) {
-			return $result;
-		}
-
-		// Return array of just the data we need to send to the Plugin.
-		// @TODO.
-		return array(
-			'profile_id'        => $result->updates[0]->profile_id,
-			'message'           => $result->message,
-			'status_text'       => $result->updates[0]->text,
-			'status_created_at' => $result->updates[0]->created_at,
-			'scheduled_at'      => ( isset( $result->updates[0]->scheduled_at ) ? $result->updates[0]->scheduled_at : '0000-00-00 00:00:00' ),
-		);
+		return $this->post( 'post', $params );
 
 	}
 

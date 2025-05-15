@@ -7,7 +7,6 @@
  * @author  WP Zinc
  */
 
-// var_dump( social_post_flow()->get_class( 'common' )->get_status_post_type_options() );
 ?>
 <div id="social-post-flow-status-form-container" class="hidden">
 	<div id="social-post-flow-status-form">
@@ -50,18 +49,6 @@
 					<?php
 				}
 				?>
-			</div>
-		</div>
-
-		<!-- Link -->
-		<div class="wpzinc-option link">
-			<div class="full">
-				<h3><?php esc_html_e( 'Link', 'social-post-flow' ); ?></h3>
-				<p class="description">
-					<?php esc_html_e( 'The "primary" URL to use for the link preview / card. Additional links can be included in the status text above.', 'social-post-flow' ); ?>
-				</p>
-
-				<input type="text" name="social-post-flow_url" class="widefat url" />
 			</div>
 		</div>
 
@@ -142,6 +129,18 @@
 						<input type="datetime-local" name="social-post-flow_schedule_specific" class="widefat" placeholder="<?php esc_attr_e( 'Date and Time', 'social-post-flow' ); ?>" />   
 					</span>
 				</div>
+			</div>
+		</div>
+
+		<!-- Link -->
+		<div class="wpzinc-option link">
+			<div class="full">
+				<h3><?php esc_html_e( 'Link', 'social-post-flow' ); ?></h3>
+				<p class="description">
+					<?php esc_html_e( 'The "primary" URL to use for the link preview / card. Additional links can be included in the status text above.', 'social-post-flow' ); ?>
+				</p>
+
+				<input type="text" name="social-post-flow_url" class="widefat url" />
 			</div>
 		</div>
 

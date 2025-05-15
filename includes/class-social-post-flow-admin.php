@@ -54,7 +54,7 @@ class Social_Post_Flow_Admin {
 	public function maybe_get_access_token() {
 
 		// If a code is included in the request, exchange it for an access token.
-		if ( ! isset( $_REQUEST['code'] ) ) {
+		if ( ! isset( $_REQUEST['code'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			return;
 		}
 

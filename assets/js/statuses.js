@@ -448,24 +448,62 @@ function socialPostFlowUpdateImageOptions() {
 
 }
 
-function socialPostFlowUpdateStatusOptions() {
+/**
+ * Update post type options based on the profile provider.
+ *
+ * @since 	1.0.0
+ *
+ * @param 	object 	profile 	Profile.
+ */
+function socialPostFlowUpdatePostTypeOptions( profile ) {
+
+	( function ( $ ) {
+
+		switch ( profile.provider ) {
+			case 'instagram':
+				$( 'option[value="text"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', true );
+				$( 'option[value="link"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', true );
+				$( 'option[value="image"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', false );
+				$( 'option[value="story"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', false );
+				break;
+
+			default:
+				$( 'option[value="text"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', false );
+				$( 'option[value="link"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', false );
+				$( 'option[value="image"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', false );
+				$( 'option[value="story"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', true );
+				break;
+		}
+
+	} )( jQuery );
+
+}
+
+/**
+ * Show/hide status options based on the chosen post type
+ *
+ * @since 	1.0.0
+ */
+function socialPostFlowUpdateStatusSections() {
 
 	( function ( $ ) {
 
 		switch ( $( 'select.post_type', $( social_post_flow.status_form ) ).val() ) {
-			case 'featured_image':
-				$( '.additional-images', $( social_post_flow.status_form ) ).show();
-				$( '.text-to-image', $( social_post_flow.status_form ) ).hide();
+			case 'text':
+				$( '.link', $( social_post_flow.status_form ) ).hide();
+				$( '.images', $( social_post_flow.status_form ) ).hide();
 				break;
 
-			/**
-			 * Use Text to Image, not linked to Post
-			 */
-			case 'text_to_image':
-				$( '.additional-images', $( social_post_flow.status_form ) ).hide();
-				$( '.text-to-image', $( social_post_flow.status_form ) ).show();
+			case 'link':
+				$( '.link', $( social_post_flow.status_form ) ).show();
+				$( '.images', $( social_post_flow.status_form ) ).hide();
 				break;
 
+			case 'image':
+			case 'story':
+				$( '.link', $( social_post_flow.status_form ) ).hide();
+				$( '.images', $( social_post_flow.status_form ) ).show();
+				break;
 		}
 
 	} )( jQuery );
@@ -525,14 +563,17 @@ function socialPostFlowEditStatus( profile_id, profile, action, status_index, st
 	// Populate form values.
 	socialPostFlowPopulateStatusForm( profile_id, profile, action, status_index, status );
 
+	// Update post type options.
+	socialPostFlowUpdatePostTypeOptions( profile );
+
 	// Update schedule options.
 	socialPostFlowUpdateScheduleOptions( action );
 
 	// Update image options.
 	socialPostFlowUpdateImageOptions();
 
-	// Update status options, depending on the status' post type.
-	socialPostFlowUpdateStatusOptions();
+	// Update status sections to display, depending on the status' post type.
+	socialPostFlowUpdateStatusSections();
 
 	// Display form.
 	socialPostFlowDisplayStatusForm( profile_id, action, status_index );
@@ -618,15 +659,6 @@ function socialPostFlowUpdateStatus( profile_id, action, status_index ) {
 				field.name = field.name.replace( social_post_flow.plugin_name + '_', '' );
 
 				switch ( field.name ) {
-
-					case 'sub_profile':
-						// Check both <select> and <input> for a value.
-						if ( $( 'input[name="' + social_post_flow.plugin_name + '_' + field.name + '"]', $( social_post_flow.status_form ) ).val() !== '' ) {
-							status[ field.name ] = $( 'input[name="' + social_post_flow.plugin_name + '_' + field.name + '"]', $( social_post_flow.status_form ) ).val();
-						} else if ( $( 'select[name="' + social_post_flow.plugin_name + '_' + field.name + '"]', $( social_post_flow.status_form ) ).val() ) {
-							status[ field.name ] = $( 'select[name="' + social_post_flow.plugin_name + '_' + field.name + '"]', $( social_post_flow.status_form ) ).val();
-						}
-						break;
 
 					/**
 					 * Conditions: Custom Fields
@@ -788,11 +820,11 @@ function socialPostFlowUpdateStatus( profile_id, action, status_index ) {
 						alert( result.data );
 					}
 
-					// Message.
-					$( 'td.message', $( row ) ).text( result.data.message );
+					// Post Type.
+					$( 'td.post_type', $( row ) ).text( result.data.post_type );
 
-					// Image.
-					$( 'td.image', $( row ) ).text( result.data.image );
+					// Message.
+					$( 'td.text', $( row ) ).text( result.data.text );
 
 					// Schedule.
 					$( 'td.schedule', $( row ) ).text( result.data.schedule );
@@ -823,12 +855,6 @@ function socialPostFlowPopulateStatusForm( profile_id, profile, action, status_i
 		// Hide all conditional elements.
 		$( 'div.conditional', $( social_post_flow.status_form ) ).addClass( 'hidden' );
 
-		// Display conditional elements matching the profile's service - for example, Google Business Profiles
-		// (googlebusiness).
-		if ( profile !== '' ) {
-			$( 'div.conditional.' + profile.service, $( social_post_flow.status_form ) ).removeClass( 'hidden' );
-		}
-
 		// Iterate through form fields.
 		$( 'input, select, textarea', $( social_post_flow.status_form ) ).each(
 			function () {
@@ -846,27 +872,6 @@ function socialPostFlowPopulateStatusForm( profile_id, profile, action, status_i
 
 				// Depending on the attribute, populate the field.
 				switch ( field ) {
-
-					/**
-					 * Post Type
-					 * Depending on the Profile's provider, enable/disable some options for the Post Type dropdown.
-					 */
-					case 'post_type':
-						switch ( profile.provider ) {
-							case 'instagram':
-								$( 'option[value="text"]', $( this ) ).attr( 'disabled', true );
-								$( 'option[value="link"]', $( this ) ).attr( 'disabled', true );
-								break;
-
-							default:
-								// Enable all.
-								$( 'option', $( this ) ).prop( 'disabled', false );
-								break;
-						}
-
-						// Set value.
-						$( this ).val( status[ field ] );
-						break;
 
 					/**
 					 * Text to Image
@@ -1430,13 +1435,13 @@ jQuery( document ).ready(
 		// Tags dropdown.
 		socialPostFlowInitTags();
 
-		// Image dropdown.
+		// Status sections.
 		$( social_post_flow.status_form ).on(
 			'change.' + social_post_flow.status_form,
-			'select.image',
+			'select.post_type',
 			function ( e ) {
 
-				socialPostFlowUpdateImageOptions();
+				socialPostFlowUpdateStatusSections();
 
 			}
 		);
@@ -1452,13 +1457,13 @@ jQuery( document ).ready(
 			}
 		);
 
-		// Google Business Profile Post Type.
+		// Image dropdown.
 		$( social_post_flow.status_form ).on(
 			'change.' + social_post_flow.status_form,
-			'select#googlebusiness_post_type',
+			'select.image',
 			function ( e ) {
 
-				socialPostFlowUpdateGoogleBusinessOptions();
+				socialPostFlowUpdateImageOptions();
 
 			}
 		);
@@ -1601,10 +1606,6 @@ jQuery( document ).ready(
 				if ( typeof $( social_post_flow.status_form ).data( 'profile-id' ) === 'undefined' ) {
 					return;
 				}
-
-				console.log( $( social_post_flow.status_form ).data( 'profile-id' ) );
-				console.log( $( social_post_flow.status_form ).data( 'action' ) );
-				console.log( $( social_post_flow.status_form ).data( 'status-index' ) );
 
 				socialPostFlowUpdateStatus(
 					$( social_post_flow.status_form ).data( 'profile-id' ),

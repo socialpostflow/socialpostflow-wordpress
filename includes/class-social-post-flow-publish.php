@@ -1585,45 +1585,68 @@ class Social_Post_Flow_Publish {
 		// Build API compatible arguments.
 		$args = array(
 			'post_type'   => $status['post_type'],
-			'text'        => $this->parse_text( $post, $status['message'] ),
+			'text'        => $this->parse_text( $post, $status['text'] ),
 			'profile_ids' => array( $profile_id ),
 		);
 
-		// Depending on the status' Post Type (link, image, story etc), add additional arguments.
+		// URL / Image.
 		switch ( $status['post_type'] ) {
+			/**
+			 * Link
+			 */
 			case 'link':
 				$args['url'] = $this->get_permalink( $post );
 				break;
+			
+			/**
+			 * Image
+			 * IG: Story
+			 */
 			case 'image':
 			case 'story':
-				// @TODO Determine if need to use Featured Image, Text to Image and Additional Images.
-				/*
-			
-				// Featured, Additional Image or Content Image.
-				$image = $this->get_post_image( $post );
+				switch ( $status['image'] ) {
+					/**
+					 * Featured, Additional or Content Image
+					 */
+					case 'featured_image':
+						// Plugin's First (Featured) Image, Post's Featured Image or Post Content's First Image.
+						$image = $this->get_post_image( $post );
 
-				// Text to Image.
-				$text_to_image = $this->parse_text( $post, $status['text_to_image'] );
+						// If the image is a WP_Error object, log it and return.
+						if ( is_wp_error( $image ) ) {
+							social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Image Error: ' . $image->get_error_message() );
+							return $image;
+						}
 
-				// Generate Image from Text.
-				$image = $this->get_text_to_image( $text_to_image, $service, $profile_id, $post->ID, $status, $format );
+						// Add image to media_urls.
+						$args['media_urls'] = array( $image );
 
-				// Additional Images.
-				$additional_images = $this->get_additional_images( $post, $service, $status, $format );
-				if ( $additional_images !== false ) {
-					$args['extra_media'] = $additional_images;
+						// Additional Images.
+						$additional_images = $this->get_additional_images( $post, $service, $status, $format );
+						if ( $additional_images !== false ) {
+							$args['media_urls'] = array_merge( $args['media_urls'], $additional_images );
+						}
+						break;
+					case 'text_to_image':
+						$text_to_image = $this->parse_text( $post, $status['text_to_image'] );
+
+						// Generate Image from Text.
+						$image = $this->get_text_to_image( $text_to_image, $service, $profile_id, $post->ID, $status, $format );
+
+						// If the image is a WP_Error object, log it and return.
+						if ( is_wp_error( $image ) ) {
+							social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Image Error: ' . $image->get_error_message() );
+							return $image;
+						}
+
+						// Add image to media_urls.
+						$args['media_urls'] = array( $image );
+						break;
 				}
-			
-				// If the image is a WP_Error object, log it and return.
-				if ( is_wp_error( $image ) ) {
-					social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Image Error: ' . $image->get_error_message() );
-					return $image;
-				}
-				*/
-				break;		
+				break;
 		}
 
-		// Define arguments based on the schedule.
+		// Scheduling.
 		switch ( $status['schedule'] ) {
 			case 'queue_end':
 			case 'queue_start':
@@ -1667,7 +1690,7 @@ class Social_Post_Flow_Publish {
 
 				// No need to adjust for UTC here, as the date we're using is already UTC/GMT.
 				$args['schedule_type'] = 'scheduled';
-				$args['scheduled_at'] = date( 'Y-m-d H:i:s', $timestamp ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+				$args['scheduled_at']  = date( 'Y-m-d H:i:s', $timestamp ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
 				break;
 
 			/**
@@ -1704,7 +1727,7 @@ class Social_Post_Flow_Publish {
 
 				// No need to adjust for UTC here, as the date we're using is already UTC/GMT.
 				$args['schedule_type'] = 'scheduled';
-				$args['scheduled_at'] = date( 'Y-m-d H:i:s', $timestamp ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+				$args['scheduled_at']  = date( 'Y-m-d H:i:s', $timestamp ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
 				break;
 
 			case 'custom_field':
@@ -1754,7 +1777,7 @@ class Social_Post_Flow_Publish {
 				 * datetime.
 				 */
 				$args['schedule_type'] = 'scheduled';
-				$args['scheduled_at'] = social_post_flow()->get_class( 'date' )->get_utc_date_time( date( 'Y-m-d H:i:s', strtotime( $status['schedule_specific'] ) ) ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+				$args['scheduled_at']  = social_post_flow()->get_class( 'date' )->get_utc_date_time( date( 'Y-m-d H:i:s', strtotime( $status['schedule_specific'] ) ) ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
 				break;
 
 			default:
@@ -1777,7 +1800,7 @@ class Social_Post_Flow_Publish {
 				}
 
 				$args['schedule_type'] = 'scheduled';
-				$args['scheduled_at'] = $scheduled_at;
+				$args['scheduled_at']  = $scheduled_at;
 				break;
 
 		}

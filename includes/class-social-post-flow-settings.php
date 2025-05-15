@@ -100,7 +100,7 @@ class Social_Post_Flow_Settings {
 	 *
 	 * @param   string $type       Type.
 	 * @param   array  $settings   Settings.
-	 * @return  mixed               array (error) | bool (success)
+	 * @return  bool
 	 */
 	public function update_settings( $type, $settings ) {
 
@@ -118,36 +118,7 @@ class Social_Post_Flow_Settings {
 		$settings = apply_filters( 'social_post_flow_update_settings', $settings, $type );
 
 		// Save.
-		$this->update_option( $type, $settings );
-
-		// Check for duplicate statuses.
-		$duplicates = social_post_flow()->get_class( 'validation' )->check_for_duplicates( $settings );
-		if ( is_array( $duplicates ) ) {
-			// Fetch Post Type Name, Profile Name and Action Name.
-			$post_type_object = get_post_type_object( $type );
-			if ( $duplicates['profile_id'] === 'default' ) {
-				$profile = __( 'Defaults', 'social-post-flow' );
-			} elseif ( isset( $profiles[ $profile_id ] ) ) {
-				$profile = $profiles[ $profile_id ]['provider'] . ': ' . $profiles[ $profile_id ]['profile_name'];
-			}
-			$post_actions = social_post_flow()->get_class( 'common' )->get_post_actions();
-			$action       = $post_actions[ $duplicates['action'] ];
-
-			// Return error object.
-			return new WP_Error(
-				'social_post_flow_settings_update_settings_duplicates',
-				sprintf(
-					/* translators: %1$s: Post Type Name, Plural, %2$s: Social Media Profile Name, %3$s: Action (Publish, Update, Repost, Bulk Publish) */
-					__( 'Two or more statuses defined in %1$s > %2$s > %3$s are the same. Please correct this to ensure each status update is unique, otherwise your status updates will NOT publish to Social Post Flow as they will be seen as duplicates, which violate Facebook and Twitter\'s Terms of Service.', 'social-post-flow' ),
-					$post_type_object->label,
-					$profile,
-					$action
-				)
-			);
-		}
-
-		// No duplicate statuses found.
-		return true;
+		return $this->update_option( $type, $settings );
 
 	}
 
@@ -323,9 +294,9 @@ class Social_Post_Flow_Settings {
 
 		// Define row.
 		$row = array(
-			'text'  => ( ( strlen( $status['text'] ) > 100 ) ? substr( $status['message'], 0, 100 ) . '...' : $status['text'] ),
+			'text'      => ( ( strlen( $status['text'] ) > 100 ) ? substr( $status['message'], 0, 100 ) . '...' : $status['text'] ),
 			'post_type' => $status['post_type'],
-			'schedule' => '',
+			'schedule'  => '',
 		);
 
 		// Define row schedule text.

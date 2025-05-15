@@ -58,8 +58,8 @@
 						<tr>
 							<th>&nbsp;</th>
 							<th><?php esc_html_e( 'Actions', 'social-post-flow' ); ?></th>
-							<th><?php esc_html_e( 'Text', 'social-post-flow' ); ?></th>
 							<th><?php esc_html_e( 'Type', 'social-post-flow' ); ?></th>
+							<th><?php esc_html_e( 'Text', 'social-post-flow' ); ?></th>
 							<th><?php esc_html_e( 'Schedule', 'social-post-flow' ); ?></th>
 						</tr>
 					</thead>
@@ -67,7 +67,7 @@
 						<?php
 						// Fetch Publish / Update / Repost Statuses.
 						$statuses = $this->get_setting( $post_type, '[' . $profile_id . '][' . $post_action . '][status]' );
-						
+
 						if ( ! is_array( $statuses ) || ! count( $statuses ) ) {
 							$statuses = array(
 								social_post_flow()->get_class( 'settings' )->get_default_status( $post_type, false, 'queue_end' ),

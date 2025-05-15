@@ -52,11 +52,7 @@ class Social_Post_Flow_Image {
 
 		// Build featured image options.
 		$options = array(
-			'featured_image'  => sprintf(
-				/* translators: Translated name for a Post Type's Featured Image (e.g. for WooCommerce, might be "Product image") */
-				__( '%s', 'social-post-flow' ),
-				$label
-			),
+			'featured_image' => $label,
 			'text_to_image'  => __( 'Text to Image', 'social-post-flow' ),
 		);
 
