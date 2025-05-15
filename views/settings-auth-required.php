@@ -47,7 +47,7 @@
 							<div class="wpzinc-option">
 								<div class="full">
 									<a href="<?php echo esc_attr( social_post_flow()->get_class( 'api' )->get_oauth_url( admin_url( 'admin.php?page=social-post-flow' ) ) ); ?>" class="button button-primary">
-										<?php esc_html_e( 'Authorize Plugin', 'wp-to-social-pro' ); ?>
+										<?php esc_html_e( 'Authorize Plugin', 'social-post-flow' ); ?>
 									</a>
 								</div>
 							</div>

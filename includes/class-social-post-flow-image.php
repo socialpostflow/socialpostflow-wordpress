@@ -52,41 +52,13 @@ class Social_Post_Flow_Image {
 
 		// Build featured image options.
 		$options = array(
-			-1 => __( 'No Image', 'social-post-flow' ),
-			0  => __( 'Use OpenGraph Settings', 'social-post-flow' ),
-			1  => sprintf(
+			'featured_image'  => sprintf(
 				/* translators: Translated name for a Post Type's Featured Image (e.g. for WooCommerce, might be "Product image") */
-				__( 'Use %s, Linked to Post', 'social-post-flow' ),
+				__( '%s', 'social-post-flow' ),
 				$label
 			),
-			2  => sprintf(
-				/* translators: Translated name for a Post Type's Featured Image (e.g. for WooCommerce, might be "Product image") */
-				__( 'Use %s, not Linked to Post', 'social-post-flow' ),
-				$label
-			),
-			3  => __( 'Use Text to Image, Linked to Post', 'social-post-flow' ),
-			4  => __( 'Use Text to Image, not Linked to Post', 'social-post-flow' ),
+			'text_to_image'  => __( 'Text to Image', 'social-post-flow' ),
 		);
-
-		// Depending on the network, remove some options that aren't supported.
-		switch ( $network ) {
-			/**
-			 * Twitter
-			 * - Remove "Use Feat. Image, Linked to Post"
-			 */
-			case 'twitter':
-				unset( $options[1], $options[3] );
-				break;
-
-			/**
-			 * Instagram, Pinterest
-			 * - Remove all options excluding "Use Feat. Image, not Linked to Post"
-			 */
-			case 'instagram':
-			case 'pinterest':
-				unset( $options[0], $options[1], $options[3] );
-				break;
-		}
 
 		/**
 		 * Defines the available Featured Image select dropdown options on a status, depending
@@ -168,62 +140,36 @@ class Social_Post_Flow_Image {
 	 */
 	public function get_social_media_image_size( $service, $format = false ) {
 
-		// @TODO Offload this to the API.
-		switch ( $service ) {
+		// Get image sizes for all social networks.
+		$image_sizes = $this->get_social_media_image_sizes();
 
-			/**
-			 * Instagram
-			 */
-			case 'instagram':
-				// Get image.
-				$image_path_and_file = get_attached_file( $image_id );
-
-				// Just return the original image ID if we couldn't get the image path and file.
-				if ( empty( $image_path_and_file ) || ! file_exists( $image_path_and_file ) ) {
-					return $this->get_image_source_by_size( $image_id, $source, 'large' );
-				}
-
-				// Get image aspect ratio.
-				$size         = getimagesize( $image_path_and_file );
-				$aspect_ratio = $size[0] / $size[1];
-
-				switch ( $format ) {
-					/**
-					 * Instagram Story
-					 */
-					case 'story':
-						// If the aspect ratio of the image = 0.5625, just return the image.
-						if ( $aspect_ratio === 0.5625 ) {
-							return $this->get_image_source_by_size( $image_id, $source, 'large' );
-						}
-
-						// If here, the image's aspect ratio would result in the image being cropped when Buffer posts to
-						// Instagram Stories.
-						// Produce a resized copy that meets the required aspect ratio.
-						return $this->get_resized_image_sources( $image_id, $source, $size, $aspect_ratio, 0.5625, 0.5625 );
-
-					/**
-					 * Instagram Post
-					 */
-					default:
-						// If the aspect ratio of the image falls within the required limits, just return the image.
-						if ( $aspect_ratio >= 0.8 && $aspect_ratio <= 1.91 ) {
-							return $this->get_image_source_by_size( $image_id, $source, 'large' );
-						}
-
-						// If here, the image's aspect ratio would cause posting to Instagram to fail.
-						// Produce a resized copy that meets the required aspect ratio.
-						return $this->get_resized_image_sources( $image_id, $source, $size, $aspect_ratio, 1.91, 0.8 );
-				}
-				break;
-
-			/**
-			 * Other Social Networks
-			 */
-			default:
-				return $this->get_image_source_by_size( $image_id, $source, 'large' );
-
+		// If a format is defined, append it to the $service to produce e.g instagram_story.
+		if ( $format ) {
+			$key = $service . '_' . $format;
+		} else {
+			$key = $service;
 		}
+
+		// Bail if the service doesn't have an image size defined.
+		if ( ! isset( $image_sizes[ $key ] ) ) {
+			return false;
+		}
+
+		$image_size = $image_sizes[ $key ];
+
+		/**
+		 * Defines the image size limit for the given social media service.
+		 *
+		 * @since   4.6.6
+		 *
+		 * @param   array       $image_size    Image Size (width, height).
+		 * @param   string      $service       Social Media Service.
+		 * @param   bool|string $format        Status format (for example, 'story' or 'post' for Instagram).
+		 */
+		$image_size = apply_filters( 'social_post_flow_get_social_media_image_size', $image_size, $service, $format );
+
+		// Return filtered result.
+		return $image_size;
 
 	}
 
@@ -406,7 +352,7 @@ class Social_Post_Flow_Image {
 	 * @param   string $size       WordPress Registered Image Size to return the image as.
 	 * @return  array               Image ID, Image URLs, Source
 	 */
-	private function get_image_source_by_size( $image_id, $source, $size ) {
+	public function get_image_source_by_size( $image_id, $source, $size = 'large' ) {
 
 		// Get image at requested size.
 		$image = wp_get_attachment_image_src( $image_id, $size );
@@ -438,7 +384,7 @@ class Social_Post_Flow_Image {
 
 		// Defines the optimal image sizes for each social network.
 		$image_sizes = array(
-			'twitter'         => array( 1600, 900 ),
+			'x'               => array( 1600, 900 ),
 			'pinterest'       => array( 1000, 1500 ), // also 1000 x 1000.
 			'instagram'       => array( 1080, 1080 ),
 			'instagram_post'  => array( 1080, 1080 ),

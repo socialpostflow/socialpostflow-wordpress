@@ -128,7 +128,7 @@ class Social_Post_Flow_Settings {
 			if ( $duplicates['profile_id'] === 'default' ) {
 				$profile = __( 'Defaults', 'social-post-flow' );
 			} elseif ( isset( $profiles[ $profile_id ] ) ) {
-				$profile = $profiles[ $profile_id ]['formatted_service'] . ': ' . $profiles[ $profile_id ]['formatted_username'];
+				$profile = $profiles[ $profile_id ]['provider'] . ': ' . $profiles[ $profile_id ]['profile_name'];
 			}
 			$post_actions = social_post_flow()->get_class( 'common' )->get_post_actions();
 			$action       = $post_actions[ $duplicates['action'] ];
@@ -323,8 +323,8 @@ class Social_Post_Flow_Settings {
 
 		// Define row.
 		$row = array(
-			'message'  => ( ( strlen( $status['message'] ) > 100 ) ? substr( $status['message'], 0, 100 ) . '...' : $status['message'] ),
-			'image'    => $featured_image_options[ $status['image'] ],
+			'text'  => ( ( strlen( $status['text'] ) > 100 ) ? substr( $status['message'], 0, 100 ) . '...' : $status['text'] ),
+			'post_type' => $status['post_type'],
 			'schedule' => '',
 		);
 
@@ -335,8 +335,8 @@ class Social_Post_Flow_Settings {
 			 * Add to Start of Queue
 			 * Post Immediately
 			 */
-			case 'queue_bottom':
-			case 'queue_top':
+			case 'queue_start':
+			case 'queue_end':
 			case 'now':
 				$row['schedule'] = $schedule[ $status['schedule'] ];
 				break;
@@ -429,8 +429,8 @@ class Social_Post_Flow_Settings {
 		// Define skeleton status to be used for new statuses.
 		$status = array(
 			// All Profiles.
-			'image'                          => ( social_post_flow()->get_class( 'image' )->is_opengraph_plugin_active() ? 0 : 2 ),
-			'message'                        => ( ! $default_message ? '{title} {url}' : $default_message ),
+			'post_type'                      => 'text',
+			'text'                           => ( ! $default_message ? '{title}' : $default_message ),
 			'schedule'                       => $default_schedule,
 			'days'                           => 0,
 			'hours'                          => 0,
@@ -439,33 +439,7 @@ class Social_Post_Flow_Settings {
 			'schedule_relative_time'         => '00:00:00',
 			'schedule_custom_field_name'     => '',
 			'schedule_custom_field_relation' => 'after',
-			'schedule_tec_relation'          => 'after',
 			'schedule_specific'              => '',
-
-			// Profiles: Pinterest.
-			'sub_profile'                    => 0,
-
-			// Update Type: Instagram.
-			'update_type'                    => '',
-
-			// Profiles: Google Business.
-			'googlebusiness'                 => array(
-				'post_type'         => 'whats_new', // whats_new, offer, event.
-
-				// What's New, Event.
-				'cta'               => '', // book,order,shop,learn_more,signup.
-
-				// Offer, Event.
-				'start_date_option' => 'custom',
-				'start_date'        => '',
-				'end_date_option'   => 'custom',
-				'end_date'          => '',
-				'title'             => '',
-
-				// Offer.
-				'code'              => '',
-				'terms'             => '',
-			),
 
 			// Text to Image.
 			'text_to_image'                  => '',

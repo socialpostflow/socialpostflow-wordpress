@@ -16,8 +16,8 @@
 				sprintf(
 				/* translators: %1$s: Social Media Service (Facebook, Twitter etc.), %2$s: Social Media Profile Name */
 					__( '%1$s: %2$s: Settings', 'social-post-flow' ),
-					$profile['formatted_service'],
-					$profile['formatted_username']
+					$profile['provider'],
+					$profile['profile_name']
 				)
 			);
 			?>
@@ -28,7 +28,7 @@
 		if ( isset( $profile['timezone'] ) ) {
 			$timezones_match = social_post_flow()->get_class( 'validation' )->timezones_match(
 				$profile['timezone'],
-				$profile['formatted_username'],
+				$profile['profile_name'],
 				social_post_flow()->get_class( 'api' )->get_timezone_settings_url( $profile['id'] )
 			);
 			if ( is_wp_error( $timezones_match ) ) {
@@ -58,7 +58,7 @@
 	// Force override if a subprofile is required.
 	$override = $this->get_setting( $post_type, '[' . $profile_id . '][override]', 0 );
 	$disabled = false;
-	if ( isset( $profile['service'] ) && $profile['service'] === 'pinterest' ) {
+	if ( isset( $profile['provider'] ) && $profile['provider'] === 'pinterest' ) {
 		if ( ! isset( $profile['can_be_subprofile'] ) || ! $profile['can_be_subprofile'] ) {
 			// Subprofile is required.
 			$override = 1;

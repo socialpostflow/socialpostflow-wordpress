@@ -21,7 +21,7 @@
 					)
 				);
 			} else {
-				echo esc_html( sprintf( '%s: %s: %s', $profile['formatted_service'], $profile['formatted_username'], $action_label ) );
+				echo esc_html( sprintf( '%s: %s: %s', $profile['provider'], $profile['profile_name'], $action_label ) );
 			}
 			?>
 
@@ -42,7 +42,7 @@
 					( $profile_id === 'default' ? '' : sprintf(
 					/* translators: Profile username */
 						__( 'to %s. These override the status(es) specified on the Defaults tab.', 'social-post-flow' ),
-						$profile['formatted_username']
+						$profile['profile_name']
 					) )
 				)
 			);
@@ -59,7 +59,7 @@
 							<th>&nbsp;</th>
 							<th><?php esc_html_e( 'Actions', 'social-post-flow' ); ?></th>
 							<th><?php esc_html_e( 'Text', 'social-post-flow' ); ?></th>
-							<th><?php esc_html_e( 'Image', 'social-post-flow' ); ?></th>
+							<th><?php esc_html_e( 'Type', 'social-post-flow' ); ?></th>
 							<th><?php esc_html_e( 'Schedule', 'social-post-flow' ); ?></th>
 						</tr>
 					</thead>
@@ -67,26 +67,21 @@
 						<?php
 						// Fetch Publish / Update / Repost Statuses.
 						$statuses = $this->get_setting( $post_type, '[' . $profile_id . '][' . $post_action . '][status]' );
-
+						
 						if ( ! is_array( $statuses ) || ! count( $statuses ) ) {
-							// Define default status.
-							$key    = 0;
-							$status = social_post_flow()->get_class( 'settings' )->get_default_status( $post_type, false, 'queue_end' ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-							$labels = array();
+							$statuses = array(
+								social_post_flow()->get_class( 'settings' )->get_default_status( $post_type, false, 'queue_end' ),
+							);
+						}
+
+						// Iterate through saved statuses.
+						foreach ( $statuses as $key => $status ) { // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+							$status = social_post_flow()->get_class( 'settings' )->get_status( $status, $post_type ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+							$labels = social_post_flow()->get_class( 'settings' )->get_status_value_labels( $status, $post_type );
 							$row    = social_post_flow()->get_class( 'settings' )->get_status_row( $status, $post_type, $post_action );
 
 							// Load sub view.
 							require SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/settings-post-action-status-row.php';
-						} else {
-							// Iterate through saved statuses.
-							foreach ( $statuses as $key => $status ) { // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-								$status = social_post_flow()->get_class( 'settings' )->get_status( $status, $post_type ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-								$labels = social_post_flow()->get_class( 'settings' )->get_status_value_labels( $status, $post_type );
-								$row    = social_post_flow()->get_class( 'settings' )->get_status_row( $status, $post_type, $post_action );
-
-								// Load sub view.
-								require SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/settings-post-action-status-row.php';
-							}
 						}
 						?>
 						<tr class="hidden status-form-container"><td colspan="6"></td></tr>

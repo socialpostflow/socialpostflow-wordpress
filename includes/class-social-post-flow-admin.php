@@ -35,10 +35,8 @@ class Social_Post_Flow_Admin {
 	public function __construct() {
 
 		// Actions.
-		// @TODO These token actions might be better somewhere global.
 		add_action( 'social_post_flow_api_get_access_token', array( $this, 'save_oauth_tokens' ), 10, 1 );
 		add_action( 'social_post_flow_api_refresh_token', array( $this, 'save_oauth_tokens' ), 10, 1 );
-
 		add_action( 'init', array( $this, 'maybe_get_access_token' ) );
 		add_action( 'init', array( $this, 'check_plugin_setup' ) );
 		add_action( 'admin_notices', array( $this, 'admin_notices' ) );

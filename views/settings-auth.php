@@ -421,7 +421,7 @@
 											$background_image = false;
 										}
 
-										$image_size = social_post_flow()->get_class( 'image' )->get_social_media_image_size( $profile['service'] );
+										$image_size = social_post_flow()->get_class( 'image' )->get_social_media_image_size( $profile['provider'] );
 										?>
 										<tr>
 											<td>
@@ -429,8 +429,8 @@
 												echo esc_html(
 													sprintf(
 														'%1$s: %2$s',
-														$profile['formatted_service'],
-														$profile['formatted_username']
+														$profile['provider'],
+														$profile['profile_name']
 													)
 												);
 												?>
@@ -713,39 +713,41 @@
 								<tbody>
 									<?php
 									// Output Repost Schedule.
-									foreach ( $repost_schedule['mon'] as $index => $time ) {
-										?>
-										<tr>
-											<?php
-											foreach ( $repost_days as $repost_day ) {
+									if ( is_array( $repost_schedule ) ) {
+										foreach ( $repost_schedule['mon'] as $index => $time ) {
+											?>
+											<tr>
+												<?php
+												foreach ( $repost_days as $repost_day ) {
+													?>
+													<td>
+														<select name="repost_time[<?php echo esc_attr( $repost_day ); ?>][]" size="1">
+															<option value="0"<?php selected( $repost_schedule[ $repost_day ][ $index ], 0 ); ?>><?php esc_attr_e( 'Don\'t Repost', 'social-post-flow' ); ?></option>
+															<?php
+															for ( $hour = 0; $hour <= 23; $hour++ ) {
+																// Pad hour.
+																$hour = ( ( $hour < 10 ) ? '0' . $hour : $hour );
+																?>
+																<option value="<?php echo esc_attr( $hour ); ?>:00"<?php selected( $repost_schedule[ $repost_day ][ $index ], $hour . ':00' ); ?>>
+																	<?php echo esc_attr( $hour ); ?>:00
+																</option>
+																<?php
+															}
+															?>
+														</select>
+													</td>
+													<?php
+												}
 												?>
 												<td>
-													<select name="repost_time[<?php echo esc_attr( $repost_day ); ?>][]" size="1">
-														<option value="0"<?php selected( $repost_schedule[ $repost_day ][ $index ], 0 ); ?>><?php esc_attr_e( 'Don\'t Repost', 'social-post-flow' ); ?></option>
-														<?php
-														for ( $hour = 0; $hour <= 23; $hour++ ) {
-															// Pad hour.
-															$hour = ( ( $hour < 10 ) ? '0' . $hour : $hour );
-															?>
-															<option value="<?php echo esc_attr( $hour ); ?>:00"<?php selected( $repost_schedule[ $repost_day ][ $index ], $hour . ':00' ); ?>>
-																<?php echo esc_attr( $hour ); ?>:00
-															</option>
-															<?php
-														}
-														?>
-													</select>
+													<a href="#" class="delete-repost-time">
+														<span class="dashicons dashicons-trash"></span>
+														<?php esc_html_e( 'Delete', 'social-post-flow' ); ?>
+													</a>
 												</td>
-												<?php
-											}
-											?>
-											<td>
-												<a href="#" class="delete-repost-time">
-													<span class="dashicons dashicons-trash"></span>
-													<?php esc_html_e( 'Delete', 'social-post-flow' ); ?>
-												</a>
-											</td>
-										</tr>
-										<?php
+											</tr>
+											<?php
+										}
 									}
 									?>
 								</tbody> 
@@ -1149,7 +1151,7 @@
 													<li>
 														<label for="roles_<?php echo esc_attr( $role_name ); ?>_<?php echo esc_attr( $profile['id'] ); ?>" class="selectit">
 															<input type="checkbox" name="roles[<?php echo esc_attr( $role_name ); ?>][<?php echo esc_attr( $profile['id'] ); ?>]" id="roles_<?php echo esc_attr( $role_name ); ?>_<?php echo esc_attr( $profile['id'] ); ?>" value="1" <?php checked( $this->get_setting( 'roles', '[' . $role_name . '][' . $profile['id'] . ']' ), 1 ); ?> />
-															<?php echo esc_html( $profile['formatted_service'] . ': ' . $profile['formatted_username'] ); ?>
+															<?php echo esc_html( $profile['provider'] . ': ' . $profile['profile_name'] ); ?>
 														</label>
 													</li>
 													<?php
@@ -1187,8 +1189,8 @@
 						<p class="description">
 							<?php
 							printf(
-								'<a href="%1$s" target="_blank">%3$s</a>%4$s <strong>%5$s</strong> %6$s',
-								esc_html( 'https://www.socialpostflow.com/documentation/wordpress/per-post-settings/' ),
+								'<a href="%1$s" target="_blank">%2$s</a>%3$s <strong>%4$s</strong> %5$s',
+								esc_url( 'https://www.socialpostflow.com/documentation/wordpress/per-post-settings/' ),
 								esc_html__( 'Per-Post Settings', 'social-post-flow' ),
 								esc_html__( ', Additional Images and the Log are hidden when editing Posts and the', 'social-post-flow' ),
 								esc_html__( 'logged in WordPress User\'s Role', 'social-post-flow' ),
@@ -1198,7 +1200,7 @@
 							<br />
 							<?php
 							printf(
-								'%1$s <strong>%2$s</strong>%3$s',
+								'%1$s <strong>%2$s</strong> %3$s',
 								esc_html__( 'To control which social media profiles to send statuses to by the', 'social-post-flow' ),
 								esc_html__( 'Post\'s Author\'s Role', 'social-post-flow' ),
 								esc_html__( 'use the "Enable Specific Profiles" option above.', 'social-post-flow' )

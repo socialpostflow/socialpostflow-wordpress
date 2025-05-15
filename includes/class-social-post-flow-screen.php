@@ -58,10 +58,7 @@ class Social_Post_Flow_Screen {
 
 		// Get screen ID without Plugin Display Name.
 		$screen_id = str_replace(
-			array(
-				'toplevel_page_',
-				sanitize_title( 'social_post_flow_page_' ),
-			),
+			'toplevel_page_',
 			'',
 			$screen->base
 		);
@@ -89,7 +86,7 @@ class Social_Post_Flow_Screen {
 			/**
 			 * Settings
 			 */
-			case 'social-post-flow-settings':
+			case 'social-post-flow':
 				return array(
 					'screen'  => 'settings',
 					'section' => ( isset( $_REQUEST['tab'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['tab'] ) ) : 'auth' ), // phpcs:ignore WordPress.Security.NonceVerification

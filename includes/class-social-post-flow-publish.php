@@ -722,7 +722,7 @@ class Social_Post_Flow_Publish {
 			// Determine which social media service this profile ID belongs to.
 			foreach ( $profiles as $profile ) {
 				if ( $profile['id'] == $profile_id ) { // phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
-					$service = $profile['service'];
+					$service = $profile['provider'];
 					break;
 				}
 			}
@@ -898,6 +898,9 @@ class Social_Post_Flow_Publish {
 		 * @param   string  $action     Action (publish, update, repost).
 		 */
 		$statuses = apply_filters( 'social_post_flow_publish_statuses', $statuses, $post_id, $action );
+
+		var_dump( $statuses );
+		die();
 
 		// Debugging.
 		social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Statuses: ' . print_r( $statuses, true ) ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions
@@ -1575,33 +1578,57 @@ class Social_Post_Flow_Publish {
 	 * @param   string  $service                    Service.
 	 * @param   array   $status                     Status Settings.
 	 * @param   string  $action                     Action (publish|update|repost|bulk_publish).
-	 * @return  bool                                Success
+	 * @return  WP_Error|array
 	 */
 	private function build_args( $post, $profile_id, $service, $status, $action ) {
 
-		// Build each API argument.
-		// @TODO Build to match API logic.
+		// Build API compatible arguments.
 		$args = array(
-			'post_type'   => $status['update_type'] ?? 'post', // @TODO set to text,link,image,story.
+			'post_type'   => $status['post_type'],
 			'text'        => $this->parse_text( $post, $status['message'] ),
-			'url'         => $this->get_permalink( $post ),
 			'profile_ids' => array( $profile_id ),
-			'media_urls'  => $this->parse_media_urls( $post, $status['media_urls'] ),
 		);
 
-		// Schedule.
+		// Depending on the status' Post Type (link, image, story etc), add additional arguments.
+		switch ( $status['post_type'] ) {
+			case 'link':
+				$args['url'] = $this->get_permalink( $post );
+				break;
+			case 'image':
+			case 'story':
+				// @TODO Determine if need to use Featured Image, Text to Image and Additional Images.
+				/*
+			
+				// Featured, Additional Image or Content Image.
+				$image = $this->get_post_image( $post );
+
+				// Text to Image.
+				$text_to_image = $this->parse_text( $post, $status['text_to_image'] );
+
+				// Generate Image from Text.
+				$image = $this->get_text_to_image( $text_to_image, $service, $profile_id, $post->ID, $status, $format );
+
+				// Additional Images.
+				$additional_images = $this->get_additional_images( $post, $service, $status, $format );
+				if ( $additional_images !== false ) {
+					$args['extra_media'] = $additional_images;
+				}
+			
+				// If the image is a WP_Error object, log it and return.
+				if ( is_wp_error( $image ) ) {
+					social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Image Error: ' . $image->get_error_message() );
+					return $image;
+				}
+				*/
+				break;		
+		}
+
+		// Define arguments based on the schedule.
 		switch ( $status['schedule'] ) {
-
-			case 'queue_bottom':
-				// This is the default for the API, so nothing more to do here.
-				break;
-
-			case 'queue_top':
-				$args['top'] = true;
-				break;
-
-			case 'now':
-				$args['now'] = true;
+			case 'queue_end':
+			case 'queue_start':
+			case 'immediate':
+				$args['schedule_type'] = $status['schedule'];
 				break;
 
 			/**
@@ -1639,6 +1666,7 @@ class Social_Post_Flow_Publish {
 				$timestamp = strtotime( '+' . $status['days'] . ' days ' . $status['hours'] . ' hours ' . $status['minutes'] . ' minutes', strtotime( $post_date ) );
 
 				// No need to adjust for UTC here, as the date we're using is already UTC/GMT.
+				$args['schedule_type'] = 'scheduled';
 				$args['scheduled_at'] = date( 'Y-m-d H:i:s', $timestamp ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
 				break;
 
@@ -1675,6 +1703,7 @@ class Social_Post_Flow_Publish {
 				}
 
 				// No need to adjust for UTC here, as the date we're using is already UTC/GMT.
+				$args['schedule_type'] = 'scheduled';
 				$args['scheduled_at'] = date( 'Y-m-d H:i:s', $timestamp ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
 				break;
 
@@ -1724,6 +1753,7 @@ class Social_Post_Flow_Publish {
 				 * 2018-09-01 13:00:00, because the social media services' timezone will add an hour back to the scheduled
 				 * datetime.
 				 */
+				$args['schedule_type'] = 'scheduled';
 				$args['scheduled_at'] = social_post_flow()->get_class( 'date' )->get_utc_date_time( date( 'Y-m-d H:i:s', strtotime( $status['schedule_specific'] ) ) ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
 				break;
 
@@ -1746,192 +1776,11 @@ class Social_Post_Flow_Publish {
 					break;
 				}
 
+				$args['schedule_type'] = 'scheduled';
 				$args['scheduled_at'] = $scheduled_at;
 				break;
 
 		}
-
-		// Change the Image setting if it's an invalid value for the service.
-		// This happens when e.g. Defaults are set, but per-service settings aren't.
-		switch ( $service ) {
-			/**
-			 * Twitter
-			 * - Force Use Feat. Image, not Linked to Post if Use Feat. Image, Linked to Post chosen
-			 */
-			case 'twitter':
-				if ( $status['image'] == 1 ) {  // phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
-					$status['image'] = 2;
-				}
-
-				// Set Use Text to Image, Linked to Post = Use Text to Image, not Linked to Post.
-				if ( $status['image'] == 3 ) {  // phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
-					$status['image'] = 4;
-				}
-				break;
-
-			/**
-			 * Pinterest, Instagram, Google Business, Mastodon
-			 * - Force No Image, OpenGraph and Use Feat. Image, Linked to Post = Use Feat. Image, not Linked to Post.
-			 * - Force Use Text to Image, Linked to Post = Use Text to Image, not Linked to Post.
-			 */
-			case 'pinterest':
-			case 'instagram':
-			case 'googlebusiness':
-				// Set No Image, OpenGraph and Use Feat. Image, Linked to Post = Use Feat. Image, not Linked to Post.
-				if ( $status['image'] == -1 || $status['image'] == 0 || $status['image'] == 1 ) {  // phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
-					$status['image'] = 2;
-				}
-
-				// Set Use Text to Image, Linked to Post = Use Text to Image, not Linked to Post.
-				if ( $status['image'] == 3 ) {  // phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
-					$status['image'] = 4;
-				}
-				break;
-
-			/**
-			 * Pinterest, Instagram, Google Business, Mastodon
-			 * - Force No Image and Use Feat. Image, Linked to Post = Use Feat. Image, not Linked to Post.
-			 * - Force Use Text to Image, Linked to Post = Use Text to Image, not Linked to Post.
-			 */
-			case 'mastodon':
-				// Set Use Feat. Image, Linked to Post = Use Feat. Image, not Linked to Post.
-				if ( $status['image'] == 1 ) {  // phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
-					$status['image'] = 2;
-				}
-
-				// Set Use Text to Image, Linked to Post = Use Text to Image, not Linked to Post.
-				if ( $status['image'] == 3 ) {  // phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
-					$status['image'] = 4;
-				}
-
-				// Set Use OpenGraph Settings = No Image.
-				// This prevents Buffer from parsing and removing the URL from the status, which results in
-				// Mastodon not displaying the link preview.
-				if ( $status['image'] == 0 ) { // phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
-					$status['image'] = -1;
-				}
-				break;
-
-		}
-
-		// If the status is set to No Image, don't attempt to fetch an image.
-		if ( $status['image'] == -1 ) {  // phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
-			$args['attachment'] = 'false';
-		} else {
-			// Determine if a format exists e.g. story|post for Instagram.
-			$format = ( isset( $status['update_type'] ) ? $status['update_type'] : false );
-
-			// Get Image.
-			if ( $status['image'] == 3 || $status['image'] == 4 ) { // phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
-				// Text to Image.
-				$text_to_image = $this->parse_text( $post, $status['text_to_image'] );
-
-				/**
-				 * Defines the text to use for the text to image.
-				 *
-				 * @since   4.2.0
-				 *
-				 * @param   string      $text_to_image              Text.
-				 * @param   WP_Post     $post                       WordPress Post.
-				 * @param   string      $profile_id                 Social Media Profile ID.
-				 * @param   string      $service                    Social Media Service.
-				 * @param   array       $status                     Parsed Status Message Settings.
-				 * @param   string      $action                     Action (publish|update|repost|bulk_publish).
-				 * @param   bool|string $format                     Status format (for example, 'story' or 'post' for Instagram).
-				 */
-				$text_to_image = apply_filters( 'social_post_flow_publish_text_to_image', $text_to_image, $post, $profile_id, $service, $status, $action, $format );
-
-				// Generate Image from Text.
-				$image = $this->get_text_to_image( $text_to_image, $service, $profile_id, $post->ID, $status, $format );
-			} else {
-				// Featured, Additional Image or Content Image.
-				$image = $this->get_post_image( $post, $service, $format );
-			}
-
-			// Image will be an ID, false (if no image) or WP_Error (if an image exists but something went wrong).
-
-			// If the image is a WP_Error object, log it and return.
-			if ( is_wp_error( $image ) ) {
-				social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Image Error: ' . $image->get_error_message() );
-				return $image;
-			}
-
-			// If we have a Featured Image, add it to the Status is required.
-			if ( ! is_wp_error( $image ) && $image !== false ) {
-				switch ( $status['image'] ) {
-					/**
-					 * Use OpenGraph Settings
-					 */
-					case 0:
-					case '':
-						// Add Post link to media, so API service knows where to fetch OpenGraph data from.
-						$args['media'] = array(
-							'link' => $this->get_permalink( $post ),
-						);
-						break;
-
-					/**
-					 * Use Feat. Image, Linked to Post
-					 * Use Text to Image, Linked to Post
-					 * - Facebook, LinkedIn
-					 */
-					case 1:
-					case 3:
-						$args['media'] = array(
-							'link'        => $this->get_permalink( $post ),
-							'description' => $this->get_excerpt( $post, false ),
-							'title'       => $this->get_title( $post ),
-							'picture'     => $image['image'],
-							'alt_text'    => $image['alt_text'],
-							'width'       => $image['width'],
-							'height'      => $image['height'],
-
-							// Dashboard Thumbnail.
-							// Not supplied, as may results in cURL timeouts.
-						);
-						break;
-
-					/**
-					 * Use Feat. Image, not Linked to Post
-					 * Use Text to Image, not Linked to Post
-					 * - Facebook, LinkedIn, Twitter, Instagram, Pinterest
-					 */
-					case 2:
-					case 4:
-						$args['media'] = array(
-							'description' => $this->get_excerpt( $post, false ),
-							'title'       => $this->get_title( $post ),
-							'picture'     => $image['image'],
-							'alt_text'    => $image['alt_text'],
-							'width'       => $image['width'],
-							'height'      => $image['height'],
-
-							// Dashboard Thumbnail.
-							// Supplied, as required when specifying media with no link.
-							// Using the smallest possible image to avoid cURL timeouts.
-							'thumbnail'   => $image['thumbnail'],
-
-							// Hootsuite for Amazon S3 upload.
-							'id'          => (int) $image['id'],
-						);
-						break;
-
-				}
-			}
-
-			/**
-			 * Additional Images
-			 * - If supported, assigned to the Post and the Featured Image setting isn't OpenGraph,
-			 * add additional images to the arguments
-			 */
-			$additional_images = $this->get_additional_images( $post, $service, $status, $format );
-			if ( $additional_images !== false ) {
-				$args['extra_media'] = $additional_images;
-			}
-		}
-
-		// Replace Profile Tags.
-		$args = $this->process_profile_mentions( $args, $post, $profile_id, $service, $status, $action );
 
 		/**
 		 * Determine the standardised arguments array to send via the API for a status message's settings.
@@ -1947,6 +1796,8 @@ class Social_Post_Flow_Publish {
 		 */
 		$args = apply_filters( 'social_post_flow_publish_build_args', $args, $post, $profile_id, $service, $status, $action );
 
+		var_dump( $args );
+
 		// Return args.
 		return $args;
 
@@ -1960,27 +1811,25 @@ class Social_Post_Flow_Publish {
 	 *
 	 * @since   3.9.8
 	 *
-	 * @param   WP_Post     $post       Post ID.
-	 * @param   string      $service    Social Media Service.
-	 * @param   bool|string $format     Status format (for example, 'story' or 'post' for Instagram).
+	 * @param   WP_Post $post       Post ID.
 	 * @return  bool|array
 	 */
-	private function get_post_image( $post, $service, $format = false ) {
+	private function get_post_image( $post ) {
 
 		// Plugin's First (Featured) Image.
 		$image_id = social_post_flow()->get_class( 'post' )->get_setting_by_post_id( $post->ID, 'featured_image' );
 		if ( $image_id > 0 ) {
-			return social_post_flow()->get_class( 'image' )->get_image_sources( $image_id, 'plugin', $service, $format );
+			return social_post_flow()->get_class( 'image' )->get_image_source_by_size( $image_id, 'plugin', 'large' );
 		}
 
 		// Featured Image.
 		$image_id = get_post_thumbnail_id( $post->ID );
 		if ( $image_id > 0 ) {
-			return social_post_flow()->get_class( 'image' )->get_image_sources( $image_id, 'featured_image', $service, $format );
+			return social_post_flow()->get_class( 'image' )->get_image_source_by_size( $image_id, 'featured_image', 'large' );
 		}
 
 		// Content's First Image.
-		$images = $this->get_images_from_post_content( $post, $service, $format );
+		$images = $this->get_images_from_post_content( $post );
 		if ( count( $images ) ) {
 			// Return first image found.
 			return $images[0];
@@ -2050,14 +1899,14 @@ class Social_Post_Flow_Publish {
 				// Fetch additional images specified in the Post's settings
 				// and from the Post's content.
 				$images = array_merge(
-					$this->get_images_from_post_settings( $post, $service, $format ),
-					$this->get_images_from_post_content( $post, $service, $format )
+					$this->get_images_from_post_settings( $post ),
+					$this->get_images_from_post_content( $post )
 				);
 				break;
 
 			default:
 				// Fetch additional images specified in Post's settings only.
-				$images = $this->get_images_from_post_settings( $post, $service, $format );
+				$images = $this->get_images_from_post_settings( $post );
 				break;
 		}
 
@@ -2107,12 +1956,10 @@ class Social_Post_Flow_Publish {
 	 *
 	 * @since   5.2.2
 	 *
-	 * @param   WP_Post     $post       WordPress Post.
-	 * @param   string      $service    Service.
-	 * @param   bool|string $format     Status format (for example, 'story' or 'post' for Instagram).
+	 * @param   WP_Post $post       WordPress Post.
 	 * @return  array
 	 */
-	private function get_images_from_post_settings( $post, $service, $format ) {
+	private function get_images_from_post_settings( $post ) {
 
 		$images = array();
 
@@ -2124,7 +1971,7 @@ class Social_Post_Flow_Publish {
 
 		foreach ( $additional_images as $additional_image_id ) {
 			// Get additional image.
-			$additional_image = social_post_flow()->get_class( 'image' )->get_image_sources( $additional_image_id, 'additional_image', $service, $format );
+			$additional_image = social_post_flow()->get_class( 'image' )->get_image_source_by_size( $additional_image_id, 'additional_image', 'large' );
 
 			// Skip if not found.
 			if ( is_wp_error( $additional_image ) ) {
@@ -2146,12 +1993,10 @@ class Social_Post_Flow_Publish {
 	 *
 	 * @since   5.2.2
 	 *
-	 * @param   WP_Post     $post       WordPress Post.
-	 * @param   string      $service    Service.
-	 * @param   bool|string $format     Status format (for example, 'story' or 'post' for Instagram).
+	 * @param   WP_Post $post       WordPress Post.
 	 * @return  array
 	 */
-	private function get_images_from_post_content( $post, $service, $format = false ) {
+	private function get_images_from_post_content( $post ) {
 
 		// Extract all <img> tags from the Post's content.
 		$images = preg_match_all( '/<img.+?src=[\'"]([^\'"]+)[\'"].*?>/i', apply_filters( 'the_content', $post->post_content ), $matches );
@@ -2184,7 +2029,7 @@ class Social_Post_Flow_Publish {
 		$content_images = array();
 		foreach ( $image_ids as $image_id ) {
 			// Get image.
-			$image = social_post_flow()->get_class( 'image' )->get_image_sources( $image_id, 'content', $service, $format );
+			$image = social_post_flow()->get_class( 'image' )->get_image_source_by_size( $image_id, 'content', 'large' );
 
 			// Skip if not found.
 			if ( is_wp_error( $image ) ) {
@@ -2323,7 +2168,7 @@ class Social_Post_Flow_Publish {
 		}
 
 		// Return Text to Image.
-		return social_post_flow()->get_class( 'image' )->get_image_sources( $image_id, 'text_to_image', $service, $format );
+		return social_post_flow()->get_class( 'image' )->get_image_source_by_size( $image_id, 'text_to_image', 'large' );
 
 	}
 
@@ -3992,7 +3837,7 @@ class Social_Post_Flow_Publish {
 					'action'         => $action,
 					'request_sent'   => date( 'Y-m-d H:i:s' ), // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
 					'profile_id'     => $status['profile_ids'][0],
-					'profile_name'   => $profiles[ $status['profile_ids'][0] ]['formatted_service'] . ': ' . $profiles[ $status['profile_ids'][0] ]['formatted_username'],
+					'profile_name'   => $profiles[ $status['profile_ids'][0] ]['provider'] . ': ' . $profiles[ $status['profile_ids'][0] ]['profile_name'],
 					'result'         => 'error',
 					'result_message' => sprintf(
 						/* translators: %1$s: Plugin Error string, %2$s: Error message from Plugin */
@@ -4002,7 +3847,7 @@ class Social_Post_Flow_Publish {
 					),
 					'status_text'    => false,
 				);
-				$log_error[] = ( $profiles[ $status['profile_ids'][0] ]['formatted_service'] . ': ' . $profiles[ $status['profile_ids'][0] ]['formatted_username'] . ': ' . $status['error']->get_error_message() );
+				$log_error[] = ( $profiles[ $status['profile_ids'][0] ]['provider'] . ': ' . $profiles[ $status['profile_ids'][0] ]['profile_name'] . ': ' . $status['error']->get_error_message() );
 				continue;
 			}
 
@@ -4012,7 +3857,7 @@ class Social_Post_Flow_Publish {
 					'action'              => $action,
 					'request_sent'        => date( 'Y-m-d H:i:s' ), // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
 					'profile_id'          => $status['profile_ids'][0],
-					'profile_name'        => $profiles[ $status['profile_ids'][0] ]['formatted_service'] . ': ' . $profiles[ $status['profile_ids'][0] ]['formatted_username'],
+					'profile_name'        => $profiles[ $status['profile_ids'][0] ]['provider'] . ': ' . $profiles[ $status['profile_ids'][0] ]['profile_name'],
 					'result'              => 'test',
 					'result_message'      => '',
 					'status_text'         => $status['text'],
@@ -4034,19 +3879,19 @@ class Social_Post_Flow_Publish {
 					'action'         => $action,
 					'request_sent'   => date( 'Y-m-d H:i:s' ), // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
 					'profile_id'     => $status['profile_ids'][0],
-					'profile_name'   => $profiles[ $status['profile_ids'][0] ]['formatted_service'] . ': ' . $profiles[ $status['profile_ids'][0] ]['formatted_username'],
+					'profile_name'   => $profiles[ $status['profile_ids'][0] ]['provider'] . ': ' . $profiles[ $status['profile_ids'][0] ]['profile_name'],
 					'result'         => 'error',
 					'result_message' => $result->get_error_message(),
 					'status_text'    => $status['text'],
 				);
-				$log_error[] = ( $profiles[ $status['profile_ids'][0] ]['formatted_service'] . ': ' . $profiles[ $status['profile_ids'][0] ]['formatted_username'] . ': ' . $result->get_error_message() );
+				$log_error[] = ( $profiles[ $status['profile_ids'][0] ]['provider'] . ': ' . $profiles[ $status['profile_ids'][0] ]['profile_name'] . ': ' . $result->get_error_message() );
 			} else {
 				// OK.
 				$logs[] = array(
 					'action'              => $action,
 					'request_sent'        => date( 'Y-m-d H:i:s' ), // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
 					'profile_id'          => $result['profile_id'],
-					'profile_name'        => $profiles[ $status['profile_ids'][0] ]['formatted_service'] . ': ' . $profiles[ $status['profile_ids'][0] ]['formatted_username'],
+					'profile_name'        => $profiles[ $status['profile_ids'][0] ]['provider'] . ': ' . $profiles[ $status['profile_ids'][0] ]['profile_name'],
 					'result'              => 'success',
 					'result_message'      => $result['message'],
 					'status_text'         => $result['status_text'],

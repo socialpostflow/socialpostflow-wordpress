@@ -14,7 +14,7 @@
 		<a href="#" class="dashicons dashicons-edit edit-status" title="<?php esc_attr_e( 'Edit Status', 'social-post-flow' ); ?>"></a>
 		<a href="#" class="dashicons dashicons-trash delete-status" title="<?php esc_attr_e( 'Delete Status', 'social-post-flow' ); ?>"></a>
 	</td>
-	<td class="message"><?php echo esc_html( $row['message'] ); ?></td>
-	<td class="image"><?php echo esc_html( $row['image'] ); ?></td>
+	<td class="message"><?php echo esc_html( $row['text'] ); ?></td>
+	<td class="post_type"><?php echo esc_html( $row['post_type'] ); ?></td>
 	<td class="schedule"><?php echo esc_html( $row['schedule'] ); ?></td>
 </tr>

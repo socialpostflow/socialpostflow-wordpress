@@ -28,9 +28,9 @@
 			foreach ( $profiles as $key => $profile ) {
 				$profile_enabled = $this->get_setting( $post_type, '[' . $profile['id'] . '][enabled]', 0 );
 				?>
-				<li class="wpzinc-nav-tab <?php echo esc_attr( $profile['service'] ); ?>">
-					<a href="#profile-<?php echo esc_attr( $profile['id'] ); ?>"<?php echo ( $profile_enabled ? ' class="enabled"' : '' ); ?> title="<?php echo esc_attr( $profile['formatted_service'] . ': ' . $profile['formatted_username'] ); ?>">
-						<span class="formatted-username"><?php echo esc_html( $profile['formatted_username'] ); ?></span>
+				<li class="wpzinc-nav-tab <?php echo esc_attr( $profile['provider'] ); ?>">
+					<a href="#profile-<?php echo esc_attr( $profile['id'] ); ?>"<?php echo ( $profile_enabled ? ' class="enabled"' : '' ); ?> title="<?php echo esc_attr( $profile['provider'] . ': ' . $profile['profile_name'] ); ?>">
+						<span class="formatted-username"><?php echo esc_html( $profile['profile_name'] ); ?></span>
 						<span class="dashicons dashicons-yes"></span>
 					</a>
 				</li>
@@ -97,7 +97,7 @@
 			foreach ( $profiles as $key => $profile ) {
 				$profile_id = $profile['id'];
 				?>
-				<div id="profile-<?php echo esc_attr( $profile_id ); ?>" class="profile <?php echo esc_attr( $profile['service'] ); ?>">
+				<div id="profile-<?php echo esc_attr( $profile_id ); ?>" class="profile <?php echo esc_attr( $profile['provider'] ); ?>">
 					<?php
 					require SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/settings-post-actionheader.php';
 					?>
