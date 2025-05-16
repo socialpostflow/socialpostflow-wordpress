@@ -671,11 +671,6 @@ class Social_Post_Flow_Publish {
 				continue;
 			}
 
-			// Skip if the Profile ID does not exist in the $profiles array, it's been removed from the API.
-			if ( $profile_id !== 'default' && ! isset( $profiles[ $profile_id ] ) ) {
-				continue;
-			}
-
 			// Get detailed settings from Post or Plugin.
 			switch ( social_post_flow()->get_class( 'post' )->get_setting_by_post_id( $post->ID, '[override]', 0 ) ) {
 				case '1':
@@ -721,7 +716,7 @@ class Social_Post_Flow_Publish {
 
 			// Determine which social media service this profile ID belongs to.
 			foreach ( $profiles as $profile ) {
-				if ( $profile['id'] == $profile_id ) { // phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
+				if ( (int) $profile['id'] === (int) $profile_id ) {
 					$service = $profile['provider'];
 					break;
 				}
@@ -1578,6 +1573,30 @@ class Social_Post_Flow_Publish {
 	 * @return  WP_Error|array
 	 */
 	private function build_args( $post, $profile_id, $service, $status, $action ) {
+
+		// For some services, the post_type may need to be changed to a supported post type.
+		// This might happen if e.g. only defaults are set, and per-profile settings are not defined.
+		switch ( $service ) {
+			/**
+			 * Instagram:
+			 * - If `image` or `story` is not specified, default to `image`.
+			 */
+			case 'instagram':
+				if ( ! in_array( $status['post_type'], array( 'image', 'story' ), true ) ) {
+					$status['post_type'] = 'image';
+				}
+				break;
+
+			/**
+			 * Other services.
+			 * - If `story` is specified, change to `image`.
+			 */
+			default:
+				if ( $status['post_type'] === 'story' ) {
+					$status['post_type'] = 'image';
+				}
+				break;
+		}
 
 		// Build API compatible arguments.
 		$args = array(
