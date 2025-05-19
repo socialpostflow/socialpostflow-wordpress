@@ -467,6 +467,13 @@ function socialPostFlowUpdatePostTypeOptions( profile ) {
 				$( 'option[value="story"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', false );
 				break;
 
+			case 'tiktok':
+				$( 'option[value="text"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', true );
+				$( 'option[value="link"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', true );
+				$( 'option[value="image"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', false );
+				$( 'option[value="story"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', true );
+				break;
+
 			default:
 				$( 'option[value="text"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', false );
 				$( 'option[value="link"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', false );

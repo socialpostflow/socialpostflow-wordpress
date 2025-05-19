@@ -1588,6 +1588,16 @@ class Social_Post_Flow_Publish {
 				break;
 
 			/**
+			 * TikTok:
+			 * - If `image` is not specified, default to `image`.
+			 */
+			case 'tiktok':
+				if ( ! in_array( $status['post_type'], array( 'image' ), true ) ) {
+					$status['post_type'] = 'image';
+				}
+				break;
+
+			/**
 			 * Other services.
 			 * - If `story` is specified, change to `image`.
 			 */
@@ -1902,6 +1912,7 @@ class Social_Post_Flow_Publish {
 		switch ( $service ) {
 			case 'facebook':
 			case 'instagram':
+			case 'tiktok':
 				// 9 additional images (10 total).
 				$additional_images_limit = min( $status_additional_images_limit, 9 );
 				break;

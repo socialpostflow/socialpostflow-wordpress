@@ -379,10 +379,8 @@ class Social_Post_Flow_Image {
 			'instagram_story' => array( 900, 1600 ),
 			'facebook'        => array( 1200, 630 ),
 			'linkedin'        => array( 1200, 627 ),
-			'googlebusiness'  => array( 720, 720 ),
 			'threads'         => array( 1200, 1200 ),
-			'bluesky'         => array( 1280, 1280 ),
-			'mastodon'        => array( 1280, 1280 ),
+			'tiktok'          => array( 1080, 1920 ),
 		);
 
 		/**
