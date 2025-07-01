@@ -445,18 +445,10 @@ class Social_Post_Flow_Image {
 		// Get image at requested size.
 		$image = wp_get_attachment_image_src( $image_id, $size );
 
-		// Get thumbnail version, which some APIs might use for a small preview.
-		$thumbnail = wp_get_attachment_image_src( $image_id, 'thumbnail' );
-
 		// Return URLs only.
 		return array(
-			'id'        => $image_id,
-			'image'     => ( is_array( $image ) ? strtok( $image[0], '?' ) : false ), // Strip query parameters that might break some APIs.
-			'thumbnail' => ( is_array( $thumbnail ) ? strtok( $thumbnail[0], '?' ) : false ), // Strip query parameters that might break some APIs.
-			'alt_text'  => get_post_meta( $image_id, '_wp_attachment_image_alt', true ),
-			'source'    => $source,
-			'width'     => ( is_array( $image ) ? $image[1] : '' ),
-			'height'    => ( is_array( $image ) ? $image[2] : '' ),
+			'image'    => ( is_array( $image ) ? strtok( $image[0], '?' ) : false ), // Strip query parameters that might break some APIs.
+			'alt_text' => get_post_meta( $image_id, '_wp_attachment_image_alt', true ),
 		);
 
 	}

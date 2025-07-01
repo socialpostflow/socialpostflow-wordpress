@@ -2039,7 +2039,7 @@ class Social_Post_Flow_Publish {
 		}
 
 		// Remove duplicate images.
-		$extra_media = array_unique( array_column( $images, 'id' ) );
+		$extra_media = array_unique( array_column( $images, 'image' ) );
 		$images      = array_intersect_key( $images, $extra_media );
 
 		// Re-key the array to a zero based index.

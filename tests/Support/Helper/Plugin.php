@@ -18,9 +18,9 @@ class Plugin extends \Codeception\Module
 	 *
 	 * @param   AcceptanceTester $I  Tester.
 	 */
-	public function activateWPToBufferProPlugin($I)
+	public function activateSocialPostFlowPlugin($I)
 	{
-		$I->activateThirdPartyPlugin($I, 'wp-to-buffer-pro');
+		$I->activateThirdPartyPlugin($I, 'social-post-flow');
 	}
 
 	/**
@@ -31,9 +31,9 @@ class Plugin extends \Codeception\Module
 	 *
 	 * @param   AcceptanceTester $I  Tester.
 	 */
-	public function deactivateWPToBufferProPlugin($I)
+	public function deactivateSocialPostFlowPlugin($I)
 	{
-		$I->deactivateThirdPartyPlugin($I, 'wp-to-buffer-pro');
+		$I->deactivateThirdPartyPlugin($I, 'social-post-flow');
 	}
 
 	/**

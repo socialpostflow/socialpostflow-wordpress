@@ -4,11 +4,11 @@ This document describes the workflow for deploying a Plugin update from GitHub t
 
 ## Merge Pull Requests
 
-Merge the approved Pull Request(s) to the `master` branch.
+Merge the approved Pull Request(s) to the `main` branch.
 
 ## Generate Localization File and Action/Filter Documentation
 
-On your local machine, switch to the `master` branch.
+On your local machine, switch to the `main` branch.
 
 Run the `.scripts/build.sh` script, which will:
 

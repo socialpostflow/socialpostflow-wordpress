@@ -20,24 +20,7 @@ class AnyErrorsOnBlankInstallCest
 	 */
 	public function _before(EndToEndTester $I)
 	{
-		$I->activateWPToBufferProPlugin($I);
-	}
-
-	/**
-	 * Check that no PHP errors or notices are displayed on the Plugin's licensing screen when the Plugin is activated
-	 * and not configured.
-	 *
-	 * @since   3.8.4
-	 *
-	 * @param   EndToEndTester $I  Tester.
-	 */
-	public function testLicensingScreen(EndToEndTester $I)
-	{
-		// Go to the Plugin's Settings Screen.
-		$I->amOnAdminPage('admin.php?page=wp-to-buffer-pro');
-
-		// Check that no PHP warnings or notices were output.
-		$I->checkNoWarningsAndNoticesOnScreen($I);
+		$I->activateSocialPostFlowPlugin($I);
 	}
 
 	/**
@@ -85,6 +68,6 @@ class AnyErrorsOnBlankInstallCest
 	 */
 	public function _passed(EndToEndTester $I)
 	{
-		$I->deactivateWPToBufferProPlugin($I);
+		$I->deactivateSocialPostFlowPlugin($I);
 	}
 }

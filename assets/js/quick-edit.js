@@ -46,11 +46,8 @@ jQuery( document ).ready(
 
 					// Populate Quick Edit Fields with data from the above hidden fields.
 					// These are output in page_columns_output() in our plugin.
-					if ( $( 'select[name="wp-to-buffer-pro[override]"]', $( edit_row ) ).length > 0 ) {
-						$( 'select[name="wp-to-buffer-pro[override]"]', $( edit_row ) ).val( override );
-					}
-					if ( $( 'select[name="wp-to-hootsuite-pro[override]"]', $( edit_row ) ).length > 0 ) {
-						$( 'select[name="wp-to-hootsuite-pro[override]"]', $( edit_row ) ).val( override );
+					if ( $( 'select[name="social-post-flow[override]"]', $( edit_row ) ).length > 0 ) {
+						$( 'select[name="social-post-flow[override]"]', $( edit_row ) ).val( override );
 					}
 				}
 			}
