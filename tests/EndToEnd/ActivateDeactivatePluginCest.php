@@ -21,7 +21,7 @@ class ActivateDeactivatePluginCest
 	 */
 	public function testPluginActivationAndDeactivation(EndToEndTester $I)
 	{
-		$I->activateWPToBufferProPlugin($I);
-		$I->deactivateWPToBufferProPlugin($I);
+		$I->activateSocialPostFlowPlugin($I);
+		$I->deactivateSocialPostFlowPlugin($I);
 	}
 }
