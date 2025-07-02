@@ -3,7 +3,7 @@
  * Outputs the UI on Posts to allow multiple images to be expressly
  * defined for use when sending a status update.
  *
- * @since   3.2.6
+ * @since   1.0.0
  *
  * @package Social_Post_Flow
  * @author  WP Zinc

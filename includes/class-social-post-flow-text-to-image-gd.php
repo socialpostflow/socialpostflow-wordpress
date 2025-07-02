@@ -18,7 +18,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	/**
 	 * Holds the image created from imagecreatetruecolor
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @var     resource
 	 */
@@ -27,7 +27,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	/**
 	 * Holds the image mime type
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @var     string
 	 */
@@ -36,7 +36,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	/**
 	 * Holds the font size
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @var     int
 	 */
@@ -45,7 +45,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	/**
 	 * Holds the font color RGBA values
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @var     int
 	 */
@@ -59,7 +59,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	/**
 	 * Holds the text horizontal and vertical alignment
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @var     int
 	 */
@@ -71,7 +71,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	/**
 	 * Determines if text should be wrapped onto newlines if it overflows
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @var     bool
 	 */
@@ -80,7 +80,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	/**
 	 * Holds the text line height
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @var     decimal
 	 */
@@ -89,7 +89,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	/**
 	 * Holds the text baseline alignment
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @var     decimal
 	 */
@@ -98,7 +98,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	/**
 	 * Holds the text font face
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @var     int
 	 */
@@ -107,7 +107,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	/**
 	 * Holds the text background color
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @var     int
 	 */
@@ -116,7 +116,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	/**
 	 * Holds the text box dimensions and inner padding
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @var     int
 	 */
@@ -131,7 +131,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	 * Creates a new image of the specified dimensions with optional background color, ready for text
 	 * to then be applied
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   int   $width              Image Width.
 	 * @param   int   $height             Image Height.
@@ -152,7 +152,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	/**
 	 * Load an existing image, ready for text to then be applied
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   int $attachment_id  Attachment ID.
 	 * @return  mixed                   WP_Error | array (width,height)
@@ -215,7 +215,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	/**
 	 * Utility function to add centered text in the given font face, size and color
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $text                   Text.
 	 * @param   string $font_face              Path and Filename to Font File.
@@ -240,7 +240,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	/**
 	 * Output the generated image into the browser
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 */
 	public function output() {
 
@@ -265,7 +265,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	/**
 	 * Save the generated image to a temporary filename.
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @return  string  Image Destination Path and Filename
 	 */
@@ -295,7 +295,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	/**
 	 * Sets the text color
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   mixed $color  Color (array (r,g,b,a) or hex).
 	 */
@@ -317,7 +317,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	/**
 	 * Sets the font face to the given font file's path and filename
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $path   Path and filename.
 	 */
@@ -330,7 +330,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	/**
 	 * Sets the font size, in pixels
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   int $pixels     Font Size.
 	 */
@@ -343,7 +343,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	/**
 	 * Sets the background color
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   mixed $color  Text Color (Hex string or RGBA array).
 	 */
@@ -365,7 +365,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	/**
 	 * Sets the text line height
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   decimal $line_height  Height of the single text line, in percents, proportionally to font size.
 	 */
@@ -378,7 +378,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	/**
 	 * Sets the text line height
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   decimal $baseline  Position of baseline, in percents, proportionally to line height measuring from the bottom.
 	 */
@@ -391,7 +391,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	/**
 	 * Sets the text alignment
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $x  Horizontal alignment (left, center, right).
 	 * @param   string $y  Vertical alignment (top, center, bottom).
@@ -407,6 +407,8 @@ class Social_Post_Flow_Text_To_Image_GD {
 
 	/**
 	 * Defines the text box size and padding
+	 *
+	 * @since   1.0.0
 	 *
 	 * @param   int $x      Padding, in pixels from left edge of image.
 	 * @param   int $y      Padding, in pixels from top edge of image.
@@ -427,7 +429,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	/**
 	 * Draws the given text on the image
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $text   Text to draw. May contain newline characters.
 	 */
@@ -514,7 +516,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	/**
 	 * Converts the given hex color to RGB
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $hex    Hex color (e.g. #000000).
 	 * @return  mixed           array | WP_Error
@@ -554,7 +556,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	/**
 	 * Splits overflowing text into array of strings that won't overflow the text box.
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $text Text.
 	 * @return  array
@@ -596,7 +598,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	 * Gets the given RBGA color index from the image, if it already exists.
 	 * If it doesn't exist it adds the color, returning the index.
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   array $color  RBG(A) Color.
 	 * @return  int             Index
@@ -626,7 +628,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	/**
 	 * Returns the font size in points
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @return  float
 	 */
@@ -639,7 +641,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	/**
 	 * Returns the bounding box of the given text, font size and font being used
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $text   Text.
 	 * @return  array
@@ -653,7 +655,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	/**
 	 * Draws a filled rectangle
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   int   $x      X Position.
 	 * @param   int   $y      Y Position.
@@ -670,7 +672,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	/**
 	 * Draw the text
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   int    $x      Horizontal Starting Point.
 	 * @param   int    $y      Vertical Starting Point.
@@ -690,7 +692,7 @@ class Social_Post_Flow_Text_To_Image_GD {
 	/**
 	 * Draw the text on the image
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   int    $x      Horizontal Starting Point.
 	 * @param   int    $y      Vertical Starting Point.

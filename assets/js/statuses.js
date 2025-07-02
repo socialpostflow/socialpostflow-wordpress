@@ -2,7 +2,7 @@
  * Handles the status settings screens at Plugin and Post level,
  * for the UI and saving changes.
  *
- * @since 	3.9.6
+ * @since 	1.0.0
  *
  * @package Social_Post_Flow
  * @author WP Zinc
@@ -11,7 +11,7 @@
 /**
  * Reinitializes autosize instances
  *
- * @since 	3.9.6
+ * @since 	1.0.0
  */
 function socialPostFlowReinitAutosize() {
 
@@ -32,7 +32,7 @@ function socialPostFlowReinitAutosize() {
 /**
  * Reinitializes autocomplete instances
  *
- * @since 	3.9.6
+ * @since 	1.0.0
  */
 function socialPostFlowReinitAutocomplete() {
 
@@ -45,7 +45,7 @@ function socialPostFlowReinitAutocomplete() {
 /**
  * Reinitializes status tag instances
  *
- * @since 	3.9.6
+ * @since 	1.0.0
  */
 function socialPostFlowInitTags() {
 
@@ -119,7 +119,7 @@ function socialPostFlowInitTags() {
 /**
  * Initializes selectize instances
  *
- * @since 	4.4.0
+ * @since 	1.0.0
  *
  * @param 	string 	selector 	Initialize .wpzinc-selectize instances within the given DOM selector.
  * @param 	object 	options 	Options for each selectize instance, keyed by input ID.
@@ -229,7 +229,7 @@ function socialPostFlowInitSelectize( selector, profile_id, action, status_index
 /**
  * Destroys selectize instances
  *
- * @since 	4.4.0
+ * @since 	1.0.0
  */
 function socialPostFlowDestroySelectize( selector ) {
 
@@ -252,7 +252,7 @@ function socialPostFlowDestroySelectize( selector ) {
 /**
  * Reindexes statuses
  *
- * @since 	3.9.6
+ * @since 	1.0.0
  *
  * @param 	string 	statuses_container 	Profile and Action Statuses Container, containing the statuses to reindex.
  */
@@ -286,7 +286,7 @@ function socialPostFlowReindexStatuses( statuses_container ) {
 /**
  * Show/hide schedule options based on the chosen schedule
  *
- * @since 	3.9.6
+ * @since 	1.0.0
  *
  * @param 	string 	action 	Action (publish,update,repost,bulk_publish)
  */
@@ -417,7 +417,7 @@ function socialPostFlowUpdateScheduleOptions( action ) {
 /**
  * Show/hide text to image options based on the chosen image option
  *
- * @since 	4.2.0
+ * @since 	1.0.0
  */
 function socialPostFlowUpdateImageOptions() {
 
@@ -521,7 +521,7 @@ function socialPostFlowUpdateStatusSections() {
  * Adds a status for the given profile ID and action, by duplicating
  * the last status.
  *
- * @since 	4.4.0
+ * @since 	1.0.0
  *
  * @param 	string 	profile_id 	Profile ID.
  * @param 	string 	Action 		Action.
@@ -553,7 +553,7 @@ function socialPostFlowAddStatus( profile_id, action ) {
  * Displays an inline form for editing a given status, populating
  * the form's values.
  *
- * @since 	4.4.0
+ * @since 	1.0.0
  *
  * @param 	string 	profile_id 		Profile ID.
  * @param 	object 	profile 		Profile (from API).
@@ -599,7 +599,7 @@ function socialPostFlowEditStatus( profile_id, profile, action, status_index, st
 /**
  * Deletes a status for the given profile ID, action and index.
  *
- * @since 	4.4.0
+ * @since 	1.0.0
  *
  * @param 	string 	profile_id 		Profile ID.
  * @param 	string 	action 			Action (publish,update,repost,bulk_publish).
@@ -635,7 +635,7 @@ function socialPostFlowDeleteStatus( profile_id, action, status_index ) {
 /**
  * Saves the status form values back to the status as a JSON data object.
  *
- * @since 	4.4.0
+ * @since 	1.0.0
  *
  * @param 	string 	profile_id 		Profile ID.
  * @param 	string 	Action 			Action.
@@ -847,7 +847,7 @@ function socialPostFlowUpdateStatus( profile_id, action, status_index ) {
 /**
  * Populates values in the status form for the given status
  *
- * @since 	4.4.0
+ * @since 	1.0.0
  *
  * @param 	string 	profile_id 		Profile ID.
  * @param 	object 	profile 		Profile (from API).
@@ -1040,7 +1040,7 @@ function socialPostFlowPopulateStatusForm( profile_id, profile, action, status_i
 /**
  * Displays the status form
  *
- * @since 	4.4.0
+ * @since 	1.0.0
  *
  * @param 	string 	profile_id 		Profile ID.
  * @param 	string 	action 			Action (publish,update,repost,bulk_publish).
@@ -1067,7 +1067,7 @@ function socialPostFlowDisplayStatusForm( profile_id, action, status_index ) {
 /**
  * Saves the contents of the status form, and then hides the status form
  *
- * @since 	4.4.0
+ * @since 	1.0.0
  */
 function socialPostFlowSaveAndHideStatusForm() {
 
@@ -1097,7 +1097,7 @@ function socialPostFlowSaveAndHideStatusForm() {
 /**
  * Clears all values from the status form
  *
- * @since 	4.4.0
+ * @since 	1.0.0
  */
 function socialPostFlowClearStatusForm() {
 
@@ -1138,7 +1138,7 @@ function socialPostFlowClearStatusForm() {
  * Returns a statuses object that can be saved against a Post Type
  * based on the current UI.
  *
- * @since 	4.4.0
+ * @since 	1.0.0
  */
 function socialPostFlowGetStatuses() {
 
@@ -1207,7 +1207,7 @@ function socialPostFlowGetStatuses() {
  * Populates a hidden field with a JSON string of all statuses and their settings
  * for the Post Type
  *
- * @since 	4.4.0
+ * @since 	1.0.0
  */
 function socialPostFlowUpdateStatuses() {
 
@@ -1231,7 +1231,7 @@ function socialPostFlowUpdateStatuses() {
 /**
  * Saves all statuses and their settings for the Post Type
  *
- * @since 	4.4.0
+ * @since 	1.0.0
  *
  * @param 	string 	post_type 	Post Type
  */
@@ -1295,7 +1295,7 @@ function socialPostFlowSaveStatuses( post_type, tab ) {
 /**
  * Saves all statuses and their settings for the Post
  *
- * @since 	4.4.0
+ * @since 	1.0.0
  *
  * @param 	int 	post_id 			Post ID.
  * @param 	int 	override 			Override Setting.
@@ -1357,7 +1357,7 @@ var socialPostFlowCharacterCounting = false;
 /**
  * Character Count
  *
- * @since 	3.9.6
+ * @since 	1.0.0
  */
 function socialPostFlowCharacterCount( textarea ) {
 
@@ -1405,7 +1405,7 @@ function socialPostFlowCharacterCount( textarea ) {
  * Enables the dialog to confirm the user wants to navigate away from the current screen,
  * as settings haven't been saved
  *
- * @since 	4.5.5
+ * @since 	1.0.0
  */
 function socialPostFlowEnableNotSavedPrompt() {
 
@@ -1425,7 +1425,7 @@ function socialPostFlowEnableNotSavedPrompt() {
  * Disables the dialog to confirm the user wants to navigate away from the current screen,
  * as settings haven't been saved.
  *
- * @since 	4.5.5
+ * @since 	1.0.0
  */
 function socialPostFlowDisableNotSavedPrompt() {
 
@@ -1707,7 +1707,7 @@ jQuery( document ).ready(
 		/**
 		 * Character Count Events
 		 *
-		 * @since 	3.0.0
+		 * @since 	1.0.0
 		 */
 		if ( social_post_flow.post_id > 0 ) {
 			$( 'textarea.text', $( social_post_flow.status_form ) ).on(

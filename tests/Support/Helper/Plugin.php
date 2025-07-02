@@ -6,7 +6,7 @@ namespace Tests\Support\Helper;
  * would be used across multiple tests.
  * These are then available using $I->{yourFunctionName}.
  *
- * @since   3.8.4
+ * @since   1.0.0
  */
 class Plugin extends \Codeception\Module
 {
@@ -14,7 +14,7 @@ class Plugin extends \Codeception\Module
 	 * Helper method to activate the Plugin, checking
 	 * it activated and no errors were output.
 	 *
-	 * @since   3.8.4
+	 * @since   1.0.0
 	 *
 	 * @param   AcceptanceTester $I  Tester.
 	 */
@@ -27,7 +27,7 @@ class Plugin extends \Codeception\Module
 	 * Helper method to deactivate the Plugin, checking
 	 * it activated and no errors were output.
 	 *
-	 * @since   3.8.4
+	 * @since   1.0.0
 	 *
 	 * @param   AcceptanceTester $I  Tester.
 	 */
@@ -40,7 +40,7 @@ class Plugin extends \Codeception\Module
 	 * Helper method to activate a third party Plugin, checking
 	 * it activated and no errors were output.
 	 *
-	 * @since   3.8.4
+	 * @since   1.0.0
 	 *
 	 * @param   EndToEndTester $I                       EndToEndTester.
 	 * @param   string         $name                    Plugin Slug.
@@ -76,7 +76,7 @@ class Plugin extends \Codeception\Module
 	 * Helper method to activate a third party Plugin, checking
 	 * it activated and no errors were output.
 	 *
-	 * @since   3.8.4
+	 * @since   1.0.0
 	 *
 	 * @param   EndToEndTester $I      EndToEnd Tester.
 	 * @param   string         $name   Plugin Slug.
@@ -101,7 +101,7 @@ class Plugin extends \Codeception\Module
 	/**
 	 * Helper method to check if the Administrator is logged in.
 	 *
-	 * @since   5.0.5
+	 * @since   1.0.0
 	 *
 	 * @param   EndToEndTester $I      EndToEnd Tester.
 	 *
@@ -116,7 +116,7 @@ class Plugin extends \Codeception\Module
 	/**
 	 * Helper method to reliably login as the Administrator.
 	 *
-	 * @since   5.0.5
+	 * @since   1.0.0
 	 *
 	 * @param   EndToEndTester $I      EndToEnd Tester.
 	 */

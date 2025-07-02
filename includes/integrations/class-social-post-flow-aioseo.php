@@ -122,7 +122,7 @@ class Social_Post_Flow_AIOSEO {
 		 * Registers any additional status message tags, and their Post data replacements, that are supported
 		 * for AIOSEO.
 		 *
-		 * @since   3.8.1
+		 * @since   1.0.0
 		 *
 		 * @param   array       $searches_replacements  Registered Supported Tags and their Replacements.
 		 * @param   WP_Post     $post                   WordPress Post.

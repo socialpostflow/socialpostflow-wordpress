@@ -12,14 +12,14 @@
  *
  * @package Social_Post_Flow
  * @author  WP Zinc
- * @version 4.6.9
+ * @version 1.0.0
  */
 class Social_Post_Flow_Date {
 
 	/**
 	 * Helper method to return the adjusted date and time based on the given parameters
 	 *
-	 * @since   4.6.9
+	 * @since   1.0.0
 	 *
 	 * @param   mixed  $date               Date.
 	 * @param   string $before_or_after    Whether to subtract (before) or add (after) to the date.
@@ -65,7 +65,7 @@ class Social_Post_Flow_Date {
 	 * The social media service will then schedule for 2018-09-01 13:00:00, because the social media services' timezone (UTC+1)
 	 * will (in this case) add an hour back to the scheduled datetime.
 	 *
-	 * @since   4.6.9
+	 * @since   1.0.0
 	 *
 	 * @param   string $date_time  Date and Time (yyyy-mm-dd HH:ii:ss).
 	 * @return  string              UTC Date and Time (yyyy-mm-dd HH:ii:ss)
@@ -94,7 +94,7 @@ class Social_Post_Flow_Date {
 	 * Converts WordPress' GMT Offset (e.g. -5, +3.3) to an offset value compatible with
 	 * WordPress' DateTime object (e.g. -0500, +0330)
 	 *
-	 * @since   3.6.2
+	 * @since   1.0.0
 	 *
 	 * @param   float $gmt_offset     GMT Offset.
 	 * @return  string                  GMT Offset Value
@@ -137,7 +137,7 @@ class Social_Post_Flow_Date {
 		 * Converts WordPress' GMT Offset (e.g. -5, +3.3) to an offset value compatible with
 		 * WordPress' DateTime object (e.g. -0500, +0330)
 		 *
-		 * @since   3.6.2
+		 * @since   1.0.0
 		 *
 		 * @param   string      $gmt_offset   GMT Offset (e.g. -0500, +0330).
 		 */

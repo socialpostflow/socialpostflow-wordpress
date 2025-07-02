@@ -21,7 +21,7 @@ class Social_Post_Flow_Image {
 	/**
 	 * Constructor
 	 *
-	 * @since   4.6.6
+	 * @since   1.0.0
 	 */
 	public function __construct() {
 
@@ -167,7 +167,7 @@ class Social_Post_Flow_Image {
 	/**
 	 * Determines if "Use OpenGraph Settings" is an option available for the Status Image dropdown
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @return  bool    Supports OpenGraph
 	 */
@@ -187,7 +187,7 @@ class Social_Post_Flow_Image {
 	 * Determines if the WordPress installations has a Plugin installed that outputs
 	 * OpenGraph metadata
 	 *
-	 * @since   4.4.0
+	 * @since   1.0.0
 	 *
 	 * @return  bool    Supports OpenGraph
 	 */
@@ -220,7 +220,7 @@ class Social_Post_Flow_Image {
 	/**
 	 * Helper method to retrieve the image size for the given service.
 	 *
-	 * @since   4.6.6
+	 * @since   1.0.0
 	 *
 	 * @param   string      $service    Social Media Service.
 	 * @param   bool|string $format     Status format (for example, 'story' or 'post' for Instagram).
@@ -248,7 +248,7 @@ class Social_Post_Flow_Image {
 		/**
 		 * Defines the image size limit for the given social media service.
 		 *
-		 * @since   4.6.6
+		 * @since   1.0.0
 		 *
 		 * @param   array       $image_size    Image Size (width, height).
 		 * @param   string      $service       Social Media Service.
@@ -264,7 +264,7 @@ class Social_Post_Flow_Image {
 	/**
 	 * Returns the image for the given Attachment ID, resized to meet the provided aspect ratio requirements.
 	 *
-	 * @since   4.6.6
+	 * @since   1.0.0
 	 *
 	 * @param   int    $image_id                           Image ID.
 	 * @param   string $source                             Source Image ID was derived from (plugin, featured_image, post_content, text_to_image).
@@ -315,7 +315,7 @@ class Social_Post_Flow_Image {
 	/**
 	 * Crops the given image to the given width and height.
 	 *
-	 * @since   5.0.0
+	 * @since   1.0.0
 	 *
 	 * @param   int   $image_id   Image ID.
 	 * @param   float $width      Required Width.
@@ -364,7 +364,7 @@ class Social_Post_Flow_Image {
 	/**
 	 * Pads the given image to the give width and height.
 	 *
-	 * @since   5.0.0
+	 * @since   1.0.0
 	 *
 	 * @param   int   $image_id   Image ID.
 	 * @param   float $width      Required Width.
@@ -433,12 +433,12 @@ class Social_Post_Flow_Image {
 	 * Returns an array comprising of the image ID, image URL and alt text for the requested size, thumbnail size
 	 * and the source of the image.
 	 *
-	 * @since   4.6.6
+	 * @since   1.0.0
 	 *
 	 * @param   int    $image_id   Image ID.
 	 * @param   string $source     Source Image ID was derived from (plugin, featured_image, post_content, text_to_image).
 	 * @param   string $size       WordPress Registered Image Size to return the image as.
-	 * @return  array              Image
+	 * @return  string             Image URL.
 	 */
 	public function get_image_source_by_size( $image_id, $source, $size = 'large' ) {
 
@@ -446,17 +446,14 @@ class Social_Post_Flow_Image {
 		$image = wp_get_attachment_image_src( $image_id, $size );
 
 		// Return URLs only.
-		return array(
-			'image'    => ( is_array( $image ) ? strtok( $image[0], '?' ) : false ), // Strip query parameters that might break some APIs.
-			'alt_text' => get_post_meta( $image_id, '_wp_attachment_image_alt', true ),
-		);
+		return ( is_array( $image ) ? strtok( $image[0], '?' ) : '' );
 
 	}
 
 	/**
 	 * Defines the optimal image sizes for each social network.
 	 *
-	 * @since   4.6.6
+	 * @since   1.0.0
 	 *
 	 * @return  array   Social Media Image Sizes by Social Media Type.
 	 */
@@ -478,7 +475,7 @@ class Social_Post_Flow_Image {
 		/**
 		 * Defines the optimal image sizes for each social network.
 		 *
-		 * @since   4.2.0
+		 * @since   1.0.0
 		 *
 		 * @param   array   $image_sizes   Image Sizes
 		 */
@@ -493,7 +490,7 @@ class Social_Post_Flow_Image {
 	 * Return an array of Plugins that output OpenGraph data
 	 * which can be used by this Plugin for sharing the Featured Image
 	 *
-	 * @since   4.6.6
+	 * @since   1.0.0
 	 *
 	 * @return  array   Plugins
 	 */
@@ -506,7 +503,7 @@ class Social_Post_Flow_Image {
 		 * Defines the Plugins that output OpenGraph metadata on Posts, Pages
 		 * and Custom Post Types.
 		 *
-		 * @since   3.7.9
+		 * @since   1.0.0
 		 *
 		 * @param   array   $plugins    Plugins
 		 */

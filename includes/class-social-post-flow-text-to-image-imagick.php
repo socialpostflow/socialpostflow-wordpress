@@ -11,14 +11,14 @@
  *
  * @package Social_Post_Flow
  * @author  WP Zinc
- * @version 4.2.0
+ * @version 1.0.0
  */
 class Social_Post_Flow_Text_To_Image_Imagick {
 
 	/**
 	 * Holds the image created from Imagick
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @var     Imagick
 	 */
@@ -27,7 +27,7 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 	/**
 	 * Holds the image mime type
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @var     string
 	 */
@@ -36,7 +36,7 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 	/**
 	 * Holds the font size
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @var     int
 	 */
@@ -45,7 +45,7 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 	/**
 	 * Holds the font color RGBA values
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @var     array
 	 */
@@ -59,7 +59,7 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 	/**
 	 * Holds the text horizontal and vertical alignment
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @var     array
 	 */
@@ -71,7 +71,7 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 	/**
 	 * Determines if text should be wrapped onto newlines if it overflows
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @var     bool
 	 */
@@ -80,7 +80,7 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 	/**
 	 * Holds the text line height
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @var     float
 	 */
@@ -89,7 +89,7 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 	/**
 	 * Holds the text baseline alignment
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @var     float
 	 */
@@ -98,7 +98,7 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 	/**
 	 * Holds the text font face
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @var     string
 	 */
@@ -107,7 +107,7 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 	/**
 	 * Holds the text background color
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @var     array|false
 	 */
@@ -116,7 +116,7 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 	/**
 	 * Holds the text box dimensions and inner padding
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @var     array
 	 */
@@ -131,7 +131,7 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 	 * Creates a new image of the specified dimensions with optional background color, ready for text
 	 * to then be applied
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   int   $width              Image Width.
 	 * @param   int   $height             Image Height.
@@ -153,7 +153,7 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 	/**
 	 * Load an existing image
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   int $attachment_id  Attachment ID.
 	 * @return  mixed               WP_Error | array (width,height)
@@ -195,7 +195,7 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 	/**
 	 * Add centered text with given parameters
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $text                   Text.
 	 * @param   string $font_face              Path and Filename to Font File.
@@ -220,7 +220,7 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 	/**
 	 * Output the generated image
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 */
 	public function output() {
 
@@ -233,7 +233,7 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 	/**
 	 * Save to temporary file
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @return  string  Image Destination Path and Filename
 	 */
@@ -248,7 +248,7 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 	/**
 	 * Sets the text color
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   mixed $color  Color (array (r,g,b,a) or hex).
 	 */
@@ -269,7 +269,7 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 	/**
 	 * Sets the font face
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $path   Path and filename.
 	 */
@@ -282,7 +282,7 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 	/**
 	 * Sets the font size
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   int $pixels     Font Size.
 	 */
@@ -295,7 +295,7 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 	/**
 	 * Sets the text background color
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   mixed $color  Text Color (Hex string or RGBA array).
 	 */
@@ -316,7 +316,7 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 	/**
 	 * Sets the line height
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   float $line_height  Line height multiplier.
 	 */
@@ -329,7 +329,7 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 	/**
 	 * Sets the baseline
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   float $baseline  Baseline position.
 	 */
@@ -342,7 +342,7 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 	/**
 	 * Sets the text alignment
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $x  Horizontal alignment (left, center, right).
 	 * @param   string $y  Vertical alignment (top, center, bottom).
@@ -359,7 +359,7 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 	/**
 	 * Sets the text box dimensions
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   int $x      X position.
 	 * @param   int $y      Y position.
@@ -380,7 +380,7 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 	/**
 	 * Draws the text on the image
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $text   Text to draw.
 	 */
@@ -474,7 +474,7 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 	/**
 	 * Converts hex color to RGBA array
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $hex    Hex color.
 	 * @return  mixed          array|WP_Error
@@ -515,7 +515,7 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 	/**
 	 * Converts RGBA array to ImageMagick color string
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   array $color  RGBA color array.
 	 * @return  string        ImageMagick color string
@@ -535,7 +535,7 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 	/**
 	 * Wraps text that would overflow
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $text   Text to wrap.
 	 * @return  array          Array of lines

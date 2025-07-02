@@ -12,14 +12,14 @@
  *
  * @package Social_Post_Flow
  * @author  WP Zinc
- * @version 4.2.2
+ * @version 1.0.0
  */
 class Social_Post_Flow_Export {
 
 	/**
 	 * Constructor.
 	 *
-	 * @since   4.2.2
+	 * @since   1.0.0
 	 */
 	public function __construct() {
 
@@ -31,7 +31,7 @@ class Social_Post_Flow_Export {
 	/**
 	 * Export data
 	 *
-	 * @since   4.2.2
+	 * @since   1.0.0
 	 *
 	 * @param   array $data   Export Data.
 	 * @return  array           Export Data

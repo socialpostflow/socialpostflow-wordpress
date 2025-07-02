@@ -351,7 +351,7 @@ class Social_Post_Flow_API {
 	/**
 	 * Base64URL encode the given string.
 	 *
-	 * @since   2.0.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $str    String to encode.
 	 * @return  string         Encoded string.
@@ -465,11 +465,30 @@ class Social_Post_Flow_API {
 	 * @since   1.0.0
 	 *
 	 * @param   array $params     Params.
-	 * @return  mixed               WP_Error | Update object
+	 * @return  WP_Error|array
 	 */
 	public function create_post( $params ) {
 
 		return $this->post( 'posts', $params );
+
+	}
+
+	/**
+	 * Creates Posts on Social Post Flow.
+	 *
+	 * @since   1.0.0
+	 *
+	 * @param   array $posts     Posts.
+	 * @return  WP_Error|array
+	 */
+	public function create_posts( $posts ) {
+
+		return $this->post(
+			'posts/bulk',
+			array(
+				'posts' => $posts,
+			)
+		);
 
 	}
 

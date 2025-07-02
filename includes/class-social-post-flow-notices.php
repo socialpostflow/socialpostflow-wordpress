@@ -19,7 +19,7 @@ class Social_Post_Flow_Notices {
 	/**
 	 * Holds success and error notices to be displayed
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 *
 	 * @var     array
 	 */
@@ -34,7 +34,7 @@ class Social_Post_Flow_Notices {
 	 *
 	 * Set using enable_persistence() and disable_persistence().
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 *
 	 * @var     bool
 	 */
@@ -43,7 +43,7 @@ class Social_Post_Flow_Notices {
 	/**
 	 * The key prefix to use for stored notices
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 *
 	 * @var     string
 	 */
@@ -52,7 +52,7 @@ class Social_Post_Flow_Notices {
 	/**
 	 * Enable persistence on notices
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 */
 	public function enable_store() {
 
@@ -63,7 +63,7 @@ class Social_Post_Flow_Notices {
 	/**
 	 * Disable persistence on notices
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 */
 	public function disable_store() {
 
@@ -74,7 +74,7 @@ class Social_Post_Flow_Notices {
 	/**
 	 * Defines the key prefix to use for setting and getting notices
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 *
 	 * @param   string $key_prefix     Key Prefix.
 	 */
@@ -87,7 +87,7 @@ class Social_Post_Flow_Notices {
 	/**
 	 * Returns all Success Notices that need to be displayed.
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 *
 	 * @return  array   Notices
 	 */
@@ -104,7 +104,7 @@ class Social_Post_Flow_Notices {
 		/**
 		 * Filters the success notices to return.
 		 *
-		 * @since   3.9.6
+		 * @since   1.0.0
 		 *
 		 * @param   array   $success_notices    Success Notices.
 		 * @param   object  $this->notices      Success and Error Notices.
@@ -119,7 +119,7 @@ class Social_Post_Flow_Notices {
 	/**
 	 * Add a single Success Notice
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 *
 	 * @param   string $value    Message.
 	 * @return  bool                Success
@@ -158,7 +158,7 @@ class Social_Post_Flow_Notices {
 	/**
 	 * Returns all Warning Notices that need to be displayed.
 	 *
-	 * @since   4.5.3
+	 * @since   1.0.0
 	 *
 	 * @return  array   Notices
 	 */
@@ -175,7 +175,7 @@ class Social_Post_Flow_Notices {
 		/**
 		 * Filters the error notices to return.
 		 *
-		 * @since   4.5.3
+		 * @since   1.0.0
 		 *
 		 * @param   array   $warning_notices    Warning Notices.
 		 * @param   object  $this->notices      Success, Warning and Error Notices.
@@ -190,7 +190,7 @@ class Social_Post_Flow_Notices {
 	/**
 	 * Add a single Warning Notice
 	 *
-	 * @since   4.5.3
+	 * @since   1.0.0
 	 *
 	 * @param   string $value    Message.
 	 */
@@ -221,7 +221,7 @@ class Social_Post_Flow_Notices {
 	/**
 	 * Returns all Error Notices that need to be displayed.
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 *
 	 * @return  array   Notices
 	 */
@@ -238,7 +238,7 @@ class Social_Post_Flow_Notices {
 		/**
 		 * Filters the error notices to return.
 		 *
-		 * @since   3.9.6
+		 * @since   1.0.0
 		 *
 		 * @param   array   $error_notices  Error Notices.
 		 * @param   object  $this->notices  Success and Error Notices.
@@ -253,7 +253,7 @@ class Social_Post_Flow_Notices {
 	/**
 	 * Add a single Error Notice
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 *
 	 * @param   string $value    Message.
 	 */
@@ -284,7 +284,7 @@ class Social_Post_Flow_Notices {
 	/**
 	 * Returns all Success and Error notices
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 *
 	 * @return  array   Notices
 	 */
@@ -296,7 +296,7 @@ class Social_Post_Flow_Notices {
 		/**
 		 * Filters the success and error notices to return.
 		 *
-		 * @since   3.9.6
+		 * @since   1.0.0
 		 *
 		 * @param   array   $notices    Success and Error Notices.
 		 */
@@ -330,7 +330,7 @@ class Social_Post_Flow_Notices {
 	/**
 	 * Saves the given notices array.
 	 *
-	 * @since    3.9.6
+	 * @since    1.0.0
 	 *
 	 * @param    array $notices   Notices.
 	 * @return   bool               Success
@@ -340,7 +340,7 @@ class Social_Post_Flow_Notices {
 		/**
 		 * Filters the success and error notices to save.
 		 *
-		 * @since   3.9.6
+		 * @since   1.0.0
 		 *
 		 * @param   array   $notices    Success and Error Notices.
 		 */
@@ -356,7 +356,7 @@ class Social_Post_Flow_Notices {
 	/**
 	 * Deletes all notices
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 */
 	public function delete_notices() {
 
@@ -371,7 +371,7 @@ class Social_Post_Flow_Notices {
 		/**
 		 * Run any actions immediately after deleting all notices.
 		 *
-		 * @since   3.9.6
+		 * @since   1.0.0
 		 */
 		do_action( 'social_post_flow_notices_delete_notices' );
 
@@ -382,7 +382,7 @@ class Social_Post_Flow_Notices {
 	/**
 	 * Output any success and error notices
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 */
 	public function output_notices() {
 

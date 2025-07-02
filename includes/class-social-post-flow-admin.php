@@ -466,7 +466,7 @@ class Social_Post_Flow_Admin {
 		/**
 		 * Defines configuration for tribute.js autocomplete instances for Tags, Facebook Pages and Twitter Username mentions.
 		 *
-		 * @since   4.5.7
+		 * @since   1.0.0
 		 *
 		 * @param   array   $autocomplete_configuration     Javascript  Autocomplete Configuration.
 		 * @param   string  $post_type                      Post Type.
@@ -492,7 +492,7 @@ class Social_Post_Flow_Admin {
 		 * Defines the minimum capability required to access the Plugin's
 		 * Menu and Sub Menus
 		 *
-		 * @since   4.3.6
+		 * @since   1.0.0
 		 *
 		 * @param   string  $capability     Minimum Required Capability.
 		 * @return  string                  Minimum Required Capability
@@ -502,7 +502,7 @@ class Social_Post_Flow_Admin {
 		/**
 		 * Add settings menus and sub menus for the Plugin's settings.
 		 *
-		 * @since   5.2.4
+		 * @since   1.0.0
 		 *
 		 * @param   string  $minimum_capability     Minimum capability required.
 		 */
@@ -545,7 +545,7 @@ class Social_Post_Flow_Admin {
 	/**
 	 * Outputs the Settings Screen
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 */
 	public function settings_screen() {
 
@@ -697,7 +697,7 @@ class Social_Post_Flow_Admin {
 	 * Outputs the auth screen, allowing the user to begin the process of connecting the Plugin
 	 * to the API, without showing other settings.
 	 *
-	 * @since   4.6.4
+	 * @since   1.0.0
 	 */
 	public function auth_screen() {
 
@@ -721,7 +721,7 @@ class Social_Post_Flow_Admin {
 	/**
 	 * Outputs the Bulk Publish Screen
 	 *
-	 * @since   3.0.5
+	 * @since   1.0.0
 	 */
 	public function bulk_publish_screen() {
 
@@ -798,7 +798,7 @@ class Social_Post_Flow_Admin {
 					'order'      => ( isset( $_POST['social-post-flow']['order'] ) ? sanitize_text_field( wp_unslash( $_POST['social-post-flow']['order'] ) ) : false ),
 				);
 
-				// If the URL request includes Post IDs, we've come from a WP_List_Table Bulk Action
+				// If the URL request includes Post IDs, we've come from a WP_List_Table
 				// Use these IDs.
 				if ( isset( $_REQUEST['post_ids'] ) ) {
 					$post_ids = explode( ',', sanitize_text_field( wp_unslash( $_REQUEST['post_ids'] ) ) );
@@ -971,7 +971,7 @@ class Social_Post_Flow_Admin {
 	/**
 	 * Outputs the Log Screen
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 */
 	public function log_screen() {
 
@@ -987,7 +987,7 @@ class Social_Post_Flow_Admin {
 	/**
 	 * Helper method to get the setting value from the plugin settings
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $type            Setting Type.
 	 * @param   string $key             Setting Key.
@@ -1025,7 +1025,7 @@ class Social_Post_Flow_Admin {
 	/**
 	 * Disconnect by removing the access token
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 *
 	 * @return  string Result
 	 */
@@ -1038,7 +1038,7 @@ class Social_Post_Flow_Admin {
 	/**
 	 * Helper method to save settings
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 *
 	 * @return  mixed   WP_Error | bool
 	 */
@@ -1155,7 +1155,7 @@ class Social_Post_Flow_Admin {
 	/**
 	 * Returns the settings tab that the user has selected.
 	 *
-	 * @since   3.7.2
+	 * @since   1.0.0
 	 *
 	 * @param   mixed $profiles   API Profiles (false|WP_Error|array).
 	 * @return  string  Tab
@@ -1187,7 +1187,7 @@ class Social_Post_Flow_Admin {
 	/**
 	 * Returns the Post Type tab that the user has selected.
 	 *
-	 * @since   3.7.2
+	 * @since   1.0.0
 	 *
 	 * @return  string  Tab
 	 */

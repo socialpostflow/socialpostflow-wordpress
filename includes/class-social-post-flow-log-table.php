@@ -11,14 +11,14 @@
  *
  * @package Social_Post_Flow
  * @author  WP Zinc
- * @version 3.9.6
+ * @version 1.0.0
  */
 class Social_Post_Flow_Log_Table extends WP_List_Table {
 
 	/**
 	 * Constructor.
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 */
 	public function __construct() {
 
@@ -35,7 +35,7 @@ class Social_Post_Flow_Log_Table extends WP_List_Table {
 	/**
 	 * Display dropdowns for Bulk Actions and Filtering.
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 *
 	 * @param   string $which  The location of the bulk actions: 'top' or 'bottom'.
 	 *                         This is designated as optional for backward compatibility.
@@ -130,7 +130,7 @@ class Social_Post_Flow_Log_Table extends WP_List_Table {
 	/**
 	 * Defines the message to display when no items exist in the table
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 */
 	public function no_items() {
 
@@ -141,7 +141,7 @@ class Social_Post_Flow_Log_Table extends WP_List_Table {
 	/**
 	 * Displays the search box.
 	 *
-	 * @since   3.1.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $text        The 'submit' button label.
 	 * @param   string $input_id    ID attribute value for the search input field.
@@ -170,7 +170,7 @@ class Social_Post_Flow_Log_Table extends WP_List_Table {
 	/**
 	 * Define the columns that are going to be used in the table
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 *
 	 * @return  array   Columns to use with the table
 	 */
@@ -194,7 +194,7 @@ class Social_Post_Flow_Log_Table extends WP_List_Table {
 	/**
 	 * Decide which columns to activate the sorting functionality on
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 *
 	 * @return  array   Columns that can be sorted by the user
 	 */
@@ -217,7 +217,7 @@ class Social_Post_Flow_Log_Table extends WP_List_Table {
 	/**
 	 * Overrides the list of bulk actions in the select dropdowns above and below the table
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 *
 	 * @return  array   Bulk Actions
 	 */
@@ -232,7 +232,7 @@ class Social_Post_Flow_Log_Table extends WP_List_Table {
 	/**
 	 * Prepare the table with different parameters, pagination, columns and table elements
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 */
 	public function prepare_items() {
 
@@ -270,7 +270,7 @@ class Social_Post_Flow_Log_Table extends WP_List_Table {
 	/**
 	 * Generate the table navigation above or below the table
 	 *
-	 * @since   3.1.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $which  The location of the bulk actions: 'top' or 'bottom'.
 	 *                         This is designated as optional for backward compatibility.
@@ -299,7 +299,7 @@ class Social_Post_Flow_Log_Table extends WP_List_Table {
 	/**
 	 * Display the rows of records in the table
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 */
 	public function display_rows() {
 
@@ -310,7 +310,7 @@ class Social_Post_Flow_Log_Table extends WP_List_Table {
 	/**
 	 * Get search parameters.
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 *
 	 * @return  array   Search Parameters
 	 */
@@ -350,7 +350,7 @@ class Social_Post_Flow_Log_Table extends WP_List_Table {
 	/**
 	 * Returns whether a search has been performed on the table.
 	 *
-	 * @since   3.9.0
+	 * @since   1.0.0
 	 *
 	 * @return  bool    Search has been performed.
 	 */
@@ -363,7 +363,7 @@ class Social_Post_Flow_Log_Table extends WP_List_Table {
 	/**
 	 * Get the Search requested by the user
 	 *
-	 * @since   3.9.0
+	 * @since   1.0.0
 	 *
 	 * @return  string
 	 */
@@ -376,7 +376,7 @@ class Social_Post_Flow_Log_Table extends WP_List_Table {
 	/**
 	 * Get the Action Filter requested by the user
 	 *
-	 * @since   3.9.7
+	 * @since   1.0.0
 	 *
 	 * @return  string
 	 */
@@ -389,7 +389,7 @@ class Social_Post_Flow_Log_Table extends WP_List_Table {
 	/**
 	 * Get the Profile ID Filter requested by the user
 	 *
-	 * @since   3.9.7
+	 * @since   1.0.0
 	 *
 	 * @return  string
 	 */
@@ -402,7 +402,7 @@ class Social_Post_Flow_Log_Table extends WP_List_Table {
 	/**
 	 * Get the Status Result Filter requested by the user
 	 *
-	 * @since   3.9.7
+	 * @since   1.0.0
 	 *
 	 * @return  string
 	 */
@@ -415,7 +415,7 @@ class Social_Post_Flow_Log_Table extends WP_List_Table {
 	/**
 	 * Get the Request Sent Start Date Filter requested by the user
 	 *
-	 * @since   3.9.8
+	 * @since   1.0.0
 	 *
 	 * @return  string
 	 */
@@ -428,7 +428,7 @@ class Social_Post_Flow_Log_Table extends WP_List_Table {
 	/**
 	 * Get the Request Sent End Date Filter requested by the user
 	 *
-	 * @since   3.9.8
+	 * @since   1.0.0
 	 *
 	 * @return  string
 	 */
@@ -441,7 +441,7 @@ class Social_Post_Flow_Log_Table extends WP_List_Table {
 	/**
 	 * Get the Order By requested by the user
 	 *
-	 * @since   3.9.7
+	 * @since   1.0.0
 	 *
 	 * @return  string
 	 */
@@ -454,7 +454,7 @@ class Social_Post_Flow_Log_Table extends WP_List_Table {
 	/**
 	 * Get the Order requested by the user
 	 *
-	 * @since   3.9.7
+	 * @since   1.0.0
 	 *
 	 * @return  string
 	 */
@@ -467,7 +467,7 @@ class Social_Post_Flow_Log_Table extends WP_List_Table {
 	/**
 	 * Get the Pagination Page requested by the user
 	 *
-	 * @since   3.9.7
+	 * @since   1.0.0
 	 *
 	 * @return  string
 	 */

@@ -11,14 +11,14 @@
  *
  * @package Social_Post_Flow
  * @author  WP Zinc
- * @version 3.0.0
+ * @version 1.0.0
  */
 class Social_Post_Flow_Post {
 
 	/**
 	 * Constructor
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 */
 	public function __construct() {
 
@@ -35,7 +35,7 @@ class Social_Post_Flow_Post {
 	 * Outputs a notice if the user is editing a Post, which has a meta key indicating
 	 * that status(es) were published to the API.
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 */
 	public function admin_notices() {
 
@@ -108,7 +108,7 @@ class Social_Post_Flow_Post {
 	/**
 	 * Adds Metaboxes to Post Edit Screens
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 */
 	public function admin_meta_boxes() {
 
@@ -142,7 +142,7 @@ class Social_Post_Flow_Post {
 	/**
 	 * Outputs settings to allow the user to override default settings for publishing to the API
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 *
 	 * @param   WP_Post $post   Post.
 	 */
@@ -230,7 +230,7 @@ class Social_Post_Flow_Post {
 	/**
 	 * Outputs the Featured Image Meta Box
 	 *
-	 * @since   3.2.6
+	 * @since   1.0.0
 	 *
 	 * @param   WP_Post $post   Post.
 	 */
@@ -254,7 +254,7 @@ class Social_Post_Flow_Post {
 	 * Returns an array of images that may have been chosen for use when status(es)
 	 * are sent to the social network for this Post.
 	 *
-	 * @since   3.7.8
+	 * @since   1.0.0
 	 *
 	 * @param   int $post_id    Post ID.
 	 * @return  array               Images
@@ -318,7 +318,7 @@ class Social_Post_Flow_Post {
 	 * This function exists so that views/ files, which call $this->get_setting() in both Post
 	 * and Setting contexts, works correctly, meaning we don't need to duplicate our views.
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $post_type       Post Type.
 	 * @param   string $key             Setting key value to retrieve.
@@ -346,7 +346,7 @@ class Social_Post_Flow_Post {
 	/**
 	 * Determines if the given Post ID has Post level settings defined.
 	 *
-	 * @since   3.7.8
+	 * @since   1.0.0
 	 *
 	 * @param   int $post_id    Post ID.
 	 * @return  bool                Has Post Level Settings
@@ -365,7 +365,7 @@ class Social_Post_Flow_Post {
 	 * Safely checks if the key(s) exist before returning the default
 	 * or the value.
 	 *
-	 * @since   3.0.3
+	 * @since   1.0.0
 	 *
 	 * @param   mixed  $post_id         Post ID.
 	 * @param   string $key             Setting key value to retrieve.
@@ -403,7 +403,7 @@ class Social_Post_Flow_Post {
 	/**
 	 * Returns the settings for the given Post.
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 *
 	 * @param   int $post_id    Post ID.
 	 * @return  array               Settings
@@ -416,7 +416,7 @@ class Social_Post_Flow_Post {
 		/**
 		 * Filters Status Settings for a specific Post.
 		 *
-		 * @since   3.0.0
+		 * @since   1.0.0
 		 *
 		 * @param   array   $settings   Post Settings.
 		 * @param   int     $post_id    Post ID.
@@ -431,7 +431,7 @@ class Social_Post_Flow_Post {
 	/**
 	 * Save Post-specific Plugin Settings
 	 *
-	 * @since   3.0.9
+	 * @since   1.0.0
 	 *
 	 * @param   int $post_id Post ID.
 	 * @return  bool            Success
@@ -468,7 +468,7 @@ class Social_Post_Flow_Post {
 	/**
 	 * Saves status settings for the specific Post.
 	 *
-	 * @since   4.4.1
+	 * @since   1.0.0
 	 *
 	 * @param   int   $post_id    Post ID.
 	 * @param   array $settings   Status Settings.
@@ -545,7 +545,7 @@ class Social_Post_Flow_Post {
 	/**
 	 * Outputs the hidden Javascript Modal and Overlay in the Footer
 	 *
-	 * @since   4.4.1
+	 * @since   1.0.0
 	 */
 	public function output_modal() {
 

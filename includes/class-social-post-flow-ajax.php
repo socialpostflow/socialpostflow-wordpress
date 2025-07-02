@@ -12,14 +12,14 @@
  *
  * @package Social_Post_Flow
  * @author  WP Zinc
- * @version 3.0.0
+ * @version 1.0.0
  */
 class Social_Post_Flow_Ajax {
 
 	/**
 	 * Constructor
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 */
 	public function __construct() {
 
@@ -42,7 +42,7 @@ class Social_Post_Flow_Ajax {
 	 * Searches for matching usernames on Facebook for the given search term,
 	 * typically for Facebook autocomplete mentions.
 	 *
-	 * @since   4.5.6
+	 * @since   1.0.0
 	 */
 	public function usernames_search_facebook() {
 
@@ -82,7 +82,7 @@ class Social_Post_Flow_Ajax {
 	/**
 	 * Saves statuses for the given Post Type in the Plugin's Settings section.
 	 *
-	 * @since   4.0.8
+	 * @since   1.0.0
 	 */
 	public function save_statuses() {
 
@@ -125,7 +125,7 @@ class Social_Post_Flow_Ajax {
 	/**
 	 * Saves statuses for the given Post
 	 *
-	 * @since   4.4.1
+	 * @since   1.0.0
 	 */
 	public function save_statuses_post() {
 
@@ -170,7 +170,7 @@ class Social_Post_Flow_Ajax {
 	/**
 	 * Returns HTML markup that can be injected inside a <tr> to show the status' information
 	 *
-	 * @since   4.4.0
+	 * @since   1.0.0
 	 */
 	public function get_status_row() {
 
@@ -202,7 +202,7 @@ class Social_Post_Flow_Ajax {
 	 * Renders the given status and Post to calculate the character count on a status
 	 * when using the "Post using Manual Settings" option.
 	 *
-	 * @since   3.1.6
+	 * @since   1.0.0
 	 */
 	public function character_count() {
 
@@ -239,7 +239,7 @@ class Social_Post_Flow_Ajax {
 	 * Fetches the plugin log for the given Post ID, in HTML format
 	 * compatible for insertion into the Log Table.
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 */
 	public function get_log() {
 
@@ -262,7 +262,7 @@ class Social_Post_Flow_Ajax {
 	/**
 	 * Clears the plugin log for the given Post ID
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 */
 	public function clear_log() {
 
@@ -287,7 +287,7 @@ class Social_Post_Flow_Ajax {
 	/**
 	 * Searches for Taxonomy Terms for the given Taxonomy and freeform text
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 */
 	public function search_terms() {
 
@@ -341,7 +341,7 @@ class Social_Post_Flow_Ajax {
 	/**
 	 * Searches for Authors for the given freeform text
 	 *
-	 * @since   3.9.5
+	 * @since   1.0.0
 	 */
 	public function search_authors() {
 
@@ -388,7 +388,7 @@ class Social_Post_Flow_Ajax {
 	/**
 	 * Searches for Roles for the given freeform text
 	 *
-	 * @since   4.5.9
+	 * @since   1.0.0
 	 */
 	public function search_roles() {
 
@@ -422,7 +422,7 @@ class Social_Post_Flow_Ajax {
 	 * Sends a publish request for the next Post ID in the index sequence.
 	 * Used for bulk publishing
 	 *
-	 * @since   3.0.5
+	 * @since   1.0.0
 	 */
 	public function bulk_publish() {
 
@@ -513,7 +513,7 @@ class Social_Post_Flow_Ajax {
 	/**
 	 * Tests the Repost functionality as if it were triggered by WordPress' Cron now
 	 *
-	 * @since   4.1.8
+	 * @since   1.0.0
 	 */
 	public function repost_test() {
 

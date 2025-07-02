@@ -17,14 +17,14 @@
  *
  * @package Social_Post_Flow
  * @author  WP Zinc
- * @version 5.0.0
+ * @version 1.0.0
  */
 class Social_Post_Flow_Image_GD extends WP_Image_Editor_GD {
 
 	/**
 	 * Copies the image into the center of a new, larger canvas.
 	 *
-	 * @since   5.0.0
+	 * @since   1.0.0
 	 *
 	 * @param   int $dst_w  Destination image width.
 	 * @param   int $dst_h  Destination image height.

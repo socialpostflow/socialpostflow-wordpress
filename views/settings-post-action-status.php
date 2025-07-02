@@ -118,7 +118,7 @@
 					/**
 					 * Output Schedule settings for Integrations / Third Party Plugins
 					 *
-					 * @since   4.4.0
+					 * @since   1.0.0
 					 *
 					 * @param   string  $post_type  Post Type
 					 */
@@ -452,7 +452,7 @@
 						/**
 						 * Output condition settings for Integrations / Third Party Plugins
 						 *
-						 * @since   5.1.2
+						 * @since   1.0.0
 						 *
 						 * @param   string  $post_type  Post Type
 						 */

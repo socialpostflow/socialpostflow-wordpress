@@ -11,7 +11,7 @@
  *
  * @package Social_Post_Flow
  * @author  WP Zinc
- * @version 3.7.8
+ * @version 1.0.0
  */
 class Social_Post_Flow_CLI_Bulk_Publish {
 
@@ -19,7 +19,7 @@ class Social_Post_Flow_CLI_Bulk_Publish {
 	 * Reposts Posts, Pages and Custom Post Types to the API
 	 * based on the status settings at Plugin and Post level.
 	 *
-	 * @since   3.7.8
+	 * @since   1.0.0
 	 *
 	 * @param   array $args           Array of positional arguments (not used).
 	 * @param   array $assoc_args     Array of associative arguments.

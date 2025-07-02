@@ -2,7 +2,7 @@
 /**
  * Outputs Settings View for a Post Type
  *
- * @since    3.0.0
+ * @since    1.0.0
  *
  * @package Social_Post_Flow
  * @author  WP Zinc

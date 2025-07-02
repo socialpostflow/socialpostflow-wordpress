@@ -11,14 +11,14 @@
  *
  * @package Social_Post_Flow
  * @author  WP Zinc
- * @version 4.2.0
+ * @version 1.0.0
  */
 class Social_Post_Flow_Media_Library {
 
 	/**
 	 * Uploads the given image path and file into the WordPress Media Library
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $source     Source Path and Filename.
 	 * @param   int    $post_id    Post ID.
@@ -101,7 +101,7 @@ class Social_Post_Flow_Media_Library {
 	 * Deletes attachments that were added by an upload function in this class
 	 * (i.e. that include the meta key flag)
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 */
 	public function cleanup() {
 
@@ -139,7 +139,7 @@ class Social_Post_Flow_Media_Library {
 	/**
 	 * Flag to denote if the GD image processing library is available
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @return  bool    GD Library Available in PHP
 	 */
@@ -152,7 +152,7 @@ class Social_Post_Flow_Media_Library {
 	/**
 	 * Force using the GD Image Library for processing WordPress Images.
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   array $editors    WordPress Image Editors.
 	 * @return  array               WordPress Image Editors.

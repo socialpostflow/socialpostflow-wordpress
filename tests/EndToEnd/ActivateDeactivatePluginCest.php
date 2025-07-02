@@ -7,7 +7,7 @@ use Tests\Support\EndToEndTester;
 /**
  * Tests Plugin activation and deactivation.
  *
- * @since   3.8.4
+ * @since   1.0.0
  */
 class ActivateDeactivatePluginCest
 {
@@ -15,7 +15,7 @@ class ActivateDeactivatePluginCest
 	 * Activate and deactivate the Plugin and confirm a success notification
 	 * is displayed with no errors.
 	 *
-	 * @since   3.8.4
+	 * @since   1.0.0
 	 *
 	 * @param   EndToEndTester $I  Tester.
 	 */

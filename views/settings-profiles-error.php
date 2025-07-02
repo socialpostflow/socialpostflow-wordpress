@@ -2,7 +2,7 @@
 /**
  * Outputs Settings View when an error occured fetching Profiles from the API
  *
- * @since    4.6.9
+ * @since    1.0.0
  *
  * @package Social_Post_Flow
  * @author  WP Zinc

@@ -25,7 +25,7 @@ class Social_Post_Flow_Bulk_Publish {
 	 * Where this function is invoked from the WP-CLI, verbose logging is also
 	 * output in the console.
 	 *
-	 * @since   4.1.4
+	 * @since   1.0.0
 	 *
 	 * @param   string $post_type      Post Type.
 	 * @param   array  $params         Search Parameters.
@@ -121,7 +121,7 @@ class Social_Post_Flow_Bulk_Publish {
 	 * Returns all published Posts for the given Post Type, based on the given
 	 * query arguments
 	 *
-	 * @since   4.1.4
+	 * @since   1.0.0
 	 *
 	 * @param   string $post_type  Post Type.
 	 * @param   array  $params     Search Parameters.
@@ -274,7 +274,7 @@ class Social_Post_Flow_Bulk_Publish {
 		 * Filters WP_Query arguments for fetching Post IDs for a given Post Type,
 		 * that are then checked to see if reposting is required.
 		 *
-		 * @since   4.1.4
+		 * @since   1.0.0
 		 *
 		 * @param   array   $args       WP_Query Arguments.
 		 * @param   string  $post_type  Post Type.

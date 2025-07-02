@@ -26,7 +26,7 @@ class Social_Post_Flow_Screen {
 	 *
 	 * Returns false if we're not on a Plugin screen
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 *
 	 * @return  array   Screen and Section (if false, we're not on this Plugin's screens)
 	 */

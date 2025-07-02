@@ -11,14 +11,14 @@
  *
  * @package Social_Post_Flow
  * @author  WP Zinc
- * @version 3.0.0
+ * @version 1.0.0
  */
 class Social_Post_Flow_Log {
 
 	/**
 	 * Holds the DB table name
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 *
 	 * @var     string
 	 */
@@ -27,7 +27,7 @@ class Social_Post_Flow_Log {
 	/**
 	 * Holds items added to the debug log using add_to_debug_log(),
 	 *
-	 * @since   4.1.8
+	 * @since   1.0.0
 	 *
 	 * @var     array
 	 */
@@ -36,7 +36,7 @@ class Social_Post_Flow_Log {
 	/**
 	 * Constructor
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 */
 	public function __construct() {
 
@@ -52,7 +52,7 @@ class Social_Post_Flow_Log {
 	/**
 	 * Activation routines for this Model
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 *
 	 * @global  $wpdb   WordPress DB Object
 	 */
@@ -89,7 +89,7 @@ class Social_Post_Flow_Log {
 	/**
 	 * Checks if the log is enabled
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @return  bool    Logging Enabled
 	 */
@@ -117,7 +117,7 @@ class Social_Post_Flow_Log {
 	 * Sets values for options displayed in the Screen Options dropdown on the Logs
 	 * WP_List_Table
 	 *
-	 * @since   4.3.0
+	 * @since   1.0.0
 	 *
 	 * @param   mixed  $screen_option  The value to save instead of the option value. Default false (to skip saving the current option).
 	 * @param   string $option         The option name.
@@ -134,7 +134,7 @@ class Social_Post_Flow_Log {
 	 * Defines options to display in the Screen Options dropdown on the Logs
 	 * WP_List_Table
 	 *
-	 * @since   4.3.0
+	 * @since   1.0.0
 	 */
 	public function add_screen_options() {
 
@@ -155,7 +155,7 @@ class Social_Post_Flow_Log {
 	/**
 	 * Run any bulk actions on the Log WP_List_Table
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 */
 	public function run_log_table_bulk_actions() {
 
@@ -246,7 +246,7 @@ class Social_Post_Flow_Log {
 	/**
 	 * Redirect POST filters to a GET URL
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 */
 	public function run_log_table_filters() {
 
@@ -289,7 +289,7 @@ class Social_Post_Flow_Log {
 	/**
 	 * Adds Metaboxes to Post Edit Screens
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 */
 	public function admin_meta_boxes() {
 
@@ -349,7 +349,7 @@ class Social_Post_Flow_Log {
 	/**
 	 * Exports a Post's API log file in JSON format
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 */
 	public function export() {
 
@@ -390,7 +390,7 @@ class Social_Post_Flow_Log {
 	/**
 	 * Adds a log entry for the given Post ID
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 *
 	 * @param   int   $post_id    Post ID.
 	 * @param   array $log        Log.
@@ -433,7 +433,7 @@ class Social_Post_Flow_Log {
 	/**
 	 * Retrieves the log for the given Post ID
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 *
 	 * @param   int $post_id    Post ID.
 	 * @return  array               Log
@@ -470,7 +470,7 @@ class Social_Post_Flow_Log {
 	 * Returns key/value Profile ID and Name pairs based on all unique
 	 * Profile IDs in the Log table
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 *
 	 * @return  array
 	 */
@@ -502,7 +502,7 @@ class Social_Post_Flow_Log {
 	/**
 	 * Defines the available Log Result Options
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @return  array   Result Options (success,test,warning,error).
 	 */
@@ -519,7 +519,7 @@ class Social_Post_Flow_Log {
 		/**
 		 * Defines the available result options
 		 *
-		 * @since   4.2.0
+		 * @since   1.0.0
 		 *
 		 * @param   array   $result_options   Result Options.
 		 */
@@ -533,7 +533,7 @@ class Social_Post_Flow_Log {
 	/**
 	 * Returns the available Log Levels
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @return  array   Log Levels
 	 */
@@ -551,7 +551,7 @@ class Social_Post_Flow_Log {
 		/**
 		 * Defines the available log levels
 		 *
-		 * @since   4.2.0
+		 * @since   1.0.0
 		 *
 		 * @param   array   $log_levels   Log Levels.
 		 */
@@ -565,7 +565,7 @@ class Social_Post_Flow_Log {
 	/**
 	 * Searches logs by the given key/value pairs
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 *
 	 * @param   string $order_by   Order Results By.
 	 * @param   string $order      Order (asc|desc).
@@ -607,7 +607,7 @@ class Social_Post_Flow_Log {
 	/**
 	 * Gets the number of log records found for the given query parameters
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 *
 	 * @param   mixed $params     Query Parameters (false = all records).
 	 * @return  int                 Total Records
@@ -637,7 +637,7 @@ class Social_Post_Flow_Log {
 	/**
 	 * Builds a WHERE SQL clause based on the given column key/values
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 *
 	 * @param   array $params     Query Parameters (false = all records).
 	 * @return  string              WHERE SQL clause
@@ -705,7 +705,7 @@ class Social_Post_Flow_Log {
 	/**
 	 * Deletes a single Log entry for the given Log ID
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 *
 	 * @param   array $id     Log ID.
 	 * @return  bool            Success
@@ -726,7 +726,7 @@ class Social_Post_Flow_Log {
 	/**
 	 * Deletes multiple Log entries for the given Log IDs
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 *
 	 * @param   array $ids    Log IDs.
 	 * @return  bool            Success
@@ -742,7 +742,7 @@ class Social_Post_Flow_Log {
 	/**
 	 * Deletes Log entries for the given Post ID
 	 *
-	 * @since   3.7.9
+	 * @since   1.0.0
 	 *
 	 * @param   int $post_id    Post ID.
 	 * @return  bool            Success
@@ -763,7 +763,7 @@ class Social_Post_Flow_Log {
 	/**
 	 * Deletes Log entries for the given Post ID and Pending Status
 	 *
-	 * @since   3.7.9
+	 * @since   1.0.0
 	 *
 	 * @param   int $post_id    Post ID.
 	 * @return  bool            Success
@@ -785,7 +785,7 @@ class Social_Post_Flow_Log {
 	 * Deletes Log entries for the given Post ID and Action that have
 	 * a pending Status
 	 *
-	 * @since   3.7.9
+	 * @since   1.0.0
 	 *
 	 * @param   int    $post_id    Post ID.
 	 * @param   string $action     Action.
@@ -808,7 +808,7 @@ class Social_Post_Flow_Log {
 	/**
 	 * Deletes all Log entries older than the given date
 	 *
-	 * @since   3.9.8
+	 * @since   1.0.0
 	 *
 	 * @param   datetime $date_time     Date and Time.
 	 * @return  bool                    Success
@@ -830,7 +830,7 @@ class Social_Post_Flow_Log {
 	/**
 	 * Deletes all Log entries
 	 *
-	 * @since   3.9.6
+	 * @since   1.0.0
 	 *
 	 * @return  bool    Success
 	 */
@@ -851,7 +851,7 @@ class Social_Post_Flow_Log {
 	 *
 	 * This will ensure that the output goes to wp-content/debug.log
 	 *
-	 * @since   3.6.8
+	 * @since   1.0.0
 	 *
 	 * @param   mixed $data          Data to log.
 	 * @param   mixed $backtrace     Backtrace data from debug_backtrace().
@@ -917,7 +917,7 @@ class Social_Post_Flow_Log {
 	 * Returns contents of this class' debug_log array, which comprise of
 	 * items added using add_to_debug_log() above.
 	 *
-	 * @since   4.1.8
+	 * @since   1.0.0
 	 *
 	 * @return  array
 	 */
@@ -933,7 +933,7 @@ class Social_Post_Flow_Log {
 	 * - Posts > Log Meta Box
 	 * - Bulk Publish > Results Screen
 	 *
-	 * @since   3.7.9
+	 * @since   1.0.0
 	 *
 	 * @param   array $log                Log Results.
 	 * @param   bool  $is_wp_list_table   Is Output for a WP_List_Table (adds checkbox and Post ID columns).

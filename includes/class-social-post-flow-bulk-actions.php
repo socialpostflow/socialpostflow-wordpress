@@ -12,14 +12,14 @@
  *
  * @package Social_Post_Flow
  * @author  WP Zinc
- * @version 3.0.0
+ * @version 1.0.0
  */
 class Social_Post_Flow_Bulk_Actions {
 
 	/**
 	 * Constructor
 	 *
-	 * @since   3.3.8
+	 * @since   1.0.0
 	 */
 	public function __construct() {
 
@@ -31,7 +31,7 @@ class Social_Post_Flow_Bulk_Actions {
 	/**
 	 * Registers Bulk Action Filters
 	 *
-	 * @since   3.3.8
+	 * @since   1.0.0
 	 */
 	public function register_bulk_action_filters() {
 
@@ -54,7 +54,7 @@ class Social_Post_Flow_Bulk_Actions {
 	/**
 	 * Adds Bulk Action options to Post Type WP_List_Tables
 	 *
-	 * @since   3.3.8
+	 * @since   1.0.0
 	 *
 	 * @param   array $actions    Registered Bulk Actions.
 	 * @return  array               Registered Bulk Actions
@@ -76,7 +76,7 @@ class Social_Post_Flow_Bulk_Actions {
 		/**
 		 * Defines Bulk Actions to be added to the select dropdown on WP_List_Tables.
 		 *
-		 * @since   3.3.8
+		 * @since   1.0.0
 		 *
 		 * @param   array   $bulk_actions   Plugin Specific Bulk Actions.
 		 * @param   string  $actions        Existing Registered Bulk Actions (excluding Plugin Specific Bulk Actions).
@@ -94,7 +94,7 @@ class Social_Post_Flow_Bulk_Actions {
 	/**
 	 * Handles Bulk Actions when one is selected to run
 	 *
-	 * @since   3.3.8
+	 * @since   1.0.0
 	 *
 	 * @param   string $redirect_to    Redirect URL.
 	 * @param   string $action         Bulk Action to Run.

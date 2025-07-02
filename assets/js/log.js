@@ -1,7 +1,7 @@
 /**
  * Handles UI elements for the Plugin Log screen.
  *
- * @since 	3.9.6
+ * @since 	1.0.0
  *
  * @package Social_Post_Flow
  * @author WP Zinc
@@ -13,7 +13,7 @@ jQuery( document ).ready(
 		/**
 		 * Refresh Log
 		 *
-		 * @since 	4.4.0
+		 * @since 	1.0.0
 		 */
 		$( 'a.' + social_post_flow.plugin_name + '-refresh-log' ).on(
 			'click',
@@ -46,7 +46,7 @@ jQuery( document ).ready(
 		/**
 		 * Clear Log
 		 *
-		 * @since 	3.0.0
+		 * @since 	1.0.0
 		 */
 		$( 'a.' + social_post_flow.plugin_name + '-clear-log' ).on(
 			'click',

@@ -1,7 +1,7 @@
 /**
  * Handles populating data in the Quick Edit screen for this Plugin.
  *
- * @since 	3.9.6
+ * @since 	1.0.0
  *
  * @package Social_Post_Flow
  * @author WP Zinc

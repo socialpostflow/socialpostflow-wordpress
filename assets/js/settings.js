@@ -1,7 +1,7 @@
 /**
  * Handles UI elements for the Plugin Settings screen.
  *
- * @since 	3.9.6
+ * @since 	1.0.0
  *
  * @package Social_Post_Flow
  * @author WP Zinc
@@ -13,14 +13,14 @@ jQuery( document ).ready(
 		/**
 		 * Settings: Image Settings: Color Picker
 		 *
-		 * @since 	4.2.0
+		 * @since 	1.0.0
 		 */
 		$( '.color-picker' ).wpColorPicker();
 
 		/**
 		 * Settings: Repost Times: Add
 		 *
-		 * @since 	4.1.1
+		 * @since 	1.0.0
 		 */
 		$( 'a.add-repost-time' ).click(
 			function ( e ) {
@@ -37,7 +37,7 @@ jQuery( document ).ready(
 		/**
 		 * Settings: Repost Times: Delete
 		 *
-		 * @since 	4.1.1
+		 * @since 	1.0.0
 		 */
 		$( document ).on(
 			'click',
@@ -55,7 +55,7 @@ jQuery( document ).ready(
 		/**
 		 * Settings: Repost: Test
 		 *
-		 * @since 	4.1.8
+		 * @since 	1.0.0
 		 */
 		$( 'body.wpzinc form#social-post-flow' ).on(
 			'click',

@@ -11,14 +11,14 @@
  *
  * @package Social_Post_Flow
  * @author  WP Zinc
- * @version 3.0.0
+ * @version 1.0.0
  */
 class Social_Post_Flow_Common {
 
 	/**
 	 * Helper method to retrieve three character day names and their full names
 	 *
-	 * @since   4.1.1
+	 * @since   1.0.0
 	 *
 	 * @return  array   Days
 	 */
@@ -38,7 +38,7 @@ class Social_Post_Flow_Common {
 		/**
 		 * Defines the available days.
 		 *
-		 * @since   4.1.1
+		 * @since   1.0.0
 		 *
 		 * @param   array   $days   Days.
 		 */
@@ -52,7 +52,7 @@ class Social_Post_Flow_Common {
 	/**
 	 * Helper method to retrieve status post type options
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 *
 	 * @return  array   Status Post Type Options
 	 */
@@ -89,7 +89,7 @@ class Social_Post_Flow_Common {
 		/**
 		 * Defines the available status post type options.
 		 *
-		 * @since   3.0.0
+		 * @since   1.0.0
 		 *
 		 * @param   array   $status_post_type_options   Status Post Type Options.
 		 */
@@ -103,7 +103,7 @@ class Social_Post_Flow_Common {
 	/**
 	 * Helper method to retrieve schedule options
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 *
 	 * @param   mixed $post_type          Post Type (false | string).
 	 * @param   bool  $is_post_screen     Displaying the Post Screen.
@@ -129,7 +129,7 @@ class Social_Post_Flow_Common {
 		/**
 		 * Defines the available schedule options for each individual status.
 		 *
-		 * @since   3.0.0
+		 * @since   1.0.0
 		 *
 		 * @param   array   $schedule           Schedule Options.
 		 * @param   string  $post_type          Post Type.
@@ -145,7 +145,7 @@ class Social_Post_Flow_Common {
 	/**
 	 * Helper method to retrieve days used for the schedule relative days option
 	 *
-	 * @since   3.9.8
+	 * @since   1.0.0
 	 *
 	 * @return  array   Days
 	 */
@@ -167,7 +167,7 @@ class Social_Post_Flow_Common {
 		/**
 		 * Defines the available days for a status' Custom Time (Relative Format) option.
 		 *
-		 * @since   3.9.8
+		 * @since   1.0.0
 		 *
 		 * @param   array   $days   Days.
 		 */
@@ -181,7 +181,7 @@ class Social_Post_Flow_Common {
 	/**
 	 * Helper method to retrieve schedule custom relation options
 	 *
-	 * @since   3.3.3
+	 * @since   1.0.0
 	 *
 	 * @return  array   Schedule Custom Relation Options
 	 */
@@ -196,7 +196,7 @@ class Social_Post_Flow_Common {
 		/**
 		 * Defines the available schedule options, relative to a custom field, for each individual status.
 		 *
-		 * @since   3.3.3
+		 * @since   1.0.0
 		 *
 		 * @param   array   $schedule   Schedule Options.
 		 */
@@ -210,7 +210,7 @@ class Social_Post_Flow_Common {
 	/**
 	 * Helper method to retrieve Google Business Start Date options
 	 *
-	 * @since   4.9.0
+	 * @since   1.0.0
 	 *
 	 * @param   mixed $post_type          Post Type (false | string).
 	 * @return  array   Start Date Options
@@ -225,7 +225,7 @@ class Social_Post_Flow_Common {
 		/**
 		 * Defines the available start date options for a Google Business Profile status.
 		 *
-		 * @since   4.9.0
+		 * @since   1.0.0
 		 *
 		 * @param   array   $schedule   Schedule Options.
 		 */
@@ -239,7 +239,7 @@ class Social_Post_Flow_Common {
 	/**
 	 * Helper method to retrieve Google Business Start Date options
 	 *
-	 * @since   4.9.0
+	 * @since   1.0.0
 	 *
 	 * @param   mixed $post_type          Post Type (false | string).
 	 * @return  array   End Date Options
@@ -254,7 +254,7 @@ class Social_Post_Flow_Common {
 		/**
 		 * Defines the available start date options for a Google Business Profile status.
 		 *
-		 * @since   4.9.0
+		 * @since   1.0.0
 		 *
 		 * @param   array   $schedule   Schedule Options.
 		 */
@@ -268,7 +268,7 @@ class Social_Post_Flow_Common {
 	/**
 	 * Helper method to retrieve public Post Types
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 *
 	 * @return  array   Public Post Types
 	 */
@@ -293,7 +293,7 @@ class Social_Post_Flow_Common {
 		/**
 		 * Defines the available Post Type Objects that can have statues defined and be sent to social media.
 		 *
-		 * @since   3.0.0
+		 * @since   1.0.0
 		 *
 		 * @param   array   $types  Post Types.
 		 */
@@ -308,7 +308,7 @@ class Social_Post_Flow_Common {
 	 * Helper method to retrieve excluded Post Types, which should not send
 	 * statuses to the API
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 *
 	 * @return  array   Excluded Post Types
 	 */
@@ -324,7 +324,7 @@ class Social_Post_Flow_Common {
 		/**
 		 * Defines the Post Type Objects that cannot have statues defined and not be sent to social media.
 		 *
-		 * @since   3.0.0
+		 * @since   1.0.0
 		 *
 		 * @param   array   $types  Post Types.
 		 */
@@ -338,7 +338,7 @@ class Social_Post_Flow_Common {
 	/**
 	 * Helper method to retrieve excluded Taxonomies
 	 *
-	 * @since   3.0.5
+	 * @since   1.0.0
 	 *
 	 * @return  array   Excluded Post Types
 	 */
@@ -353,7 +353,7 @@ class Social_Post_Flow_Common {
 		/**
 		 * Defines taxonomies to exclude from the Conditions: Taxonomies dropdowns for each individual status.
 		 *
-		 * @since   3.0.5
+		 * @since   1.0.0
 		 *
 		 * @param   array   $taxonomies     Excluded Taxonomies.
 		 */
@@ -367,7 +367,7 @@ class Social_Post_Flow_Common {
 	/**
 	 * Helper method to retrieve a Post Type's taxonomies
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $post_type  Post Type.
 	 * @return  array               Taxonomies
@@ -391,7 +391,7 @@ class Social_Post_Flow_Common {
 		 * Defines available taxonomies for the given Post Type, which are used in the Conditions: Taxonomies dropdowns
 		 * for each individual status.
 		 *
-		 * @since   3.0.0
+		 * @since   1.0.0
 		 *
 		 * @param   array   $taxonomies             Taxonomies.
 		 * @param   string  $post_type              Post Type.
@@ -406,7 +406,7 @@ class Social_Post_Flow_Common {
 	/**
 	 * Helper method to retrieve all taxonomies
 	 *
-	 * @since   3.6.7
+	 * @since   1.0.0
 	 *
 	 * @return  array               Taxonomies
 	 */
@@ -429,7 +429,7 @@ class Social_Post_Flow_Common {
 		 * Defines available taxonomies, regardless of Post Type, which are used in the Conditions: Taxonomies dropdowns
 		 * for each individual status.
 		 *
-		 * @since   3.6.7
+		 * @since   1.0.0
 		 *
 		 * @param   array   $taxonomies             Taxonomies.
 		 */
@@ -443,7 +443,7 @@ class Social_Post_Flow_Common {
 	/**
 	 * Helper method to retrieve all WordPress Roles
 	 *
-	 * @since   3.0.6
+	 * @since   1.0.0
 	 *
 	 * @return  array   Roles
 	 */
@@ -463,7 +463,7 @@ class Social_Post_Flow_Common {
 		/**
 		 * Defines WordPress User Roles.
 		 *
-		 * @since   3.0.6
+		 * @since   1.0.0
 		 *
 		 * @param   array   $roles  WordPress User Roles.
 		 */
@@ -479,7 +479,7 @@ class Social_Post_Flow_Common {
 	 *
 	 * These roles are implied to have full access
 	 *
-	 * @since   3.0.6
+	 * @since   1.0.0
 	 *
 	 * @return  array   Excluded Roles
 	 */
@@ -491,7 +491,7 @@ class Social_Post_Flow_Common {
 		/**
 		 * Defines WordPress User Roles to exclude from Settings screens.
 		 *
-		 * @since   3.0.6
+		 * @since   1.0.0
 		 *
 		 * @param   array   $excluded_roles     Excluded WordPress User Roles
 		 */
@@ -505,7 +505,7 @@ class Social_Post_Flow_Common {
 	/**
 	 * Helper method to retrieve all repost frequency units (days, weeks etc)
 	 *
-	 * @since   3.7.2
+	 * @since   1.0.0
 	 *
 	 * @return  array   Repost Frequency Units
 	 */
@@ -521,7 +521,7 @@ class Social_Post_Flow_Common {
 		/**
 		 * Defines available Reposting frequency units when defining Repost status(es).
 		 *
-		 * @since   3.7.2
+		 * @since   1.0.0
 		 *
 		 * @param   array   $units  Repost Frequency Units.
 		 */
@@ -535,7 +535,7 @@ class Social_Post_Flow_Common {
 	/**
 	 * Helper method to retrieve available tags for status updates
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $post_type  Post Type.
 	 * @return  array               Tags
@@ -646,7 +646,7 @@ class Social_Post_Flow_Common {
 		 * Defines Dynamic Status Tags that can be inserted into status(es) for the given Post Type.
 		 * These tags are also added to any 'Insert Tag' dropdowns.
 		 *
-		 * @since   3.0.0
+		 * @since   1.0.0
 		 *
 		 * @param   array   $tags       Dynamic Status Tags.
 		 * @param   string  $post_type  Post Type.
@@ -680,7 +680,7 @@ class Social_Post_Flow_Common {
 	 * Helper method to retrieve available tags for status updates, in a flattened
 	 * key/value array
 	 *
-	 * @since   4.5.7
+	 * @since   1.0.0
 	 *
 	 * @param   string $post_type  Post Type.
 	 * @return  array               Tags
@@ -704,7 +704,7 @@ class Social_Post_Flow_Common {
 	/**
 	 * Helper method to retrieve Post actions
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 *
 	 * @return  array           Post Actions
 	 */
@@ -721,7 +721,7 @@ class Social_Post_Flow_Common {
 		/**
 		 * Defines the Post actions which trigger status(es) to be sent to social media.
 		 *
-		 * @since   3.0.0
+		 * @since   1.0.0
 		 *
 		 * @param   array   $actions    Post Actions.
 		 */
@@ -735,7 +735,7 @@ class Social_Post_Flow_Common {
 	/**
 	 * Helper method to retrieve Post actions, with labels in the past tense.
 	 *
-	 * @since   3.7.2
+	 * @since   1.0.0
 	 *
 	 * @return  array           Post Actions
 	 */
@@ -753,7 +753,7 @@ class Social_Post_Flow_Common {
 		 * Defines the Post actions which trigger status(es) to be sent to social media,
 		 * with labels set to the past tense.
 		 *
-		 * @since   3.0.0
+		 * @since   1.0.0
 		 *
 		 * @param   array   $actions    Post Actions.
 		 */
@@ -767,7 +767,7 @@ class Social_Post_Flow_Common {
 	/**
 	 * Helper method to retrieve Conditional Options
 	 *
-	 * @since   3.2.0
+	 * @since   1.0.0
 	 *
 	 * @return  array           Condition Options
 	 */
@@ -784,7 +784,7 @@ class Social_Post_Flow_Common {
 		/**
 		 * Defines the available Options for Taxonomy Terms Conditionals.
 		 *
-		 * @since   3.2.0
+		 * @since   1.0.0
 		 *
 		 * @param   array   $options    Condition Options.
 		 */
@@ -798,7 +798,7 @@ class Social_Post_Flow_Common {
 	/**
 	 * Helper method to retrieve Post Override Options
 	 *
-	 * @since   3.2.5
+	 * @since   1.0.0
 	 *
 	 * @return  array       Post Override Options
 	 */
@@ -814,7 +814,7 @@ class Social_Post_Flow_Common {
 		/**
 		 * Defines the available override options to display in the meta box for individual Posts.
 		 *
-		 * @since   3.2.5
+		 * @since   1.0.0
 		 *
 		 * @param   array   $options    Condition Options.
 		 */
@@ -828,7 +828,7 @@ class Social_Post_Flow_Common {
 	/**
 	 * Helper method to retrieve Authors
 	 *
-	 * @since   3.3.8
+	 * @since   1.0.0
 	 *
 	 * @return  array   Authors
 	 */
@@ -851,7 +851,7 @@ class Social_Post_Flow_Common {
 		/**
 		 * Defines the available override options to display in the meta box for individual Posts.
 		 *
-		 * @since   3.3.8
+		 * @since   1.0.0
 		 *
 		 * @param   array   $authors    WordPress Users.
 		 */
@@ -865,7 +865,7 @@ class Social_Post_Flow_Common {
 	/**
 	 * Helper method to retrieve Post comparison operators, used for Conditional Options on status(es).
 	 *
-	 * @since   3.3.8
+	 * @since   1.0.0
 	 *
 	 * @return  array   Meta Compare options
 	 */
@@ -890,7 +890,7 @@ class Social_Post_Flow_Common {
 		/**
 		 * Backward compatible filter; defines the available Post comparison operators, used for Conditional Options on status(es).
 		 *
-		 * @since   3.3.8
+		 * @since   1.0.0
 		 *
 		 * @param   array   $comparison_operators    Comparison Operators.
 		 */
@@ -899,7 +899,7 @@ class Social_Post_Flow_Common {
 		/**
 		 * Defines the available Post comparison operators, used for Conditional Options on status(es).
 		 *
-		 * @since   4.0.7
+		 * @since   1.0.0
 		 *
 		 * @param   array   $comparison_operators    Comparison Operators.
 		 */
@@ -913,7 +913,7 @@ class Social_Post_Flow_Common {
 	/**
 	 * Helper method to retrieve Custom Field comparison operators, used for Conditional Options on status(es).
 	 *
-	 * @since   3.3.8
+	 * @since   1.0.0
 	 *
 	 * @return  array   Meta Compare options
 	 */
@@ -939,7 +939,7 @@ class Social_Post_Flow_Common {
 		/**
 		 * Defines the available Custom Field comparison operators, used for Conditional Options on status(es).
 		 *
-		 * @since   4.0.8
+		 * @since   1.0.0
 		 *
 		 * @param   array   $comparison_operators   Comparison Operators.
 		 */
@@ -1017,7 +1017,7 @@ class Social_Post_Flow_Common {
 	/**
 	 * Helper method to return template tags that cannot have a character limit applied to them.
 	 *
-	 * @since   3.7.8
+	 * @since   1.0.0
 	 *
 	 * @return  array   Tags.
 	 */
@@ -1035,7 +1035,7 @@ class Social_Post_Flow_Common {
 		 * Defines the tags that cannot have a character limit applied to them, as doing so would
 		 * wrongly concatenate data (e.g. a URL would become malformed).
 		 *
-		 * @since   3.7.8
+		 * @since   1.0.0
 		 *
 		 * @param   array   $tags   Tags.
 		 */
@@ -1049,7 +1049,7 @@ class Social_Post_Flow_Common {
 	/**
 	 * Helper method to retrieve available TTF fonts for use with Text to Image
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @return  array   Fonts
 	 */
@@ -1072,7 +1072,7 @@ class Social_Post_Flow_Common {
 		/**
 		 * Defines the available TTF fonts for use with Text to Image
 		 *
-		 * @since   4.2.0
+		 * @since   1.0.0
 		 *
 		 * @param   array   $fonts  Fonts.
 		 */
@@ -1086,7 +1086,7 @@ class Social_Post_Flow_Common {
 	/**
 	 * Helper method to retrieve transient expiration time
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 *
 	 * @return  int     Expiration Time (seconds)
 	 */
@@ -1098,7 +1098,7 @@ class Social_Post_Flow_Common {
 		/**
 		 * Defines the number of seconds before expiring transients.
 		 *
-		 * @since   3.0.0
+		 * @since   1.0.0
 		 *
 		 * @param   int     $expiration_time    Transient Expiration Time, in seconds.
 		 */
@@ -1117,7 +1117,7 @@ class Social_Post_Flow_Common {
 	 * The array can be either Post Type Settings or Post Settings, as the top level keys will always
 	 * be profile_ids
 	 *
-	 * @since   3.0.6
+	 * @since   1.0.0
 	 *
 	 * @param   array  $arr    Post Type or Post Settings.
 	 * @param   string $role   Role.
@@ -1150,7 +1150,7 @@ class Social_Post_Flow_Common {
 		/**
 		 * Defines the number of seconds before expiring transients.
 		 *
-		 * @since   3.0.6
+		 * @since   1.0.0
 		 *
 		 * @param   array   $arr    Post Type or Post Settings.
 		 * @param   string  $role   WordPress Role Name.
@@ -1167,7 +1167,7 @@ class Social_Post_Flow_Common {
 	 *
 	 * Checks if Restrict Post Types is enabled
 	 *
-	 * @since   3.7.2
+	 * @since   1.0.0
 	 *
 	 * @param   array  $post_types  Post Types.
 	 * @param   string $role        Role.
@@ -1195,7 +1195,7 @@ class Social_Post_Flow_Common {
 		/**
 		 * Defines the number of seconds before expiring transients.
 		 *
-		 * @since   3.7.2
+		 * @since   1.0.0
 		 *
 		 * @param   array   $post_types     Post Types.
 		 * @param   string  $role           WordPress Role Name.
@@ -1210,7 +1210,7 @@ class Social_Post_Flow_Common {
 	/**
 	 * Defines the registered filters that can be used on the Log WP_List_Table
 	 *
-	 * @since   3.9.8
+	 * @since   1.0.0
 	 *
 	 * @return  array   Filters
 	 */
@@ -1230,7 +1230,7 @@ class Social_Post_Flow_Common {
 		/**
 		 * Defines the registered filters that can be used on the Log WP_List_Tables.
 		 *
-		 * @since   3.9.8
+		 * @since   1.0.0
 		 *
 		 * @param   array   $filters    Filters.
 		 */

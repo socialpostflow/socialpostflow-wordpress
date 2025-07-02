@@ -12,7 +12,7 @@
  *
  * @package Social_Post_Flow
  * @author  WP Zinc
- * @version 3.8.1
+ * @version 1.0.0
  */
 class Social_Post_Flow_Validation {
 
@@ -20,7 +20,7 @@ class Social_Post_Flow_Validation {
 	 * Checks if an Access Token exists, meaning that the API service is connected
 	 * to the Plugin.
 	 *
-	 * @since   3.8.1
+	 * @since   1.0.0
 	 *
 	 * @return  bool    API Connected
 	 */
@@ -38,7 +38,7 @@ class Social_Post_Flow_Validation {
 	 * Checks if the WordPress timezone matches the given API Timezone,
 	 * which could be a global API timezone or a profile-specific timezone.
 	 *
-	 * @since   3.8.1
+	 * @since   1.0.0
 	 *
 	 * @param   string $api_profile_timezone               API Timezone.
 	 * @param   string $api_profile_name                   API Profile Name (e.g. @n7TestAcct).

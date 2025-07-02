@@ -11,14 +11,14 @@
  *
  * @package Social_Post_Flow
  * @author  WP Zinc
- * @version 4.2.2
+ * @version 1.0.0
  */
 class Social_Post_Flow_Import {
 
 	/**
 	 * Holds the base object.
 	 *
-	 * @since   4.2.2
+	 * @since   1.0.0
 	 *
 	 * @var     object
 	 */
@@ -27,7 +27,7 @@ class Social_Post_Flow_Import {
 	/**
 	 * Constructor.
 	 *
-	 * @since   4.2.2
+	 * @since   1.0.0
 	 */
 	public function __construct() {
 
@@ -39,7 +39,7 @@ class Social_Post_Flow_Import {
 	/**
 	 * Import data created by this Plugin's export functionality
 	 *
-	 * @since   4.2.2
+	 * @since   1.0.0
 	 *
 	 * @param   bool  $success    Success.
 	 * @param   array $import     Array.

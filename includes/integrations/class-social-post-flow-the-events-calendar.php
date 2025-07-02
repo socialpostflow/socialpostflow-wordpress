@@ -308,7 +308,7 @@ class Social_Post_Flow_The_Events_Calendar {
 		 * Registers any additional status message tags, and their Post data replacements, that are supported
 		 * for The Events Calendar
 		 *
-		 * @since   4.1.2
+		 * @since   1.0.0
 		 *
 		 * @param   array       $searches_replacements  Registered Supported Tags and their Replacements.
 		 * @param   WP_Post     $post                   WordPress Post.
@@ -323,7 +323,7 @@ class Social_Post_Flow_The_Events_Calendar {
 	/**
 	 * Define the UTC date and time for the status to be published when the status' schedule is set to use the Event's Start Date
 	 *
-	 * @since   4.6.9
+	 * @since   1.0.0
 	 *
 	 * @param   string  $scheduled_at   Schedule Status (yyyy-mm-dd hh:mm:ss format).
 	 * @param   array   $status         Status.
@@ -354,7 +354,7 @@ class Social_Post_Flow_The_Events_Calendar {
 	/**
 	 * Define the UTC date and time for the status to be published when the status' schedule is set to use the Event's End Date
 	 *
-	 * @since   4.6.9
+	 * @since   1.0.0
 	 *
 	 * @param   string  $scheduled_at   Schedule Status (yyyy-mm-dd hh:mm:ss format).
 	 * @param   array   $status         Status.
@@ -384,7 +384,7 @@ class Social_Post_Flow_The_Events_Calendar {
 	/**
 	 * Defines the available schedule options for statuses
 	 *
-	 * @since   4.9.0
+	 * @since   1.0.0
 	 *
 	 * @param   array  $schedule           Schedule Options.
 	 * @param   string $post_type          Post Type.
@@ -414,7 +414,7 @@ class Social_Post_Flow_The_Events_Calendar {
 	/**
 	 * Defines the available schedule options for statuses
 	 *
-	 * @since   4.9.0
+	 * @since   1.0.0
 	 *
 	 * @param   array  $schedule           Schedule Options.
 	 * @param   string $post_type          Post Type.
@@ -444,7 +444,7 @@ class Social_Post_Flow_The_Events_Calendar {
 	/**
 	 * Define a Google Business Profile status' start date to be the Event's start date.
 	 *
-	 * @since   4.9.0
+	 * @since   1.0.0
 	 *
 	 * @param   bool|string $date                   Date (yyyy-mm-dd hh:mm:ss format).
 	 * @param   array       $google_business_args   Google Business specific arguments for status.
@@ -466,7 +466,7 @@ class Social_Post_Flow_The_Events_Calendar {
 	/**
 	 * Define a Google Business Profile status' end date to be the Event's start date.
 	 *
-	 * @since   4.9.0
+	 * @since   1.0.0
 	 *
 	 * @param   bool|string $date                   Date (yyyy-mm-dd hh:mm:ss format).
 	 * @param   array       $google_business_args   Google Business specific arguments for status.

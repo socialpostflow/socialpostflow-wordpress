@@ -21,7 +21,7 @@ class Social_Post_Flow_Cron {
 	/**
 	 * Schedules the log cleanup event in the WordPress CRON on a daily basis
 	 *
-	 * @since   3.9.8
+	 * @since   1.0.0
 	 */
 	public function schedule_log_cleanup_event() {
 
@@ -45,7 +45,7 @@ class Social_Post_Flow_Cron {
 	/**
 	 * Unschedules the log cleanup event in the WordPress CRON.
 	 *
-	 * @since   3.9.8
+	 * @since   1.0.0
 	 */
 	public function unschedule_log_cleanup_event() {
 
@@ -57,7 +57,7 @@ class Social_Post_Flow_Cron {
 	 * Reschedules the log cleanup event in the WordPress CRON, by unscheduling
 	 * and scheduling it.
 	 *
-	 * @since   3.9.8
+	 * @since   1.0.0
 	 */
 	public function reschedule_log_cleanup_event() {
 
@@ -69,7 +69,7 @@ class Social_Post_Flow_Cron {
 	/**
 	 * Returns the scheduled log cleanup event, if it exists
 	 *
-	 * @since   3.9.8
+	 * @since   1.0.0
 	 */
 	public function get_log_cleanup_event() {
 
@@ -80,7 +80,7 @@ class Social_Post_Flow_Cron {
 	/**
 	 * Returns the scheduled log cleanup event's next date and time to run, if it exists
 	 *
-	 * @since   3.9.8
+	 * @since   1.0.0
 	 *
 	 * @param   mixed $format     Format Timestamp (false | php date() compat. string).
 	 */
@@ -101,7 +101,7 @@ class Social_Post_Flow_Cron {
 	/**
 	 * Schedules the media cleanup event in the WordPress CRON on a daily basis
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 */
 	public function schedule_media_cleanup_event() {
 
@@ -120,7 +120,7 @@ class Social_Post_Flow_Cron {
 	/**
 	 * Unschedules the media cleanup event in the WordPress CRON.
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 */
 	public function unschedule_media_cleanup_event() {
 
@@ -132,7 +132,7 @@ class Social_Post_Flow_Cron {
 	 * Reschedules the media cleanup event in the WordPress CRON, by unscheduling
 	 * and scheduling it.
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 */
 	public function reschedule_media_cleanup_event() {
 
@@ -144,7 +144,7 @@ class Social_Post_Flow_Cron {
 	/**
 	 * Returns the scheduled media cleanup event, if it exists
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 */
 	public function get_media_cleanup_event() {
 
@@ -155,7 +155,7 @@ class Social_Post_Flow_Cron {
 	/**
 	 * Returns the scheduled media cleanup event's next date and time to run, if it exists
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   mixed $format     Format Timestamp (false | php date() compat. string).
 	 */
@@ -177,7 +177,7 @@ class Social_Post_Flow_Cron {
 	 * Schedules the repost event in the WordPress CRON on an hourly basis, based on the Plugin
 	 * Setting's scheduled time.
 	 *
-	 * @since   3.7.2
+	 * @since   1.0.0
 	 */
 	public function schedule_repost_event() {
 
@@ -201,7 +201,7 @@ class Social_Post_Flow_Cron {
 	/**
 	 * Unschedules the repost event in the WordPress CRON.
 	 *
-	 * @since   3.7.2
+	 * @since   1.0.0
 	 */
 	public function unschedule_repost_event() {
 
@@ -213,7 +213,7 @@ class Social_Post_Flow_Cron {
 	 * Reschedules the repost event in the WordPress CRON, by unscheduling
 	 * and scheduling it.
 	 *
-	 * @since   3.7.2
+	 * @since   1.0.0
 	 */
 	public function reschedule_repost_event() {
 
@@ -225,7 +225,7 @@ class Social_Post_Flow_Cron {
 	/**
 	 * Returns the scheduled repost event, if it exists
 	 *
-	 * @since   3.7.2
+	 * @since   1.0.0
 	 */
 	public function get_repost_event() {
 
@@ -236,7 +236,7 @@ class Social_Post_Flow_Cron {
 	/**
 	 * Returns the scheduled repost event's next date and time to run, if it exists
 	 *
-	 * @since   3.7.2
+	 * @since   1.0.0
 	 *
 	 * @param   mixed $format     Format Timestamp (false | php date() compat. string).
 	 */
@@ -259,7 +259,7 @@ class Social_Post_Flow_Cron {
 	 *
 	 * Calls Social_Post_Flow_Publish::publish() to compile statuses and send them.
 	 *
-	 * @since   3.7.2
+	 * @since   1.0.0
 	 *
 	 * @param   int    $post_id    Post ID.
 	 * @param   string $action     Action.
@@ -281,7 +281,7 @@ class Social_Post_Flow_Cron {
 	/**
 	 * Runs the repost CRON event
 	 *
-	 * @since   3.7.2
+	 * @since   1.0.0
 	 *
 	 * @param   bool $test_mode      Test Mode (don't send to API).
 	 */
@@ -339,7 +339,7 @@ class Social_Post_Flow_Cron {
 	/**
 	 * Runs the log cleanup CRON event
 	 *
-	 * @since   3.9.8
+	 * @since   1.0.0
 	 */
 	public function log_cleanup() {
 

@@ -2,7 +2,7 @@
 /**
  * Outputs Settings View when no Profiles are connected to the API
  *
- * @since    3.0.0
+ * @since    1.0.0
  *
  * @package Social_Post_Flow
  * @author  WP Zinc

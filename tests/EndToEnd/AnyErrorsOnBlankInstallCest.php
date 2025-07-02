@@ -7,14 +7,14 @@ use Tests\Support\EndToEndTester;
 /**
  * Tests for errors on a blank installation
  *
- * @since   3.8.4
+ * @since   1.0.0
  */
 class AnyErrorsOnBlankInstallCest
 {
 	/**
 	 * Run common actions before running the test functions in this class.
 	 *
-	 * @since   3.8.4
+	 * @since   1.0.0
 	 *
 	 * @param   EndToEndTester $I  Tester.
 	 */
@@ -27,7 +27,7 @@ class AnyErrorsOnBlankInstallCest
 	 * Check that no errors are displayed on Pages > Add New, when the Plugin is activated
 	 * and not configured.
 	 *
-	 * @since   3.8.4
+	 * @since   1.0.0
 	 *
 	 * @param   EndToEndTester $I  Tester.
 	 */
@@ -44,7 +44,7 @@ class AnyErrorsOnBlankInstallCest
 	 * Check that no errors are displayed on Posts > Add New, when the Plugin is activated
 	 * and not configured.
 	 *
-	 * @since   3.8.4
+	 * @since   1.0.0
 	 *
 	 * @param   EndToEndTester $I  Tester.
 	 */
@@ -62,7 +62,7 @@ class AnyErrorsOnBlankInstallCest
 	 * We don't use _after, as this would provide a screenshot of the Plugin
 	 * deactivation and not the true test error.
 	 *
-	 * @since   3.8.4
+	 * @since   1.0.0
 	 *
 	 * @param   EndToEndTester $I  Tester.
 	 */

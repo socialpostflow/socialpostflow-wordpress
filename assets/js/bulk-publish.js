@@ -1,7 +1,7 @@
 /**
  * Handles UI elements for the Plugin's Bulk Publish screen.
  *
- * @since 	3.9.6
+ * @since 	1.0.0
  *
  * @package Social_Post_Flow
  * @author WP Zinc

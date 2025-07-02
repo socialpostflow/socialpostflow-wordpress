@@ -13,14 +13,14 @@
  *
  * @package Social_Post_Flow
  * @author  WP Zinc
- * @version 3.0.0
+ * @version 1.0.0
  */
 class Social_Post_Flow_Publish {
 
 	/**
 	 * Holds all supported Tags and their Post data replacements.
 	 *
-	 * @since   3.7.8
+	 * @since   1.0.0
 	 *
 	 * @var     array
 	 */
@@ -29,7 +29,7 @@ class Social_Post_Flow_Publish {
 	/**
 	 * Holds searches and replacements for status messages.
 	 *
-	 * @since   3.7.8
+	 * @since   1.0.0
 	 *
 	 * @var     array
 	 */
@@ -38,7 +38,7 @@ class Social_Post_Flow_Publish {
 	/**
 	 * Constructor
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 */
 	public function __construct() {
 
@@ -51,7 +51,7 @@ class Social_Post_Flow_Publish {
 	/**
 	 * Registers publish hooks against all public Post Types,
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 */
 	public function register_publish_hooks() {
 
@@ -63,7 +63,7 @@ class Social_Post_Flow_Publish {
 	 * Fired when a Post's status transitions.  Called by WordPress when wp_insert_post() is called,
 	 * and wp_insert_post() is called by WordPress and the REST API whenever creating or updating a Post.
 	 *
-	 * @since   3.1.6
+	 * @since   1.0.0
 	 *
 	 * @param   string  $new_status     New Status.
 	 * @param   string  $old_status     Old Status.
@@ -273,7 +273,7 @@ class Social_Post_Flow_Publish {
 	/**
 	 * Helper function to determine if the request is a Gutenberg REST API request.
 	 *
-	 * @since   3.9.1
+	 * @since   1.0.0
 	 *
 	 * @return  bool    Is Gutenberg REST API Request
 	 */
@@ -300,7 +300,7 @@ class Social_Post_Flow_Publish {
 	/**
 	 * Helper function to determine if the request is a REST API request.
 	 *
-	 * @since   3.9.1
+	 * @since   1.0.0
 	 *
 	 * @return  bool    Is REST API Request
 	 */
@@ -327,7 +327,7 @@ class Social_Post_Flow_Publish {
 	/**
 	 * Helper function to determine if the Post contains Gutenberg Content.
 	 *
-	 * @since   3.9.1
+	 * @since   1.0.0
 	 *
 	 * @param   WP_Post $post   Post.
 	 * @return  bool                Post Content contains Gutenberg Block Markup
@@ -345,7 +345,7 @@ class Social_Post_Flow_Publish {
 	/**
 	 * Called when a Post has been Published via the REST API.
 	 *
-	 * @since   3.6.8
+	 * @since   1.0.0
 	 *
 	 * @param   WP_Post $post           Post.
 	 */
@@ -358,7 +358,7 @@ class Social_Post_Flow_Publish {
 	/**
 	 * Called when a Post has been Published via the REST API
 	 *
-	 * @since   3.6.8
+	 * @since   1.0.0
 	 *
 	 * @param   WP_Post $post           Post.
 	 */
@@ -371,7 +371,7 @@ class Social_Post_Flow_Publish {
 	/**
 	 * Called when a Post has been Published
 	 *
-	 * @since   3.6.2
+	 * @since   1.0.0
 	 *
 	 * @param   int $post_id    Post ID.
 	 */
@@ -424,7 +424,7 @@ class Social_Post_Flow_Publish {
 	/**
 	 * Called when a Post has been Updated
 	 *
-	 * @since   3.6.2
+	 * @since   1.0.0
 	 *
 	 * @param   int $post_id    Post ID.
 	 */
@@ -493,7 +493,7 @@ class Social_Post_Flow_Publish {
 	 * See Social_Post_Flow_Cron::publish(), which is fired when the event runs,
 	 * and checks the Plugin's Test Mode to determine whether to send or log the status(es).
 	 *
-	 * @since   4.3.3
+	 * @since   1.0.0
 	 *
 	 * @param   int    $post_id                Post ID.
 	 * @param   string $action                 Action (publish|update).
@@ -527,7 +527,7 @@ class Social_Post_Flow_Publish {
 		 * Define the number of seconds before the scheduled event should run,
 		 * relative to the current time.
 		 *
-		 * @since   5.2.3
+		 * @since   1.0.0
 		 *
 		 * @param   int     $delay      Delay (in seconds).
 		 * @param   int     $post_id    Post ID.
@@ -599,7 +599,7 @@ class Social_Post_Flow_Publish {
 	 * Main function. Called when any Page, Post or CPT is published, updated, reposted
 	 * or bulk published.
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 *
 	 * @param   int    $post_id                Post ID.
 	 * @param   string $action                 Action (publish|update|repost|bulk_publish).
@@ -772,7 +772,7 @@ class Social_Post_Flow_Publish {
 				/**
 				 * Process condition settings for Integrations / Third Party Plugins
 				 *
-				 * @since   5.1.2
+				 * @since   1.0.0
 				 *
 				 * @param   array       $status         Status
 				 * @param   WP_Post     $post           WordPress Post
@@ -886,7 +886,7 @@ class Social_Post_Flow_Publish {
 		 * Determine the statuses to send, just before they're sent. Statuses can be added, edited
 		 * and/or deleted as necessary here.
 		 *
-		 * @since   3.0.0
+		 * @since   1.0.0
 		 *
 		 * @param   array   $statuses   Statuses to be sent to social media.
 		 * @param   int     $post_id    Post ID.
@@ -916,7 +916,7 @@ class Social_Post_Flow_Publish {
 	 * - if the Post Type's supported
 	 * - whether the Post override disables sending statuses
 	 *
-	 * @since   4.3.3
+	 * @since   1.0.0
 	 *
 	 * @param   int    $post_id                Post ID.
 	 * @param   string $action                 Action (publish|update).
@@ -994,7 +994,7 @@ class Social_Post_Flow_Publish {
 	 * Checks whether the Post Title meets the status' Post Conditions, if any,
 	 * to determine if the status can be sent to the API.
 	 *
-	 * @since   4.0.8
+	 * @since   1.0.0
 	 *
 	 * @param   array   $status     Status.
 	 * @param   WP_Post $post       Post.
@@ -1055,7 +1055,7 @@ class Social_Post_Flow_Publish {
 	 * Checks whether the Post meets the status' Date Conditions, if any,
 	 * to determine if the status can be sent to the API
 	 *
-	 * @since   4.0.7
+	 * @since   1.0.0
 	 *
 	 * @param   array   $status     Status.
 	 * @param   WP_Post $post       Post.
@@ -1101,7 +1101,7 @@ class Social_Post_Flow_Publish {
 	 * Checks whether the Post meets the status' Taxonomy Conditions, if any,
 	 * to determine if the status can be sent to the API
 	 *
-	 * @since   4.0.7
+	 * @since   1.0.0
 	 *
 	 * @param   array   $status     Status.
 	 * @param   WP_Post $post       Post.
@@ -1213,7 +1213,7 @@ class Social_Post_Flow_Publish {
 	 * Checks whether the Post meets the status' Custom Field Conditions, if any,
 	 * to determine if the status can be sent to the API.
 	 *
-	 * @since   4.0.7
+	 * @since   1.0.0
 	 *
 	 * @param   array   $status     Status.
 	 * @param   WP_Post $post       Post.
@@ -1264,7 +1264,7 @@ class Social_Post_Flow_Publish {
 	 * Checks whether the Post meets the status' Author Condition, if any,
 	 * to determine if the status can be sent to the API.
 	 *
-	 * @since   4.0.7
+	 * @since   1.0.0
 	 *
 	 * @param   array   $status     Status.
 	 * @param   WP_Post $post       Post.
@@ -1321,7 +1321,7 @@ class Social_Post_Flow_Publish {
 	 * Checks whether the Post meets the status' Author Role Condition, if any,
 	 * to determine if the status can be sent to the API.
 	 *
-	 * @since   4.0.7
+	 * @since   1.0.0
 	 *
 	 * @param   array   $status     Status.
 	 * @param   WP_Post $post       Post.
@@ -1386,7 +1386,7 @@ class Social_Post_Flow_Publish {
 	 * Checks whether the Post meets the status' Author's Custom Field Conditions, if any,
 	 * to determine if the status can be sent to the API.
 	 *
-	 * @since   4.5.9
+	 * @since   1.0.0
 	 *
 	 * @param   array   $status     Status.
 	 * @param   WP_Post $post       Post.
@@ -1437,7 +1437,7 @@ class Social_Post_Flow_Publish {
 	/**
 	 * Determines if the conditional query passes or fails.
 	 *
-	 * @since   4.0.8
+	 * @since   1.0.0
 	 *
 	 * @param   string $comparison         Comparison Method.
 	 * @param   string $type               Type (post|user).
@@ -1545,7 +1545,7 @@ class Social_Post_Flow_Publish {
 				 * Determine if a statuses meta conditionals have been met, where the conditional
 				 * is not a plugin standard option.
 				 *
-				 * @since   3.7.2
+				 * @since   1.0.0
 				 *
 				 * @param   bool    $condition_passed   Condition Passed.
 				 * @param   string  $comparison         Comparison Method.
@@ -1563,7 +1563,7 @@ class Social_Post_Flow_Publish {
 	/**
 	 * Helper method to build arguments and create a status via the API
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 *
 	 * @param   WP_Post $post                       Post.
 	 * @param   string  $profile_id                 Profile ID.
@@ -1857,7 +1857,7 @@ class Social_Post_Flow_Publish {
 				/**
 				 * Allows integrations to define when the status should be scheduled for publication
 				 *
-				 * @since   4.6.9
+				 * @since   1.0.0
 				 *
 				 * @param   string  $scheduled_at   Schedule Status (yyyy-mm-dd hh:mm:ss format).
 				 * @param   array   $status         Status.
@@ -1879,7 +1879,7 @@ class Social_Post_Flow_Publish {
 		/**
 		 * Determine the standardised arguments array to send via the API for a status message's settings.
 		 *
-		 * @since   3.0.0
+		 * @since   1.0.0
 		 *
 		 * @param   array       $args                       API standardised arguments.
 		 * @param   WP_Post     $post                       WordPress Post.
@@ -1901,7 +1901,7 @@ class Social_Post_Flow_Publish {
 	 * - Post's Featured Image
 	 * - Post's Content's First Image
 	 *
-	 * @since   3.9.8
+	 * @since   1.0.0
 	 *
 	 * @param   WP_Post $post       Post ID.
 	 * @return  bool|array
@@ -1940,7 +1940,7 @@ class Social_Post_Flow_Publish {
 	 * Duplicates are automatically removed, and the number of images returned is based
 	 * on the number supported by the given Social Media Service.
 	 *
-	 * @since   5.2.2
+	 * @since   1.0.0
 	 *
 	 * @param   WP_Post $post       Post.
 	 * @param   string  $service    Service.
@@ -2019,7 +2019,7 @@ class Social_Post_Flow_Publish {
 						/**
 						 * Allows third party integrations to define the additional images to use for the status.
 						 *
-						 * @since   5.3.4
+						 * @since   1.0.0
 						 *
 						 * @param   bool|array  $images                     Images.
 						 * @param   int         $additional_images_source   Additional Images Source.
@@ -2039,20 +2039,13 @@ class Social_Post_Flow_Publish {
 		}
 
 		// Remove duplicate images.
-		$extra_media = array_unique( array_column( $images, 'image' ) );
-		$images      = array_intersect_key( $images, $extra_media );
+		$images = array_unique( $images );
 
 		// Re-key the array to a zero based index.
 		$images = array_values( $images );
 
 		// Limit the number of additional images based on the social network.
 		$images = array_slice( $images, 0, $additional_images_limit );
-
-		// Change 'image' key in each image to 'photo'.
-		foreach ( $images as $index => $image ) {
-			$images[ $index ]['photo'] = $image['image'];
-			unset( $images[ $index ]['image'] );
-		}
 
 		// Return.
 		return $images;
@@ -2063,7 +2056,7 @@ class Social_Post_Flow_Publish {
 	 * Get all images defined in the Plugin's "Featured and Additional Images" section
 	 * on a Post.
 	 *
-	 * @since   5.2.2
+	 * @since   1.0.0
 	 *
 	 * @param   WP_Post $post       WordPress Post.
 	 * @return  array
@@ -2100,7 +2093,7 @@ class Social_Post_Flow_Publish {
 	/**
 	 * Get images from the Post's content.
 	 *
-	 * @since   5.2.2
+	 * @since   1.0.0
 	 *
 	 * @param   WP_Post $post       WordPress Post.
 	 * @return  array
@@ -2158,7 +2151,7 @@ class Social_Post_Flow_Publish {
 	/**
 	 * Generates an image from the given text, Social Media Service and Plugin Settings
 	 *
-	 * @since   4.2.0
+	 * @since   1.0.0
 	 *
 	 * @param   string      $text       Text.
 	 * @param   string      $service    Social Media Service.
@@ -2284,7 +2277,7 @@ class Social_Post_Flow_Publish {
 	/**
 	 * Populates the status message by replacing tags with Post/Author data
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 *
 	 * @param   WP_Post $post               Post.
 	 * @param   string  $message            Status Message to parse.
@@ -2470,7 +2463,7 @@ class Social_Post_Flow_Publish {
 							/**
 							 * Defines the Taxonomy Term Name to replace the status template tag.
 							 *
-							 * @since   3.0.0
+							 * @since   1.0.0
 							 *
 							 * @param   string      $term_name                          Term Name.
 							 * @param   string      $tag_params['taxonomy_term_format'] Term Format.
@@ -2496,7 +2489,7 @@ class Social_Post_Flow_Publish {
 							/**
 							 * Defines the Taxonomy Term Hashtag to replace the status template tag.
 							 *
-							 * @since   3.0.0
+							 * @since   1.0.0
 							 *
 							 * @param   string      $term_name                          Term Name.
 							 * @param   string      $tag_params['taxonomy_term_format'] Term Format.
@@ -2522,7 +2515,7 @@ class Social_Post_Flow_Publish {
 							/**
 							 * Defines the Taxonomy Term Hashtag to replace the status template tag.
 							 *
-							 * @since   4.9.5
+							 * @since   1.0.0
 							 *
 							 * @param   string      $term_name                          Term Name.
 							 * @param   string      $tag_params['taxonomy_term_format'] Term Format.
@@ -2549,7 +2542,7 @@ class Social_Post_Flow_Publish {
 							/**
 							 * Defines the Taxonomy Term Hashtag to replace the status template tag.
 							 *
-							 * @since   3.0.0
+							 * @since   1.0.0
 							 *
 							 * @param   string      $term_name                          Term Name.
 							 * @param   string      $tag_params['taxonomy_term_format'] Term Format.
@@ -2565,7 +2558,7 @@ class Social_Post_Flow_Publish {
 					 * Backward compat filter to define the Taxonomy Term Name to replace the status template tag.
 					 * _publish_parse_text_term_name and _publish_parse_text_term_hashtag should be used instead.
 					 *
-					 * @since   3.0.0
+					 * @since   1.0.0
 					 *
 					 * @param   string      $term_name                              Term Name.
 					 * @param   string      $term->name                             Term Name.
@@ -2615,7 +2608,7 @@ class Social_Post_Flow_Publish {
 		/**
 		 * Filters the parsed status message text on a status.
 		 *
-		 * @since   3.0.0
+		 * @since   1.0.0
 		 *
 		 * @param   string      $text                                       Parsed Text, no Tags.
 		 * @param   string      $message                                    Unparsed Text with Tags.
@@ -2634,7 +2627,7 @@ class Social_Post_Flow_Publish {
 	 * Parses the status' Google Business configuration to return an array of compatible
 	 * arguments that can be used to send the status.
 	 *
-	 * @since   4.9.0
+	 * @since   1.0.0
 	 *
 	 * @param   WP_Post $post               Post.
 	 * @param   array   $status             Status.
@@ -2715,7 +2708,7 @@ class Social_Post_Flow_Publish {
 						/**
 						 * Allows integrations to define the status' start date for a Google Business Profile Offer or Event.
 						 *
-						 * @since   4.9.0
+						 * @since   1.0.0
 						 *
 						 * @param   bool|string $date                   Date (yyyy-mm-dd hh:mm:ss format).
 						 * @param   array       $google_business_args   Google Business specific arguments for status.
@@ -2770,7 +2763,7 @@ class Social_Post_Flow_Publish {
 						/**
 						 * Allows integrations to define the status' end date for a Google Business Profile Offer or Event.
 						 *
-						 * @since   4.9.0
+						 * @since   1.0.0
 						 *
 						 * @param   bool|string $date                   Date (yyyy-mm-dd hh:mm:ss format).
 						 * @param   array       $google_business_args   Google Business specific arguments for status.
@@ -2804,7 +2797,7 @@ class Social_Post_Flow_Publish {
 	/**
 	 * Returns default tag parameters for the given tag e.g. {title:transformation(args)} or {title}.
 	 *
-	 * @since   4.5.9
+	 * @since   1.0.0
 	 *
 	 * @param   string $tag_with_braces    Tag with Braces e.g. {title:transformation(args)} or {title}.
 	 * @param   string $tag                Tag without Braces e.g. title:transformation(args) or title.
@@ -2868,7 +2861,7 @@ class Social_Post_Flow_Publish {
 	/**
 	 * Applies a transformation to the given value
 	 *
-	 * @since   4.5.8
+	 * @since   1.0.0
 	 *
 	 * @param   string $tag                        Tag e.g. title, date.
 	 * @param   string $transformation             Transformation.
@@ -3033,7 +3026,7 @@ class Social_Post_Flow_Publish {
 				/**
 				 * Applies the given transformation to the given value
 				 *
-				 * @since   4.5.8
+				 * @since   1.0.0
 				 *
 				 * @param   string  $value              Value.
 				 * @param   string  $transformation     Transformation.
@@ -3048,7 +3041,7 @@ class Social_Post_Flow_Publish {
 	/**
 	 * Returns an array comprising of all supported tags and their Post / Author / Taxonomy data replacements.
 	 *
-	 * @since   3.7.8
+	 * @since   1.0.0
 	 *
 	 * @param   WP_Post $post       WordPress Post.
 	 * @param   WP_User $author     WordPress User (Author of the Post).
@@ -3075,7 +3068,7 @@ class Social_Post_Flow_Publish {
 		/**
 		 * Registers any additional status message tags, and their Post data replacements, that are supported.
 		 *
-		 * @since   3.7.8
+		 * @since   1.0.0
 		 *
 		 * @param   array       $searches_replacements  Registered Supported Tags and their Replacements.
 		 * @param   WP_Post     $post                   WordPress Post.
@@ -3091,7 +3084,7 @@ class Social_Post_Flow_Publish {
 	/**
 	 * Registers status message tags and their data replacements for the given Post.
 	 *
-	 * @since   3.7.8
+	 * @since   1.0.0
 	 *
 	 * @param   array   $searches_replacements  Registered Supported Tags and their Replacements.
 	 * @param   WP_Post $post                   WordPress Post.
@@ -3113,7 +3106,7 @@ class Social_Post_Flow_Publish {
 		 * Registers any additional status message tags, and their Post data replacements, that are supported
 		 * for the given Post.
 		 *
-		 * @since   3.7.8
+		 * @since   1.0.0
 		 *
 		 * @param   array       $searches_replacements  Registered Supported Tags and their Replacements.
 		 * @param   WP_Post     $post                   WordPress Post.
@@ -3128,7 +3121,7 @@ class Social_Post_Flow_Publish {
 	/**
 	 * Registers status message tags and their data replacements for the given Post Author.
 	 *
-	 * @since   3.7.8
+	 * @since   1.0.0
 	 *
 	 * @param   array   $searches_replacements  Registered Supported Tags and their Replacements.
 	 * @param   WP_User $author                 WordPress Author.
@@ -3157,7 +3150,7 @@ class Social_Post_Flow_Publish {
 		 * Registers any additional status message tags, and their Author data replacements, that are supported
 		 * for the given Post Author.
 		 *
-		 * @since   3.7.8
+		 * @since   1.0.0
 		 *
 		 * @param   array       $searches_replacements  Registered Supported Tags and their Replacements.
 		 * @param   WP_User     $author                 WordPress Post Author.
@@ -3172,7 +3165,7 @@ class Social_Post_Flow_Publish {
 	/**
 	 * Registers status message tags and their data replacements for the given Post Taxonomies.
 	 *
-	 * @since   3.7.8
+	 * @since   1.0.0
 	 *
 	 * @param   array   $searches_replacements  Registered Supported Tags and their Replacements.
 	 * @param   WP_Post $post                   WordPress Post.
@@ -3189,7 +3182,7 @@ class Social_Post_Flow_Publish {
 		 * Registers any additional status message tags, and their Post data replacements, that are supported
 		 * for the given Post.
 		 *
-		 * @since   3.7.8
+		 * @since   1.0.0
 		 *
 		 * @param   array       $searches_replacements  Registered Supported Tags and their Replacements.
 		 * @param   WP_Post     $post                   WordPress Post.
@@ -3206,7 +3199,7 @@ class Social_Post_Flow_Publish {
 	 * Adds a search and replacement to the existing array of possible searches
 	 * and replacements for Post Meta / Custom Field.
 	 *
-	 * @since   3.7.8
+	 * @since   1.0.0
 	 *
 	 * @param   string  $tag        Tag.
 	 * @param   string  $meta_key   Meta Key.
@@ -3250,7 +3243,7 @@ class Social_Post_Flow_Publish {
 	 * If the value of the full array hierarchy of keys isn't a string,
 	 * nothing will be retu
 	 *
-	 * @since   5.1.3
+	 * @since   1.0.0
 	 *
 	 * @param   string $query_string   Query string (e.g. my-meta-key[key][sub-key]).
 	 * @param   array  $value          Array.
@@ -3291,7 +3284,7 @@ class Social_Post_Flow_Publish {
 	 * Adds a search and replacement to the existing array of possible searches
 	 * and replacements for Author Meta / Custom Field.
 	 *
-	 * @since   3.7.8
+	 * @since   1.0.0
 	 *
 	 * @param   string  $tag        Tag.
 	 * @param   string  $meta_key   Meta Key.
@@ -3312,7 +3305,7 @@ class Social_Post_Flow_Publish {
 	 * Safely generate a title, stripping tags and shortcodes, and applying filters so that
 	 * third party plugins (such as translation plugins) can determine the final output.
 	 *
-	 * @since   3.7.3
+	 * @since   1.0.0
 	 *
 	 * @param   WP_Post $post               WordPress Post.
 	 * @return  string                          Title
@@ -3342,7 +3335,7 @@ class Social_Post_Flow_Publish {
 	 * to the content if the Post Type doesn't have excerpt support, and applying filters so that
 	 * third party plugins (such as translation plugins) can determine the final output.
 	 *
-	 * @since   3.7.3
+	 * @since   1.0.0
 	 *
 	 * @param   WP_Post $post               WordPress Post.
 	 * @return  string                      Excerpt
@@ -3381,7 +3374,7 @@ class Social_Post_Flow_Publish {
 	 * Safely generate a title, stripping tags and shortcodes, and applying filters so that
 	 * third party plugins (such as translation plugins) can determine the final output.
 	 *
-	 * @since   3.7.3
+	 * @since   1.0.0
 	 *
 	 * @param   WP_Post $post               WordPress Post.
 	 * @param   bool    $to_more_tag        Only return content up to the <!-- more --> tag.
@@ -3441,7 +3434,7 @@ class Social_Post_Flow_Publish {
 		/**
 		 * Filters the dynamic {content} replacement, when a Post's status is being built.
 		 *
-		 * @since   3.7.3
+		 * @since   1.0.0
 		 *
 		 * @param   string      $content                    Post Content.
 		 * @param   WP_Post     $post                       WordPress Post.
@@ -3457,7 +3450,7 @@ class Social_Post_Flow_Publish {
 	/**
 	 * Returns the date in the locale specified in WordPress.
 	 *
-	 * @since   4.7.7
+	 * @since   1.0.0
 	 *
 	 * @param   WP_Post $post   WordPress Post.
 	 * @return  string              Date
@@ -3484,7 +3477,7 @@ class Social_Post_Flow_Publish {
 	/**
 	 * Returns the Permalink, including or excluding a trailing slash, depending on the Plugin settings.
 	 *
-	 * @since   4.0.6
+	 * @since   1.0.0
 	 *
 	 * @param   WP_Post $post               WordPress Post.
 	 * @return  string                          WordPress Post Permalink
@@ -3496,7 +3489,7 @@ class Social_Post_Flow_Publish {
 		/**
 		 * Filters the Post's Permalink, including or excluding a trailing slash, depending on the Plugin settings
 		 *
-		 * @since   4.0.6
+		 * @since   1.0.0
 		 *
 		 * @param   string      $url                            WordPress Post Permalink.
 		 * @param   WP_Post     $post                           WordPress Post.
@@ -3511,7 +3504,7 @@ class Social_Post_Flow_Publish {
 	/**
 	 * Returns the Short Permalink
 	 *
-	 * @since   4.2.7
+	 * @since   1.0.0
 	 *
 	 * @param   WP_Post $post               WordPress Post.
 	 * @return  string                          WordPress Post Permalink
@@ -3524,7 +3517,7 @@ class Social_Post_Flow_Publish {
 		/**
 		 * Filters the Post's Permalink, including or excluding a trailing slash, depending on the Plugin settings
 		 *
-		 * @since   4.2.7
+		 * @since   1.0.0
 		 *
 		 * @param   string      $url                            WordPress Post Permalink.
 		 * @param   WP_Post     $post                           WordPress Post.
@@ -3547,7 +3540,7 @@ class Social_Post_Flow_Publish {
 	 * - removing double spaces
 	 * - trimming the final result of any leading or trailing spaces
 	 *
-	 * @since   4.6.9
+	 * @since   1.0.0
 	 *
 	 * @param   string $text                           Text.
 	 * @param   bool   $convert_links_to_inline        true: Convert e.g. `<a href="http://foo.com">text</a>` to `text (http://foo.com)`.
@@ -3622,7 +3615,7 @@ class Social_Post_Flow_Publish {
 	 * Returns a flag denoting whether a character limit can safely be applied
 	 * to the given tag.
 	 *
-	 * @since   3.7.8
+	 * @since   1.0.0
 	 *
 	 * @param   string $tag    Tag.
 	 * @return  bool            Can apply character limit
@@ -3646,7 +3639,7 @@ class Social_Post_Flow_Publish {
 	/**
 	 * Applies the given word limit to the given text
 	 *
-	 * @since   3.8.9
+	 * @since   1.0.0
 	 *
 	 * @param   string $text          Text.
 	 * @param   int    $word_limit    Word Limit.
@@ -3668,7 +3661,7 @@ class Social_Post_Flow_Publish {
 		/**
 		 * Applies the given word limit to the given text.
 		 *
-		 * @since   3.8.9
+		 * @since   1.0.0
 		 *
 		 * @param   string      $text               Text, with word limit applied.
 		 * @param   int         $word_limit         Sentence Limit.
@@ -3683,7 +3676,7 @@ class Social_Post_Flow_Publish {
 	/**
 	 * Applies the given sentence limit to the given text
 	 *
-	 * @since   4.3.1
+	 * @since   1.0.0
 	 *
 	 * @param   string $text            Text.
 	 * @param   int    $sentence_limit  Sentence Limit.
@@ -3716,7 +3709,7 @@ class Social_Post_Flow_Publish {
 		/**
 		 * Applies the given sentence limit to the given text.
 		 *
-		 * @since   4.3.1
+		 * @since   1.0.0
 		 *
 		 * @param   string      $text               Text, with word limit applied.
 		 * @param   int         $sentence_limit     Sentence Limit.
@@ -3732,7 +3725,7 @@ class Social_Post_Flow_Publish {
 	/**
 	 * Applies the given character limit to the given text
 	 *
-	 * @since   3.7.3
+	 * @since   1.0.0
 	 *
 	 * @param   string $text               Text.
 	 * @param   int    $character_limit    Character Limit.
@@ -3758,7 +3751,7 @@ class Social_Post_Flow_Publish {
 		/**
 		 * Filters the character limited text.
 		 *
-		 * @since   3.7.3
+		 * @since   1.0.0
 		 *
 		 * @param   string      $text               Text, with character limit applied.
 		 * @param   int         $character_limit    Character Limit used.
@@ -3774,7 +3767,7 @@ class Social_Post_Flow_Publish {
 	 * Helper method to iterate through statuses, sending each via a separate API call
 	 * to the API.
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 *
 	 * @param   array  $statuses   Statuses.
 	 * @param   int    $post_id    Post ID.
@@ -3915,7 +3908,7 @@ class Social_Post_Flow_Publish {
 	/**
 	 * Clears any searches and replacements stored in this class.
 	 *
-	 * @since   3.8.0
+	 * @since   1.0.0
 	 */
 	private function clear_search_replacements() {
 

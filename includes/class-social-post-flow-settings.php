@@ -11,14 +11,14 @@
  *
  * @package Social_Post_Flow
  * @author  WP Zinc
- * @version 3.0.0
+ * @version 1.0.0
  */
 class Social_Post_Flow_Settings {
 
 	/**
 	 * Settings key name.
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 *
 	 * @var     string
 	 */
@@ -30,7 +30,7 @@ class Social_Post_Flow_Settings {
 	 * Safely checks if the key(s) exist before returning the default
 	 * or the value.
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $type            Setting Type.
 	 * @param   string $key             Setting key value to retrieve.
@@ -68,7 +68,7 @@ class Social_Post_Flow_Settings {
 	/**
 	 * Returns the settings for the given Post Type
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $type   Type.
 	 * @return  array           Settings
@@ -81,7 +81,7 @@ class Social_Post_Flow_Settings {
 		/**
 		 * Filters Post Type Settings before they are returned.
 		 *
-		 * @since   3.0.0
+		 * @since   1.0.0
 		 *
 		 * @param   array   $settings   Settings.
 		 * @param   string  $type       Post Type.
@@ -96,7 +96,7 @@ class Social_Post_Flow_Settings {
 	/**
 	 * Stores the given settings for the given Post Type into the options table
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $type       Type.
 	 * @param   array  $settings   Settings.
@@ -110,7 +110,7 @@ class Social_Post_Flow_Settings {
 		/**
 		 * Filters Post Type Settings before they are saved.
 		 *
-		 * @since   3.0.0
+		 * @since   1.0.0
 		 *
 		 * @param   array   $settings   Settings.
 		 * @param   string  $type       Post Type.
@@ -125,7 +125,7 @@ class Social_Post_Flow_Settings {
 	/**
 	 * Strip HTML tags from the given array or string.
 	 *
-	 * @since   4.8.9
+	 * @since   1.0.0
 	 *
 	 * @param   string|array $value  Setting value.
 	 * @return  string                  Setting value
@@ -139,7 +139,7 @@ class Social_Post_Flow_Settings {
 	/**
 	 * Returns an array of default settings for a new installation.
 	 *
-	 * @since   3.4.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $post_type          Post Type.
 	 * @return  array                       Settings
@@ -167,7 +167,7 @@ class Social_Post_Flow_Settings {
 		/**
 		 * Filters Default Post Type Settings used on Plugin Activation before they are returned.
 		 *
-		 * @since   3.4.0
+		 * @since   1.0.0
 		 *
 		 * @param   array   $settings   Settings.
 		 * @param   string  $type       Post Type.
@@ -183,7 +183,7 @@ class Social_Post_Flow_Settings {
 	 * Merges the given status array with the default status array,
 	 * to ensure that the returned status has all expected keys
 	 *
-	 * @since   4.4.0
+	 * @since   1.0.0
 	 *
 	 * @param   array  $status                     Status.
 	 * @param   string $post_type                  Post Type.
@@ -199,7 +199,7 @@ class Social_Post_Flow_Settings {
 	 * Returns value => label key/value arrays for Authors and Taxonomies,
 	 * so that selectize instances can be populated with both labels and their values
 	 *
-	 * @since   4.4.0
+	 * @since   1.0.0
 	 *
 	 * @param   array  $status                     Status.
 	 * @param   string $post_type                  Post Type.
@@ -277,7 +277,7 @@ class Social_Post_Flow_Settings {
 	 * Returns an array of a status' information that can be output in
 	 * the table row cells
 	 *
-	 * @since   4.4.0
+	 * @since   1.0.0
 	 *
 	 * @param   array  $status     Status.
 	 * @param   string $post_type  Post Type.
@@ -361,7 +361,7 @@ class Social_Post_Flow_Settings {
 				/**
 				 * Output Schedule settings for Integrations / Third Party Plugins
 				 *
-				 * @since   4.4.0
+				 * @since   1.0.0
 				 *
 				 * @param   string  $output     Output.
 				 * @param   array   $status     Status.
@@ -380,7 +380,7 @@ class Social_Post_Flow_Settings {
 	/**
 	 * Returns a default status array
 	 *
-	 * @since   4.4.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $post_type          Post Type.
 	 * @param   mixed  $default_message    Default Message (if false, uses {title} {url}).
@@ -456,7 +456,7 @@ class Social_Post_Flow_Settings {
 		/**
 		 * Returns a skeleton status object for the given action, used when defining new status(es)
 		 *
-		 * @since   4.4.0
+		 * @since   1.0.0
 		 *
 		 * @param   array   $status     Status.
 		 */
@@ -472,7 +472,7 @@ class Social_Post_Flow_Settings {
 	 * one social media account enabled, and there is a publish or update
 	 * action enabled in the Defaults for the Post Type or the Social Media account.
 	 *
-	 * @since   3.4.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $post_type  Post Type.
 	 * @return  bool                Enabled
@@ -556,7 +556,7 @@ class Social_Post_Flow_Settings {
 	/**
 	 * Stores the given access token and refresh token into the options table.
 	 *
-	 * @since   3.5.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $access_token    Access Token.
 	 * @param   string $refresh_token   Refresh Token.
@@ -573,7 +573,7 @@ class Social_Post_Flow_Settings {
 	/**
 	 * Deletes the access, refresh and toke expiry values from the options table.
 	 *
-	 * @since   3.5.0
+	 * @since   1.0.0
 	 */
 	public function delete_tokens() {
 
@@ -586,7 +586,7 @@ class Social_Post_Flow_Settings {
 	/**
 	 * Retrieves the access token from the options table
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 *
 	 * @return  string  Access Token
 	 */
@@ -599,7 +599,7 @@ class Social_Post_Flow_Settings {
 	/**
 	 * Stores the given access token into the options table
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $access_token   Access Token.
 	 * @return  bool                    Success
@@ -609,7 +609,7 @@ class Social_Post_Flow_Settings {
 		/**
 		 * Filters the API access token before saving.
 		 *
-		 * @since   3.0.0
+		 * @since   1.0.0
 		 *
 		 * @param   array   $access_token   Access Token.
 		 */
@@ -623,7 +623,7 @@ class Social_Post_Flow_Settings {
 	/**
 	 * Deletes the access token from the options table
 	 *
-	 * @since   3.4.7
+	 * @since   1.0.0
 	 *
 	 * @return  bool    Success
 	 */
@@ -637,7 +637,7 @@ class Social_Post_Flow_Settings {
 	/**
 	 * Retrieves the refresh token from the options table
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 *
 	 * @return  string  Access Token
 	 */
@@ -650,7 +650,7 @@ class Social_Post_Flow_Settings {
 	/**
 	 * Stores the given refresh token into the options table
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $refresh_token  Refresh Token.
 	 * @return  bool                    Success
@@ -660,7 +660,7 @@ class Social_Post_Flow_Settings {
 		/**
 		 * Filters the API refresh token before saving.
 		 *
-		 * @since   3.0.0
+		 * @since   1.0.0
 		 *
 		 * @param   array   $refresh_token   Refresh Token.
 		 */
@@ -674,7 +674,7 @@ class Social_Post_Flow_Settings {
 	/**
 	 * Deletes the access token from the options table
 	 *
-	 * @since   3.4.7
+	 * @since   1.0.0
 	 *
 	 * @return  bool    Success
 	 */
@@ -688,7 +688,7 @@ class Social_Post_Flow_Settings {
 	/**
 	 * Retrieves the token expiry timestamp from the options table
 	 *
-	 * @since   3.5.0
+	 * @since   1.0.0
 	 *
 	 * @return  mixed   false | Token Expiry Timestamp
 	 */
@@ -701,7 +701,7 @@ class Social_Post_Flow_Settings {
 	/**
 	 * Stores the given token expiry timestamp into the options table
 	 *
-	 * @since   3.5.0
+	 * @since   1.0.0
 	 *
 	 * @param   mixed $token_expires      Token Expires (false | timestamp).
 	 * @return  bool                        Success
@@ -711,7 +711,7 @@ class Social_Post_Flow_Settings {
 		/**
 		 * Filters the API token expiry timestamp token before saving.
 		 *
-		 * @since   3.0.0
+		 * @since   1.0.0
 		 *
 		 * @param   array   $token_expires  Token Expiry.
 		 */
@@ -725,7 +725,7 @@ class Social_Post_Flow_Settings {
 	/**
 	 * Deletes the token expiry timestamp from the options table
 	 *
-	 * @since   3.5.0
+	 * @since   1.0.0
 	 *
 	 * @return  bool    Success
 	 */
@@ -739,7 +739,7 @@ class Social_Post_Flow_Settings {
 	/**
 	 * Helper method to get a value from the options table
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $key             Option Key.
 	 * @param   string $default_value   Default Value if key does not exist.
@@ -759,7 +759,7 @@ class Social_Post_Flow_Settings {
 	/**
 	 * Helper method to store a value to the options table
 	 *
-	 * @since   3.0.0
+	 * @since   1.0.0
 	 *
 	 * @param   string $key    Key.
 	 * @param   string $value  Value.
@@ -796,7 +796,7 @@ class Social_Post_Flow_Settings {
 		/**
 		 * Filters the key and value pair before saving to the options table.
 		 *
-		 * @since   3.0.0
+		 * @since   1.0.0
 		 *
 		 * @param   string  $value  Option Value.
 		 * @param   string  $key    Option Key.
@@ -813,7 +813,7 @@ class Social_Post_Flow_Settings {
 	/**
 	 * Helper method to return all key/value pairs stored in the options table
 	 *
-	 * @since   3.5.0
+	 * @since   1.0.0
 	 *
 	 * @return  array   Data
 	 */
@@ -850,7 +850,7 @@ class Social_Post_Flow_Settings {
 		/**
 		 * Filters the keys that are used to store Plugin data in the options table.
 		 *
-		 * @since   3.5.0
+		 * @since   1.0.0
 		 *
 		 * @param   array   $keys           Option Keys.
 		 * @param   array   $post_types     Post Types.

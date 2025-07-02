@@ -2,7 +2,7 @@
 /**
  * Outputs Bulk Publish View
  *
- * @since 3.0.5
+ * @since 1.0.0
  *
  * @package Social_Post_Flow
  * @author  WP Zinc

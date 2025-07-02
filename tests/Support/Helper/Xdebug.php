@@ -5,14 +5,14 @@ namespace Tests\Support\Helper;
  * Helper methods and actions related to PHP's Xdebug,
  * which are then available using $I->{yourFunctionName}.
  *
- * @since   3.8.4
+ * @since   1.0.0
  */
 class Xdebug extends \Codeception\Module
 {
 	/**
 	 * Helper method to assert that there are non PHP errors, warnings or notices output
 	 *
-	 * @since   3.8.4
+	 * @since   1.0.0
 	 *
 	 * @param   AcceptanceTester $I  Tester.
 	 */
