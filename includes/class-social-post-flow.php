@@ -81,10 +81,10 @@ class Social_Post_Flow {
 		$this->plugin->header_secondary_text_color = '#6e6e6e';
 
 		// Dashboard Submodule.
-		if ( ! class_exists( 'WPZincDashboardWidget' ) ) {
-			require_once $this->plugin->folder . '_modules/dashboard/class-wpzincdashboardwidget.php';
+		if ( ! class_exists( 'Social_Post_Flow_Dashboard' ) ) {
+			require_once SOCIAL_POST_FLOW_PLUGIN_PATH . '_modules/dashboard/class-social-post-flow-dashboard.php';
 		}
-		$this->dashboard = new WPZincDashboardWidget( $this->plugin );
+		$this->dashboard = new Social_Post_Flow_Dashboard( $this->plugin );
 
 		// Defer loading of Plugin Classes.
 		add_action( 'init', array( $this, 'initialize' ), 1 );
@@ -117,12 +117,6 @@ class Social_Post_Flow {
 				add_action( "load-$log_page", array( $this->get_class( 'log' ), 'add_screen_options' ) );
 			}
 		}
-
-		// Import & Export.
-		do_action( 'social_post_flow_admin_menu_import_export' );
-
-		// Support.
-		do_action( 'social_post_flow_admin_menu_support' );
 
 	}
 
