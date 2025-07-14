@@ -39,6 +39,7 @@ class Social_Post_Flow_Admin {
 		add_action( 'social_post_flow_api_refresh_token', array( $this, 'save_oauth_tokens' ), 10, 1 );
 		add_action( 'init', array( $this, 'maybe_set_oauth_nonce' ), 11 );
 		add_action( 'init', array( $this, 'maybe_get_access_token' ), 12 );
+		add_action( 'init', array( $this, 'maybe_disconnect' ), 13 );
 		add_action( 'init', array( $this, 'check_plugin_setup' ) );
 		add_action( 'admin_notices', array( $this, 'admin_notices' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts_css' ) );
@@ -120,6 +121,33 @@ class Social_Post_Flow_Admin {
 		die();
 
 	}
+
+	/**
+	 * Disconnects the Plugin from the API, if the user clicks the disconnect button.
+	 *
+	 * @since 1.0.0
+	 */
+	public function maybe_disconnect() {
+
+		// Bail if nonce is not set.
+		if ( ! array_key_exists( 'social-post-flow-oauth-disconnect', $_REQUEST ) ) {
+			return;
+		}
+
+		// Bail if nonce is not valid.
+		if ( ! wp_verify_nonce( sanitize_key( $_REQUEST['social-post-flow-oauth-disconnect'] ), 'social-post-flow-oauth-disconnect' ) ) {
+			return;
+		}
+
+		// Delete tokens.
+		social_post_flow()->get_class( 'settings' )->delete_tokens();
+
+		// Redirect to settings page.
+		wp_safe_redirect( add_query_arg( array( 'page' => 'social-post-flow' ), admin_url( 'admin.php' ) ) );
+		die();
+
+	}
+
 
 	/**
 	 * Saves the OAuth tokens to the Plugin settings, whenever
@@ -587,14 +615,6 @@ class Social_Post_Flow_Admin {
 
 		// Setup notices class.
 		social_post_flow()->get_class( 'notices' )->set_key_prefix( 'social_post_flow_' . wp_get_current_user()->ID );
-
-		// Maybe disconnect.
-		if ( array_key_exists( 'social-post-flow-oauth-disconnect', $_REQUEST ) && wp_verify_nonce( sanitize_key( $_REQUEST['social-post-flow-oauth-disconnect'] ), 'social-post-flow-oauth-disconnect' ) ) {
-			$this->disconnect();
-			social_post_flow()->get_class( 'notices' )->add_success_notice(
-				__( 'Social Post Flow account disconnected successfully.', 'social-post-flow' )
-			);
-		}
 
 		// Maybe save settings.
 		$result = $this->save_settings();
@@ -1072,19 +1092,6 @@ class Social_Post_Flow_Admin {
 			default:
 				return social_post_flow()->get_class( 'settings' )->get_option( $key, $default_value );
 		}
-
-	}
-
-	/**
-	 * Disconnect by removing the access token
-	 *
-	 * @since   1.0.0
-	 *
-	 * @return  string Result
-	 */
-	public function disconnect() {
-
-		return social_post_flow()->get_class( 'settings' )->delete_tokens();
 
 	}
 
