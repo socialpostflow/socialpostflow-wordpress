@@ -3466,7 +3466,7 @@ class Social_Post_Flow_Publish {
 		/*
 		 * Filters the dynamic {date} replacement, when a Post's status is being built.
 		 *
-		 * @since   4.7.7
+		 * @since   1.0.0
 		 *
 		 * @param   string      $date                       Date.
 		 * @param   WP_Post     $post                       WordPress Post.
@@ -3537,7 +3537,7 @@ class Social_Post_Flow_Publish {
 	 * Converts the given string (which is typically HTML from a WordPress Post or Post Meta Field)
 	 * to plain text, by performing several functions:
 	 * - stripping shortcodes (if shortcodes need processing, do so before calling this function)
-	 * - removing all inline <style> elements and their contents,
+	 * - removing all inline style elements and their contents,
 	 * - stripping HTML tags, excluding <br>, <br />, <a>, <li>
 	 * - decoding HTML entities to avoid encoding issues on status output
 	 * - converting <br> and <br /> to newlines
@@ -3572,7 +3572,7 @@ class Social_Post_Flow_Publish {
 		// Load DOMDocument into XPath.
 		$xpath = new DOMXPath( $html );
 
-		// Remove inline <style> tags and their contents.
+		// Remove inline style tags and their contents.
 		foreach ( $xpath->query( '//style' ) as $node ) {
 			$node->parentNode->removeChild( $node ); // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 		}
@@ -3682,11 +3682,12 @@ class Social_Post_Flow_Publish {
 	 *
 	 * @since   1.0.0
 	 *
-	 * @param   string $text            Text.
-	 * @param   int    $sentence_limit  Sentence Limit.
-	 * @return  string                  Text
+	 * @param   string $text                Text.
+	 * @param   int    $sentence_limit      Sentence Limit.
+	 * @param   int    $min_sentence_length Minimum Sentence Length.
+	 * @return  string
 	 */
-	public function apply_sentence_limit( $text, $sentence_limit = 0 ) {
+	public function apply_sentence_limit( $text, $sentence_limit = 0, $min_sentence_length = 5 ) {
 
 		// Store original text.
 		$original_text = $text;
@@ -3696,19 +3697,31 @@ class Social_Post_Flow_Publish {
 			return $text;
 		}
 
-		// Define end of sentence delimiters.
-		$stops = array(
-			'. ',
-			'! ',
-			'? ',
-			'...',
-		);
-
 		// Build array of sentences.
-		$sentences = preg_split( '/(?<=[.?!])\s+(?=[a-z])/i', $text, -1, PREG_SPLIT_DELIM_CAPTURE );
+		$parts = preg_split( '/(?<=[.?!])\s+(?=[a-z])/i', $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 
-		// Implode into text.
-		$text = implode( ' ', array_slice( $sentences, 0, $sentence_limit ) );
+		// Iterate through the array, adding sentences to the array until we hit the sentence limit.
+		// Sentences do not count towards the limit if they are shorter than the minimum sentence length.
+		// This ensures abbreviations do not count towards the limit.
+		$sentences      = array();
+		$sentence_count = 0;
+		foreach ( $parts as $index => $sentence ) {
+			// If we've hit the sentence limit, stop.
+			if ( $sentence_count >= $sentence_limit ) {
+				break;
+			}
+
+			// Trim the sentence, adding it to the array.
+			$sentences[ $index ] = trim( $sentence );
+
+			// If the sentence is longer than the minimum sentence length, count this as a sentence.
+			if ( mb_strlen( $sentences[ $index ] ) > $min_sentence_length ) {
+				++$sentence_count;
+			}
+		}
+
+		// Implode into text, with a space between each sentence, trimming the array results to avoid double spacing.
+		$text = implode( ' ', array_map( 'trim', $sentences ) );
 
 		/**
 		 * Applies the given sentence limit to the given text.
