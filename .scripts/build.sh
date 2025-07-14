@@ -26,7 +26,6 @@ zip -r social-post-flow.zip . \
 -x "*.dist" \
 -x "*.example" \
 -x "*.DS_Store" \
--x "*.scss" \
 -x "*codeception.*" \
 -x "config.codekit3" \
 
