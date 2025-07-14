@@ -148,7 +148,6 @@ class Social_Post_Flow_Admin {
 
 	}
 
-
 	/**
 	 * Saves the OAuth tokens to the Plugin settings, whenever
 	 * the authorization code is exchanged for an access token,
