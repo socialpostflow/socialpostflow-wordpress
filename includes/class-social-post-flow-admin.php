@@ -37,12 +37,34 @@ class Social_Post_Flow_Admin {
 		// Actions.
 		add_action( 'social_post_flow_api_get_access_token', array( $this, 'save_oauth_tokens' ), 10, 1 );
 		add_action( 'social_post_flow_api_refresh_token', array( $this, 'save_oauth_tokens' ), 10, 1 );
-		add_action( 'init', array( $this, 'maybe_get_access_token' ) );
+		add_action( 'init', array( $this, 'maybe_set_oauth_nonce' ), 11 );
+		add_action( 'init', array( $this, 'maybe_get_access_token' ), 12 );
 		add_action( 'init', array( $this, 'check_plugin_setup' ) );
 		add_action( 'admin_notices', array( $this, 'admin_notices' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts_css' ) );
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 		add_filter( 'plugin_action_links_social-post-flow-/social-post-flow-.php', array( $this, 'plugin_action_links_settings_page' ) );
+
+	}
+
+	/**
+	 * Sets the OAuth nonce cookie, if the Plugin isn't connected to the API.
+	 *
+	 * @since 1.0.0
+	 */
+	public function maybe_set_oauth_nonce() {
+
+		// If the Plugin is connected to the API, no need to set a nonce cookie.
+		if ( social_post_flow()->get_class( 'validation' )->api_connected() ) {
+			return;
+		}
+
+		// If a cookie is already set, don't set it again.
+		if ( array_key_exists( 'social_post_flow_oauth_nonce', $_COOKIE ) ) {
+			return;
+		}
+
+		setcookie( 'social_post_flow_oauth_nonce', wp_create_nonce( 'social-post-flow-oauth' ), time() + HOUR_IN_SECONDS, '/' );
 
 	}
 
@@ -53,8 +75,22 @@ class Social_Post_Flow_Admin {
 	 */
 	public function maybe_get_access_token() {
 
+		// Bail if nonce is not set.
+		if ( ! isset( $_COOKIE['social_post_flow_oauth_nonce'] ) ) {
+			return;
+		}
+
+		// Bail if nonce is not valid.
+		if ( ! wp_verify_nonce( sanitize_key( $_COOKIE['social_post_flow_oauth_nonce'] ), 'social-post-flow-oauth' ) ) {
+			setcookie( 'social_post_flow_oauth_nonce', '', time() - 3600, '/' );
+			return;
+		}
+
+		// Delete cookie.
+		setcookie( 'social_post_flow_oauth_nonce', '', time() - 3600, '/' );
+
 		// If a code is included in the request, exchange it for an access token.
-		if ( ! isset( $_REQUEST['code'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( ! isset( $_REQUEST['code'] ) ) {
 			return;
 		}
 
@@ -62,7 +98,7 @@ class Social_Post_Flow_Admin {
 		social_post_flow()->get_class( 'notices' )->set_key_prefix( 'social_post_flow_' . wp_get_current_user()->ID );
 
 		// Sanitize token.
-		$authorization_code = sanitize_text_field( wp_unslash( $_REQUEST['code'] ) ); // phpcs:ignore WordPress.Security.NonceVerification
+		$authorization_code = sanitize_text_field( wp_unslash( $_REQUEST['code'] ) );
 
 		// Exchange the authorization code and verifier for an access token.
 		$result = social_post_flow()->get_class( 'api' )->get_access_token( $authorization_code );
@@ -553,7 +589,7 @@ class Social_Post_Flow_Admin {
 		social_post_flow()->get_class( 'notices' )->set_key_prefix( 'social_post_flow_' . wp_get_current_user()->ID );
 
 		// Maybe disconnect.
-		if ( isset( $_GET['social-post-flow-disconnect'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+		if ( array_key_exists( 'social-post-flow-oauth-disconnect', $_REQUEST ) && wp_verify_nonce( sanitize_key( $_REQUEST['social-post-flow-oauth-disconnect'] ), 'social-post-flow-oauth-disconnect' ) ) {
 			$this->disconnect();
 			social_post_flow()->get_class( 'notices' )->add_success_notice(
 				__( 'Social Post Flow account disconnected successfully.', 'social-post-flow' )
@@ -606,6 +642,15 @@ class Social_Post_Flow_Admin {
 			 * Settings
 			 */
 			case 'auth':
+				// Disconnect URL.
+				$disconnect_url = add_query_arg(
+					array(
+						'page' => 'social-post-flow',
+						'social-post-flow-oauth-disconnect' => wp_create_nonce( 'social-post-flow-oauth-disconnect' ),
+					),
+					admin_url( 'admin.php' )
+				);
+
 				// General Settings.
 				$override_options = social_post_flow()->get_class( 'common' )->get_override_options();
 
@@ -700,6 +745,14 @@ class Social_Post_Flow_Admin {
 	 * @since   1.0.0
 	 */
 	public function auth_screen() {
+
+		$admin_url = add_query_arg(
+			array(
+				'page' => 'social-post-flow',
+			),
+			admin_url( 'admin.php' )
+		);
+		$oauth_url = social_post_flow()->get_class( 'api' )->get_oauth_url( $admin_url );
 
 		// Load View.
 		include_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/settings-auth-required.php';

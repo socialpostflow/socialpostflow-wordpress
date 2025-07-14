@@ -79,7 +79,7 @@
 				</div>
 				<div class="wpzinc-option">
 					<div class="full">
-						<a href="admin.php?page=social-post-flow&amp;social-post-flow-disconnect=1" class="button wpzinc-button-red">
+						<a href="<?php echo esc_url( $disconnect_url ); ?>" class="button wpzinc-button-red">
 							<?php esc_html_e( 'Deauthorize Plugin', 'social-post-flow' ); ?>
 						</a>
 					</div>
