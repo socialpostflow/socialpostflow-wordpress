@@ -6,6 +6,9 @@
  * @author  WP Zinc
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 ?>
 <!-- Action Header -->
 <div class="postbox">

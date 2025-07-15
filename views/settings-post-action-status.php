@@ -7,6 +7,9 @@
  * @author  WP Zinc
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 ?>
 <div id="social-post-flow-status-form-container" class="hidden">
 	<div id="social-post-flow-status-form">

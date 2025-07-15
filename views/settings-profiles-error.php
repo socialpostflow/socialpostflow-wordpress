@@ -8,6 +8,9 @@
  * @author  WP Zinc
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 ?>
 <div class="postbox">
 	<div class="wpzinc-option">

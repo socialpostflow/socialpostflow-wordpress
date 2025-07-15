@@ -6,6 +6,9 @@
  * @author  WP Zinc
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 ?>
 <tr class="status sortable<?php echo esc_attr( $key === 0 ? ' first' : '' ); ?>" data-status-index="<?php echo esc_attr( $key ); ?>" data-status='<?php echo wp_json_encode( $status, JSON_HEX_APOS ); ?>' data-labels='<?php echo wp_json_encode( $labels, JSON_HEX_APOS ); ?>'>
 	<td class="count">#<?php echo esc_html( $key + 1 ); ?></td>

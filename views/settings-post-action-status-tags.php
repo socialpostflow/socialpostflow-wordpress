@@ -6,6 +6,9 @@
  * @author  WP Zinc
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 ?>
 <select size="1" class="left tags" data-textarea="<?php echo esc_attr( $textarea ); ?>">
 	<option value=""><?php esc_attr_e( '--- Insert Tag ---', 'social-post-flow' ); ?></option>

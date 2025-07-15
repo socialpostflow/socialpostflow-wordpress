@@ -8,6 +8,9 @@
  * @author  WP Zinc
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 ?>
 <!-- Post Type -->
 <div id="<?php echo esc_attr( $post_type ); ?>-panel" class="panel">
