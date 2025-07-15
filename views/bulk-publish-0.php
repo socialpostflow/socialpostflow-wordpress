@@ -77,35 +77,35 @@
 						</tfoot>
 
 						<tbody>
-						<?php
+							<?php
 							if ( $params['meta'] ) {
 								foreach ( $params['meta'] as $meta ) {
 									?>
-									<tr class="custom-field">
-										<td>
-											<input type="text" name="social-post-flow[meta][key][]" id="custom_field_meta_key" placeholder="<?php esc_attr_e( 'Meta Key', 'wp-to-social-pro' ); ?>" value="<?php echo esc_attr( $meta['key'] ); ?>" class="widefat" />
-										</td>
-										<td>
-											<select name="social-post-flow[meta][compare][]" size="1">
+										<tr class="custom-field">
+											<td>
+												<input type="text" name="social-post-flow[meta][key][]" id="custom_field_meta_key" placeholder="<?php esc_attr_e( 'Meta Key', 'social-post-flow' ); ?>" value="<?php echo esc_attr( $meta['key'] ); ?>" class="widefat" />
+											</td>
+											<td>
+												<select name="social-post-flow[meta][compare][]" size="1">
 												<?php
 												foreach ( $custom_field_comparison_operators as $key => $label ) {
 													?>
-													<option value="<?php echo esc_attr( $key ); ?>"<?php selected( $key, $meta['compare'] ); ?>><?php echo esc_attr( $label ); ?></option>
-													<?php
+														<option value="<?php echo esc_attr( $key ); ?>"<?php selected( $key, $meta['compare'] ); ?>><?php echo esc_attr( $label ); ?></option>
+														<?php
 												}
 												?>
-											</select>
-										</td>
-										<td>
-											<input type="text" name="social-post-flow[meta][value][]" placeholder="<?php esc_attr_e( 'Meta Value', 'wp-to-social-pro' ); ?>" value="<?php echo esc_attr( $meta['value'] ); ?>" class="widefat" />
-										</td>
-										<td>
-											<a href="#" class="wpzinc-delete-table-row button small">
-												<?php esc_html_e( 'Remove', 'social-post-flow' ); ?>
-											</a>
-										</td>
-									</tr>
-									<?php
+												</select>
+											</td>
+											<td>
+												<input type="text" name="social-post-flow[meta][value][]" placeholder="<?php esc_attr_e( 'Meta Value', 'social-post-flow' ); ?>" value="<?php echo esc_attr( $meta['value'] ); ?>" class="widefat" />
+											</td>
+											<td>
+												<a href="#" class="wpzinc-delete-table-row button small">
+													<?php esc_html_e( 'Remove', 'social-post-flow' ); ?>
+												</a>
+											</td>
+										</tr>
+										<?php
 								}
 							}
 							?>

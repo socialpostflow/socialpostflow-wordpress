@@ -864,8 +864,6 @@ class Social_Post_Flow_Admin {
 
 				// Invalid nonce.
 				if ( ! wp_verify_nonce( sanitize_key( $_REQUEST['social_post_flow_nonce'] ), 'social-post-flow-bulk-publish' ) ) {
-					die('invalid nonce');
-
 					// Set error notice.
 					social_post_flow()->get_class( 'notices' )->add_error_notice( __( 'Invalid nonce specified.', 'social-post-flow' ) );
 

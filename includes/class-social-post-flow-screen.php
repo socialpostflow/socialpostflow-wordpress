@@ -58,7 +58,7 @@ class Social_Post_Flow_Screen {
 
 		// Get screen ID without Plugin Display Name.
 		$screen_id = str_replace(
-			'social-post-flow_page_',
+			array( 'social-post-flow_page_', 'toplevel_page_' ),
 			'',
 			$screen->base
 		);
