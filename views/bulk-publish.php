@@ -60,7 +60,7 @@
 		</h2>
 
 		<!-- Form Start -->
-		<form name="post" method="post" action="<?php echo ( isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '' ); ?>" id="social-post-flow">    
+		<form name="post" method="post" action="<?php echo ( isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '' ); ?>">    
 			<div id="poststuff">
 				<div id="post-body" class="metabox-holder columns-1">
 					<!-- Content -->

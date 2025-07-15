@@ -22,7 +22,7 @@ class Social_Post_Flow_API {
 	 *
 	 * @var     string.
 	 */
-	private $api_endpoint = 'https://app.socialpostflow.com/api/';
+	private $api_endpoint = 'https://socialpostflow.local/api/';
 
 	/**
 	 * Holds the OAuth Authorize URL
@@ -31,7 +31,7 @@ class Social_Post_Flow_API {
 	 *
 	 * @var     string.
 	 */
-	private $oauth_authorize_url = 'https://app.socialpostflow.com/oauth/authorize';
+	private $oauth_authorize_url = 'https://socialpostflow.local/oauth/authorize';
 
 	/**
 	 * Holds the OAuth Redirect URL
@@ -40,7 +40,7 @@ class Social_Post_Flow_API {
 	 *
 	 * @var     string.
 	 */
-	private $oauth_redirect_uri = 'https://app.socialpostflow.com/oauth/callback';
+	private $oauth_redirect_uri = 'https://socialpostflow.local/oauth/callback';
 
 	/**
 	 * Holds the OAuth Token URL
@@ -49,7 +49,7 @@ class Social_Post_Flow_API {
 	 *
 	 * @var     string.
 	 */
-	private $oauth_token_url = 'https://app.socialpostflow.com/oauth/token';
+	private $oauth_token_url = 'https://socialpostflow.local/oauth/token';
 
 	/**
 	 * Holds the OAuth Client ID
@@ -58,7 +58,8 @@ class Social_Post_Flow_API {
 	 *
 	 * @var     string.
 	 */
-	private $client_id = '01970fdc-2595-73ed-aebb-88398845bb5b';
+	// private $client_id = '01970fdc-2595-73ed-aebb-88398845bb5b';
+	private $client_id = '0196ce3f-f4e8-7316-97f3-347dc3ad060c';
 
 	/**
 	 * Access Token

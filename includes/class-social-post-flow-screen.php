@@ -39,13 +39,13 @@ class Social_Post_Flow_Screen {
 		);
 
 		// Early detection of settings page so that early hooks e.g. init can detect if we're on the settings screen.
-		if ( isset( $_REQUEST['page'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
-			if ( sanitize_text_field( wp_unslash( $_REQUEST['page'] ) ) === 'social-post-flow-settings' ) { // phpcs:ignore WordPress.Security.NonceVerification
-				return array(
-					'screen'  => 'settings',
-					'section' => ( isset( $_REQUEST['tab'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['tab'] ) ) : 'auth' ), // phpcs:ignore WordPress.Security.NonceVerification
-				);
-			}
+		$page = filter_input( INPUT_GET, 'page', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+		$tab  = filter_input( INPUT_GET, 'tab', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+		if ( $page === 'social-post-flow-settings' ) {
+			return array(
+				'screen'  => 'settings',
+				'section' => ( $tab ? $tab : 'auth' ),
+			);
 		}
 
 		// Bail if we can't determine this.
@@ -58,7 +58,7 @@ class Social_Post_Flow_Screen {
 
 		// Get screen ID without Plugin Display Name.
 		$screen_id = str_replace(
-			'toplevel_page_',
+			'social-post-flow_page_',
 			'',
 			$screen->base
 		);
@@ -89,7 +89,7 @@ class Social_Post_Flow_Screen {
 			case 'social-post-flow':
 				return array(
 					'screen'  => 'settings',
-					'section' => ( isset( $_REQUEST['tab'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['tab'] ) ) : 'auth' ), // phpcs:ignore WordPress.Security.NonceVerification
+					'section' => filter_has_var( INPUT_GET, 'tab' ) ? filter_input( INPUT_GET, 'tab', FILTER_SANITIZE_FULL_SPECIAL_CHARS ) : 'auth',
 				);
 
 			/**

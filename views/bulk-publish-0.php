@@ -34,9 +34,9 @@
 				</div>
 				<div class="right">
 					<?php esc_html_e( 'Between', 'social-post-flow' ); ?>
-					<input type="date" name="social-post-flow[start_date]" id="start_date" />
+					<input type="date" name="social-post-flow[start_date]" value="<?php echo esc_attr( $params['start_date'] ); ?>" id="start_date" />
 					<?php esc_html_e( 'and', 'social-post-flow' ); ?>
-					<input type="date" name="social-post-flow[end_date]" />
+					<input type="date" name="social-post-flow[end_date]" value="<?php echo esc_attr( $params['end_date'] ); ?>" />
 				</div>
 			</div>
 
@@ -77,6 +77,38 @@
 						</tfoot>
 
 						<tbody>
+						<?php
+							if ( $params['meta'] ) {
+								foreach ( $params['meta'] as $meta ) {
+									?>
+									<tr class="custom-field">
+										<td>
+											<input type="text" name="social-post-flow[meta][key][]" id="custom_field_meta_key" placeholder="<?php esc_attr_e( 'Meta Key', 'wp-to-social-pro' ); ?>" value="<?php echo esc_attr( $meta['key'] ); ?>" class="widefat" />
+										</td>
+										<td>
+											<select name="social-post-flow[meta][compare][]" size="1">
+												<?php
+												foreach ( $custom_field_comparison_operators as $key => $label ) {
+													?>
+													<option value="<?php echo esc_attr( $key ); ?>"<?php selected( $key, $meta['compare'] ); ?>><?php echo esc_attr( $label ); ?></option>
+													<?php
+												}
+												?>
+											</select>
+										</td>
+										<td>
+											<input type="text" name="social-post-flow[meta][value][]" placeholder="<?php esc_attr_e( 'Meta Value', 'wp-to-social-pro' ); ?>" value="<?php echo esc_attr( $meta['value'] ); ?>" class="widefat" />
+										</td>
+										<td>
+											<a href="#" class="wpzinc-delete-table-row button small">
+												<?php esc_html_e( 'Remove', 'social-post-flow' ); ?>
+											</a>
+										</td>
+									</tr>
+									<?php
+								}
+							}
+							?>
 							<tr class="custom-field hide-delete-button">
 								<td>
 									<input type="text" name="social-post-flow[meta][key][]" id="custom_field_meta_key" placeholder="<?php esc_attr_e( 'Meta Key', 'social-post-flow' ); ?>" class="widefat" />
@@ -112,7 +144,7 @@
 					<label for="s"><?php esc_html_e( 'Search Terms', 'social-post-flow' ); ?></label>
 				</div>
 				<div class="right">
-					<input type="text" name="social-post-flow[s]" id="s" class="widefat" />
+					<input type="text" name="social-post-flow[s]" id="s" value="<?php echo esc_attr( $params['s'] ); ?>" class="widefat" />
 
 					<p class="description">
 						<?php
@@ -156,7 +188,7 @@
 						<?php
 						foreach ( $orderby as $key => $label ) {
 							?>
-							<option value="<?php echo esc_attr( $key ); ?>"><?php echo esc_attr( $label ); ?></option>
+							<option value="<?php echo esc_attr( $key ); ?>"<?php selected( $key, $params['orderby'] ); ?>><?php echo esc_attr( $label ); ?></option>
 							<?php
 						}
 						?>
@@ -179,7 +211,7 @@
 						<?php
 						foreach ( $order as $key => $label ) {
 							?>
-							<option value="<?php echo esc_attr( $key ); ?>"><?php echo esc_attr( $label ); ?></option>
+							<option value="<?php echo esc_attr( $key ); ?>"<?php selected( $key, $params['order'] ); ?>><?php echo esc_attr( $label ); ?></option>
 							<?php
 						}
 						?>
@@ -198,5 +230,6 @@
 <!-- /post_type -->
 
 <!-- Buttons -->
+<?php wp_nonce_field( 'social-post-flow-bulk-publish' ); ?>
 <input type="hidden" name="stage" value="1" />
 <input type="submit" name="submit" value="<?php esc_attr_e( 'Choose Posts', 'social-post-flow' ); ?>" class="button button-primary" />

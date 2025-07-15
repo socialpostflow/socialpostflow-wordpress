@@ -15,7 +15,7 @@ jQuery( document ).ready(
 		 */
 		if ( $( '#post-selection' ).length > 0 ) {
 
-			wpToSocialProInitSelectize( '#post-selection' );
+			socialPostFlowInitSelectize( '#post-selection' );
 
 		}
 

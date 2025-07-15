@@ -168,7 +168,7 @@ class Social_Post_Flow_Log {
 		}
 
 		// Bail if nonce is not valid.
-		if ( ! isset( $_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'bulk-wp-to-social-log' ) ) {
+		if ( ! isset( $_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'bulk-social-post-flow-log' ) ) {
 			return;
 		}
 
@@ -176,9 +176,9 @@ class Social_Post_Flow_Log {
 		$bulk_action = array_values(
 			array_filter(
 				array(
-					( isset( $_REQUEST['bulk_action'] ) && $_REQUEST['bulk_action'] != -1 ? sanitize_text_field( wp_unslash( $_REQUEST['bulk_action'] ) ) : '' ),  // phpcs:ignore Universal.Operators.StrictComparisons.LooseNotEqual, WordPress.Security.NonceVerification
-					( isset( $_REQUEST['bulk_action2'] ) && $_REQUEST['bulk_action2'] != -1 ? sanitize_text_field( wp_unslash( $_REQUEST['bulk_action2'] ) ) : '' ),  // phpcs:ignore Universal.Operators.StrictComparisons.LooseNotEqual, WordPress.Security.NonceVerification
-					( isset( $_REQUEST['bulk_action3'] ) && ! empty( $_REQUEST['bulk_action3'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['bulk_action3'] ) ) : '' ), // phpcs:ignore WordPress.Security.NonceVerification
+					( isset( $_REQUEST['bulk_action'] ) && $_REQUEST['bulk_action'] != -1 ? sanitize_text_field( wp_unslash( $_REQUEST['bulk_action'] ) ) : '' ),  // phpcs:ignore Universal.Operators.StrictComparisons.LooseNotEqual
+					( isset( $_REQUEST['bulk_action2'] ) && $_REQUEST['bulk_action2'] != -1 ? sanitize_text_field( wp_unslash( $_REQUEST['bulk_action2'] ) ) : '' ),  // phpcs:ignore Universal.Operators.StrictComparisons.LooseNotEqual
+					( isset( $_REQUEST['bulk_action3'] ) && ! empty( $_REQUEST['bulk_action3'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['bulk_action3'] ) ) : '' ),
 				)
 			)
 		);
@@ -202,7 +202,7 @@ class Social_Post_Flow_Log {
 			 */
 			case 'delete':
 				// Get Post IDs.
-				if ( ! isset( $_REQUEST['ids'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+				if ( ! isset( $_REQUEST['ids'] ) ) {
 					social_post_flow()->get_class( 'notices' )->add_error_notice(
 						__( 'No logs were selected for deletion.', 'social-post-flow' )
 					);
@@ -210,14 +210,15 @@ class Social_Post_Flow_Log {
 				}
 
 				// Delete Logs by IDs.
-				$this->delete_by_ids( array_values( wp_unslash( $_REQUEST['ids'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+				$ids = array_unique( array_map( 'absint', $_REQUEST['ids'] ) );
+				$this->delete_by_ids( $ids );
 
 				// Add success notice.
 				social_post_flow()->get_class( 'notices' )->add_success_notice(
 					sprintf(
 						/* translators: Number of log entries deleted */
 						__( '%s Logs deleted.', 'social-post-flow' ),
-						count( $_REQUEST['ids'] ) // phpcs:ignore WordPress.Security.NonceVerification
+						count( $ids )
 					)
 				);
 				break;
@@ -341,6 +342,13 @@ class Social_Post_Flow_Log {
 		// Get log.
 		$log = $this->get( $post->ID );
 
+		// Define URLs.
+		$urls = array(
+			'refresh' => add_query_arg( array( 'social-post-flow-refresh-log' => 1 ), get_edit_post_link( $post->ID ) ),
+			'export'  => add_query_arg( array( 'social-post-flow-export-log' => wp_create_nonce( 'social-post-flow-export-log' ) ), get_edit_post_link( $post->ID ) ),
+			'clear'   => add_query_arg( array( 'social-post-flow-clear-log' => 1 ), get_edit_post_link( $post->ID ) ),
+		);
+
 		// Load View.
 		include_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/post-log.php';
 
@@ -353,13 +361,13 @@ class Social_Post_Flow_Log {
 	 */
 	public function export() {
 
-		// Check the user requested a log.
-		if ( ! isset( $_GET['social-post-flow-export-log'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+		// Bail if nonce is not valid.
+		if ( ! isset( $_REQUEST['social-post-flow-export-log'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['social-post-flow-export-log'] ) ), 'social-post-flow-export-log' ) ) {
 			return;
 		}
 
 		// Bail if no post specified.
-		if ( ! isset( $_GET['post'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+		if ( ! isset( $_GET['post'] ) ) {
 			return;
 		}
 
@@ -367,12 +375,12 @@ class Social_Post_Flow_Log {
 		if ( ! function_exists( 'current_user_can' ) ) {
 			return;
 		}
-		if ( ! current_user_can( 'edit_post', absint( $_GET['post'] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+		if ( ! current_user_can( 'edit_post', absint( $_GET['post'] ) ) ) {
 			return;
 		}
 
 		// Get log.
-		$log = $this->get( absint( $_GET['post'] ) ); // phpcs:ignore WordPress.Security.NonceVerification
+		$log = $this->get( absint( $_GET['post'] ) );
 
 		// Build JSON.
 		$json = wp_json_encode( $log );

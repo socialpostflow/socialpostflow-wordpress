@@ -35,7 +35,18 @@
 				?>
 				<div class="notice-inline notice-warning">
 					<p>
-						<?php echo $timezones_match->get_error_message(); // phpcs:ignore WordPress.Security.EscapeOutput ?>
+						<?php
+						echo wp_kses(
+							$timezones_match->get_error_message(),
+							array(
+								'a'  => array(
+									'href'   => array(),
+									'target' => array(),
+								),
+								'br' => array(),
+							)
+						);
+						?>
 					</p>
 				</div>
 				<?php

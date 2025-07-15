@@ -289,7 +289,7 @@ class Social_Post_Flow_Publish {
 
 		// Gutenberg requests are REST API requests, but include a _locale key.
 		// 'True' REST API requests do not include this key.
-		if ( ! array_key_exists( '_locale', $_REQUEST ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+		if ( ! filter_has_var( INPUT_POST, '_locale' ) && ! filter_has_var( INPUT_GET, '_locale' ) ) {
 			return false;
 		}
 
@@ -316,7 +316,7 @@ class Social_Post_Flow_Publish {
 
 		// Gutenberg requests are REST API requests, but include a _locale key.
 		// 'True' REST API requests do not include this key.
-		if ( array_key_exists( '_locale', $_REQUEST ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+		if ( filter_has_var( INPUT_POST, '_locale' ) || filter_has_var( INPUT_GET, '_locale' ) ) {
 			return false;
 		}
 

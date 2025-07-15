@@ -109,6 +109,7 @@
 <!-- /post_type -->
 
 <!-- Buttons -->
+<?php wp_nonce_field( 'social-post-flow-bulk-publish' ); ?>
 <input type="hidden" name="post_ids" value="<?php echo esc_attr( implode( ',', $post_ids ) ); ?>" />
 <input type="hidden" name="stage" value="2" />
 <input type="submit" name="submit" value="<?php echo esc_attr__( 'Publish to Social Post Flow Now', 'social-post-flow' ); ?>" class="button button-primary" />

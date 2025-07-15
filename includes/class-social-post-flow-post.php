@@ -55,11 +55,11 @@ class Social_Post_Flow_Post {
 			return;
 		}
 
-		// Check we have a Post ID.
-		if ( ! isset( $_GET['post'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+		// Get the post ID from the global post object.
+		if ( ! $post instanceof WP_Post ) {
 			return;
 		}
-		$post_id = absint( $_GET['post'] ); // phpcs:ignore WordPress.Security.NonceVerification
+		$post_id = $post->ID;
 
 		// Check if this Post has a success or error meta key set by this plugin.
 		$success = get_post_meta( $post_id, '_social_post_flow_success', true );

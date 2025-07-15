@@ -835,6 +835,20 @@ class Social_Post_Flow_Admin {
 
 		// Get some additional data, depending on which stage we're on.
 		switch ( $stage ) {
+			case 0:
+				// Define default values.
+				$params = array(
+					'start_date' => false,
+					'end_date'   => false,
+					'authors'    => false,
+					'meta'       => false,
+					's'          => false,
+					'taxonomies' => false,
+					'orderby'    => 'date',
+					'order'      => 'DESC',
+				);
+				break;
+
 			/**
 			 * Select Posts
 			 */
@@ -882,42 +896,54 @@ class Social_Post_Flow_Admin {
 				}
 
 				// Build Taxonomy Search Params.
-				$taxonomies = array();
+				$taxonomies_terms = array();
 
 				if ( isset( $_POST['social-post-flow']['taxonomies'] ) ) {
-					foreach ( wp_unslash( $_POST['social-post-flow']['taxonomies'] ) as $taxonomy => $terms ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+					$taxonomy_terms = array_map( 'sanitize_text_field', wp_unslash( $_POST['social-post-flow']['taxonomies'] ) );
+					foreach ( $taxonomy_terms as $taxonomy => $terms ) {
 						// Ignore if no Terms.
 						if ( empty( $terms ) ) {
 							continue;
 						}
 
-						$taxonomies[ $taxonomy ] = explode( ',', $terms );
+						$taxonomies_terms[ sanitize_text_field( wp_unslash( $taxonomy ) ) ] = explode( ',', $terms );
 					}
 				}
-				if ( ! empty( $taxonomies ) ) {
-					$params['taxonomies'] = $taxonomies;
+				if ( ! empty( $taxonomies_terms ) ) {
+					$params['taxonomies'] = $taxonomies_terms;
 				}
 
 				// Build Meta Search Params.
 				$meta = array();
 				if ( isset( $_POST['social-post-flow']['meta']['key'] ) ) {
-					foreach ( wp_unslash( $_POST['social-post-flow']['meta']['key'] ) as $index => $meta_key ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-						// Ignore if the key is blank.
-						if ( empty( wp_unslash( $_POST['social-post-flow']['meta']['key'][ $index ] ) ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+					$meta_keys = array_map( 'sanitize_text_field', wp_unslash( $_POST['social-post-flow']['meta']['key'] ) );
+					foreach ( $meta_keys as $index => $meta_key ) {
+						// Ignore if the key, value or comparison is missing.
+						if ( ! isset( $_POST['social-post-flow']['meta']['key'][ $index ] ) ) {
 							continue;
 						}
-						if ( empty( wp_unslash( $_POST['social-post-flow']['meta']['value'][ $index ] ) ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+						if ( ! isset( $_POST['social-post-flow']['meta']['value'][ $index ] ) ) {
 							continue;
 						}
-						if ( empty( wp_unslash( $_POST['social-post-flow']['meta']['compare'][ $index ] ) ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+						if ( ! isset( $_POST['social-post-flow']['meta']['compare'][ $index ] ) ) {
+							continue;
+						}
+
+						// Get values.
+						$meta_key     = sanitize_text_field( wp_unslash( $_POST['social-post-flow']['meta']['key'][ $index ] ) );
+						$meta_value   = sanitize_text_field( wp_unslash( $_POST['social-post-flow']['meta']['value'][ $index ] ) );
+						$meta_compare = sanitize_text_field( wp_unslash( $_POST['social-post-flow']['meta']['compare'][ $index ] ) );
+
+						// Ignore if the key, value or comparison is empty.
+						if ( empty( $meta_key ) || empty( $meta_value ) || empty( $meta_compare ) ) {
 							continue;
 						}
 
 						// Add meta condition.
 						$meta[] = array(
-							'key'     => sanitize_text_field( wp_unslash( $_POST['social-post-flow']['meta']['key'][ $index ] ) ),
-							'value'   => sanitize_text_field( wp_unslash( $_POST['social-post-flow']['meta']['value'][ $index ] ) ),
-							'compare' => sanitize_text_field( wp_unslash( $_POST['social-post-flow']['meta']['compare'][ $index ] ) ),
+							'key'     => $meta_key,
+							'value'   => $meta_value,
+							'compare' => $meta_compare,
 						);
 					}
 				}
@@ -991,7 +1017,7 @@ class Social_Post_Flow_Admin {
 
 				// If here, one or more Post(s) were selected.
 				// Get Posts and Post IDs.
-				$post_ids = wp_unslash( $_POST['social-post-flow']['posts'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+				$post_ids = array_unique( array_map( 'absint', $_POST['social-post-flow']['posts'] ) );
 
 				// Localize Bulk Publish script.
 				wp_localize_script(
@@ -1027,12 +1053,21 @@ class Social_Post_Flow_Admin {
 	 */
 	private function get_bulk_publish_stage() {
 
-		if ( isset( $_REQUEST['stage'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
-			return absint( $_REQUEST['stage'] ); // phpcs:ignore WordPress.Security.NonceVerification
+		// Bail if no nonce.
+		if ( ! array_key_exists( '_wpnonce', $_REQUEST ) ) {
+			return 0;
+		}
+
+		if ( ! wp_verify_nonce( sanitize_key( $_REQUEST['_wpnonce'] ), 'social-post-flow-bulk-publish' ) ) {
+			return 0;
+		}
+
+		if ( isset( $_REQUEST['stage'] ) ) {
+			return absint( $_REQUEST['stage'] );
 		}
 
 		// If Post IDs are specified in the URL request, we've been redirected from a WP_List_Table.
-		if ( isset( $_REQUEST['post_ids'] ) && ! empty( $_REQUEST['post_ids'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+		if ( isset( $_REQUEST['post_ids'] ) && ! empty( $_REQUEST['post_ids'] ) ) {
 			return 1;
 		}
 
@@ -1135,19 +1170,20 @@ class Social_Post_Flow_Admin {
 			case 'auth':
 				// oAuth settings are now handled by this class' oauth() function.
 				// Save other Settings.
+				$settings = map_deep( $_POST, 'sanitize_text_field' );
 
 				// General Settings.
-				social_post_flow()->get_class( 'settings' )->update_option( 'test_mode', ( isset( $_POST['test_mode'] ) ? 1 : 0 ) );
-				social_post_flow()->get_class( 'settings' )->update_option( 'cron', ( isset( $_POST['cron'] ) ? 1 : 0 ) );
-				social_post_flow()->get_class( 'settings' )->update_option( 'cron_delay', ( isset( $_POST['cron_delay'] ) ? absint( $_POST['cron_delay'] ) : 30 ) );
-				social_post_flow()->get_class( 'settings' )->update_option( 'override', ( isset( $_POST['override'] ) ? sanitize_text_field( wp_unslash( $_POST['override'] ) ) : 0 ) );
+				social_post_flow()->get_class( 'settings' )->update_option( 'test_mode', ( isset( $settings['test_mode'] ) ? 1 : 0 ) );
+				social_post_flow()->get_class( 'settings' )->update_option( 'cron', ( isset( $settings['cron'] ) ? 1 : 0 ) );
+				social_post_flow()->get_class( 'settings' )->update_option( 'cron_delay', ( isset( $settings['cron_delay'] ) ? absint( $settings['cron_delay'] ) : 30 ) );
+				social_post_flow()->get_class( 'settings' )->update_option( 'override', ( isset( $settings['override'] ) ? $settings['override'] : 0 ) );
 
 				// Image Settings.
-				social_post_flow()->get_class( 'settings' )->update_option( 'text_to_image', ( isset( $_POST['text_to_image'] ) ? wp_unslash( $_POST['text_to_image'] ) : array() ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+				social_post_flow()->get_class( 'settings' )->update_option( 'text_to_image', ( isset( $settings['text_to_image'] ) ? $settings['text_to_image'] : array() ) );
 
 				// Log Settings.
 				// Always force errors.
-				$log = isset( $_POST['log'] ) ? wp_unslash( $_POST['log'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+				$log = isset( $settings['log'] ) ? $settings['log'] : array();
 				if ( ! isset( $log['log_level'] ) ) {
 					$log['log_level'] = array(
 						'error',
@@ -1160,10 +1196,10 @@ class Social_Post_Flow_Admin {
 				social_post_flow()->get_class( 'settings' )->update_option( 'log', $log );
 
 				// Repost Settings.
-				social_post_flow()->get_class( 'settings' )->update_option( 'repost_disable_cron', ( isset( $_POST['repost_disable_cron'] ) ? 1 : 0 ) );
+				social_post_flow()->get_class( 'settings' )->update_option( 'repost_disable_cron', ( isset( $settings['repost_disable_cron'] ) ? 1 : 0 ) );
 				social_post_flow()->get_class( 'settings' )->update_option(
 					'repost_time',
-					( isset( $_POST['repost_time'] ) ? wp_unslash( $_POST['repost_time'] ) : array( // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+					( isset( $settings['repost_time'] ) ? $settings['repost_time'] : array(
 						'mon' => array( 0 ),
 						'tue' => array( 0 ),
 						'wed' => array( 0 ),
@@ -1173,16 +1209,16 @@ class Social_Post_Flow_Admin {
 						'sun' => array( 0 ),
 					) )
 				);
-				social_post_flow()->get_class( 'settings' )->update_option( 'repost', ( isset( $_POST['repost'] ) ? wp_unslash( $_POST['repost'] ) : '' ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+				social_post_flow()->get_class( 'settings' )->update_option( 'repost', ( isset( $settings['repost'] ) ? $settings['repost'] : '' ) );
 
 				// User Access.
-				social_post_flow()->get_class( 'settings' )->update_option( 'hide_meta_box_by_roles', ( isset( $_POST['hide_meta_box_by_roles'] ) ? wp_unslash( $_POST['hide_meta_box_by_roles'] ) : array() ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-				social_post_flow()->get_class( 'settings' )->update_option( 'restrict_post_types', ( isset( $_POST['restrict_post_types'] ) ? 1 : 0 ) );
-				social_post_flow()->get_class( 'settings' )->update_option( 'restrict_roles', ( isset( $_POST['restrict_roles'] ) ? 1 : 0 ) );
-				social_post_flow()->get_class( 'settings' )->update_option( 'roles', ( isset( $_POST['roles'] ) ? wp_unslash( $_POST['roles'] ) : array() ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+				social_post_flow()->get_class( 'settings' )->update_option( 'hide_meta_box_by_roles', ( isset( $settings['hide_meta_box_by_roles'] ) ? $settings['hide_meta_box_by_roles'] : array() ) );
+				social_post_flow()->get_class( 'settings' )->update_option( 'restrict_post_types', ( isset( $settings['restrict_post_types'] ) ? 1 : 0 ) );
+				social_post_flow()->get_class( 'settings' )->update_option( 'restrict_roles', ( isset( $settings['restrict_roles'] ) ? 1 : 0 ) );
+				social_post_flow()->get_class( 'settings' )->update_option( 'roles', ( isset( $settings['roles'] ) ? $settings['roles'] : array() ) );
 
 				// Custom Tags.
-				social_post_flow()->get_class( 'settings' )->update_option( 'custom_tags', ( isset( $_POST['custom_tags'] ) ? wp_unslash( $_POST['custom_tags'] ) : '' ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+				social_post_flow()->get_class( 'settings' )->update_option( 'custom_tags', ( isset( $settings['custom_tags'] ) ? $settings['custom_tags'] : '' ) );
 
 				// Reschedule CRON events.
 				social_post_flow()->get_class( 'cron' )->reschedule_log_cleanup_event();
@@ -1221,12 +1257,13 @@ class Social_Post_Flow_Admin {
 	 */
 	private function get_tab( $profiles = false ) {
 
-		$tab = ( isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : 'auth' ); // phpcs:ignore WordPress.Security.NonceVerification
-
-		// If we're on the Settings tab, return.
-		if ( $tab === 'auth' ) {
-			return $tab;
+		// If no tab, default to auth.
+		if ( ! filter_has_var( INPUT_GET, 'tab' ) ) {
+			return 'auth';
 		}
+
+		// Get current tab.
+		$tab = filter_input( INPUT_GET, 'tab', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 
 		// If Profiles are an error, show error.
 		if ( is_wp_error( $profiles ) ) {
@@ -1252,7 +1289,13 @@ class Social_Post_Flow_Admin {
 	 */
 	private function get_post_type_tab() {
 
-		return ( isset( $_GET['type'] ) ? sanitize_text_field( wp_unslash( $_GET['type'] ) ) : '' ); // phpcs:ignore WordPress.Security.NonceVerification
+		// If no type, default to empty string.
+		if ( ! filter_has_var( INPUT_GET, 'type' ) ) {
+			return '';
+		}
+
+		// Get current type.
+		return filter_input( INPUT_GET, 'type', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 
 	}
 
