@@ -1610,12 +1610,18 @@ class Social_Post_Flow_Publish {
 
 		// Build API compatible arguments.
 		$args = array(
-			'post_type'   => $status['post_type'],
-			'text'        => $this->parse_text( $post, $status['text'] ),
-			'profile_ids' => array( $profile_id ),
+			'post_type'     => $status['post_type'],
+			'text'          => $this->parse_text( $post, $status['text'] ),
+			'first_comment' => $this->parse_text( $post, $status['first_comment'] ),
+			'profile_ids'   => array( $profile_id ),
 		);
 
-		// URL / Image.
+		// Remove first comment for Mastodon and Instagram Story posts.
+		if ( $service === 'mastodon' || $status['post_type'] === 'story' ) {
+			unset( $args['first_comment'] );
+		}
+
+		// URL and Image.
 		switch ( $status['post_type'] ) {
 			/**
 			 * Text

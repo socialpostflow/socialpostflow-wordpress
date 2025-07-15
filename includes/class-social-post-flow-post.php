@@ -39,6 +39,8 @@ class Social_Post_Flow_Post {
 	 */
 	public function admin_notices() {
 
+		global $post;
+
 		// Check we can get the current screen the user is viewing.
 		$screen = get_current_screen();
 		if ( ! $screen || ! isset( $screen->base ) || ! isset( $screen->parent_base ) ) {

@@ -55,6 +55,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
 		</div>
 
+		<!-- First Comment -->
+		<div class="wpzinc-option status">
+			<div class="full">
+				<h3><?php esc_html_e( 'First Comment', 'social-post-flow' ); ?></h3>
+				<p class="description">
+					<?php esc_html_e( 'Optional: Define the first comment to include below the status.', 'social-post-flow' ); ?>
+				</p>
+
+				<?php
+				// Tags.
+				$textarea = 'textarea.first_comment';
+				require 'settings-post-action-status-tags.php';
+				?>
+				<textarea name="social-post-flow_first_comment" rows="3" class="widefat wpzinc-autosize-js first_comment"></textarea>
+			</div>
+		</div>
+
 		<!-- Schedule -->
 		<div class="wpzinc-option">
 			<div class="full">
