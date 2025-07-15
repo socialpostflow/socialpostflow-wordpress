@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<form action="admin.php?page=social-post-flow-log" method="post" id="posts-filter">
 		<?php
 		// Output Search Box.
-		$table->search_box( __( 'Search', 'social-post-flow' ), 'wp-to-social-log' );
+		$table->search_box( __( 'Search', 'social-post-flow' ), 'social-post-flow-log' );
 
 		// Output Table.
 		$table->display();

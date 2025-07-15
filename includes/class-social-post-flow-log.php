@@ -63,27 +63,31 @@ class Social_Post_Flow_Log {
 		// Enable error output if WP_DEBUG is enabled.
 		$wpdb->show_errors = true;
 
-		// Create database tables.
-		$query = 'CREATE TABLE IF NOT EXISTS ' . $wpdb->prefix . $this->table . " (
-            `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-            `post_id` int(11) NOT NULL,
-            `action` enum('publish','update','repost','bulk_publish') DEFAULT NULL,
-            `request_sent` datetime NOT NULL,
-            `profile_id` varchar(191) NOT NULL,
-            `profile_name` varchar(191) NOT NULL DEFAULT '',
-            `result` enum('success','test','pending','warning','error') NOT NULL DEFAULT 'success',
-            `result_message` text,
-            `status_text` text,
-            `status_created_at` datetime DEFAULT NULL,
-            `status_scheduled_at` datetime DEFAULT NULL,
-            PRIMARY KEY (`id`),
-            KEY `post_id` (`post_id`),
-            KEY `action` (`action`),
-            KEY `result` (`result`),
-            KEY `profile_id` (`profile_id`)
-        ) " . $wpdb->get_charset_collate() . ' AUTO_INCREMENT=1';
+		// Create database table.
+		$query  = $wpdb->prepare(
+			"CREATE TABLE IF NOT EXISTS %i (
+				`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+				`post_id` int(11) NOT NULL,
+				`action` enum('publish','update','repost','bulk_publish') DEFAULT NULL,
+				`request_sent` datetime NOT NULL,
+				`profile_id` varchar(191) NOT NULL,
+				`profile_name` varchar(191) NOT NULL DEFAULT '',
+				`result` enum('success','test','pending','warning','error') NOT NULL DEFAULT 'success',
+				`result_message` text,
+				`status_text` text,
+				`status_created_at` datetime DEFAULT NULL,
+				`status_due_at` datetime DEFAULT NULL,
+				PRIMARY KEY (`id`),
+				KEY `post_id` (`post_id`),
+				KEY `action` (`action`),
+				KEY `result` (`result`),
+				KEY `profile_id` (`profile_id`)
+			)",
+			$wpdb->prefix . $this->table
+		);
+		$query .= ' ' . $wpdb->get_charset_collate() . ' AUTO_INCREMENT=1';
+		$wpdb->query( $query ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 
-		$wpdb->query( $query ); // phpcs:ignore WordPress.DB.PreparedSQL
 	}
 
 	/**
@@ -260,7 +264,7 @@ class Social_Post_Flow_Log {
 		}
 
 		// Bail if nonce is not valid.
-		if ( ! isset( $_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'bulk-wp-to-social-log' ) ) {
+		if ( ! isset( $_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'bulk-social-post-flow-log' ) ) {
 			return;
 		}
 
@@ -274,6 +278,11 @@ class Social_Post_Flow_Log {
 			}
 
 			$params[ $filter ] = sanitize_text_field( wp_unslash( $_POST[ $filter ] ) );
+		}
+
+		// Include search parameter.
+		if ( array_key_exists( 's', $_POST ) ) {
+			$params['s'] = sanitize_text_field( wp_unslash( $_POST['s'] ) );
 		}
 
 		// If params don't exist, exit.
@@ -453,7 +462,8 @@ class Social_Post_Flow_Log {
 		// Get log.
 		$log = $wpdb->get_results(
 			$wpdb->prepare(
-				"SELECT * FROM {$wpdb->prefix}{$this->table} WHERE post_id = %d ORDER BY id DESC", // phpcs:ignore WordPress.DB.PreparedSQL
+				'SELECT * FROM %i WHERE post_id = %d ORDER BY id DESC',
+				$wpdb->prefix . $this->table,
 				absint( $post_id )
 			),
 			ARRAY_A
@@ -487,7 +497,10 @@ class Social_Post_Flow_Log {
 		global $wpdb;
 
 		$results = $wpdb->get_results(
-			"SELECT profile_id, profile_name FROM {$wpdb->prefix}{$this->table} GROUP BY profile_id ORDER BY profile_name DESC", // phpcs:ignore WordPress.DB.PreparedSQL
+			$wpdb->prepare(
+				'SELECT profile_id, profile_name FROM %i GROUP BY profile_id ORDER BY profile_name DESC',
+				$wpdb->prefix . $this->table
+			),
 			ARRAY_A
 		);
 
@@ -590,9 +603,15 @@ class Social_Post_Flow_Log {
 		$where = $this->build_where_clause( $params );
 
 		// Prepare query.
-		$query = '  SELECT * FROM ' . $wpdb->prefix . $this->table . '
-                    LEFT JOIN ' . $wpdb->posts . '
-                    ON ' . $wpdb->prefix . $this->table . '.post_id = ' . $wpdb->posts . '.ID';
+		$query = $wpdb->prepare(
+			'SELECT * FROM %i
+            LEFT JOIN %i
+            ON %i.post_id = %i.ID',
+			$wpdb->prefix . $this->table,
+			$wpdb->posts,
+			$wpdb->prefix . $this->table,
+			$wpdb->posts
+		);
 
 		// Add where clauses.
 		if ( $where !== false ) {
@@ -600,7 +619,12 @@ class Social_Post_Flow_Log {
 		}
 
 		// Order.
-		$query .= ' ORDER BY ' . $wpdb->prefix . $this->table . '.' . $order_by . ' ' . $order;
+		$query .= $wpdb->prepare(
+			' ORDER BY %i.%i',
+			$wpdb->prefix . $this->table,
+			$order_by
+		);
+		$query .= ' ' . $order;
 
 		// Limit.
 		if ( $page > 0 && $per_page > 0 ) {
@@ -608,7 +632,7 @@ class Social_Post_Flow_Log {
 		}
 
 		// Run and return query results.
-		return $wpdb->get_results( $query, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL
+		return $wpdb->get_results( $query, ARRAY_A ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 
 	}
 
@@ -628,9 +652,16 @@ class Social_Post_Flow_Log {
 		$where = $this->build_where_clause( $params );
 
 		// Prepare query.
-		$query = '  SELECT COUNT(' . $wpdb->prefix . $this->table . '.id) FROM ' . $wpdb->prefix . $this->table . '
-                    LEFT JOIN ' . $wpdb->posts . '
-                    ON ' . $wpdb->prefix . $this->table . '.post_id = ' . $wpdb->posts . '.ID';
+		$query = $wpdb->prepare(
+			'SELECT COUNT(%i.id) FROM %i
+            LEFT JOIN %i
+            ON %i.post_id = %i.ID',
+			$wpdb->prefix . $this->table,
+			$wpdb->prefix . $this->table,
+			$wpdb->posts,
+			$wpdb->prefix . $this->table,
+			$wpdb->posts
+		);
 
 		// Add where clauses.
 		if ( $where !== false ) {
@@ -638,7 +669,7 @@ class Social_Post_Flow_Log {
 		}
 
 		// Run and return total records found.
-		return $wpdb->get_var( $query ); // phpcs:ignore WordPress.DB.PreparedSQL
+		return $wpdb->get_var( $query ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 
 	}
 
@@ -669,7 +700,7 @@ class Social_Post_Flow_Log {
 				// Build condition based on the key.
 				switch ( $key ) {
 					case 'post_title':
-						$where[] = $key . " LIKE '%" . $value . "%'";
+						$where[] = '(' . $key . " LIKE '%" . $value . "%' OR status_text LIKE '%" . $value . "%')";
 						break;
 
 					case 'request_sent_start_date':
@@ -743,7 +774,16 @@ class Social_Post_Flow_Log {
 
 		global $wpdb;
 
-		return $wpdb->query( "DELETE FROM {$wpdb->prefix}{$this->table} WHERE id IN (" . implode( ',', array_map( 'absint', $ids ) ) . ')' ); // phpcs:ignore WordPress.DB.PreparedSQL
+		return $wpdb->query(
+			$wpdb->prepare(
+				sprintf(
+					'DELETE FROM %s WHERE id IN (%s)',
+					$wpdb->prefix . $this->table, // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+					implode( ',', array_fill( 0, count( $ids ), '%d' ) )
+				),
+				$ids
+			)
+		);
 
 	}
 
@@ -828,7 +868,8 @@ class Social_Post_Flow_Log {
 		// Run query.
 		return $wpdb->query(
 			$wpdb->prepare(
-				"DELETE FROM {$wpdb->prefix}{$this->table} WHERE request_sent < %s", // phpcs:ignore WordPress.DB.PreparedSQL
+				'DELETE FROM %i WHERE request_sent < %s',
+				$wpdb->prefix . $this->table,
 				$date_time
 			)
 		);
@@ -846,7 +887,12 @@ class Social_Post_Flow_Log {
 
 		global $wpdb;
 
-		return $wpdb->query( "TRUNCATE TABLE {$wpdb->prefix}{$this->table}" ); // phpcs:ignore WordPress.DB.PreparedSQL
+		return $wpdb->query(
+			$wpdb->prepare(
+				'TRUNCATE TABLE %i',
+				$wpdb->prefix . $this->table
+			)
+		);
 
 	}
 

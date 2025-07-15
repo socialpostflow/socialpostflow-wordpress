@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="inside">
 			<div class="wpzinc-option">
 				<div class="full">
-					<table id="log" class="widefat wp-to-social-log">
+					<table id="log" class="widefat social-post-flow-log">
 						<thead>
 							<tr>
 								<th><?php esc_html_e( 'Request Sent', 'social-post-flow' ); ?></th>

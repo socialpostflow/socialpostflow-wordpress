@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <div class="wpzinc-option">
 	<div class="full">
-		<table class="widefat wp-to-social-log">
+		<table class="widefat social-post-flow-log">
 			<thead>
 				<tr>
 					<th><?php esc_html_e( 'Request Sent', 'social-post-flow' ); ?></th>

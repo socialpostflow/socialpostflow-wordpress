@@ -2,7 +2,7 @@
 Contributors: socialpostflow
 Donate link: https://www.socialpostflow.com/integrations/wordpress
 Tags: auto post, auto publish, social media scheduling, social media automation
-Requires at least: 5.0
+Requires at least: 6.2
 Tested up to: 6.8
 Requires PHP: 7.4
 Stable tag: 1.0.0
@@ -21,7 +21,7 @@ Don't have a Social Post Flow account? [Sign up for free 7 day trial](https://ap
 
 == External Services ==
 
-This plugin connects to the [Social Post Flow API](https://www.socialpostflow.com/documentation/integrations/wordpress/data/) using OAuth 2.0 PKCE, to:
+This plugin connects to the Social Post Flow API using OAuth 2.0 PKCE, to:
 - Fetch your connected social media profile names and IDs, 
 - Send your WordPress Posts to one or more of your social media profiles.
 
