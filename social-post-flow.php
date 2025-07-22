@@ -17,6 +17,10 @@
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 // Bail if Plugin is alread loaded.
 if ( class_exists( 'Social_Post_Flow' ) ) {
 	return;
