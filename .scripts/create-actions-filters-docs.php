@@ -4,7 +4,7 @@
  * action and filter hooks parsed from the Plugin code.
  *
  * @package Page_Generator_Pro
- * @author WP Zinc
+ * @author Social Post Flow
  */
 
 // Setup Read Actions and Filters class.

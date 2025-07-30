@@ -3,14 +3,14 @@
  * Log Table class.
  *
  * @package Social_Post_Flow
- * @author WP Zinc
+ * @author Social Post Flow
  */
 
 /**
  * Controls the Log WP_List_Table.
  *
  * @package Social_Post_Flow
- * @author  WP Zinc
+ * @author  Social Post Flow
  * @version 1.0.0
  */
 class Social_Post_Flow_Log_Table extends WP_List_Table {

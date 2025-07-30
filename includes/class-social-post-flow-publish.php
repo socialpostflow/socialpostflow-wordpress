@@ -3,7 +3,7 @@
  * Publish class
  *
  * @package Social_Post_Flow
- * @author WP Zinc
+ * @author Social Post Flow
  */
 
 /**
@@ -12,7 +12,7 @@
  * status is transitioned.
  *
  * @package Social_Post_Flow
- * @author  WP Zinc
+ * @author  Social Post Flow
  * @version 1.0.0
  */
 class Social_Post_Flow_Publish {

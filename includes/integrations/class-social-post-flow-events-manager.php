@@ -3,14 +3,14 @@
  * Events Manager Plugin Class.
  *
  * @package Social_Post_Flow
- * @author  WP Zinc
+ * @author  Social Post Flow
  */
 
 /**
  * Provides compatibility with Events Manager
  *
  * @package Social_Post_Flow
- * @author  WP Zinc
+ * @author  Social Post Flow
  */
 class Social_Post_Flow_Events_Manager {
 

@@ -3,7 +3,7 @@
  * WPML Plugin Class.
  *
  * @package Social_Post_Flow
- * @author  WP Zinc
+ * @author  Social Post Flow
  */
 
 /**
@@ -11,7 +11,7 @@
  * to post / not post based on the Post's language.
  *
  * @package Social_Post_Flow
- * @author  WP Zinc
+ * @author  Social Post Flow
  */
 class Social_Post_Flow_WPML {
 

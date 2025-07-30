@@ -3,7 +3,7 @@
  * Modal window view.
  *
  * @package WPZincDashboardWidget
- * @author WP Zinc
+ * @author Social Post Flow
  */
 
 // Exit if accessed directly.

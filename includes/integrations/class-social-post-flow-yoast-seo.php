@@ -3,14 +3,14 @@
  * Yoast SEO Plugin Class.
  *
  * @package Social_Post_Flow
- * @author  WP Zinc
+ * @author  Social Post Flow
  */
 
 /**
  * Provides compatibility with Yoast SEO
  *
  * @package Social_Post_Flow
- * @author  WP Zinc
+ * @author  Social Post Flow
  * @version 1.0.0
  */
 class Social_Post_Flow_Yoast_SEO {

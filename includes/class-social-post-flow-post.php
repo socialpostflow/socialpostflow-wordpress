@@ -3,14 +3,14 @@
  * Post class
  *
  * @package Social_Post_Flow
- * @author WP Zinc
+ * @author Social Post Flow
  */
 
 /**
  * Registers status settings on Posts as a metabox.
  *
  * @package Social_Post_Flow
- * @author  WP Zinc
+ * @author  Social Post Flow
  * @version 1.0.0
  */
 class Social_Post_Flow_Post {

@@ -6,7 +6,7 @@
  * on the WordPress Admin Dashboard.
  *
  * @package Social_Post_Flow
- * @author WP Zinc
+ * @author Social Post Flow
  */
 
 // Exit if accessed directly.
@@ -136,7 +136,7 @@ class Social_Post_Flow_Dashboard {
 	}
 
 	/**
-	 * Adds the WP Zinc CSS class to the <body> tag when we're in the WordPress Admin interface
+	 * Adds the Social Post Flow CSS class to the <body> tag when we're in the WordPress Admin interface
 	 * and viewing a Plugin Screen
 	 *
 	 * This allows us to then override some WordPress layout styling on e.g. #wpcontent, without

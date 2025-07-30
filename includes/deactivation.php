@@ -3,7 +3,7 @@
  * Defines the deactivation function, which is run when the Plugin is deactivated.
  *
  * @package Social_Post_Flow
- * @author WP Zinc
+ * @author Social Post Flow
  */
 
 /**

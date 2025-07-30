@@ -3,7 +3,7 @@
  * Social Post Flow WordPress Plugin.
  *
  * @package Social_Post_Flow
- * @author WP Zinc
+ * @author Social Post Flow
  *
  * @wordpress-plugin
  * Plugin Name: Social Post Flow

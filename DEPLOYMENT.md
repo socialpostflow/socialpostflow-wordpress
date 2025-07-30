@@ -1,6 +1,6 @@
 # Deployment Guide
 
-This document describes the workflow for deploying a Plugin update from GitHub to WP Zinc.
+This document describes the workflow for deploying a Plugin update from GitHub to wordpress.org.
 
 ## Merge Pull Requests
 
@@ -60,6 +60,7 @@ Commit the updated files, which should comprise of:
 
 When you're happy with the above, click `Publish Release`.
 
-This will then send a webhook to the WP Zinc site, which will fetch this new version and make it available to license holders.
+This will then trigger the [deploy.yml](.github/workflows/deploy.yml) workflow, which will upload this new version to the wordpress.org
+repository, making it available to download / update for WordPress users.
 
 The release will also be available to view on the [Releases](https://github.com/n7studios/wp-social-post-flow/releases) section of this GitHub repository.

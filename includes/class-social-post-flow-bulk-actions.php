@@ -3,7 +3,7 @@
  * Bulk Actions class.
  *
  * @package Social_Post_Flow
- * @author WP Zinc
+ * @author Social Post Flow
  */
 
 /**
@@ -11,7 +11,7 @@
  * primarily for Bulk Publishing selected Post(s).
  *
  * @package Social_Post_Flow
- * @author  WP Zinc
+ * @author  Social Post Flow
  * @version 1.0.0
  */
 class Social_Post_Flow_Bulk_Actions {

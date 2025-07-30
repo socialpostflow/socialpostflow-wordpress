@@ -6,7 +6,7 @@
  * @since   1.0.0
  *
  * @package Social_Post_Flow
- * @author  WP Zinc
+ * @author  Social Post Flow
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

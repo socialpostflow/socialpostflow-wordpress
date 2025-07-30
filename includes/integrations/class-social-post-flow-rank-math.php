@@ -3,14 +3,14 @@
  * Rank Math Plugin Class.
  *
  * @package Social_Post_Flow
- * @author  WP Zinc
+ * @author  Social Post Flow
  */
 
 /**
  * Provides compatibility with Rank Math
  *
  * @package Social_Post_Flow
- * @author  WP Zinc
+ * @author  Social Post Flow
  */
 class Social_Post_Flow_Rank_Math {
 

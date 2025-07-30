@@ -2,7 +2,7 @@
  * Modal window functionality.
  *
  * @package WPZincDashboardWidget
- * @author WP Zinc
+ * @author Social Post Flow
  */
 
 /**

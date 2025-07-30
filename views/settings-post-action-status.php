@@ -4,7 +4,7 @@
  * on the status that has been selected for editing.
  *
  * @package Social_Post_Flow
- * @author  WP Zinc
+ * @author  Social Post Flow
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

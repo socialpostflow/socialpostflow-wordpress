@@ -3,14 +3,14 @@
  * Text to Image class using ImageMagick
  *
  * @package Social_Post_Flow
- * @author WP Zinc
+ * @author Social Post Flow
  */
 
 /**
  * Creates images from text and an optional background image or color using ImageMagick.
  *
  * @package Social_Post_Flow
- * @author  WP Zinc
+ * @author  Social Post Flow
  * @version 1.0.0
  */
 class Social_Post_Flow_Text_To_Image_Imagick {

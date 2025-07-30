@@ -3,7 +3,7 @@
  * Defines functions that are called by WordPress' Cron.
  *
  * @package Social_Post_Flow
- * @author WP Zinc
+ * @author Social Post Flow
  */
 
 /**

@@ -3,14 +3,14 @@
  * Bulk Publish CLI class.
  *
  * @package Social_Post_Flow
- * @author WP Zinc
+ * @author Social Post Flow
  */
 
 /**
  * Defines the Bulk Publish WP-CLI Command
  *
  * @package Social_Post_Flow
- * @author  WP Zinc
+ * @author  Social Post Flow
  * @version 1.0.0
  */
 class Social_Post_Flow_CLI_Bulk_Publish {

@@ -3,7 +3,7 @@
  * Imagick Image class.
  *
  * @package Social_Post_Flow
- * @author WP Zinc
+ * @author Social Post Flow
  */
 
 /**
@@ -16,7 +16,7 @@
  * publication to social media.
  *
  * @package Social_Post_Flow
- * @author  WP Zinc
+ * @author  Social Post Flow
  * @version 1.0.0
  */
 class Social_Post_Flow_Image_Imagick extends WP_Image_Editor_Imagick {

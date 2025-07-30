@@ -19,5 +19,5 @@ For Developers, there are guides covering:
 - [Testing](TESTING.md) - how to write and run tests
 - [Actions and Filters](ACTIONS-FILTERS.md) - Actions and Filters available to WordPress Developers looking to extend WordPress to Buffer Pro's functionality
 
-For WP Zinc, there is a separate guide to deploying new versions to wordpress.org:
+For Social Post Flow, there is a separate guide to deploying new versions to wordpress.org:
 - [Deployment](DEPLOYMENT.md) - how to deploy a new Plugin version to [wordpress.org](https://wordpress.org/plugins/social-post-flow)

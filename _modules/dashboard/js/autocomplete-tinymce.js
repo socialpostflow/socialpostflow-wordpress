@@ -2,7 +2,7 @@
  * Initialises Keyword Autocomplete for TinyMCE instances.
  *
  * @package WPZincDashboardWidget
- * @author WP Zinc
+ * @author Social Post Flow
  */
 
 ( function () {
@@ -498,7 +498,7 @@
 								getInfo: function () {
 									return {
 										longname: 	'Autocomplete',
-										author: 	'WP Zinc',
+										author: 	'Social Post Flow',
 										version: 	tinymce.majorVersion + '.' + tinymce.minorVersion
 									};
 								}

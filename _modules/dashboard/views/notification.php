@@ -3,7 +3,7 @@
  * Outputs a fixed overlay toast-style notification.
  *
  * @package WPZincDashboardWidget
- * @author WP Zinc
+ * @author Social Post Flow
  */
 
 // Exit if accessed directly.

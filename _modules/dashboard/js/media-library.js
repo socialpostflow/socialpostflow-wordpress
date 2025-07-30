@@ -3,7 +3,7 @@
  * hidden field and output preview.
  *
  * @package WPZincDashboardWidget
- * @author WP Zinc
+ * @author Social Post Flow
  */
 
 ( function ( $ ) {

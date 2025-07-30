@@ -2,7 +2,7 @@
  * Provides functionality for toggling checkboxes.
  *
  * @package WPZincDashboardWidget
- * @author WP Zinc
+ * @author Social Post Flow
  */
 
 /**

@@ -3,14 +3,14 @@
  * Modern Events Calendar Plugin Class.
  *
  * @package Social_Post_Flow
- * @author  WP Zinc
+ * @author  Social Post Flow
  */
 
 /**
  * Provides compatibility with Modern Events Calendar
  *
  * @package Social_Post_Flow
- * @author  WP Zinc
+ * @author  Social Post Flow
  */
 class Social_Post_Flow_Modern_Events_Calendar {
 

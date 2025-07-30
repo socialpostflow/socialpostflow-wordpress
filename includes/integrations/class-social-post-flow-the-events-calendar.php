@@ -3,14 +3,14 @@
  * The Events Calendar Plugin Class.
  *
  * @package Social_Post_Flow
- * @author  WP Zinc
+ * @author  Social Post Flow
  */
 
 /**
  * Provides compatibility with The Events Calendar
  *
  * @package Social_Post_Flow
- * @author  WP Zinc
+ * @author  Social Post Flow
  */
 class Social_Post_Flow_The_Events_Calendar {
 

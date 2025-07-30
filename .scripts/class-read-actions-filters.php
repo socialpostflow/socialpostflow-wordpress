@@ -3,7 +3,7 @@
  * Reads all Actions and Filters from the Plugin.
  *
  * @package Page_Generator_Pro
- * @author WP Zinc
+ * @author Social Post Flow
  */
 
 /**

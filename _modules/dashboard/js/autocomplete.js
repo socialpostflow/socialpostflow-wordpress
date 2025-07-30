@@ -2,7 +2,7 @@
  * Creates tribute.js autocompleters.
  *
  * @package WPZincDashboardWidget
- * @author WP Zinc
+ * @author Social Post Flow
  */
 
 var wpzinc_autocompleters = [];

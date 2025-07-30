@@ -3,7 +3,7 @@
  * Outputs a status setting within a table of statuses for an action (publish,update,repost,bulk publish).
  *
  * @package Social_Post_Flow
- * @author  WP Zinc
+ * @author  Social Post Flow
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

@@ -3,7 +3,7 @@
  * Outputs the Logs table when viewing/editing an individual Post.
  *
  * @package Social_Post_Flow
- * @author  WP Zinc
+ * @author  Social Post Flow
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

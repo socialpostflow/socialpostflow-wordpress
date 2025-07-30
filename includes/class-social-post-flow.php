@@ -3,14 +3,14 @@
  * Social Post Flow class.
  *
  * @package Social_Post_Flow
- * @author WP Zinc
+ * @author Social Post Flow
  */
 
 /**
  * Main Social Post Flow class, used to load the Plugin.
  *
  * @package   Social_Post_Flow
- * @author    WP Zinc
+ * @author    Social Post Flow
  * @version   1.0.0
  */
 class Social_Post_Flow {
@@ -64,7 +64,7 @@ class Social_Post_Flow {
 		$this->plugin->filter_name       = 'social_post_flow';
 		$this->plugin->displayName       = 'Social Post Flow';
 		$this->plugin->description       = 'Send WordPress Pages, Posts or Custom Post Types to your Social Post Flow account for scheduled publishing to social networks.';
-		$this->plugin->author_name       = 'WP Zinc';
+		$this->plugin->author_name       = 'Social Post Flow';
 		$this->plugin->account           = 'Social Post Flow';
 		$this->plugin->version           = SOCIAL_POST_FLOW_PLUGIN_VERSION;
 		$this->plugin->buildDate         = SOCIAL_POST_FLOW_PLUGIN_BUILD_DATE;

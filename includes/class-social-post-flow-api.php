@@ -3,14 +3,14 @@
  * Social Post Flow API class
  *
  * @package Social_Post_Flow
- * @author  WP Zinc
+ * @author  Social Post Flow
  */
 
 /**
  * Provides functions for sending statuses and querying Social Post Flow's API.
  *
  * @package Social_Post_Flow
- * @author  WP Zinc
+ * @author  Social Post Flow
  * @version 3.0.0
  */
 class Social_Post_Flow_API {

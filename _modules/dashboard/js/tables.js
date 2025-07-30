@@ -3,7 +3,7 @@
  * in tables.
  *
  * @package WPZincDashboardWidget
- * @author WP Zinc
+ * @author Social Post Flow
  */
 
 /**

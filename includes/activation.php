@@ -3,7 +3,7 @@
  * Defines activation functions, which are run when the Plugin is activated.
  *
  * @package Social_Post_Flow
- * @author WP Zinc
+ * @author Social Post Flow
  */
 
 /**
