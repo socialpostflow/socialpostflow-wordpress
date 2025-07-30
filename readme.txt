@@ -1,4 +1,4 @@
-=== Social Post Flow ===
+=== Auto Post, Auto Publish and Schedule to Social Media - Social Post Flow ===
 Contributors: socialpostflow
 Donate link: https://www.socialpostflow.com/integrations/wordpress
 Tags: auto post, auto publish, social media scheduling, social media automation
@@ -13,13 +13,86 @@ Auto post Pages, Posts or Custom Post Types to Social Media using your Social Po
 
 == Description ==
 
-Whenever you publish or update a Post, Page or Custom Post Type, Social Post Flow will auto post your content to your Social Post Flow account (socialpostflow.com), scheduling publication to social media profiles including Facebook, X / Twitter, Threads, Instagram and Mastodon.
+Automatically publish your Posts, Pages, Events, Products and more to Facebook, X / Twitter, Threads, Instagram, Mastodon and more with Social Post Flow.
 
-Don't have a Social Post Flow account? [Sign up for free 7 day trial](https://app.socialpostflow.com/register)
+Don't have a Social Post Flow account? Pricing starts at $99/year for 10 social accounts, and you can [sign up for a free 7 day trial](https://app.socialpostflow.com/register)
 
-[youtube https://www.youtube.com/watch?v=GESEMwKSSQg]
+[youtube https://www.youtube.com/watch?v=IFjYKMjnRB4]
 
-== External Services ==
+=== Smart Social Media Automation ===
+
+Social Post Flow isn't another WP to Facebook, WP to Twitter / X or yet another auto posting plugin.
+
+Each Post Type and social media profile may be configured to publish multiple, unique status messages, each with their own settings.
+
+There's also the option to define status settings on a per-Post basis.
+
+Conditionally publish Posts, Pages and Custom Post Types to social media based on the Post Author(s), Taxonomy Term(s) and/or Custom Field Values
+
+Choose to schedule publication to social media at a specific date and time, or add to your existing Social Post Flow queue
+
+With Dynamic Tags, you can build truly unique status updates, pulling in your WordPress Post's Title, Content, Excerpt, Custom Fields and more.
+
+Our technology ensures you don't accidentally send the same status twice, and with built in protection to prevent your social media profiles being suspended, you'll safely grow, sustain and engage web site traffic and social media following.
+
+=== Repost and Bulk Post Old Content ==
+
+Automatically Revive Old Posts that haven't been updated in a while, choosing the number of days, weeks or years to re-share content on social media.
+
+Manually re-share evergreen WordPress content and revive old posts with the Bulk Publish option
+
+=== Full Image Control ===
+
+Choose to leverage your SEO Plugin's OpenGraph data to present beautiful sharing cards when publishing your WordPress Posts to social media.
+
+Alternatively, include one or more images in your status updates, from a variety of sources including:
+
+- the Post's featured image,
+- the Plugin's additional images option, available on every Post,
+- an ACF image or gallery field,
+- your Post's inline images
+
+=== Integrations ===
+
+Social Post Flow supports many third party WordPress Plugins across event management, galleries, autoblogging, WooCommerce and SEO:
+
+- The Events Calendar
+- Event Manager
+- Modern Events Calendar
+- User Submitted Posts
+- WP Property Feed
+- WPeMatico
+- WP Job Manager
+- All-In-One SEO Pack
+- Rank Math
+- SEOPress
+- Yoast SEO
+
+=== Developers ===
+
+Optionally enable WP-Cron to send status updates via Cron, speeding up UI performance and/or choose to use WP-CLI for reposting old posts.
+
+Leverage our actions and filters to integrate your own Plugins and content.
+
+=== Simple Social Media Scheduling ===
+
+There's no need to mess around with App IDs, authorization tokens or complicated technical steps.
+
+Connecting your social media profiles is done in a few clicks through Buffer, taking minutes.
+
+Then just choose which of those profiles to use in the plugin, set your status message and your social media scheduling is set.
+
+=== What can I do with Social Post Flow? ===
+
+- Automatically share Posts, Pages and Custom Post Types to social media when scheduling, publishing or updating your WordPress content
+- Define the status text dynamically, pulling in your WordPress Post's Title, Content, Excerpt and more
+- WordPress to Facebook Page Auto Post
+- WordPress to Threads Auto Post
+- WordPress to Twitter / X Auto Post
+- WordPress to Instagram Auto Post
+- WordPress to Mastodon Auto Post
+
+=== External Services ===
 
 This plugin connects to the Social Post Flow API using OAuth 2.0 PKCE, to:
 - Fetch your connected social media profile names and IDs, 
@@ -33,19 +106,21 @@ Refer to Social Post Flow's [Terms and Conditions](https://www.socialpostflow.co
 
 == Support ==
 
-Support for this WordPress Plugin can be requested on the <a href="https://wordpress.org/support/plugin/social-post-flow/">WordPress forums</a>.
+Support for this WordPress Plugin can be requested on the <a href="https://wordpress.org/support/plugin/social-post-flow/">WordPress forums</a>, or via your Social Post Flow account.
 
 == Installation ==
 
-1. Upload the `social-post-flow` folder to the `/wp-content/plugins/` directory
-2. Active the Social Post Flow plugin through the 'Plugins' menu in WordPress
-3. Configure the plugin by going to the `Social Post Flow` menu that appears in your admin menu
+1. Install and Activate the Social Post Flow Plugin
+2. Navigate to the Social Post Flow menu entry in WordPress, and click Authorize to connect your Social Post Flow account
+3. Once connected, configure the Plugin's statuses to send to social media
 
 == Frequently Asked Questions ==
 
 = Do I need a paid Social Post Flow account? =
 
-Yes - pricing starts from $99/year to post to up to 10 connected social profiles.  We offer a 7 day free trial. Register at https://app.socialpostflow.com
+Yes - pricing starts from $99/year to post to up to 10 connected social profiles.  We offer a 7 day free trial. Register at https://app.socialpostflow.com.
+
+Our aim is to provide a competitively priced, well featured Plugin and service without breaking the bank. 
 
 = Which Social Media Profiles can I auto post / auto publish to with Social Post Flow? =
 
@@ -56,6 +131,8 @@ You can post to:
 - Threads
 - Instagram
 - Mastodon
+
+LinkedIn, Pinterest and TikTok are coming soon.
 
 == Screenshots ==
 

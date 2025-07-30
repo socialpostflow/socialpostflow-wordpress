@@ -11,7 +11,7 @@
  * Version: 1.0.0
  * Author: Social Post Flow
  * Author URI: http://www.socialpostflow.com
- * Description: Send WordPress Pages, Posts or Custom Post Types to your Social Post Flow account for scheduled publishing to social networks.
+ * Description: Send WordPress Pages, Posts or Custom Post Types to social media for scheduled publishing to social networks.
  * Text Domain: social-post-flow
  * License:     GPLv3 or later
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -28,7 +28,7 @@ if ( class_exists( 'Social_Post_Flow' ) ) {
 
 // Define Plugin version and build date.
 define( 'SOCIAL_POST_FLOW_PLUGIN_VERSION', '1.0.0' );
-define( 'SOCIAL_POST_FLOW_PLUGIN_BUILD_DATE', '2025-07-01 18:00:00' );
+define( 'SOCIAL_POST_FLOW_PLUGIN_BUILD_DATE', '2025-08-01 18:00:00' );
 
 // Define Plugin paths.
 define( 'SOCIAL_POST_FLOW_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
