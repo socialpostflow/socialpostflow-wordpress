@@ -76,7 +76,7 @@ class Social_Post_Flow_Log {
 				`result_message` text,
 				`status_text` text,
 				`status_created_at` datetime DEFAULT NULL,
-				`status_due_at` datetime DEFAULT NULL,
+				`status_scheduled_at` datetime DEFAULT NULL,
 				PRIMARY KEY (`id`),
 				KEY `post_id` (`post_id`),
 				KEY `action` (`action`),
