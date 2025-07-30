@@ -34,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<div class="wpzinc-option">
 								<p class="description">
 									<?php
-									esc_html_e( 'To allow this Plugin to post updates to your social media profiles using Social Post Flow, please authorize Social Post Flow below by entering your API Key.', 'social-post-flow' );
+									esc_html_e( 'To allow this Plugin to post updates to your social media profiles using Social Post Flow, please authorize Social Post Flow below.', 'social-post-flow' );
 									?>
 								</p>
 								<p class="description">

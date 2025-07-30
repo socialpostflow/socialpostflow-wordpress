@@ -143,6 +143,9 @@ LinkedIn, Pinterest and TikTok are coming soon.
 
 == Changelog ==
 
+= 1.0.1 (2025-08-01) =
+* Fix: Settings: Authentication: Correct wording to remove `enter API Key`
+
 = 1.0.0 =
 * First release.
 
