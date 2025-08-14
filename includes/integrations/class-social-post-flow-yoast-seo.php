@@ -11,7 +11,6 @@
  *
  * @package Social_Post_Flow
  * @author  Social Post Flow
- * @version 1.0.0
  */
 class Social_Post_Flow_Yoast_SEO {
 
@@ -144,6 +143,16 @@ class Social_Post_Flow_Yoast_SEO {
 			),
 			ARRAY_A
 		);
+
+		// If the data isn't in the DB, it might be in the Post Meta.
+		if ( is_null( $social_meta_data ) ) {
+			$social_meta_data = array(
+				'yoast_seo_twitter_title'          => get_post_meta( $post->ID, '_yoast_wpseo_twitter-title', true ),
+				'yoast_seo_twitter_description'    => get_post_meta( $post->ID, '_yoast_wpseo_twitter-description', true ),
+				'yoast_seo_open_graph_title'       => get_post_meta( $post->ID, '_yoast_wpseo_opengraph-title', true ),
+				'yoast_seo_open_graph_description' => get_post_meta( $post->ID, '_yoast_wpseo_opengraph-description', true ),
+			);
+		}
 
 		// Merge Social Metadata array if data exists.
 		if ( ! is_null( $social_meta_data ) ) {

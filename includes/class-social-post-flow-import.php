@@ -11,18 +11,8 @@
  *
  * @package Social_Post_Flow
  * @author  Social Post Flow
- * @version 1.0.0
  */
 class Social_Post_Flow_Import {
-
-	/**
-	 * Holds the base object.
-	 *
-	 * @since   1.0.0
-	 *
-	 * @var     object
-	 */
-	public $base;
 
 	/**
 	 * Constructor.

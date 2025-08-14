@@ -5,7 +5,7 @@ Tags: auto post, auto publish, social media scheduling, social media automation
 Requires at least: 6.2
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -143,8 +143,13 @@ LinkedIn, Pinterest and TikTok are coming soon.
 
 == Changelog ==
 
-= 1.0.1 (2025-08-01) =
+= 1.0.1 (2025-08-14) =
+* Added: Logs: Search: Search `Status Response` when performing a search
+* Added: Import & Export Configuration. See Docs: https://www.socialpostflow.com/documentation/wordpress-plugin/import-export-settings/
+* Added: Support link in menu
 * Fix: Settings: Authentication: Correct wording to remove `enter API Key`
+* Fix: Status: Yoast SEO: Facebook and Twitter Title and Description tags: Read data from post meta if not in indexable table, to ensure correct output
+* Fix: Repost: Fatal error when attempting to use Repost functionality
 
 = 1.0.0 =
 * First release.

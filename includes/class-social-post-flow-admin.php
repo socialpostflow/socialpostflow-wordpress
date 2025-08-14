@@ -11,7 +11,6 @@
  *
  * @package Social_Post_Flow
  * @author  Social Post Flow
- * @version 1.0.0
  */
 class Social_Post_Flow_Admin {
 
@@ -37,35 +36,13 @@ class Social_Post_Flow_Admin {
 		// Actions.
 		add_action( 'social_post_flow_api_get_access_token', array( $this, 'save_oauth_tokens' ), 10, 1 );
 		add_action( 'social_post_flow_api_refresh_token', array( $this, 'save_oauth_tokens' ), 10, 1 );
-		add_action( 'init', array( $this, 'maybe_set_oauth_nonce' ), 11 );
 		add_action( 'init', array( $this, 'maybe_get_access_token' ), 12 );
 		add_action( 'init', array( $this, 'maybe_disconnect' ), 13 );
 		add_action( 'init', array( $this, 'check_plugin_setup' ) );
 		add_action( 'admin_notices', array( $this, 'admin_notices' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts_css' ) );
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
-		add_filter( 'plugin_action_links_social-post-flow-/social-post-flow-.php', array( $this, 'plugin_action_links_settings_page' ) );
-
-	}
-
-	/**
-	 * Sets the OAuth nonce cookie, if the Plugin isn't connected to the API.
-	 *
-	 * @since 1.0.0
-	 */
-	public function maybe_set_oauth_nonce() {
-
-		// If the Plugin is connected to the API, no need to set a nonce cookie.
-		if ( social_post_flow()->get_class( 'validation' )->api_connected() ) {
-			return;
-		}
-
-		// If a cookie is already set, don't set it again.
-		if ( array_key_exists( 'social_post_flow_oauth_nonce', $_COOKIE ) ) {
-			return;
-		}
-
-		setcookie( 'social_post_flow_oauth_nonce', wp_create_nonce( 'social-post-flow-oauth' ), time() + HOUR_IN_SECONDS, '/' );
+		add_filter( 'plugin_action_links_social-post-flow/social-post-flow.php', array( $this, 'plugin_action_links_settings_page' ) );
 
 	}
 
@@ -76,22 +53,8 @@ class Social_Post_Flow_Admin {
 	 */
 	public function maybe_get_access_token() {
 
-		// Bail if nonce is not set.
-		if ( ! isset( $_COOKIE['social_post_flow_oauth_nonce'] ) ) {
-			return;
-		}
-
-		// Bail if nonce is not valid.
-		if ( ! wp_verify_nonce( sanitize_key( $_COOKIE['social_post_flow_oauth_nonce'] ), 'social-post-flow-oauth' ) ) {
-			setcookie( 'social_post_flow_oauth_nonce', '', time() - 3600, '/' );
-			return;
-		}
-
-		// Delete cookie.
-		setcookie( 'social_post_flow_oauth_nonce', '', time() - 3600, '/' );
-
 		// If a code is included in the request, exchange it for an access token.
-		if ( ! isset( $_REQUEST['code'] ) ) {
+		if ( ! filter_has_var( INPUT_GET, 'code' ) ) {
 			return;
 		}
 
@@ -99,7 +62,7 @@ class Social_Post_Flow_Admin {
 		social_post_flow()->get_class( 'notices' )->set_key_prefix( 'social_post_flow_' . wp_get_current_user()->ID );
 
 		// Sanitize token.
-		$authorization_code = sanitize_text_field( wp_unslash( $_REQUEST['code'] ) );
+		$authorization_code = filter_input( INPUT_GET, 'code', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 
 		// Exchange the authorization code and verifier for an access token.
 		$result = social_post_flow()->get_class( 'api' )->get_access_token( $authorization_code );
@@ -583,11 +546,6 @@ class Social_Post_Flow_Admin {
 	 */
 	public function plugin_action_links_settings_page( $links ) {
 
-		// Bail if user access doesn't permit access to settings.
-		if ( ! social_post_flow()->get_class( 'access' )->can_access( 'show_menu_settings' ) ) {
-			return $links;
-		}
-
 		// Add link to Plugin settings screen.
 		$links['settings'] = sprintf(
 			'<a href="%s">%s</a>',
@@ -800,22 +758,6 @@ class Social_Post_Flow_Admin {
 		// Setup notices class.
 		social_post_flow()->get_class( 'notices' )->set_key_prefix( 'social_post_flow_' . wp_get_current_user()->ID );
 
-		// Set access and refresh tokens.
-		social_post_flow()->get_class( 'api' )->set_tokens(
-			social_post_flow()->get_class( 'settings' )->get_access_token()
-		);
-
-		// Get Profiles.
-		$profiles = social_post_flow()->get_class( 'api' )->profiles( true, social_post_flow()->get_class( 'common' )->get_transient_expiration_time() );
-		if ( is_wp_error( $profiles ) ) {
-			// Set error notice.
-			social_post_flow()->get_class( 'notices' )->add_error_notice( $profiles->get_error_message() );
-
-			// Load view.
-			include_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/bulk-publish-error.php';
-			return;
-		}
-
 		// Get Post Types.
 		$post_types = social_post_flow()->get_class( 'common' )->get_post_types();
 
@@ -996,8 +938,8 @@ class Social_Post_Flow_Admin {
 					// Revert back a stage with an error message.
 					social_post_flow()->get_class( 'notices' )->add_error_notice(
 						sprintf(
-							/* translators: %1$s: Post Type Singular Name */
-							__( 'Please select at least one %1$s to publish to Social Post Flow.', 'social-post-flow' ),
+							/* translators: Post Type Singular Name */
+							__( 'Please select at least one %s to publish to Social Post Flow.', 'social-post-flow' ),
 							$post_types[ $post_type ]->labels->singular_name
 						)
 					);
@@ -1239,7 +1181,7 @@ class Social_Post_Flow_Admin {
 				}
 
 				// Unslash and decode JSON field.
-				$settings = json_decode( sanitize_text_field( wp_unslash( $_POST['social-post-flow']['statuses'] ) ), true );
+				$settings = json_decode( wp_unslash( $_POST['social-post-flow']['statuses'] ), true ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
 				// Save Settings for this Post Type.
 				return social_post_flow()->get_class( 'settings' )->update_settings( $post_type, $settings );

@@ -11,7 +11,6 @@
  *
  * @package Social_Post_Flow
  * @author  Social Post Flow
- * @version 1.0.0
  */
 class Social_Post_Flow_Common {
 
@@ -886,15 +885,6 @@ class Social_Post_Flow_Common {
 			'EMPTY'     => __( 'Empty (Value Ignored)', 'social-post-flow' ),
 			'NOT EMPTY' => __( 'Not Empty (Value Ignored)', 'social-post-flow' ),
 		);
-
-		/**
-		 * Backward compatible filter; defines the available Post comparison operators, used for Conditional Options on status(es).
-		 *
-		 * @since   1.0.0
-		 *
-		 * @param   array   $comparison_operators    Comparison Operators.
-		 */
-		$comparison_operators = apply_filters( 'social_post_flow_get_meta_compare', $comparison_operators );
 
 		/**
 		 * Defines the available Post comparison operators, used for Conditional Options on status(es).

@@ -3910,6 +3910,10 @@ class Social_Post_Flow_Publish {
 			}
 			delete_post_meta( $post_id, '_social_post_flow_error' );
 			delete_post_meta( $post_id, '_social_post_flow_errors' );
+
+			// Request that the user review the plugin. Notification displayed later,
+			// can be called multiple times and won't re-display the notification if dismissed.
+			social_post_flow()->dashboard->request_review();
 		} else {
 			update_post_meta( $post_id, '_social_post_flow_success', 0 );
 			update_post_meta( $post_id, '_social_post_flow_error', 1 );

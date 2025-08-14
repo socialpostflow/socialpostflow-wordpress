@@ -61,7 +61,6 @@ class Social_Post_Flow {
 		// Plugin Details.
 		$this->plugin                    = new stdClass();
 		$this->plugin->name              = 'social-post-flow';
-		$this->plugin->filter_name       = 'social_post_flow';
 		$this->plugin->displayName       = 'Social Post Flow';
 		$this->plugin->description       = 'Send WordPress Pages, Posts or Custom Post Types to your Social Post Flow account for scheduled publishing to social networks.';
 		$this->plugin->author_name       = 'Social Post Flow';
@@ -70,9 +69,8 @@ class Social_Post_Flow {
 		$this->plugin->buildDate         = SOCIAL_POST_FLOW_PLUGIN_BUILD_DATE;
 		$this->plugin->folder            = SOCIAL_POST_FLOW_PLUGIN_PATH;
 		$this->plugin->url               = SOCIAL_POST_FLOW_PLUGIN_URL;
-		$this->plugin->documentation_url = 'https://www.wpzinc.com/documentation/wordpress-social-post-flow';
-		$this->plugin->support_url       = 'https://www.wpzinc.com/support';
-		$this->plugin->upgrade_url       = 'https://www.wpzinc.com/plugins/wordpress-social-post-flow';
+		$this->plugin->documentation_url = 'https://www.socialpostflow.com/documentation/wordpress-plugin/';
+		$this->plugin->support_url       = 'https://www.socialpostflow.com/support/';
 
 		// Logo.
 		$this->plugin->logo                        = SOCIAL_POST_FLOW_PLUGIN_URL . 'assets/images/icons/logo-dark.svg';
@@ -80,11 +78,19 @@ class Social_Post_Flow {
 		$this->plugin->header_primary_text_color   = '#3d3d3d';
 		$this->plugin->header_secondary_text_color = '#6e6e6e';
 
+		// Review.
+		$this->plugin->review_name   = $this->plugin->name;
+		$this->plugin->review_notice = 'Thanks for using Social Post Flow to scheduleand publish to social media!';
+
 		// Dashboard Submodule.
-		if ( ! class_exists( 'Social_Post_Flow_Dashboard' ) ) {
-			require_once SOCIAL_POST_FLOW_PLUGIN_PATH . '_modules/dashboard/class-social-post-flow-dashboard.php';
+		if ( ! class_exists( 'WPZincDashboardWidget' ) ) {
+			require_once $this->plugin->folder . '_modules/dashboard/class-wpzincdashboardwidget.php';
 		}
-		$this->dashboard = new Social_Post_Flow_Dashboard( $this->plugin );
+		$this->dashboard = new WPZincDashboardWidget( $this->plugin );
+
+		// Show Support Menu and hide Upgrade Menu.
+		$this->dashboard->show_support_menu();
+		$this->dashboard->hide_upgrade_menu();
 
 		// Defer loading of Plugin Classes.
 		add_action( 'init', array( $this, 'initialize' ), 1 );
@@ -118,6 +124,12 @@ class Social_Post_Flow {
 			}
 		}
 
+		// Import & Export.
+		do_action( 'social_post_flow_admin_menu_import_export' );
+
+		// Support.
+		do_action( 'social_post_flow_admin_menu_support' );
+
 	}
 
 	/**
@@ -135,6 +147,7 @@ class Social_Post_Flow {
 		$this->classes->api           = new Social_Post_Flow_API();
 		$this->classes->bulk_actions  = new Social_Post_Flow_Bulk_Actions();
 		$this->classes->bulk_publish  = new Social_Post_Flow_Bulk_Publish();
+		$this->classes->cli           = new Social_Post_Flow_CLI();
 		$this->classes->common        = new Social_Post_Flow_Common();
 		$this->classes->cron          = new Social_Post_Flow_Cron();
 		$this->classes->date          = new Social_Post_Flow_Date();
@@ -147,6 +160,7 @@ class Social_Post_Flow {
 		$this->classes->notices       = new Social_Post_Flow_Notices();
 		$this->classes->post          = new Social_Post_Flow_Post();
 		$this->classes->publish       = new Social_Post_Flow_Publish();
+		$this->classes->repost        = new Social_Post_Flow_Repost();
 		$this->classes->screen        = new Social_Post_Flow_Screen();
 		$this->classes->settings      = new Social_Post_Flow_Settings();
 		$this->classes->validation    = new Social_Post_Flow_Validation();

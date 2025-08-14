@@ -12,7 +12,6 @@
  *
  * @package Social_Post_Flow
  * @author  Social Post Flow
- * @version 1.0.0
  */
 class Social_Post_Flow_Ajax {
 
@@ -99,7 +98,7 @@ class Social_Post_Flow_Ajax {
 
 		// Parse request.
 		$post_type = sanitize_text_field( wp_unslash( $_REQUEST['post_type'] ) );
-		$statuses  = json_decode( sanitize_text_field( wp_unslash( $_REQUEST['statuses'] ) ), true );
+		$statuses  = json_decode( wp_unslash( $_REQUEST['statuses'] ), true ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
 		// Get some other information.
 		$post_type_object  = get_post_type_object( $post_type );
@@ -140,13 +139,15 @@ class Social_Post_Flow_Ajax {
 		// Parse request to build Post compliant settings array.
 		// Don't wp_unslash(); save_settings() does this, which would result in double unslashing and
 		// errors with character encoding and newlines being lost.
+		// phpcs:disable WordPress.Security.ValidatedSanitizedInput
 		$post_id  = absint( $_REQUEST['post_id'] );
 		$settings = array(
-			'featured_image'    => isset( $_REQUEST['featured_image'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_REQUEST['featured_image'] ) ) : '',
-			'additional_images' => isset( $_REQUEST['additional_images'] ) ? array_map( 'sanitize_text_field', wp_unslash( $_REQUEST['additional_images'] ) ) : '',
-			'override'          => isset( $_REQUEST['override'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['override'] ) ) : '',
-			'statuses'          => isset( $_REQUEST['statuses'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['statuses'] ) ) : '',
+			'featured_image'    => $_REQUEST['featured_image'],
+			'additional_images' => $_REQUEST['additional_images'],
+			'override'          => $_REQUEST['override'],
+			'statuses'          => $_REQUEST['statuses'],
 		);
+		// phpcs:enable
 
 		// Save and return.
 		$result = social_post_flow()->get_class( 'post' )->save_settings( $post_id, $settings );
@@ -187,7 +188,7 @@ class Social_Post_Flow_Ajax {
 		}
 
 		// Parse request.
-		$status    = json_decode( sanitize_text_field( wp_unslash( $_REQUEST['status'] ) ), true );
+		$status    = json_decode( wp_unslash( $_REQUEST['status'] ), true ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$post_type = sanitize_text_field( wp_unslash( $_REQUEST['post_type'] ) );
 		$action    = sanitize_text_field( wp_unslash( $_REQUEST['post_action'] ) );
 

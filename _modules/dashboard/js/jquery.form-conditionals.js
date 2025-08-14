@@ -2,7 +2,7 @@
  * Conditional Fields for jQuery
  *
  * @package WPZincDashboardWidget
- * @author Social Post Flow
+ * @author WP Zinc
  */
 
 (function ( $ ) {

@@ -2,7 +2,7 @@
  * Provides functionality for tabbed interfaces.
  *
  * @package WPZincDashboardWidget
- * @author Social Post Flow
+ * @author WP Zinc
  */
 
 /**

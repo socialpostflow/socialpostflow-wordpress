@@ -2,7 +2,7 @@
  * Modal window functionality.
  *
  * @package WPZincDashboardWidget
- * @author Social Post Flow
+ * @author WP Zinc
  */
 
 /**
@@ -87,7 +87,7 @@ function wpzinc_modal_update_message( message ) {
 /**
  * Displays a success message in the modal.
  *
- * @since 	1.0.0
+ * @since 	1.8.3
  *
  * @param 	string 	message 	Message.
  */
@@ -105,7 +105,7 @@ function wpzinc_modal_show_success_message( message ) {
 /**
  * Displays an error message in the modal.
  *
- * @since 	1.0.0
+ * @since 	1.8.3
  *
  * @param 	string 	message 	Message.
  */
@@ -163,7 +163,7 @@ function wpzinc_modal_show_success_message_and_exit( message ) {
  * Displays an error message in the main screen, hides the overlay and progress modal
  * and returns false, to prevent the calling script from making further AJAX calls.
  *
- * @since 	1.0.0
+ * @since 	1.8.3
  *
  * @param 	string 	message 	Message.
  */

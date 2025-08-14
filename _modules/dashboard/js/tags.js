@@ -2,7 +2,7 @@
  * Inserts the value from a <select> dropdown into the target input / textarea.
  *
  * @package WPZincDashboardWidget
- * @author Social Post Flow
+ * @author WP Zinc
  */
 
 jQuery( document ).ready(

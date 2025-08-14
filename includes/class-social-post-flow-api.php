@@ -11,7 +11,6 @@
  *
  * @package Social_Post_Flow
  * @author  Social Post Flow
- * @version 3.0.0
  */
 class Social_Post_Flow_API {
 

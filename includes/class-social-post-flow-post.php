@@ -463,7 +463,7 @@ class Social_Post_Flow_Post {
 		}
 
 		// Save.
-		return $this->save_settings( $post_id, map_deep( wp_unslash( $_POST['social-post-flow'] ), 'sanitize_text_field' ) );
+		return $this->save_settings( $post_id, $_POST['social-post-flow'] );  // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.ValidatedSanitizedInput.MissingUnslash
 
 	}
 

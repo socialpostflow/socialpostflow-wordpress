@@ -20,7 +20,7 @@
  * @param   array   options     Autocomplete Choices
  *
  * @package WPZincDashboardWidget
- * @author Social Post Flow
+ * @author WP Zinc
  */
 
 var WPZincAutocompleterControl = function ( atts ) {

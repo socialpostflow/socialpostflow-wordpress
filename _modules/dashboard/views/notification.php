@@ -3,7 +3,7 @@
  * Outputs a fixed overlay toast-style notification.
  *
  * @package WPZincDashboardWidget
- * @author Social Post Flow
+ * @author WP Zinc
  */
 
 // Exit if accessed directly.
@@ -13,4 +13,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 
-<div id="social-post-flow-notification" class="wpzinc-notification"></div>
+<div id="<?php echo esc_attr( $this->base->plugin->name ); ?>-notification" class="wpzinc-notification"></div>

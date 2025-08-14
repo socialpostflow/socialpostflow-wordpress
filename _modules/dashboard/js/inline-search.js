@@ -2,7 +2,7 @@
  * Inline Search
  *
  * @package WPZincDashboardWidget
- * @author Social Post Flow
+ * @author WP Zinc
  */
 
 jQuery( document ).ready(

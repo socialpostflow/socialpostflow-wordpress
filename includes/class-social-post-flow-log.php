@@ -11,7 +11,6 @@
  *
  * @package Social_Post_Flow
  * @author  Social Post Flow
- * @version 1.0.0
  */
 class Social_Post_Flow_Log {
 
@@ -703,7 +702,7 @@ class Social_Post_Flow_Log {
 				// Build condition based on the key.
 				switch ( $key ) {
 					case 'post_title':
-						$where[] = '(' . $key . " LIKE '%" . $value . "%' OR status_text LIKE '%" . $value . "%')";
+						$where[] = '(' . $key . " LIKE '%" . $value . "%' OR status_text LIKE '%" . $value . "%' OR result_message LIKE '%" . $value . "%')";
 						break;
 
 					case 'request_sent_start_date':

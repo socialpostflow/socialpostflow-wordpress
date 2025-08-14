@@ -2,7 +2,7 @@
  * Initialises Keyword Autocomplete for TinyMCE instances.
  *
  * @package WPZincDashboardWidget
- * @author Social Post Flow
+ * @author WP Zinc
  */
 
 ( function () {
@@ -55,7 +55,7 @@
 									 * Creates an unordered list comprising of all keywords that can be
 									 * searched and displayed as a list.
 									 *
-									 * @since 	1.0.0
+									 * @since 	2.0.2
 									 */
 									function createAutoComplete() {
 
@@ -84,7 +84,7 @@
 									/**
 									 * Shows the autocomplete list.
 									 *
-									 * @since 	1.0.0
+									 * @since 	2.0.2
 									 *
 									 * @param 	tinymce 	editor 					Editor Object.
 									 * @param 	object 		autoCompleteContainer 	Autocomplete <ul> DOM Element.
@@ -110,7 +110,7 @@
 									 * Get the top and left position of the caret in the active editor, relative
 									 * to the browser window.
 									 *
-									 * @since 	1.0.0
+									 * @since 	2.0.2
 									 *
 									 * @param 	tinymce 	editor 		Editor Object.
 									 * @return 	object 					Top and Left Position of Caret
@@ -164,7 +164,7 @@
 									 * relative to the browser window.
 									 * The autocomplete list's CSS must define position:absolute.
 									 *
-									 * @since 	1.0.0
+									 * @since 	2.0.2
 									 *
 									 * @param 	object 		autoCompleteContainer 	Autocomplete <ul> DOM Element.
 									 * @param 	int 		top 					Top Position, in pixels.
@@ -181,7 +181,7 @@
 									 * Fetches the search word, from the last occurance of the opening trigger relative
 									 * to the current caret / cursor position within the editor..
 									 *
-									 * @since 	1.0.0
+									 * @since 	2.0.2
 									 *
 									 * @param 	tinymce 	editor 		Editor Object.
 									 * @return 	string 					Search Word, including opening trigger
@@ -223,7 +223,7 @@
 									/**
 									 * Filters the autocomplete list based on the given search input.
 									 *
-									 * @since 	1.0.0
+									 * @since 	2.0.2
 									 *
 									 * @param 	tinymce 	editor 					Editor Object.
 									 * @param 	object 		autoCompleteContainer 	Autocomplete <ul> DOM Element.
@@ -259,7 +259,7 @@
 									/**
 									 * Highlights the next or previous displayed list item in the autocomplete list.
 									 *
-									 * @since 	1.0.0
+									 * @since 	3.5.7
 									 *
 									 * @param 	string 		direction 				Item to higlight (next|previous).
 									 * @param 	tinymce 	editor 					Editor Object.
@@ -307,7 +307,7 @@
 									/**
 									 * Insert the highlighted autocomplete suggestion from the list into the editor content.
 									 *
-									 * @since 	1.0.0
+									 * @since 	2.0.2
 									 *
 									 * @param 	tinymce 	editor 					Editor Object.
 									 * @param 	object 		autoCompleteContainer 	Autocomplete <ul> DOM Element.
@@ -325,7 +325,7 @@
 									/**
 									 * Insert the text into the editor content.
 									 *
-									 * @since 	1.0.0
+									 * @since 	2.0.2
 									 *
 									 * @param 	string 		text 	Text.
 									 * @param 	tinymce 	editor 	Editor Object.
@@ -351,7 +351,7 @@
 									/**
 									 * Hides the autocomplete list, resetting anything within the list.
 									 *
-									 * @since 	1.0.0
+									 * @since 	2.0.2
 									 *
 									 * @param 	tinymce 	editor 					Editor Object.
 									 * @param 	object 		autoCompleteContainer 	Autocomplete <ul> DOM Element.
@@ -370,7 +370,7 @@
 									 * Shows or hides the autocomplete list, depending on whether the user presses
 									 * a character
 									 *
-									 * @since 	1.0.0
+									 * @since 	2.0.2
 									 *
 									 * @param 	tinymce 	editor 		Editor Instance.
 									 * @param 	object 		event 		Event .
@@ -424,7 +424,7 @@
 									/**
 									 * Filters the autocomplete list, if displayed, and the user types
 									 *
-									 * @since 	1.0.0
+									 * @since 	2.0.2
 									 *
 									 * @param 	tinymce 	editor 		Editor Instance.
 									 * @param 	object 		event 		Event .
@@ -449,7 +449,7 @@
 									/**
 									 * Listens to all click events in the editor instance.
 									 *
-									 * @since 	1.0.0
+									 * @since 	2.0.2
 									 *
 									 * @param 	tinymce 	editor 		Editor Instance.
 									 * @param 	object 		event 		Event .
@@ -464,7 +464,7 @@
 									/**
 									 * Listens to all click events in the DOM, outside of the editor instance.
 									 *
-									 * @since 	1.0.0
+									 * @since 	2.0.2
 									 *
 									 * @param 	object 		event 		Event .
 									 */
@@ -498,7 +498,7 @@
 								getInfo: function () {
 									return {
 										longname: 	'Autocomplete',
-										author: 	'Social Post Flow',
+										author: 	'WP Zinc',
 										version: 	tinymce.majorVersion + '.' + tinymce.minorVersion
 									};
 								}
