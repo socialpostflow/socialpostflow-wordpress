@@ -72,13 +72,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	// Force override if a subprofile is required.
 	$override = $this->get_setting( $post_type, '[' . $profile_id . '][override]', 0 );
 	$disabled = false;
-	if ( isset( $profile['provider'] ) && $profile['provider'] === 'pinterest' ) {
-		if ( ! isset( $profile['can_be_subprofile'] ) || ! $profile['can_be_subprofile'] ) {
-			// Subprofile is required.
-			$override = 1;
-			$disabled = true;
-		}
-	}
 
 	// If Override is Disabled, store the value in a hidden field.
 	if ( $disabled ) {

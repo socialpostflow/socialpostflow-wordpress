@@ -465,6 +465,15 @@ function socialPostFlowUpdatePostTypeOptions( profile ) {
 				$( 'option[value="link"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', true );
 				$( 'option[value="image"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', false );
 				$( 'option[value="story"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', false );
+				$( 'option[value="pin"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', true );
+				break;
+
+			case 'pinterest':
+				$( 'option[value="text"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', true );
+				$( 'option[value="link"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', true );
+				$( 'option[value="image"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', true );
+				$( 'option[value="story"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', true );
+				$( 'option[value="pin"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', false );
 				break;
 
 			case 'tiktok':
@@ -472,6 +481,7 @@ function socialPostFlowUpdatePostTypeOptions( profile ) {
 				$( 'option[value="link"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', true );
 				$( 'option[value="image"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', false );
 				$( 'option[value="story"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', true );
+				$( 'option[value="pin"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', true );
 				break;
 
 			default:
@@ -479,6 +489,7 @@ function socialPostFlowUpdatePostTypeOptions( profile ) {
 				$( 'option[value="link"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', false );
 				$( 'option[value="image"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', false );
 				$( 'option[value="story"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', true );
+				$( 'option[value="pin"]', $( 'select.post_type', $( social_post_flow.status_form ) ) ).attr( 'disabled', true );
 				break;
 		}
 
@@ -509,6 +520,11 @@ function socialPostFlowUpdateStatusSections() {
 			case 'image':
 			case 'story':
 				$( '.link', $( social_post_flow.status_form ) ).hide();
+				$( '.images', $( social_post_flow.status_form ) ).show();
+				break;
+
+			case 'pin':
+				$( '.link', $( social_post_flow.status_form ) ).show();
 				$( '.images', $( social_post_flow.status_form ) ).show();
 				break;
 		}

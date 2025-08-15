@@ -5,7 +5,7 @@ Tags: auto post, auto publish, social media scheduling, social media automation
 Requires at least: 6.2
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -13,9 +13,11 @@ Auto post Pages, Posts or Custom Post Types to Social Media using your Social Po
 
 == Description ==
 
-Automatically publish your Posts, Pages, Events, Products and more to Facebook, X / Twitter, Threads, Instagram, Mastodon and more with Social Post Flow.
+Auto post your Posts, Pages, Events, Products and more to Facebook, X / Twitter, Threads, Instagram, Mastodon and more with Social Post Flow.
 
 Don't have a Social Post Flow account? Pricing starts at $99/year for 10 social accounts, and you can [sign up for a free 7 day trial](https://app.socialpostflow.com/register)
+
+See our quick start tutorial to auto publish your WordPress content:
 
 [youtube https://www.youtube.com/watch?v=IFjYKMjnRB4]
 
@@ -78,13 +80,17 @@ Leverage our actions and filters to integrate your own Plugins and content.
 
 There's no need to mess around with App IDs, authorization tokens or complicated technical steps.
 
-Connecting your social media profiles is done in a few clicks through Buffer, taking minutes.
+Connecting your social media profiles is done in a few clicks through Social Post Flow, taking minutes.
 
 Then just choose which of those profiles to use in the plugin, set your status message and your social media scheduling is set.
 
+=== Supports Twitter / X ===
+
+If you're a Jetpack Social, Blog2Social or NextScripts Social Networks Auto-Poster user looking for a replacement to auto publish to Twitter / X, Social Post Flow is one of the best auto post to Twitter / X solutions that still works.
+
 === What can I do with Social Post Flow? ===
 
-- Automatically share Posts, Pages and Custom Post Types to social media when scheduling, publishing or updating your WordPress content
+- Automatically share and auto post your WordPress Posts, Pages and Custom Post Types to social media when scheduling, publishing or updating your WordPress content
 - Define the status text dynamically, pulling in your WordPress Post's Title, Content, Excerpt and more
 - WordPress to Facebook Page Auto Post
 - WordPress to Threads Auto Post
@@ -122,6 +128,10 @@ Yes - pricing starts from $99/year to post to up to 10 connected social profiles
 
 Our aim is to provide a competitively priced, well featured Plugin and service without breaking the bank. 
 
+= Can I still auto publish to Twitter / X? =
+
+Yes! You can still auto publish to Twitter / X with the Social Post Flow WordPress Plugin.
+
 = Which Social Media Profiles can I auto post / auto publish to with Social Post Flow? =
 
 You can post to:
@@ -142,6 +152,9 @@ LinkedIn, Pinterest and TikTok are coming soon.
 4. Post-level Logging.
 
 == Changelog ==
+
+= 1.0.2 (2025-08-15) =
+* Fix: Status: Link: Honor value in Link field, instead of always using the Post's URL
 
 = 1.0.1 (2025-08-14) =
 * Added: Logs: Search: Search `Status Response` when performing a search

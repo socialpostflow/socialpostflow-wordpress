@@ -451,15 +451,6 @@ class Social_Post_Flow_Admin {
 					'textarea.text',
 					'input.url',
 					'textarea.text-to-image',
-
-					// Pinterest.
-					'input#pinterest_title',
-					'input#pinterest_source_url',
-
-					// Google Business.
-					'input#googlebusiness_title',
-					'input#googlebusiness_code',
-					'input#googlebusiness_terms',
 				),
 				'triggers' => array(
 					// Tags.
