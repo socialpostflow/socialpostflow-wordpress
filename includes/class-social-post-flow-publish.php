@@ -1610,39 +1610,56 @@ class Social_Post_Flow_Publish {
 
 		// Build API compatible arguments.
 		$args = array(
-			'post_type'     => $status['post_type'],
-			'text'          => $this->parse_text( $post, $status['text'] ),
-			'first_comment' => $this->parse_text( $post, $status['first_comment'] ),
+			'post_type'     => ( $service === 'pinterest' ? 'pin' : $status['post_type'] ),
 			'profile_ids'   => array( $profile_id ),
+			'text'          => $this->parse_text( $post, $status['text'] ),
+			'first_comment' => ( $service !== 'mastodon' ? $this->parse_text( $post, $status['first_comment'] ) : null ),
 		);
 
-		// Remove first comment for Mastodon and Instagram Story posts.
-		if ( $service === 'mastodon' || $status['post_type'] === 'story' ) {
-			unset( $args['first_comment'] );
-		}
-
-		// URL and Image.
-		switch ( $status['post_type'] ) {
-			/**
-			 * Text
-			 */
-			case 'text':
-				// No image or URL.
-				break;
-
+		// URL.
+		switch ( $args['post_type'] ) {
 			/**
 			 * Link
 			 */
 			case 'link':
-				$args['url'] = $this->get_permalink( $post );
+				$args['url'] = $this->parse_text( $post, $status['url'] );
+
+				// If the URL is empty, use the Post's URL, as a URL is required.
+				if ( empty( $args['url'] ) ) {
+					$args['url'] = $this->get_permalink( $post );
+				}
 				break;
 
 			/**
-			 * Image
-			 * IG: Story
+			 * Pinterest
 			 */
-			case 'image':
+			case 'pin':
+				// Get URL.
+				$url = $this->parse_text( $post, $status['url'] );
+
+				// If URL is empty, don't include it in the args.
+				if ( empty( $url ) ) {
+					break;
+				}
+
+				// Add URL to args.
+				$args['url'] = $url;
+				break;
+
+			/**
+			 * IG Story
+			 * - Remove first comment.
+			 */
 			case 'story':
+				unset( $args['first_comment'] );
+				break;
+		}
+
+		// Image(s).
+		switch ( $args['post_type'] ) {
+			case 'pin':
+			case 'story':
+			case 'image':
 				switch ( $status['image'] ) {
 					/**
 					 * Featured, Additional or Content Image
@@ -1720,7 +1737,6 @@ class Social_Post_Flow_Publish {
 						break;
 
 				}
-				break;
 		}
 
 		// Scheduling.
@@ -1993,19 +2009,21 @@ class Social_Post_Flow_Publish {
 			/**
 			 * Text
 			 * Link
+			 * Pin
+			 * Story
 			 */
 			case 'text':
 			case 'link':
+			case 'pin':
+			case 'story':
 				// No additional images supported.
 				break;
 
 			/**
 			 * Image
-			 * Story
 			 * Integrations (e.g. ACF)
 			 */
 			case 'image':
-			case 'story':
 				switch ( $status['image_additional'] ) {
 					case '':
 						// No additional images.

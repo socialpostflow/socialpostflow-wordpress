@@ -83,6 +83,12 @@ class Social_Post_Flow_Common {
 					'provider' => array( 'instagram' ),
 				),
 			),
+			'pin'   => array(
+				'label'      => __( 'Pin', 'social-post-flow' ),
+				'conditions' => array(
+					'provider' => array( 'pinterest' ),
+				),
+			),
 		);
 
 		/**
