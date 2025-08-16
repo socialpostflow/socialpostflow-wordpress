@@ -147,14 +147,29 @@ class Social_Post_Flow_Log_Table extends WP_List_Table {
 	 */
 	public function search_box( $text, $input_id ) {
 
+		// Build default values for filters.
+		$filters_values = array();
+		foreach ( social_post_flow()->get_class( 'common' )->get_log_filters() as $filter ) {
+			$filters_values[ $filter ] = false;
+		}
+
+		// If a nonce is present, read the request.
+		if ( isset( $_REQUEST['_wpnonce'] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'bulk-social-post-flow-log' ) ) {
+			foreach ( social_post_flow()->get_class( 'common' )->get_log_filters() as $filter ) {
+				if ( ! array_key_exists( $filter, $_REQUEST ) ) {
+					continue;
+				}
+				$filters_values[ $filter ] = sanitize_text_field( wp_unslash( $_REQUEST[ $filter ] ) );
+			}
+		}
+
 		$input_id = $input_id . '-search-input';
 
 		// Preserve Filters by storing any defined as hidden form values.
 		foreach ( social_post_flow()->get_class( 'common' )->get_log_filters() as $filter ) {
-			$filter_value = filter_input( INPUT_GET, $filter, FILTER_SANITIZE_FULL_SPECIAL_CHARS );
-			if ( $filter_value !== false ) {
+			if ( $filters_values[ $filter ] !== false ) {
 				?>
-				<input type="hidden" name="<?php echo esc_attr( $filter ); ?>" value="<?php echo esc_attr( $filter_value ); ?>" />
+				<input type="hidden" name="<?php echo esc_attr( $filter ); ?>" value="<?php echo esc_attr( $filters_values[ $filter ] ); ?>" />
 				<?php
 			}
 		}
@@ -531,11 +546,11 @@ class Social_Post_Flow_Log_Table extends WP_List_Table {
 			return 'request_sent';
 		}
 
-		if ( ! array_key_exists( 'order_by', $_REQUEST ) ) {
+		if ( ! array_key_exists( 'orderby', $_REQUEST ) ) {
 			return 'request_sent';
 		}
 
-		return sanitize_text_field( wp_unslash( $_REQUEST['order_by'] ) );
+		return sanitize_text_field( wp_unslash( $_REQUEST['orderby'] ) );
 
 	}
 

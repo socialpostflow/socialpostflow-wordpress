@@ -153,6 +153,10 @@ LinkedIn, Pinterest and TikTok are coming soon.
 
 == Changelog ==
 
+= 1.0.3 (2025-08-18) =
+* Fix: Logs: Use nonce for <select> filter dropdowns
+* Fix: Logs: Honor order by column
+
 = 1.0.2 (2025-08-15) =
 * Fix: Status: Link: Honor value in Link field, instead of always using the Post's URL
 
