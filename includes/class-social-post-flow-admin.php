@@ -542,7 +542,7 @@ class Social_Post_Flow_Admin {
 			'<a href="%s">%s</a>',
 			add_query_arg(
 				array(
-					'page' => 'social-post-flow-settings',
+					'page' => 'social-post-flow',
 				),
 				admin_url( 'admin.php' )
 			),

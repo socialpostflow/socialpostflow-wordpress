@@ -1,11 +1,11 @@
-=== Auto Post, Auto Publish and Schedule to Social Media - Social Post Flow ===
-Contributors: socialpostflow,wpzinc
+=== Social Post Flow: Social Media Auto Post, Schedule and Publish ===
+Contributors: socialpostflow
 Donate link: https://www.socialpostflow.com/integrations/wordpress
 Tags: auto post, auto publish, social media scheduling, social media automation
 Requires at least: 6.2
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -13,7 +13,7 @@ Auto post Pages, Posts or Custom Post Types to Social Media using your Social Po
 
 == Description ==
 
-Auto post your Posts, Pages, Events, Products and more to Facebook, X / Twitter, Threads, Instagram, Mastodon and more with Social Post Flow.
+Auto post your Posts, Pages, Events, Products and more to Facebook, X / Twitter, Threads, Instagram, Pinterest, Mastodon and more with Social Post Flow.
 
 Don't have a Social Post Flow account? Pricing starts at $99/year for 10 social accounts, and you can [sign up for a free 7 day trial](https://app.socialpostflow.com/register)
 
@@ -96,6 +96,7 @@ If you're a Jetpack Social, Blog2Social or NextScripts Social Networks Auto-Post
 - WordPress to Threads Auto Post
 - WordPress to Twitter / X Auto Post
 - WordPress to Instagram Auto Post
+- WordPress to Pinterest Auto Post
 - WordPress to Mastodon Auto Post
 
 === External Services ===
@@ -152,6 +153,10 @@ LinkedIn, Pinterest and TikTok are coming soon.
 4. Post-level Logging.
 
 == Changelog ==
+
+= 1.0.4 (2025-08-21) =
+* Added: Pinterest support
+* Fix: Plugins: Settings Link
 
 = 1.0.3 (2025-08-18) =
 * Fix: Logs: Use nonce for <select> filter dropdowns
