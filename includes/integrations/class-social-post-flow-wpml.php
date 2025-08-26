@@ -44,7 +44,8 @@ class Social_Post_Flow_WPML {
 	public function get_default_status( $status ) {
 
 		// Bail if WPML not active.
-		if ( ! function_exists( 'wpml_get_language_information' ) ) {
+		// Don't use wpml_get_language_information(), as this is defined in Polylang.
+		if ( ! function_exists( 'wpml_get_active_languages_filter' ) ) {
 			return $status;
 		}
 
@@ -68,8 +69,9 @@ class Social_Post_Flow_WPML {
 	public function output_status_conditional_fields( $post_type ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
 
 		// Bail if WPML not active.
-		if ( ! function_exists( 'wpml_get_language_information' ) ) {
-			return;
+		// Don't use wpml_get_language_information(), as this is defined in Polylang.
+		if ( ! function_exists( 'wpml_get_active_languages_filter' ) ) {
+			return $status;
 		}
 
 		// Get list of languages enabled in WPML.
@@ -122,7 +124,8 @@ class Social_Post_Flow_WPML {
 		global $sitepress;
 
 		// Bail if WPML isn't active.
-		if ( ! function_exists( 'wpml_get_language_information' ) ) {
+		// Don't use wpml_get_language_information(), as this is defined in Polylang.
+		if ( ! function_exists( 'wpml_get_active_languages_filter' ) ) {
 			return $conditions_met;
 		}
 		if ( is_null( $sitepress ) ) {

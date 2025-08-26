@@ -5,7 +5,7 @@ Tags: auto post, auto publish, social media scheduling, social media automation
 Requires at least: 6.2
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -153,6 +153,9 @@ LinkedIn, Pinterest and TikTok are coming soon.
 4. Post-level Logging.
 
 == Changelog ==
+
+= 1.0.5 (2025-08-25) =
+* Fix: Status: Conditions: Polylang: Fatal error due to Polylang including WPML's `wpml_get_language_information` method
 
 = 1.0.4 (2025-08-21) =
 * Added: Pinterest support
