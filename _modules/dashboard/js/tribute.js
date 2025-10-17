@@ -993,7 +993,7 @@
         div.appendChild(span0);
 
         if (element.nodeName === 'INPUT') {
-          div.textContent = div.textContent.replace(/\s/g, ' ');
+          div.textContent = div.textContent.replace(/\s/g, ' ');
         } //Create a span in the div that represents where the cursor
         //should be
 

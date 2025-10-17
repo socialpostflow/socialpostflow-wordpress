@@ -142,7 +142,7 @@ class WPZincDashboardWidget {
 		add_action( 'init', array( $this, 'export' ), 9999 );
 		add_action( 'init', array( $this, 'maybe_redirect' ), 2 );
 
-		// Permit hosts to redirect to when using wp_safe_redirect().
+		// Permit wpzinc.com to be redirected to when using wp_safe_redirect().
 		add_filter( 'allowed_redirect_hosts', array( $this, 'allowed_redirect_hosts' ) );
 
 	}

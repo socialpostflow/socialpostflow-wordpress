@@ -5,7 +5,8 @@
  * @author WP Zinc
  */
 
-var wpzinc_autocompleters = [];
+var wpzinc_autocompleters         = [];
+var wpzinc_autocomplete_listeners = new Map();
 
 /**
  * Sets up tribute.js autocompleters based on the
@@ -116,7 +117,30 @@ function wp_zinc_autocomplete_initialize( container ) {
 						field = container + ' ' + field;
 					}
 
-					autocompleter.instance.attach( document.querySelectorAll( field ) );
+					const elements = document.querySelectorAll( field );
+
+					// Attach Tribute to the elements.
+					autocompleter.instance.attach( elements );
+
+					// Add event listener handlers to each attached element
+					// which triggers a change event when an autocomplete suggestion
+					// is inserted to the field.
+					// This ensures page builders e.g. Elementor update their underlying
+					// model and reflect the input value's change.
+					elements.forEach(
+						function (el) {
+							const handler = function (e) {
+								if (typeof jQuery !== 'undefined') {
+									jQuery( e.target ).trigger( 'input' );
+								}
+							};
+
+							el.addEventListener( 'tribute-replaced', handler );
+
+							// Store the handler for cleanup.
+							wpzinc_autocomplete_listeners.set( el, handler );
+						}
+					);
 
 				}
 			);
@@ -139,7 +163,21 @@ function wp_zinc_autocomplete_destroy() {
 			autocompleter.fields.forEach(
 				function ( field, j ) {
 
-					autocompleter.instance.detach( document.querySelectorAll( field ) );
+					const elements = document.querySelectorAll( field );
+
+					// Detach Tribute.
+					autocompleter.instance.detach( elements );
+
+					// Remove our event listeners that might have been registered earlier.
+					elements.forEach(
+						function (el) {
+							const handler = wpzinc_autocomplete_listeners.get( el );
+							if (handler) {
+								el.removeEventListener( 'tribute-replaced', handler );
+								wpzinc_autocomplete_listeners.delete( el );
+							}
+						}
+					);
 
 				}
 			);
