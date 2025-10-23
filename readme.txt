@@ -5,7 +5,7 @@ Tags: auto post, social media, twitter, instagram, linkedin
 Requires at least: 6.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -433,6 +433,9 @@ Social Post Flow offers a 7-day free trial so you can test all features before p
 4. Post-level Logging.
 
 == Changelog ==
+
+= 1.0.8 (2025-10-23) =
+* Added: Settings: Display notice if trial ended or no Posts sent to Social Post Flow
 
 = 1.0.7 (2025-10-17) =
 * Fix: Status: Text: Taxonomy: Retain non-Latin characters

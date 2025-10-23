@@ -422,6 +422,28 @@ class Social_Post_Flow_API {
 	}
 
 	/**
+	 * Returns the user's information.
+	 *
+	 * @since   1.0.0
+	 *
+	 * @return  WP_Error|array
+	 */
+	public function user() {
+
+		// Get user.
+		$user = $this->get( 'user' );
+
+		// Check for errors.
+		if ( is_wp_error( $user ) ) {
+			return $user;
+		}
+
+		// Return user.
+		return $user['data'];
+
+	}
+
+	/**
 	 * Returns a list of Social Media Profiles.
 	 *
 	 * @since   1.0.0

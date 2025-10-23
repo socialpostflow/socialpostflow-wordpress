@@ -586,6 +586,16 @@ class Social_Post_Flow_Admin {
 			social_post_flow()->get_class( 'api' )->set_tokens( $access_token );
 		}
 
+		// User.
+		$user = social_post_flow()->get_class( 'api' )->user();
+		if ( is_wp_error( $user ) ) {
+			social_post_flow()->get_class( 'notices' )->add_error_notice( $user->get_error_message() );
+		} elseif ( ! $user['has_access'] ) {
+				social_post_flow()->get_class( 'notices' )->add_error_notice( 'Your trial to Social Post Flow has ended. <a href="https://app.socialpostflow.com/billing" target="_blank">Select a plan</a> to resume posting to social media, or <a href="https://www.socialpostflow.com/support" target="_blank">contact us</a> if you need help.' );
+		} elseif ( $user['stats']['posts'] === 0 ) {
+			social_post_flow()->get_class( 'notices' )->add_warning_notice( 'It looks like you haven\'t posted anything yet. If you need help getting started, <a href="https://www.socialpostflow.com/support" target="_blank">contact us</a>.' );
+		}
+
 		// Profiles.
 		$profiles = social_post_flow()->get_class( 'api' )->profiles( true, social_post_flow()->get_class( 'common' )->get_transient_expiration_time() );
 		if ( is_wp_error( $profiles ) ) {
