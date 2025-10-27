@@ -25,37 +25,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 			);
 			?>
 		</h3>
-
-		<?php
-		// If this Profile's timezone doesn't match WordPress' timezone, show a warning.
-		if ( isset( $profile['timezone'] ) ) {
-			$timezones_match = social_post_flow()->get_class( 'validation' )->timezones_match(
-				$profile['timezone'],
-				$profile['profile_name'],
-				social_post_flow()->get_class( 'api' )->get_timezone_settings_url( $profile['id'] )
-			);
-			if ( is_wp_error( $timezones_match ) ) {
-				?>
-				<div class="notice-inline notice-warning">
-					<p>
-						<?php
-						echo wp_kses(
-							$timezones_match->get_error_message(),
-							array(
-								'a'  => array(
-									'href'   => array(),
-									'target' => array(),
-								),
-								'br' => array(),
-							)
-						);
-						?>
-					</p>
-				</div>
-				<?php
-			}
-		}
-		?>
 	</header>
 
 	<!-- Account Enabled -->

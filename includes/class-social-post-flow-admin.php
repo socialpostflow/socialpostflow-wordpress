@@ -590,10 +590,18 @@ class Social_Post_Flow_Admin {
 		$user = social_post_flow()->get_class( 'api' )->user();
 		if ( is_wp_error( $user ) ) {
 			social_post_flow()->get_class( 'notices' )->add_error_notice( $user->get_error_message() );
-		} elseif ( ! $user['has_access'] ) {
-			social_post_flow()->get_class( 'notices' )->add_error_notice( 'Your trial to Social Post Flow has ended. <a href="https://app.socialpostflow.com/billing" target="_blank">Select a plan</a> to resume posting to social media, or <a href="https://www.socialpostflow.com/support" target="_blank">contact us</a> if you need help.' );
-		} elseif ( $user['stats']['posts'] === 0 ) {
-			social_post_flow()->get_class( 'notices' )->add_warning_notice( 'It looks like you haven\'t posted anything yet. If you need help getting started, <a href="https://www.socialpostflow.com/support" target="_blank">contact us</a>.' );
+		} else {
+			if ( ! $user['has_access'] ) {
+				social_post_flow()->get_class( 'notices' )->add_error_notice( 'Your trial to Social Post Flow has ended. <a href="https://app.socialpostflow.com/billing" target="_blank">Select a plan</a> to resume posting to social media, or <a href="https://www.socialpostflow.com/support" target="_blank">contact us</a> if you need help.' );
+			} elseif ( $user['stats']['posts'] === 0 ) {
+				social_post_flow()->get_class( 'notices' )->add_warning_notice( 'It looks like you haven\'t posted anything yet. If you need help getting started, <a href="https://www.socialpostflow.com/support" target="_blank">contact us</a>.' );
+			}
+
+			// Check timezones match.
+			$timezones_match = social_post_flow()->get_class( 'validation' )->timezones_match( $user['timezone'] );
+			if ( is_wp_error( $timezones_match ) ) {
+				social_post_flow()->get_class( 'notices' )->add_warning_notice( $timezones_match->get_error_message() );
+			}
 		}
 
 		// Embed HelpScout Beacon.
