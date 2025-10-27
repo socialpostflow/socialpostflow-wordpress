@@ -8,7 +8,7 @@ Welcome to the Social Post Flow Plugin repository on GitHub. Here you can view t
 
 If you are having issues setting up this plugin on your WordPress site, or have issues with Social Post Flow, please do the following:
 
-* Check the [Documentation](https://www.socialpostflow.com/documentation/wordpress)
+* Check the [Documentation](https://www.socialpostflow.com/documentation/wordpress-plugin)
 * Request [email support](https://app.socialpostflow.com/support)
 
 ## Developers

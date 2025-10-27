@@ -43,6 +43,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 		}
 		unset( $profile );
 		?>
+
+		<!-- Add Profile -->
+		<li class="wpzinc-nav-tab add-profile">
+			<a href="https://app.socialpostflow.com/profiles" class="wpzinc-nav-tab-vertical-active" target="_blank">
+				<?php esc_html_e( 'Add Profile', 'social-post-flow' ); ?>
+			</a>
+		</li>
 	</ul>
 
 	<!-- Content -->

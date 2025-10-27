@@ -204,7 +204,7 @@ body.block-editor-page {
 			}
 
 			/**
-			* Post Types
+			* Profile Types
 			*/
 			&.default {
 				a {
@@ -251,6 +251,12 @@ body.block-editor-page {
 			&.pinterest {
 				a {
 					background-image: url(../../_modules/dashboard/feather/pinterest.svg);
+					background-size: 16px 16px;
+				}
+			}
+			&.add-profile {
+				a {
+					background-image: url(../../_modules/dashboard/feather/plus-circle.svg);
 					background-size: 16px 16px;
 				}
 			}

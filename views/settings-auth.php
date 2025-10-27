@@ -15,27 +15,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<!-- Second level tabs -->
 	<ul class="wpzinc-nav-tabs wpzinc-js-tabs" data-panels-container="#settings-container" data-panel=".panel" data-active="wpzinc-nav-tab-vertical-active">
 		<li class="wpzinc-nav-tab lock">
-			<a href="#authentication" class="wpzinc-nav-tab-vertical-active" data-documentation="https://www.socialpostflow.com/documentation/wordpress/authentication-settings/">
+			<a href="#authentication" class="wpzinc-nav-tab-vertical-active" data-documentation="https://www.socialpostflow.com/documentation/wordpress-plugin/installation/">
 				<?php esc_html_e( 'Authentication', 'social-post-flow' ); ?>
 			</a>
 		</li>
 		<li class="wpzinc-nav-tab default">
-			<a href="#general-settings" data-documentation="https://www.socialpostflow.com/documentation/wordpress/general-settings/">
+			<a href="#general-settings" data-documentation="https://www.socialpostflow.com/documentation/wordpress-plugin/general-settings/">
 				<?php esc_html_e( 'General Settings', 'social-post-flow' ); ?>
 			</a>
 		</li>
 		<li class="wpzinc-nav-tab image">
-			<a href="#image-settings" data-documentation="https://www.socialpostflow.com/documentation/wordpress/text-to-image-settings/">
+			<a href="#image-settings" data-documentation="https://www.socialpostflow.com/documentation/wordpress-plugin/text-to-image/">
 				<?php esc_html_e( 'Text to Image', 'social-post-flow' ); ?>
 			</a>
 		</li>
 		<li class="wpzinc-nav-tab file-text">
-			<a href="#log-settings" data-documentation="https://www.socialpostflow.com/documentation/wordpress/log-settings/">
+			<a href="#log-settings" data-documentation="https://www.socialpostflow.com/documentation/wordpress-plugin/log-settings/">
 				<?php esc_html_e( 'Log Settings', 'social-post-flow' ); ?>
 			</a>
 		</li>
 		<li class="wpzinc-nav-tab arrow-right-circle">
-			<a href="#repost-settings" data-documentation="https://www.socialpostflow.com/documentation/wordpress/repost-settings/">
+			<a href="#repost-settings" data-documentation="https://www.socialpostflow.com/documentation/wordpress-plugin/auto-reposting/">
 				<?php esc_html_e( 'Repost Settings', 'social-post-flow' ); ?>
 			</a>
 		</li>
@@ -44,7 +44,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		if ( ! empty( $access_token ) ) {
 			?>
 			<li class="wpzinc-nav-tab users">
-				<a href="#user-access" data-documentation="https://www.socialpostflow.com/documentation/wordpress/user-access-settings/">
+				<a href="#user-access" data-documentation="https://www.socialpostflow.com/documentation/wordpress-plugin/user-access/">
 					<?php esc_html_e( 'User Access', 'social-post-flow' ); ?>
 				</a>
 			</li>
@@ -52,7 +52,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		}
 		?>
 		<li class="wpzinc-nav-tab tag">
-			<a href="#custom-tags" data-documentation="https://www.socialpostflow.com/documentation/wordpress/custom-tags-settings/">
+			<a href="#custom-tags" data-documentation="https://www.socialpostflow.com/documentation/wordpress-plugin/custom-tags/">
 				<?php esc_html_e( 'Custom Tags', 'social-post-flow' ); ?>
 			</a>
 		</li>
@@ -144,7 +144,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 								esc_html__( 'This setting is', 'social-post-flow' ),
 								esc_html__( 'required', 'social-post-flow' ),
 								esc_html__( 'if using any frontend post submission, feed importer or autoblogging Plugin e.g. User Submitted Posts, WP Property Feed, WPeMatico etc.', 'social-post-flow' ),
-								esc_html( 'https://www.socialpostflow.com/documentation/wordpress/using-frontend-post-submission-and-autoblogging-plugins/' ),
+								esc_html( 'https://www.socialpostflow.com/documentation/wordpress-plugin/frontend-post-submission-autoblogging-plugins/' ),
 								esc_html__( 'See Documentation', 'social-post-flow' )
 							);
 							?>
@@ -606,7 +606,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<?php esc_html_e( 'Provides general options for when to run the WordPress Repost Cron Event on this WordPress installation, and to disable the Repost cron entirely.', 'social-post-flow' ); ?><br />
 							<?php
 							printf(
-								'%1$s <a href="https://www.socialpostflow.com/documentation/wordpress/repost-settings/" target="_blank">%2$s</a>',
+								'%1$s <a href="https://www.socialpostflow.com/documentation/wordpress-plugin/auto-reposting/" target="_blank">%2$s</a>',
 								esc_html__( 'When Post(s) are scheduled on Social Post Flow will depend on the', 'social-post-flow' ),
 								esc_html__( 'Repost Status Settings', 'social-post-flow' )
 							);
@@ -727,7 +727,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 									esc_html( 'social_post_flow_repost_cron' ),
 									esc_html__( 'Cron event /', 'social-post-flow' ),
 									esc_html( 'social-post-flow-repost' ),
-									esc_html( 'https://www.socialpostflow.com/documentation/wordpress/wp-cli/' ),
+									esc_html( 'https://www.socialpostflow.com/documentation/wordpress-plugin/wp-cli/' ),
 									esc_html__( 'CLI', 'social-post-flow' ),
 									esc_html__( 'command', 'social-post-flow' )
 								);
@@ -1067,7 +1067,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							printf(
 								'%1$s <a href="%2$s" target="_blank">%3$s</a> %4$s <strong>%5$s</strong> %6$s',
 								esc_html__( 'To hide', 'social-post-flow' ),
-								esc_html( 'https://www.socialpostflow.com/documentation/wordpress/per-post-settings/' ),
+								esc_html( 'https://www.socialpostflow.com/documentation/wordpress-plugin/per-post-settings/' ),
 								esc_html__( 'Per-Post Settings', 'social-post-flow' ),
 								esc_html__( 'by the', 'social-post-flow' ),
 								esc_html__( 'Post\'s Author\'s Role', 'social-post-flow' ),
@@ -1137,7 +1137,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<?php
 							printf(
 								'<a href="%1$s" target="_blank">%2$s</a>%3$s <strong>%4$s</strong> %5$s',
-								esc_url( 'https://www.socialpostflow.com/documentation/wordpress/per-post-settings/' ),
+								esc_url( 'https://www.socialpostflow.com/documentation/wordpress-plugin/per-post-settings/' ),
 								esc_html__( 'Per-Post Settings', 'social-post-flow' ),
 								esc_html__( ', Additional Images and the Log are hidden when editing Posts and the', 'social-post-flow' ),
 								esc_html__( 'logged in WordPress User\'s Role', 'social-post-flow' ),

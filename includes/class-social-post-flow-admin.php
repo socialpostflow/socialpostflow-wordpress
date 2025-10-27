@@ -674,7 +674,7 @@ class Social_Post_Flow_Admin {
 				$roles = social_post_flow()->get_class( 'common' )->get_user_roles();
 
 				// Documentation URL.
-				$documentation_url = 'https://www.socialpostflow.com/documentation/wordpress/authentication-settings/';
+				$documentation_url = 'https://www.socialpostflow.com/documentation/wordpress-plugin/installation/';
 				break;
 
 			/**
@@ -685,7 +685,7 @@ class Social_Post_Flow_Admin {
 				$disable_save_button = true;
 
 				// Documentation URL.
-				$documentation_url = 'https://www.socialpostflow.com/documentation/wordpress/status-settings/';
+				$documentation_url = 'https://www.socialpostflow.com/documentation/wordpress-plugin/installation/';
 				break;
 
 			/**
@@ -696,7 +696,7 @@ class Social_Post_Flow_Admin {
 				$disable_save_button = true;
 
 				// Documentation URL.
-				$documentation_url = 'https://www.socialpostflow.com/documentation/wordpress/status-settings/';
+				$documentation_url = 'https://www.socialpostflow.com/documentation/wordpress-plugin/installation/';
 				break;
 
 			/**
@@ -714,7 +714,7 @@ class Social_Post_Flow_Admin {
 				$post_type_object  = get_post_type_object( $post_type );
 				$actions_plural    = social_post_flow()->get_class( 'common' )->get_post_actions_past_tense();
 				$post_actions      = social_post_flow()->get_class( 'common' )->get_post_actions();
-				$documentation_url = 'https://www.socialpostflow.com/documentation/wordpress/status-settings/';
+				$documentation_url = 'https://www.socialpostflow.com/documentation/wordpress-plugin/status-configuration-and-types/';
 				$is_post_screen    = false; // Disables the 'specific' schedule option, which can only be used on individual Per-Post Settings.
 
 				// Check if this Post Type is enabled.

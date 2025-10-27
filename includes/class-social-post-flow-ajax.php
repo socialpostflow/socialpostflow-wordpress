@@ -102,7 +102,7 @@ class Social_Post_Flow_Ajax {
 
 		// Get some other information.
 		$post_type_object  = get_post_type_object( $post_type );
-		$documentation_url = 'https://www.socialpostflow.com/documentation/wordpress/status-settings/';
+		$documentation_url = 'https://www.socialpostflow.com/documentation/wordpress-plugin/status-configuration-and-types/';
 
 		// Save and return.
 		$result = social_post_flow()->get_class( 'settings' )->update_settings( $post_type, $statuses );

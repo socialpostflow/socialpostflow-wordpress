@@ -436,6 +436,8 @@ Social Post Flow offers a 7-day free trial so you can test all features before p
 
 = 1.0.9 (2025-10-27) =
 * Added: Settings: Display notice if WordPress and Social Post Flow timezones do not match
+* Added: Settings: Status: Add Profile link
+* Fix: Documentation links
 
 = 1.0.8 (2025-10-23) =
 * Added: Settings: Display notice if trial ended or no Posts sent to Social Post Flow
