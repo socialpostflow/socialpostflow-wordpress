@@ -2128,26 +2128,49 @@ class Social_Post_Flow_Publish {
 	 */
 	private function get_images_from_post_content( $post ) {
 
-		// Extract all <img> tags from the Post's content.
-		$images = preg_match_all( '/<img.+?src=[\'"]([^\'"]+)[\'"].*?>/i', apply_filters( 'the_content', $post->post_content ), $matches );
+		// Wrap content in <html>, <head> and <body> tags with an UTF-8 Content-Type meta tag.
+		// Forcibly tell DOMDocument that this HTML uses the UTF-8 charset.
+		// <meta charset="utf-8"> isn't enough, as DOMDocument still interprets the HTML as ISO-8859, which breaks character encoding
+		// Use of mb_convert_encoding() with HTML-ENTITIES is deprecated in PHP 8.2, so we have to use this method.
+		// If we don't, special characters render incorrectly.
+		$text = '<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><body>' . apply_filters( 'the_content', $post->post_content ) . '</body></html>';
+
+		// Load the HTML into a DOMDocument.
+		libxml_use_internal_errors( true );
+		$html = new DOMDocument();
+		$html->loadHTML( $text );
+
+		// Load DOMDocument into XPath.
+		$xpath = new DOMXPath( $html );
+
+		// Extract images from the Post's content.
+		$images     = $xpath->query( '//img[@src]' );
+		$image_urls = array();
+		foreach ( $images as $image ) {
+			$image_urls[] = $image->getAttribute( 'src' );
+		}
 
 		// If no images were found, return a blank array.
-		if ( ! $images ) {
+		if ( ! count( $image_urls ) ) {
 			return array();
 		}
 
 		// Iterate through images, building array of image IDs.
 		$image_ids = array();
-		foreach ( $matches[1] as $image_url ) {
-			// Attempt to get the image ID by the image URL.
+		foreach ( $image_urls as $image_url ) {
+			// Remove query parameters from the image URL.
+			$image_url = strtok( $image_url, '?' );
+
+			// Remove any size suffix from the image URL.
+			$image_url = preg_replace( '/-\d+x\d+(?=\.(jpg|jpeg|png|gif|webp|avif))/i', '', $image_url );
+
+			// Attempt to get the image ID by the image URL, as this allows us to build a detailed image object
+			// including width, height and other attributes that some networks may require.
 			$image_id = attachment_url_to_postid( esc_url( $image_url ) );
 			if ( $image_id ) {
 				$image_ids[] = $image_id;
 				continue;
 			}
-
-			// If here, no image ID by URL could be found. This is likely because
-			// the image URL is a specific size.
 		}
 
 		// If no image IDs could be established, we can't reliably return an image from the Post's content.
