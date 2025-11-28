@@ -288,6 +288,7 @@ class Social_Post_Flow_Image {
 			'linkedin'        => array( 1200, 627 ),
 			'threads'         => array( 1200, 1200 ),
 			'tiktok'          => array( 1080, 1920 ),
+			'mastodon'        => array( 1200, 675 ),
 		);
 
 		/**
