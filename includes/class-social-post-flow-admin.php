@@ -592,9 +592,15 @@ class Social_Post_Flow_Admin {
 			social_post_flow()->get_class( 'notices' )->add_error_notice( $user->get_error_message() );
 		} else {
 			if ( ! $user['has_access'] ) {
-				social_post_flow()->get_class( 'notices' )->add_error_notice( 'Your trial to Social Post Flow has ended. <a href="https://app.socialpostflow.com/billing" target="_blank">Select a plan</a> to resume posting to social media, or <a href="https://www.socialpostflow.com/support" target="_blank">contact us</a> if you need help.' );
-			} elseif ( $user['stats']['posts'] === 0 ) {
-				social_post_flow()->get_class( 'notices' )->add_warning_notice( 'It looks like you haven\'t posted anything yet. If you need help getting started, <a href="https://www.socialpostflow.com/support" target="_blank">contact us</a>.' );
+				// Persist notice that the user has no subscription.
+				social_post_flow()->get_class( 'persistent_notices' )->add( 'no_subscription' );
+			} else {
+				// Delete persistent notice that the user has no subscription.
+				social_post_flow()->get_class( 'persistent_notices' )->delete( 'no_subscription' );
+
+				if ( $user['stats']['posts'] === 0 ) {
+					social_post_flow()->get_class( 'persistent_notices' )->add( 'no_posts' );
+				}
 			}
 
 			// Check timezones match.
