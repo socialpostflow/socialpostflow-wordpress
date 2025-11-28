@@ -43,6 +43,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 		}
 		unset( $profile );
 		?>
+
+		<!-- Add Profiles -->
+		<li class="wpzinc-nav-tab external-link">
+			<a href="<?php echo esc_url( social_post_flow()->get_class( 'api' )->get_connect_profiles_url() ); ?>" target="_blank" class="wpzinc-nav-tab-vertical-active">
+				<?php esc_html_e( 'Add Profiles', 'social-post-flow' ); ?>
+			</a>
+		</li>
 	</ul>
 
 	<!-- Content -->

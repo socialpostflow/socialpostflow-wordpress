@@ -1166,6 +1166,11 @@ function socialPostFlowGetStatuses() {
 		$( 'li.wpzinc-nav-tab a' ).each(
 			function () {
 
+				// Skip if the link doesn't contain #profile-.
+				if ( $( this ).attr( 'href' ).indexOf( '#profile-' ) === -1 ) {
+					return;
+				}
+
 				var profile = $( this ).attr( 'href' ).split( '#profile-' ).pop();
 
 				if ( profile == 'default' ) {
