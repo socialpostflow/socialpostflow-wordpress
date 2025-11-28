@@ -143,29 +143,28 @@ class Social_Post_Flow {
 		$this->classes = new stdClass();
 
 		// Initialize required classes.
-		$this->classes->admin              = new Social_Post_Flow_Admin();
-		$this->classes->ajax               = new Social_Post_Flow_AJAX();
-		$this->classes->api                = new Social_Post_Flow_API();
-		$this->classes->bulk_actions       = new Social_Post_Flow_Bulk_Actions();
-		$this->classes->bulk_publish       = new Social_Post_Flow_Bulk_Publish();
-		$this->classes->cli                = new Social_Post_Flow_CLI();
-		$this->classes->common             = new Social_Post_Flow_Common();
-		$this->classes->cron               = new Social_Post_Flow_Cron();
-		$this->classes->date               = new Social_Post_Flow_Date();
-		$this->classes->export             = new Social_Post_Flow_Export();
-		$this->classes->image              = new Social_Post_Flow_Image();
-		$this->classes->import             = new Social_Post_Flow_Import();
-		$this->classes->install            = new Social_Post_Flow_Install();
-		$this->classes->media_library      = new Social_Post_Flow_Media_Library();
-		$this->classes->log                = new Social_Post_Flow_Log();
-		$this->classes->notices            = new Social_Post_Flow_Notices();
-		$this->classes->persistent_notices = new Social_Post_Flow_Persistent_Notices();
-		$this->classes->post               = new Social_Post_Flow_Post();
-		$this->classes->publish            = new Social_Post_Flow_Publish();
-		$this->classes->repost             = new Social_Post_Flow_Repost();
-		$this->classes->screen             = new Social_Post_Flow_Screen();
-		$this->classes->settings           = new Social_Post_Flow_Settings();
-		$this->classes->validation         = new Social_Post_Flow_Validation();
+		$this->classes->admin         = new Social_Post_Flow_Admin();
+		$this->classes->ajax          = new Social_Post_Flow_AJAX();
+		$this->classes->api           = new Social_Post_Flow_API();
+		$this->classes->bulk_actions  = new Social_Post_Flow_Bulk_Actions();
+		$this->classes->bulk_publish  = new Social_Post_Flow_Bulk_Publish();
+		$this->classes->cli           = new Social_Post_Flow_CLI();
+		$this->classes->common        = new Social_Post_Flow_Common();
+		$this->classes->cron          = new Social_Post_Flow_Cron();
+		$this->classes->date          = new Social_Post_Flow_Date();
+		$this->classes->export        = new Social_Post_Flow_Export();
+		$this->classes->image         = new Social_Post_Flow_Image();
+		$this->classes->import        = new Social_Post_Flow_Import();
+		$this->classes->install       = new Social_Post_Flow_Install();
+		$this->classes->media_library = new Social_Post_Flow_Media_Library();
+		$this->classes->log           = new Social_Post_Flow_Log();
+		$this->classes->notices       = new Social_Post_Flow_Notices();
+		$this->classes->post          = new Social_Post_Flow_Post();
+		$this->classes->publish       = new Social_Post_Flow_Publish();
+		$this->classes->repost        = new Social_Post_Flow_Repost();
+		$this->classes->screen        = new Social_Post_Flow_Screen();
+		$this->classes->settings      = new Social_Post_Flow_Settings();
+		$this->classes->validation    = new Social_Post_Flow_Validation();
 
 		// Integrations.
 		$this->classes->acf                    = new Social_Post_Flow_ACF();
