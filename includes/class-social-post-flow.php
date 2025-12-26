@@ -80,7 +80,7 @@ class Social_Post_Flow {
 
 		// Review.
 		$this->plugin->review_name   = $this->plugin->name;
-		$this->plugin->review_notice = 'Thanks for using Social Post Flow to scheduleand publish to social media!';
+		$this->plugin->review_notice = 'Thanks for using Social Post Flow to schedule and publish to social media!';
 
 		// Dashboard Submodule.
 		if ( ! class_exists( 'WPZincDashboardWidget' ) ) {

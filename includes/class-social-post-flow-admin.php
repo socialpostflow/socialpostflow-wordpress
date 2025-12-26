@@ -156,8 +156,8 @@ class Social_Post_Flow_Admin {
 				sprintf(
 					'%1$s <a href="%2$s">%3$s</a>',
 					esc_html__( 'Social Post Flow needs to be authorized before you can start sending Posts.', 'social-post-flow' ),
-					admin_url( 'admin.php?page=social-post-flow' ),
-					esc_html__( 'Click here to Authorize.', 'social-post-flow' )
+					social_post_flow()->get_class( 'api' )->get_oauth_url( admin_url( 'admin.php?page=social-post-flow' ) ),
+					esc_html__( 'Click here to authorize.', 'social-post-flow' )
 				)
 			);
 		}
@@ -627,6 +627,18 @@ class Social_Post_Flow_Admin {
 		$profiles = social_post_flow()->get_class( 'api' )->profiles( true, social_post_flow()->get_class( 'common' )->get_transient_expiration_time() );
 		if ( is_wp_error( $profiles ) ) {
 			social_post_flow()->get_class( 'notices' )->add_error_notice( $profiles->get_error_message() );
+		} elseif ( empty( $profiles ) ) {
+			// Clear any stored notices.
+			social_post_flow()->get_class( 'notices' )->delete_notices();
+
+			// Add error notice.
+			social_post_flow()->get_class( 'notices' )->add_error_notice(
+				__( 'Connect profiles to Social Post Flow to start sending WordPress content to your social media profiles.', 'social-post-flow' )
+			);
+
+			// Load connect profiles screen.
+			$this->connect_profiles_screen();
+			return;
 		}
 
 		// Get Settings Tab and Post Type we're managing settings for.
@@ -767,6 +779,46 @@ class Social_Post_Flow_Admin {
 
 		// Load View.
 		include_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/settings-auth-required.php';
+
+	}
+
+	/**
+	 * Outputs the connect profiles screen, allowing the user to begin the process of connecting
+	 * their social media accounts to Social Post Flow, without showing other settings.
+	 *
+	 * @since   1.1.6
+	 */
+	public function connect_profiles_screen() {
+
+		$providers = array(
+			'facebook'  => array(
+				'name' => 'Facebook',
+			),
+			'x'         => array(
+				'name' => 'X',
+			),
+			'linkedin'  => array(
+				'name' => 'LinkedIn',
+			),
+			'instagram' => array(
+				'name' => 'Instagram',
+			),
+			'threads'   => array(
+				'name' => 'Threads',
+			),
+			'pinterest' => array(
+				'name' => 'Pinterest',
+			),
+			'bluesky'   => array(
+				'name' => 'Bluesky',
+			),
+			'mastodon'  => array(
+				'name' => 'Mastodon',
+			),
+		);
+
+		// Load View.
+		include_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/settings-connect-profiles.php';
 
 	}
 
