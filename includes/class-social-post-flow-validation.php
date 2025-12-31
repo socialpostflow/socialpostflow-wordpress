@@ -74,7 +74,7 @@ class Social_Post_Flow_Validation {
 					__( 'Account Timezone:', 'social-post-flow' ),
 					esc_html( $api_timezone ),
 					esc_html( $api_date ),
-					esc_html( 'https://app.socialpostflow.com/profile' ),
+					esc_html( social_post_flow()->get_class( 'api' )->get_profile_url() ),
 					__( 'Fix', 'social-post-flow' )
 				)
 			);

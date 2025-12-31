@@ -27,26 +27,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<hr class="wp-header-end" />
 
 		<?php
-		social_post_flow()->get_class( 'notices' )->output_notices();
+		// Output an error notice that the user needs to connect their profiles to Social Post Flow.
 		?>
+		<div class="notice notice-error">
+			<p>
+				<?php esc_html_e( 'Connect profiles to Social Post Flow below to start sending WordPress content to social media.', 'social-post-flow' ); ?>
+			</p>
+		</div>
 
 		<div id="poststuff">
 			<div id="post-body" class="metabox-holder columns-1">
 				<div id="post-body-content">
 					<div id="normal-sortables" class="meta-box-sortables ui-sortable">
 						<div class="inside">
-							<div class="wpzinc-horizontal-selection options-2">
+							<div class="wpzinc-grid wpzinc-grid-columns-3">
 								<?php
 								foreach ( $providers as $provider => $provider_data ) {
 									?>
-									<label for="<?php echo esc_attr( $provider ); ?>">
-										<span><strong><?php echo esc_html( $provider_data['name'] ); ?></strong></span>
-										<span class="description">
-											<a href="https://app.socialpostflow.com/profiles/connect/<?php echo esc_attr( $provider ); ?>" class="button" target="_blank">
-												<?php esc_html_e( 'Connect', 'social-post-flow' ); ?>
-											</a>
-										</span>
-									</label>
+									<div class="wpzinc-grid-item">
+										<strong><?php echo esc_html( $provider_data['name'] ); ?></strong>
+										<a href="<?php echo esc_attr( social_post_flow()->get_class( 'api' )->get_connect_profiles_url( $provider ) ); ?>" class="button" target="_blank">
+											<?php esc_html_e( 'Connect', 'social-post-flow' ); ?>
+										</a>
+									</div>
 									<?php
 								}
 								?>

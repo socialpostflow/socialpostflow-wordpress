@@ -15,13 +15,22 @@
 class Social_Post_Flow_API {
 
 	/**
+	 * Holds the app endpoint
+	 *
+	 * @since   1.0.0
+	 *
+	 * @var     string.
+	 */
+	private $app_endpoint = 'https://socialpostflow.local/';
+
+	/**
 	 * Holds the API endpoint
 	 *
 	 * @since   1.0.0
 	 *
 	 * @var     string.
 	 */
-	private $api_endpoint = 'https://app.socialpostflow.com/api/';
+	private $api_endpoint = 'https://socialpostflow.local/api/';
 
 	/**
 	 * Holds the OAuth Authorize URL
@@ -30,7 +39,7 @@ class Social_Post_Flow_API {
 	 *
 	 * @var     string.
 	 */
-	private $oauth_authorize_url = 'https://app.socialpostflow.com/oauth/authorize';
+	private $oauth_authorize_url = 'https://socialpostflow.local/oauth/authorize';
 
 	/**
 	 * Holds the OAuth Redirect URL
@@ -39,7 +48,7 @@ class Social_Post_Flow_API {
 	 *
 	 * @var     string.
 	 */
-	private $oauth_redirect_uri = 'https://app.socialpostflow.com/oauth/callback';
+	private $oauth_redirect_uri = 'https://socialpostflow.local/oauth/callback';
 
 	/**
 	 * Holds the OAuth Token URL
@@ -48,7 +57,7 @@ class Social_Post_Flow_API {
 	 *
 	 * @var     string.
 	 */
-	private $oauth_token_url = 'https://app.socialpostflow.com/oauth/token';
+	private $oauth_token_url = 'https://socialpostflow.local/oauth/token';
 
 	/**
 	 * Holds the OAuth Client ID
@@ -86,7 +95,33 @@ class Social_Post_Flow_API {
 	 */
 	public function get_registration_url() {
 
-		return 'https://app.socialpostflow.com/register';
+		return $this->app_endpoint . 'register';
+
+	}
+
+	/**
+	 * Returns the URL used to view the user's billing information
+	 *
+	 * @since   1.0.0
+	 *
+	 * @return  string                 Billing URL
+	 */
+	public function get_billing_url() {
+
+		return $this->app_endpoint . 'billing';
+
+	}
+
+	/**
+	 * Returns the URL used to view the user's profile information
+	 *
+	 * @since   1.0.0
+	 *
+	 * @return  string                 Profile URL
+	 */
+	public function get_profile_url() {
+
+		return $this->app_endpoint . 'profile';
 
 	}
 
@@ -96,11 +131,16 @@ class Social_Post_Flow_API {
 	 *
 	 * @since   1.0.0
 	 *
-	 * @return  string  URL
+	 * @param   string $provider  Provider (facebook, x, linkedin, instagram, threads, pinterest, bluesky, mastodon).
+	 * @return  string             URL
 	 */
-	public function get_connect_profiles_url() {
+	public function get_connect_profiles_url( $provider = '' ) {
 
-		return 'https://app.socialpostflow.com/profiles';
+		if ( empty( $provider ) ) {
+			return $this->app_endpoint . 'profiles';
+		}
+
+		return $this->app_endpoint . 'profiles/connect/' . $provider;
 
 	}
 
