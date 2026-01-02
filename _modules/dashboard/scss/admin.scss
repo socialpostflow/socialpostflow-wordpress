@@ -870,6 +870,41 @@ div.wpzinc-vertical-tabbed-ui {
 }
 
 /**
+* Settings - Grid
+*/
+.wpzinc-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	margin: 0 0 20px 0;
+	column-gap: 20px;
+	row-gap: 20px;
+
+	&.wpzinc-grid-columns-3 {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	&.wpzinc-grid-columns-4 {
+		grid-template-columns: repeat(4, 1fr);
+	}
+
+	.wpzinc-grid-item {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		column-gap: 20px;
+		row-gap: 20px;
+		background-color: #fcfcfc;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		padding: 20px;
+		line-height: 30px;
+
+		.button {
+			text-align: center;
+		}
+	}
+}
+
+/**
 * Settings UI - Items in Headers
 */
 .postbox {

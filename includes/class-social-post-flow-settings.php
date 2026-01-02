@@ -151,13 +151,13 @@ class Social_Post_Flow_Settings {
 				'publish' => array(
 					'enabled' => 1,
 					'status'  => array(
-						$this->get_default_status( $post_type, 'New ' . ucfirst( $post_type ) . ': {title} {url}', 'queue_end' ),
+						$this->get_default_status( $post_type, '{title}', 'immediate' ),
 					),
 				),
 				'update'  => array(
 					'enabled' => 1,
 					'status'  => array(
-						$this->get_default_status( $post_type, 'Updated ' . ucfirst( $post_type ) . ': {title} {url}', 'queue_end' ),
+						$this->get_default_status( $post_type, 'Updated: {title}', 'immediate' ),
 					),
 				),
 			),
@@ -399,7 +399,7 @@ class Social_Post_Flow_Settings {
 		// Define skeleton status to be used for new statuses.
 		$status = array(
 			// All Profiles.
-			'post_type'                      => 'text',
+			'post_type'                      => 'link',
 			'text'                           => ( ! $default_message ? '{title}' : $default_message ),
 			'first_comment'                  => '',
 			'url'                            => '{url}',

@@ -394,68 +394,74 @@ class Social_Post_Flow_Notices {
 
 		// Success.
 		if ( count( $this->notices['success'] ) > 0 ) {
-			?>
-			<div class="notice notice-success is-dismissible">
-				<p>
-					<?php
-					echo wp_kses(
-						implode( '<br />', $this->notices['success'] ),
-						array(
-							'a'  => array(
-								'href'   => array(),
-								'target' => array(),
-							),
-							'br' => array(),
-						)
-					);
-					?>
-				</p>
-			</div>
-			<?php
+			foreach ( $this->notices['success'] as $notice ) {
+				?>
+				<div class="notice notice-success is-dismissible">
+					<p>
+						<?php
+						echo wp_kses(
+							$notice,
+							array(
+								'a'  => array(
+									'href'   => array(),
+									'target' => array(),
+								),
+								'br' => array(),
+							)
+						);
+						?>
+					</p>
+				</div>
+				<?php
+			}
 		}
 
 		// Warning.
 		if ( count( $this->notices['warning'] ) > 0 ) {
-			?>
-			<div class="notice notice-warning is-dismissible">
-				<p>
-					<?php
-					echo wp_kses(
-						implode( '<br />', $this->notices['warning'] ),
-						array(
-							'a'  => array(
-								'href'   => array(),
-								'target' => array(),
-							),
-							'br' => array(),
-						)
-					);
-					?>
-				</p>
-			</div>
-			<?php
+			foreach ( $this->notices['warning'] as $notice ) {
+				?>
+				<div class="notice notice-warning is-dismissible">
+					<p>
+						<?php
+						echo wp_kses(
+							$notice,
+							array(
+								'a'  => array(
+									'href'   => array(),
+									'target' => array(),
+								),
+								'br' => array(),
+							)
+						);
+						?>
+					</p>
+				</div>
+				<?php
+			}
 		}
 
 		// Error.
 		if ( count( $this->notices['error'] ) > 0 ) {
-			?>
-			<div class="notice notice-error is-dismissible">
-				<p>
-					<?php
-					echo wp_kses(
-						implode( '<br />', $this->notices['error'] ),
-						array(
-							'a'  => array(
-								'href'   => array(),
-								'target' => array(),
-							),
-							'br' => array(),
-						)
-					);
-					?>
-				</p>
-			</div>
-			<?php
+			foreach ( $this->notices['error'] as $notice ) {
+				?>
+				<div class="notice notice-error is-dismissible">
+					<p>
+						<?php
+						echo wp_kses(
+							$notice,
+							array(
+								'a'  => array(
+									'href'   => array(),
+									'target' => array(),
+								),
+								'br' => array(),
+							)
+						);
+						?>
+					</p>
+				</div>
+				<?php
+			}
 		}
 
 		// Clear storage if it's not enabled.

@@ -23,10 +23,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 				<select name="social-post-flow_post_type" class="post_type" size="1">
 					<?php
-					foreach ( social_post_flow()->get_class( 'common' )->get_status_post_type_options() as $status_post_type_key => $status_post_type ) {
+					foreach ( social_post_flow()->get_class( 'common' )->get_status_post_type_options() as $status_post_type_key => $status_post_type_label ) {
 						?>
-						<option value="<?php echo esc_attr( $status_post_type_key ); ?>" data-provider="<?php echo esc_attr( implode( ',', $status_post_type['conditions']['provider'] ) ); ?>">
-							<?php echo esc_attr( $status_post_type['label'] ); ?>
+						<option value="<?php echo esc_attr( $status_post_type_key ); ?>">
+							<?php echo esc_attr( $status_post_type_label ); ?>
 						</option>
 						<?php
 					}

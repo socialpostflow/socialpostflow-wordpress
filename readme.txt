@@ -5,7 +5,7 @@ Tags: auto post, social media, twitter, instagram, linkedin
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.1.5
+Stable tag: 1.1.6
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -437,6 +437,12 @@ Social Post Flow offers a 7-day free trial so you can test all features before p
 4. Post-level Logging.
 
 == Changelog ==
+
+= 1.1.6 (2026-01-02) =
+* Added: Show Connect Profiles screen when no social media profiles are connected to Social Post Flow
+* Added: Automatically enable publishing to connected social media profiles on new installations
+* Added: Automatically configure publishing to use the 'link' Post Type, to display an OpenGraph / card on published statuses
+* Updated: Status: Type: Improve enable/disable type based on provider
 
 = 1.1.5 (2025-12-23) =
 * Added: Bluesky support

@@ -124,6 +124,59 @@ class Social_Post_Flow_Admin {
 
 		social_post_flow()->get_class( 'settings' )->update_tokens( $tokens['access_token'], $tokens['refresh_token'], time() + $tokens['expires_in'] );
 
+		// Automatically enable the Posts > Publish action for all profiles connected to the user's account,
+		// if this is the first time the user has connected their account.
+		$this->enable_profiles_on_first_time_setup( $tokens['access_token'] );
+
+	}
+
+	/**
+	 * Automatically enables the Posts > Publish action for all profiles connected to the user's account.
+	 *
+	 * @since 1.1.6
+	 *
+	 * @param   string $access_token Access Token.
+	 */
+	private function enable_profiles_on_first_time_setup( $access_token ) {
+
+		// Get statuses for Posts.
+		$statuses = social_post_flow()->get_class( 'settings' )->get_settings( 'post' );
+
+		// Bail if statuses are not an array.
+		if ( ! is_array( $statuses ) ) {
+			return;
+		}
+
+		// Bail if keys other than 'default' exist; this means the user has already enabled the Posts > Publish action for some profiles.
+		if ( count( array_diff_key( $statuses, array( 'default' => '' ) ) ) > 0 ) {
+			return;
+		}
+
+		// Get profiles.
+		social_post_flow()->get_class( 'api' )->set_tokens( $access_token );
+		$profiles = social_post_flow()->get_class( 'api' )->profiles( true, social_post_flow()->get_class( 'common' )->get_transient_expiration_time() );
+
+		// Bail if the Profiles could not be fetched.
+		if ( is_wp_error( $profiles ) ) {
+			return;
+		}
+
+		// If no profiles exist, bail.
+		if ( empty( $profiles ) ) {
+			return;
+		}
+
+		// Enable the Posts > Publish action for all profiles.
+		foreach ( $profiles as $profile_id => $profile ) {
+			$statuses[ $profile_id ]['enabled'] = 1;
+		}
+
+		// Update the statuses.
+		social_post_flow()->get_class( 'settings' )->update_settings( 'post', $statuses );
+
+		// Clear the flag that indicates the user was shown the connect profiles screen.
+		update_option( 'social_post_flow_connect_screen', false );
+
 	}
 
 	/**
@@ -156,8 +209,8 @@ class Social_Post_Flow_Admin {
 				sprintf(
 					'%1$s <a href="%2$s">%3$s</a>',
 					esc_html__( 'Social Post Flow needs to be authorized before you can start sending Posts.', 'social-post-flow' ),
-					admin_url( 'admin.php?page=social-post-flow' ),
-					esc_html__( 'Click here to Authorize.', 'social-post-flow' )
+					social_post_flow()->get_class( 'api' )->get_oauth_url( admin_url( 'admin.php?page=social-post-flow' ) ),
+					esc_html__( 'Click here to authorize.', 'social-post-flow' )
 				)
 			);
 		}
@@ -592,9 +645,7 @@ class Social_Post_Flow_Admin {
 			social_post_flow()->get_class( 'notices' )->add_error_notice( $user->get_error_message() );
 		} else {
 			if ( ! $user['has_access'] ) {
-				social_post_flow()->get_class( 'notices' )->add_error_notice( 'Your trial to Social Post Flow has ended. <a href="https://app.socialpostflow.com/billing" target="_blank">Select a plan</a> to resume posting to social media, or <a href="https://www.socialpostflow.com/support" target="_blank">contact us</a> if you need help.' );
-			} elseif ( $user['stats']['posts'] === 0 ) {
-				social_post_flow()->get_class( 'notices' )->add_warning_notice( 'It looks like you haven\'t posted anything yet. If you need help getting started, <a href="https://www.socialpostflow.com/support" target="_blank">contact us</a>.' );
+				social_post_flow()->get_class( 'notices' )->add_error_notice( 'Your trial to Social Post Flow has ended. <a href="' . social_post_flow()->get_class( 'api' )->get_billing_url() . '" target="_blank">Select a plan</a> to resume posting to social media, or <a href="https://www.socialpostflow.com/support" target="_blank">contact us</a> if you need help.' );
 			}
 
 			// Check timezones match.
@@ -627,6 +678,16 @@ class Social_Post_Flow_Admin {
 		$profiles = social_post_flow()->get_class( 'api' )->profiles( true, social_post_flow()->get_class( 'common' )->get_transient_expiration_time() );
 		if ( is_wp_error( $profiles ) ) {
 			social_post_flow()->get_class( 'notices' )->add_error_notice( $profiles->get_error_message() );
+		} elseif ( empty( $profiles ) ) {
+			// Load connect profiles screen.
+			update_option( 'social_post_flow_connect_screen', true );
+			$this->connect_profiles_screen();
+			return;
+		} elseif ( get_option( 'social_post_flow_connect_screen' ) ) {
+			// User was on the load connect profiles screen i.e. had no profiles in Social Post Flow,
+			// but now profiles exist.
+			// Enable the profiles in the Post settings by default.
+			$this->enable_profiles_on_first_time_setup( $access_token );
 		}
 
 		// Get Settings Tab and Post Type we're managing settings for.
@@ -767,6 +828,46 @@ class Social_Post_Flow_Admin {
 
 		// Load View.
 		include_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/settings-auth-required.php';
+
+	}
+
+	/**
+	 * Outputs the connect profiles screen, allowing the user to begin the process of connecting
+	 * their social media accounts to Social Post Flow, without showing other settings.
+	 *
+	 * @since   1.1.6
+	 */
+	public function connect_profiles_screen() {
+
+		$providers = array(
+			'facebook'  => array(
+				'name' => 'Facebook',
+			),
+			'x'         => array(
+				'name' => 'X',
+			),
+			'linkedin'  => array(
+				'name' => 'LinkedIn',
+			),
+			'instagram' => array(
+				'name' => 'Instagram',
+			),
+			'threads'   => array(
+				'name' => 'Threads',
+			),
+			'pinterest' => array(
+				'name' => 'Pinterest',
+			),
+			'bluesky'   => array(
+				'name' => 'Bluesky',
+			),
+			'mastodon'  => array(
+				'name' => 'Mastodon',
+			),
+		);
+
+		// Load View.
+		include_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/settings-connect-profiles.php';
 
 	}
 
