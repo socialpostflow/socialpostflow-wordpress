@@ -292,15 +292,6 @@ class Social_Post_Flow_Notices {
 		// Get notices.
 		$notices = get_transient( $this->key_prefix );
 
-		/**
-		 * Filters the success and error notices to return.
-		 *
-		 * @since   1.0.0
-		 *
-		 * @param   array   $notices    Success and Error Notices.
-		 */
-		$notices = apply_filters( 'social_post_flow_notices_get_notices', $notices );
-
 		// If not an array, setup.
 		if ( ! is_array( $notices ) ) {
 			$notices = array(
@@ -320,6 +311,15 @@ class Social_Post_Flow_Notices {
 		if ( ! isset( $notices['error'] ) ) {
 			$notices['error'] = array();
 		}
+
+		/**
+		 * Filters the success, warning anderror notices to return.
+		 *
+		 * @since   1.0.0
+		 *
+		 * @param   array   $notices    Success and Error Notices.
+		 */
+		$notices = apply_filters( 'social_post_flow_notices_get_notices', $notices );
 
 		// Return.
 		return $notices;
@@ -379,36 +379,25 @@ class Social_Post_Flow_Notices {
 	}
 
 	/**
-	 * Output any success and error notices
+	 * Output any success, warning and error notices
 	 *
 	 * @since   1.0.0
 	 */
 	public function output_notices() {
 
-		// If no notices exist in the class, check the storage.
-		if ( count( $this->notices['success'] ) === 0 &&
-			count( $this->notices['warning'] ) === 0 &&
-			count( $this->notices['error'] ) === 0 ) {
-			$this->notices = $this->get_notices();
+		// Combine stored notices from get_notices() with notices in the class.
+		foreach ( $this->get_notices() as $type => $notices ) {
+			$this->notices[ $type ] = array_merge( $this->notices[ $type ], $notices );
 		}
 
-		// Success.
+		// Success notices.
 		if ( count( $this->notices['success'] ) > 0 ) {
 			foreach ( $this->notices['success'] as $notice ) {
 				?>
 				<div class="notice notice-success is-dismissible">
 					<p>
 						<?php
-						echo wp_kses(
-							$notice,
-							array(
-								'a'  => array(
-									'href'   => array(),
-									'target' => array(),
-								),
-								'br' => array(),
-							)
-						);
+						echo wp_kses( $notice, $this->get_allowed_tags() );
 						?>
 					</p>
 				</div>
@@ -416,23 +405,14 @@ class Social_Post_Flow_Notices {
 			}
 		}
 
-		// Warning.
+		// Warning notices.
 		if ( count( $this->notices['warning'] ) > 0 ) {
 			foreach ( $this->notices['warning'] as $notice ) {
 				?>
 				<div class="notice notice-warning is-dismissible">
 					<p>
 						<?php
-						echo wp_kses(
-							$notice,
-							array(
-								'a'  => array(
-									'href'   => array(),
-									'target' => array(),
-								),
-								'br' => array(),
-							)
-						);
+						echo wp_kses( $notice, $this->get_allowed_tags() );
 						?>
 					</p>
 				</div>
@@ -440,23 +420,14 @@ class Social_Post_Flow_Notices {
 			}
 		}
 
-		// Error.
+		// Error notices.
 		if ( count( $this->notices['error'] ) > 0 ) {
 			foreach ( $this->notices['error'] as $notice ) {
 				?>
 				<div class="notice notice-error is-dismissible">
 					<p>
 						<?php
-						echo wp_kses(
-							$notice,
-							array(
-								'a'  => array(
-									'href'   => array(),
-									'target' => array(),
-								),
-								'br' => array(),
-							)
-						);
+						echo wp_kses( $notice, $this->get_allowed_tags() );
 						?>
 					</p>
 				</div>
@@ -469,6 +440,27 @@ class Social_Post_Flow_Notices {
 		if ( ! $this->store ) {
 			$this->delete_notices();
 		}
+
+	}
+
+	/**
+	 * Returns an array of allowed HTML tags for notices.
+	 *
+	 * @since   1.1.7
+	 *
+	 * @return  array
+	 */
+	private function get_allowed_tags() {
+
+		return array(
+			'a'      => array(
+				'href'   => array(),
+				'target' => array(),
+				'title'  => array(),
+			),
+			'br'     => array(),
+			'strong' => array(),
+		);
 
 	}
 

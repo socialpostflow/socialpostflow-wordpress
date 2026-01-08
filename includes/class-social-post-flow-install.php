@@ -41,10 +41,10 @@ class Social_Post_Flow_Install {
 		// Create logging database table.
 		social_post_flow()->get_class( 'log' )->activate();
 
-		// Reschedule the cron events.
+		// Schedule the cron events.
 		social_post_flow()->get_class( 'cron' )->schedule_log_cleanup_event();
 		social_post_flow()->get_class( 'cron' )->schedule_media_cleanup_event();
-		social_post_flow()->get_class( 'cron' )->schedule_repost_event();
+		social_post_flow()->get_class( 'cron' )->schedule_user_access_event();
 
 		// Bail if settings already exist.
 		$settings = social_post_flow()->get_class( 'settings' )->get_settings( 'post' );
@@ -59,6 +59,29 @@ class Social_Post_Flow_Install {
 	}
 
 	/**
+	 * Runs upgrade routines between Plugin versions.
+	 *
+	 * @since   1.1.7
+	 */
+	public function upgrade() {
+
+		// Get current installed version number.
+		// false | 1.1.7.
+		$installed_version = get_option( 'social-post-flow-version' );
+
+		// If the version number matches the plugin version, bail.
+		if ( $installed_version === SOCIAL_POST_FLOW_PLUGIN_VERSION ) {
+			return;
+		}
+
+		// Reschedule the cron events.
+		social_post_flow()->get_class( 'cron' )->reschedule_log_cleanup_event();
+		social_post_flow()->get_class( 'cron' )->reschedule_media_cleanup_event();
+		social_post_flow()->get_class( 'cron' )->reschedule_user_access_event();
+
+	}
+
+	/**
 	 * Runs uninstallation routines
 	 *
 	 * @since   1.0.0
@@ -69,6 +92,7 @@ class Social_Post_Flow_Install {
 		social_post_flow()->get_class( 'cron' )->unschedule_log_cleanup_event();
 		social_post_flow()->get_class( 'cron' )->unschedule_media_cleanup_event();
 		social_post_flow()->get_class( 'cron' )->unschedule_repost_event();
+		social_post_flow()->get_class( 'cron' )->unschedule_user_access_event();
 
 	}
 
