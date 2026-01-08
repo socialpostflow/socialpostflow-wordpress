@@ -89,3 +89,23 @@ function social_post_flow_media_cleanup_cron() {
 
 }
 add_action( 'social_post_flow_media_cleanup_cron', 'social_post_flow_media_cleanup_cron' );
+
+/**
+ * Define the WP Cron function to check the user access status via the API
+ *
+ * @since   1.1.7
+ */
+function social_post_flow_user_access_cron() {
+
+	// Initialise Plugin.
+	$social_post_flow = Social_Post_Flow::get_instance();
+	$social_post_flow->initialize();
+
+	// Update the user access flag.
+	$social_post_flow->get_class( 'user_access' )->update_user_access_flag();
+
+	// Shutdown.
+	unset( $social_post_flow );
+
+}
+add_action( 'social_post_flow_user_access_cron', 'social_post_flow_user_access_cron' );

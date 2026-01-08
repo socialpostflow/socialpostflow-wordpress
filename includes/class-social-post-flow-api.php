@@ -466,9 +466,10 @@ class Social_Post_Flow_API {
 	 *
 	 * @since   1.0.0
 	 *
+	 * @param   int $transient_expiration_time  Transient Expiration Time, in seconds (default: 12 hours).
 	 * @return  WP_Error|array
 	 */
-	public function user() {
+	public function user( $transient_expiration_time = 43200 ) {
 
 		// Get user.
 		$user = $this->get( 'user' );
@@ -477,6 +478,9 @@ class Social_Post_Flow_API {
 		if ( is_wp_error( $user ) ) {
 			return $user;
 		}
+
+		// Store user in transient.
+		set_transient( 'social_post_flow_api_user', $user['data'], $transient_expiration_time );
 
 		// Return user.
 		return $user['data'];

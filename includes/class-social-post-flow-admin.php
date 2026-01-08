@@ -175,7 +175,7 @@ class Social_Post_Flow_Admin {
 		social_post_flow()->get_class( 'settings' )->update_settings( 'post', $statuses );
 
 		// Clear the flag that indicates the user was shown the connect profiles screen.
-		update_option( 'social_post_flow_connect_screen', false );
+		delete_option( 'social-post-flow-connect-screen' );
 
 	}
 
@@ -223,6 +223,15 @@ class Social_Post_Flow_Admin {
 	 * @since   1.0.0
 	 */
 	public function admin_notices() {
+
+		// Get current screen.
+		$screen = social_post_flow()->get_class( 'screen' )->get_current_screen();
+
+		// Don't output notices if we're on a Plugin screen, as they're output in views/settings.php
+		// to ensure notices added in [] are displayed.
+		if ( $screen['screen'] === 'settings' ) {
+			return;
+		}
 
 		// Output notices.
 		social_post_flow()->get_class( 'notices' )->set_key_prefix( 'social_post_flow_' . wp_get_current_user()->ID );
@@ -644,8 +653,11 @@ class Social_Post_Flow_Admin {
 		if ( is_wp_error( $user ) ) {
 			social_post_flow()->get_class( 'notices' )->add_error_notice( $user->get_error_message() );
 		} else {
+			// Update whether the user has access.
 			if ( ! $user['has_access'] ) {
-				social_post_flow()->get_class( 'notices' )->add_error_notice( 'Your trial to Social Post Flow has ended. <a href="' . social_post_flow()->get_class( 'api' )->get_billing_url() . '" target="_blank">Select a plan</a> to resume posting to social media, or <a href="https://www.socialpostflow.com/support" target="_blank">contact us</a> if you need help.' );
+				social_post_flow()->get_class( 'user_access' )->create_user_no_access_flag();
+			} else {
+				social_post_flow()->get_class( 'user_access' )->delete_user_no_access_flag();
 			}
 
 			// Check timezones match.
@@ -680,10 +692,10 @@ class Social_Post_Flow_Admin {
 			social_post_flow()->get_class( 'notices' )->add_error_notice( $profiles->get_error_message() );
 		} elseif ( empty( $profiles ) ) {
 			// Load connect profiles screen.
-			update_option( 'social_post_flow_connect_screen', true );
+			update_option( 'social-post-flow-connect-screen', true );
 			$this->connect_profiles_screen();
 			return;
-		} elseif ( get_option( 'social_post_flow_connect_screen' ) ) {
+		} elseif ( get_option( 'social-post-flow-connect-screen' ) ) {
 			// User was on the load connect profiles screen i.e. had no profiles in Social Post Flow,
 			// but now profiles exist.
 			// Enable the profiles in the Post settings by default.

@@ -164,6 +164,7 @@ class Social_Post_Flow {
 		$this->classes->repost        = new Social_Post_Flow_Repost();
 		$this->classes->screen        = new Social_Post_Flow_Screen();
 		$this->classes->settings      = new Social_Post_Flow_Settings();
+		$this->classes->user_access   = new Social_Post_Flow_User_Access();
 		$this->classes->validation    = new Social_Post_Flow_Validation();
 
 		// Integrations.

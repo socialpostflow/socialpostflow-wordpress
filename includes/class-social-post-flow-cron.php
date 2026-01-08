@@ -254,6 +254,82 @@ class Social_Post_Flow_Cron {
 	}
 
 	/**
+	 * Schedules the user access event in the WordPress CRON on a daily basis
+	 *
+	 * @since   1.1.7
+	 */
+	public function schedule_user_access_event() {
+
+		// Bail if the scheduled event already exists.
+		$scheduled_event = $this->get_user_access_event();
+		if ( $scheduled_event !== false ) {
+			return;
+		}
+
+		// Schedule event.
+		$scheduled_date_time = gmdate( 'Y-m-d', strtotime( '+1 day' ) ) . ' 01:00:00';
+		wp_schedule_event( strtotime( $scheduled_date_time ), 'daily', 'social_post_flow_user_access_cron' );
+
+	}
+
+	/**
+	 * Unschedules the user access event in the WordPress CRON.
+	 *
+	 * @since   1.1.7
+	 */
+	public function unschedule_user_access_event() {
+
+		wp_clear_scheduled_hook( 'social_post_flow_user_access_cron' );
+
+	}
+
+	/**
+	 * Reschedules the user access event in the WordPress CRON, by unscheduling
+	 * and scheduling it.
+	 *
+	 * @since   1.1.7
+	 */
+	public function reschedule_user_access_event() {
+
+		$this->unschedule_user_access_event();
+		$this->schedule_user_access_event();
+
+	}
+
+	/**
+	 * Returns the scheduled user access event, if it exists
+	 *
+	 * @since   1.1.7
+	 */
+	public function get_user_access_event() {
+
+		return wp_get_schedule( 'social_post_flow_user_access_cron' );
+
+	}
+
+	/**
+	 * Returns the user access event's next date and time to run, if it exists
+	 *
+	 * @since   1.1.7
+	 *
+	 * @param   mixed $format     Format Timestamp (false | php date() compat. string).
+	 */
+	public function get_user_access_event_next_scheduled( $format = false ) {
+
+		// Get timestamp for when the event will next run.
+		$scheduled = wp_next_scheduled( 'social_post_flow_user_access_cron' );
+
+		// If no timestamp or we're not formatting the result, return it now.
+		if ( ! $scheduled || ! $format ) {
+			return $scheduled;
+		}
+
+		// Return formatted date/time.
+		return date( $format, $scheduled ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+
+	}
+
+	/**
 	 * Runs the publish CRON event for the given Post ID.
 	 *
 	 * Calls Social_Post_Flow_Publish::publish() to compile statuses and send them.
