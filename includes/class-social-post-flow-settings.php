@@ -151,13 +151,13 @@ class Social_Post_Flow_Settings {
 				'publish' => array(
 					'enabled' => 1,
 					'status'  => array(
-						$this->get_default_status( $post_type, '{title}', 'immediate' ),
+						$this->get_default_status( $post_type, '{title}', 'queue_end' ),
 					),
 				),
 				'update'  => array(
 					'enabled' => 1,
 					'status'  => array(
-						$this->get_default_status( $post_type, 'Updated: {title}', 'immediate' ),
+						$this->get_default_status( $post_type, 'Updated: {title}', 'queue_end' ),
 					),
 				),
 			),

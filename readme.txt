@@ -439,6 +439,7 @@ Social Post Flow offers a 7-day free trial so you can test all features before p
 == Changelog ==
 
 = 1.1.7 (2026-01-08) =
+* Fix: New Installations: Set statuses to add to end of queue (i.e. hourly) instead of post immediately, for better views and engagement
 * Fix: Repost: Don't automatically schedule the repost event when reposting is disabled
 
 = 1.1.6 (2026-01-02) =
