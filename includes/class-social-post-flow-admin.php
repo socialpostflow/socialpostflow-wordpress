@@ -667,7 +667,7 @@ class Social_Post_Flow_Admin {
 			}
 
 			// If the user is in a trial, show a notice.
-			if ( ! $user['subscribed'] && $user['trial_days_remaining'] > 0 ) {
+			if ( ! $user['subscribed'] && $user['trial_days_remaining'] > 0 && $user['trial_days_remaining'] < 5 ) {
 				// Get the checkout URL.
 				$checkout_url = ( ( array_key_exists( 'checkout_url', $user ) && ! empty( $user['checkout_url'] ) ) ? $user['checkout_url'] : social_post_flow()->get_class( 'api' )->get_billing_url() );
 
