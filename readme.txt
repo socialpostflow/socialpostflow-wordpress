@@ -5,7 +5,7 @@ Tags: auto post, social media, twitter, instagram, linkedin
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.1.7
+Stable tag: 1.1.8
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -437,6 +437,9 @@ Social Post Flow offers a 7-day free trial so you can test all features before p
 4. Post-level Logging.
 
 == Changelog ==
+
+= 1.1.8 (2026-01-19) =
+* Added: Display number of days remaining in trial
 
 = 1.1.7 (2026-01-08) =
 * Fix: New Installations: Set statuses to add to end of queue (i.e. hourly) instead of post immediately, for better views and engagement
