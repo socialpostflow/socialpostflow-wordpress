@@ -55,17 +55,12 @@ class Social_Post_Flow_User_Access {
 		// This prevents querying the API on every request.
 		$user = get_transient( 'social_post_flow_api_user' );
 
-		// Get the checkout URL.
-		// If it's included in the user transient, it'll be a direct checkout link to the minimum plan the user needs.
-		// Otherwise, fall back to the billing page.
-		$checkout_url = ( ( array_key_exists( 'checkout_url', $user ) && ! empty( $user['checkout_url'] ) ) ? $user['checkout_url'] : social_post_flow()->get_class( 'api' )->get_billing_url() );
-
 		// Add the notice.
 		$notices['error'][] = sprintf(
 			'<strong>%s:</strong> %s <a href="%s" target="_blank">%s</a> %s<br /><a href="%s">%s</a>',
 			__( 'Social Post Flow', 'social-post-flow' ),
-			__( 'Your trial has ended.', 'social-post-flow' ),
-			$checkout_url,
+			__( 'Your trial has ended. A paid subscription is required for continued use.', 'social-post-flow' ),
+			social_post_flow()->get_class( 'api' )->get_billing_url(),
 			__( 'Purchase a plan', 'social-post-flow' ),
 			__( 'to resume posting to social media.', 'social-post-flow' ),
 			admin_url( 'admin.php?page=social-post-flow' ),

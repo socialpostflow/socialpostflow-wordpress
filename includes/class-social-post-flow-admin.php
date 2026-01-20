@@ -668,16 +668,13 @@ class Social_Post_Flow_Admin {
 
 			// If the user is in a trial, show a notice.
 			if ( ! $user['subscribed'] && $user['trial_days_remaining'] > 0 && $user['trial_days_remaining'] < 5 ) {
-				// Get the checkout URL.
-				$checkout_url = ( ( array_key_exists( 'checkout_url', $user ) && ! empty( $user['checkout_url'] ) ) ? $user['checkout_url'] : social_post_flow()->get_class( 'api' )->get_billing_url() );
-
 				social_post_flow()->get_class( 'notices' )->add_warning_notice(
 					sprintf(
 						'%s %s %s <a href="%s" target="_blank">%s</a>',
 						__( 'Your trial ends in', 'social-post-flow' ),
 						$user['trial_days_remaining'],
 						__( 'days. To ensure uninterrupted posting,', 'social-post-flow' ),
-						$checkout_url,
+						social_post_flow()->get_class( 'api' )->get_billing_url(),
 						__( 'upgrade to a paid plan', 'social-post-flow' )
 					)
 				);
