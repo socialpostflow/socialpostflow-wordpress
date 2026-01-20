@@ -5,7 +5,7 @@ Tags: auto post, social media, twitter, instagram, linkedin
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.1.8
+Stable tag: 1.1.9
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -437,6 +437,10 @@ Social Post Flow offers a 7-day free trial so you can test all features before p
 4. Post-level Logging.
 
 == Changelog ==
+
+= 1.1.9 (2026-01-20) =
+* Fix: Validation: `DateTimeZone::__construct(): Unknown or bad timezone` warning notice when account used a UTC offset
+* Fix: Billing URL in notices
 
 = 1.1.8 (2026-01-19) =
 * Added: Display number of days remaining in trial

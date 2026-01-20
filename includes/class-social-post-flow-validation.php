@@ -44,8 +44,9 @@ class Social_Post_Flow_Validation {
 	 */
 	public function timezones_match( $api_timezone ) {
 
-		// Get WordPress timezone.
+		// Get WordPress timezone, and convert API timezone to a valid DateTimeZone offset value.
 		$wordpress_timezone = social_post_flow()->get_class( 'date' )->convert_wordpress_gmt_offset_to_offset_value( get_option( 'gmt_offset' ) );
+		$api_timezone       = social_post_flow()->get_class( 'date' )->convert_timezone_or_utc_to_offset_value( $api_timezone );
 
 		// Fetch the current date and time, to the minute, for each of the timezones.
 		try {

@@ -8,7 +8,7 @@
  * @wordpress-plugin
  * Plugin Name: Social Post Flow
  * Plugin URI: http://www.socialpostflow.com/integrations/wordpress
- * Version: 1.1.8
+ * Version: 1.1.9
  * Author: Social Post Flow
  * Author URI: http://www.socialpostflow.com
  * Description: Send WordPress Pages, Posts or Custom Post Types to social media for scheduled publishing to social networks.
@@ -27,8 +27,8 @@ if ( class_exists( 'Social_Post_Flow' ) ) {
 }
 
 // Define Plugin version and build date.
-define( 'SOCIAL_POST_FLOW_PLUGIN_VERSION', '1.1.8' );
-define( 'SOCIAL_POST_FLOW_PLUGIN_BUILD_DATE', '2026-01-19 18:00:00' );
+define( 'SOCIAL_POST_FLOW_PLUGIN_VERSION', '1.1.9' );
+define( 'SOCIAL_POST_FLOW_PLUGIN_BUILD_DATE', '2026-01-20 12:00:00' );
 
 // Define Plugin paths.
 define( 'SOCIAL_POST_FLOW_PLUGIN_URL', plugin_dir_url( __FILE__ ) );

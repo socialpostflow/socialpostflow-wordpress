@@ -147,4 +147,42 @@ class Social_Post_Flow_Date {
 
 	}
 
+	/**
+	 * Returns a DateTimeZone compatible offset value for the given named or UTC offset:
+	 * - Asia/Singapore --> Asia/Singapore
+	 * - UTC-5 --> 05:00
+	 *
+	 * @since   1.1.9
+	 *
+	 * @param   string $timezone   Timezone or UTC offset (Asia/Singapore, UTC-5, etc).
+	 * @return  string             DateTimeZone compatible offset value (e.g. +0500, -0500, etc)
+	 */
+	public function convert_timezone_or_utc_to_offset_value( $timezone ) {
+
+		// If the timezone is 'UTC', don't need to convert.
+		if ( $timezone === 'UTC' ) {
+			return $timezone;
+		}
+
+		// If the timezone isn't a manual UTC offset, don't need to convert.
+		if ( ! str_starts_with( $timezone, 'UTC' ) ) {
+			return $timezone;
+		}
+
+		// Fetch the offset - "+3", "-5", "+5:30", etc.
+		$offset = str_replace( 'UTC', '', $timezone );
+
+		// Match optional fractional minutes.
+		if ( preg_match( '/^([+-]?)(\d+)(?::(\d+))?$/', $offset, $matches ) ) {
+			$sign    = ( $matches[1] !== '' ) ? $matches[1] : '+';
+			$hours   = str_pad( $matches[2], 2, '0', STR_PAD_LEFT );
+			$minutes = isset( $matches[3] ) ? str_pad( $matches[3], 2, '0', STR_PAD_LEFT ) : '00';
+
+			return $sign . $hours . ':' . $minutes;
+		}
+
+		return $offset;
+
+	}
+
 }
