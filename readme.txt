@@ -5,7 +5,7 @@ Tags: auto post, social media, twitter, instagram, tiktok
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -441,6 +441,9 @@ Social Post Flow offers a 7-day free trial so you can test all features before p
 4. Post-level Logging.
 
 == Changelog ==
+
+= 1.2.1 (2026-01-29) =
+* Fix: Authorization: Improved reliability of authorization by using unique code identifier
 
 = 1.2.0 (2026-01-26) =
 * Added: TikTok support

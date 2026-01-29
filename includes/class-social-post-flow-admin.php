@@ -54,7 +54,7 @@ class Social_Post_Flow_Admin {
 	public function maybe_get_access_token() {
 
 		// If a code is included in the request, exchange it for an access token.
-		if ( ! filter_has_var( INPUT_GET, 'code' ) ) {
+		if ( ! filter_has_var( INPUT_GET, 'social-post-flow-code' ) ) {
 			return;
 		}
 
@@ -62,7 +62,7 @@ class Social_Post_Flow_Admin {
 		social_post_flow()->get_class( 'notices' )->set_key_prefix( 'social_post_flow_' . wp_get_current_user()->ID );
 
 		// Sanitize token.
-		$authorization_code = filter_input( INPUT_GET, 'code', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+		$authorization_code = filter_input( INPUT_GET, 'social-post-flow-code', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
 
 		// Exchange the authorization code and verifier for an access token.
 		$result = social_post_flow()->get_class( 'api' )->get_access_token( $authorization_code );
