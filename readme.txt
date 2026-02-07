@@ -1,19 +1,19 @@
-=== Social Media Auto Poster - Social Post Flow ===
+=== Social Media Auto Publisher - Schedule & Publish Posts ===
 Contributors: socialpostflow
 Donate link: https://www.socialpostflow.com/integrations/wordpress
-Tags: auto post, social media, twitter, instagram, tiktok
+Tags: auto post, social media, twitter, instagram, linkedin
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Auto publish to Facebook, X/Twitter, Threads, Instagram, LinkedIn, Pinterest, TikTok, Mastodon and Bluesky.
+Auto publish WordPress posts to Facebook, X/Twitter, Threads, Instagram, LinkedIn, Pinterest, TikTok, Mastodon and Bluesky.
 
 == Description ==
 
-Social Post Flow is a social media auto poster WordPress plugin that automatically publishes your Posts, Pages, Events, Products and Custom Post Types to Facebook, X/Twitter, Threads, Instagram, LinkedIn, Pinterest, TikTok, Mastodon and Bluesky. Connect your social media accounts in minutes and start scheduling posts with unique, dynamic content for each platform.
+Auto Post to Social Media is a powerful WordPress plugin that automatically publishes your Posts, Pages, Events, Products and Custom Post Types to Facebook, X/Twitter, Threads, Instagram, LinkedIn, Pinterest, TikTok, Mastodon and Bluesky. Connect your social media accounts in minutes and start scheduling posts with unique, dynamic content for each platform.
 
 Don't have a Social Post Flow account? Pricing starts at $49/year for 5 social accounts, and you can [sign up for a free 7 day trial](https://app.socialpostflow.com/register)
 
@@ -441,6 +441,9 @@ Social Post Flow offers a 7-day free trial so you can test all features before p
 4. Post-level Logging.
 
 == Changelog ==
+
+= 1.2.2 (2026-02-07) =
+* Added: Settings: General Settings: Disable Excerpt Fallback. See Docs: https://www.socialpostflow.com/documentation/wordpress-plugin/general-settings/#disable-excerpt-fallback
 
 = 1.2.1 (2026-01-29) =
 * Fix: Authorization: Improved reliability of authorization by using unique code identifier

@@ -824,6 +824,7 @@ class Social_Post_Flow_Settings {
 			$this->settings_name . '-access-token',
 			$this->settings_name . '-custom_tags',
 			$this->settings_name . '-cron',
+			$this->settings_name . '-disable_excerpt_fallback',
 			$this->settings_name . '-hide_meta_box_by_roles',
 			$this->settings_name . '-image_custom',
 			$this->settings_name . '-image_dimensions',

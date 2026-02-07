@@ -2972,9 +2972,13 @@ class Social_Post_Flow_Publish {
 	 */
 	private function register_post_searches_replacements( $searches_replacements, $post ) {
 
+		// Check Plugin Settings to see if the excerpt should fallback to the content if no
+		// Excerpt defined.
+		$excerpt_fallback = ( social_post_flow()->get_class( 'settings' )->get_option( 'disable_excerpt_fallback', false ) ? false : true );
+
 		$searches_replacements['sitename']         = get_bloginfo( 'name' );
 		$searches_replacements['title']            = $this->get_title( $post );
-		$searches_replacements['excerpt']          = $this->get_excerpt( $post );
+		$searches_replacements['excerpt']          = $this->get_excerpt( $post, $excerpt_fallback );
 		$searches_replacements['content']          = $this->get_content( $post );
 		$searches_replacements['content_more_tag'] = $this->get_content( $post, true );
 		$searches_replacements['date']             = $this->get_date( $post );
@@ -3217,14 +3221,19 @@ class Social_Post_Flow_Publish {
 	 *
 	 * @since   1.0.0
 	 *
-	 * @param   WP_Post $post               WordPress Post.
-	 * @return  string                      Excerpt
+	 * @param   WP_Post $post      WordPress Post.
+	 * @param   bool    $fallback  Use Content if no Excerpt exists.
+	 * @return  string             Excerpt
 	 */
-	private function get_excerpt( $post ) {
+	private function get_excerpt( $post, $fallback = true ) {
 
 		// Fetch excerpt.
 		if ( empty( $post->post_excerpt ) ) {
-			$excerpt = $post->post_content;
+			if ( $fallback ) {
+				$excerpt = $post->post_content;
+			} else {
+				$excerpt = $post->post_excerpt;
+			}
 		} else {
 			// Remove some third party Plugin filters that wrongly output content that we don't want in a status.
 			remove_filter( 'get_the_excerpt', 'powerpress_content' );
@@ -3242,8 +3251,9 @@ class Social_Post_Flow_Publish {
 		 *
 		 * @param   string      $excerpt    Post Excerpt.
 		 * @param   WP_Post     $post       WordPress Post.
+		 * @param   bool        $fallback   Use Content if no Excerpt exists.
 		 */
-		$excerpt = apply_filters( 'social_post_flow_publish_get_excerpt', $excerpt, $post );
+		$excerpt = apply_filters( 'social_post_flow_publish_get_excerpt', $excerpt, $post, $fallback );
 
 		// Return.
 		return $excerpt;

@@ -1280,6 +1280,7 @@ class Social_Post_Flow_Admin {
 
 				// General Settings.
 				social_post_flow()->get_class( 'settings' )->update_option( 'test_mode', ( isset( $settings['test_mode'] ) ? 1 : 0 ) );
+				social_post_flow()->get_class( 'settings' )->update_option( 'disable_excerpt_fallback', ( isset( $settings['disable_excerpt_fallback'] ) ? 1 : 0 ) );
 				social_post_flow()->get_class( 'settings' )->update_option( 'cron', ( isset( $settings['cron'] ) ? 1 : 0 ) );
 				social_post_flow()->get_class( 'settings' )->update_option( 'cron_delay', ( isset( $settings['cron_delay'] ) ? absint( $settings['cron_delay'] ) : 30 ) );
 				social_post_flow()->get_class( 'settings' )->update_option( 'override', ( isset( $settings['override'] ) ? $settings['override'] : 0 ) );

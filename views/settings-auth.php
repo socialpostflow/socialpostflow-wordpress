@@ -180,6 +180,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 				<div class="wpzinc-option">
 					<div class="left">
+						<label for="disable_excerpt_fallback"><?php esc_html_e( 'Disable Excerpt Fallback?', 'social-post-flow' ); ?></label>
+					</div>
+					<div class="right">
+						<input type="checkbox" name="disable_excerpt_fallback" id="disable_excerpt_fallback" value="1" <?php checked( $this->get_setting( '', 'disable_excerpt_fallback' ), 1 ); ?> />
+
+						<p class="description">
+							<?php
+							esc_html_e( 'If enabled, any {excerpt} tag used in statuses will be blank if no Post Excerpt is explicitly set in the Post.', 'social-post-flow' );
+							?>
+						</p>
+					</div>
+				</div>
+
+				<div class="wpzinc-option">
+					<div class="left">
 						<label for="override"><?php esc_html_e( 'Post Level Default', 'social-post-flow' ); ?></label>
 					</div>
 					<div class="right">
