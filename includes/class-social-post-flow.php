@@ -110,8 +110,16 @@ class Social_Post_Flow {
 	 */
 	public function admin_menus( $minimum_capability ) {
 
+		// Main menu title.
+		$menu_title = $this->plugin->displayName;
+
+		// If the user's trial ended, add a badge to the menu title.
+		if ( $this->get_class( 'user_access' )->user_has_no_access() ) {
+			$menu_title = 'Social Post<br />Flow <span class="update-plugins count-1"><span class="plugin-count">!</span></span>';
+		}
+
 		// Settings.
-		add_menu_page( $this->plugin->displayName, $this->plugin->displayName, $minimum_capability, $this->plugin->name, array( $this->get_class( 'admin' ), 'settings_screen' ), $this->plugin->logo );
+		add_menu_page( $this->plugin->displayName, $menu_title, $minimum_capability, $this->plugin->name, array( $this->get_class( 'admin' ), 'settings_screen' ), $this->plugin->logo );
 		add_submenu_page( $this->plugin->name, __( 'Settings', 'social-post-flow' ), __( 'Settings', 'social-post-flow' ), $minimum_capability, $this->plugin->name, array( $this->get_class( 'admin' ), 'settings_screen' ) );
 
 		// Only show Bulk Publish and Logs if connected to the API.
