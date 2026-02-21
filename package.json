@@ -3,7 +3,7 @@
     "private": true,
     "scripts": {
       "lint:css": "wp-scripts lint-style 'assets/scss/*.scss' --max-warnings=0",
-      "fix:css": "prettier --write 'assets/scss/*.scss' && wp-scripts lint-style 'assets/scss/*.scss --fix",
+      "fix:css": "prettier --write 'assets/scss/**/*.scss' && wp-scripts lint-style 'assets/scss/**/*.scss' --fix",
       "build:css": "sass assets/scss:assets/css --no-source-map --style=compressed",
       
       "lint:js": "wp-scripts lint-js 'assets/js/*.js' --max-warnings=0",

@@ -1,18 +1,12 @@
-body.wpzinc {
-	/**
-	* Progress Bar
-	*/
-	.wpzinc-option.progressbar {
-		@import "progressbar";
-	}
-}
-
 /**
  * Menu Icon
  */
 li.toplevel_page_social-post-flow {
-    a {
+
+	a {
+
 		div.wp-menu-image {
+
 			img {
 				padding: 6px 0 0 0 !important;
 				width: 22px;
@@ -27,7 +21,9 @@ li.toplevel_page_social-post-flow {
 * Header Icon
 */
 body.wpzinc.social-post-flow {
+
 	div.wrap {
+
 		h1.wp-heading-inline {
 			background-image: url(../images/icons/logo-dark.svg);
 			background-position: 25px 50%;
@@ -38,11 +34,104 @@ body.wpzinc.social-post-flow {
 }
 
 /**
+* Log
+*/
+table.social-post-flow-log {
+
+	tbody {
+
+		tr {
+
+			&.error {
+
+				td,
+				th {
+					background: #ffcdcd;
+				}
+
+				&.alternate {
+
+					td,
+					th {
+						background: #fcbbbb;
+					}
+				}
+
+				a {
+					text-decoration: none;
+				}
+			}
+
+			&.success {
+
+				td,
+				th {
+					background: #ddfede;
+				}
+
+				&.alternate {
+
+					td,
+					th {
+						background: #cafcbb;
+					}
+				}
+			}
+
+			&.warning {
+
+				td,
+				th {
+					background: #ffa500;
+				}
+
+				&.alternate {
+
+					td,
+					th {
+						background: #e6a62e;
+					}
+				}
+			}
+		}
+	}
+}
+
+/**
+* Log Meta Box
+*/
+#social-post-flow-log {
+
+	div.inside {
+		margin: 0;
+		padding: 0;
+
+		div.wpzinc-option {
+
+			table.social-post-flow-log {
+
+				thead {
+
+					tr {
+
+						th {
+							font-weight: 700;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+/**
 * Post Meta
 */
 body.post-php,
 body.post-new-php {
+
 	#social-post-flow {
+
 		/**
 		 * Force Gutenberg Show / Hide Arrow Button to display over h2.hndle,
 		 * otherwise .hndle background will hide this button
@@ -56,7 +145,7 @@ body.post-new-php {
 			background: #fff;
 			border-top: 1px solid #e5e5e5;
 			border-right: 1px solid #e5e5e5;
-			border-left: 1px solid #e5e5e5;	
+			border-left: 1px solid #e5e5e5;
 		}
 
 		div.inside {
@@ -75,6 +164,7 @@ body.post-new-php {
 	 * Image
 	 */
 	#social-post-flow-image {
+
 		div.inside {
 			margin: 0;
 			padding: 0;
@@ -83,76 +173,10 @@ body.post-new-php {
 }
 
 /**
-* Log
-*/
-#social-post-flow-log {
-	div.inside {
-		margin: 0;
-		padding: 0;	
-	
-		div.wpzinc-option {
-			table.social-post-flow-log {
-				thead {
-					tr {
-						th {
-							font-weight: 700;
-						}
-					}
-				}
-			}
-		}
-	}
-}
-table.social-post-flow-log {
-	tbody {
-		tr {
-			&.success {
-				td, th {
-					background: #ddfede;
-				}
-
-				&.alternate {
-					td, th {
-						background: #cafcbb;
-					}
-				}
-			}
-
-			&.warning {
-				td, th {
-					background: #ffa500;
-				}
-
-				&.alternate {
-					td, th {
-						background: #e6a62e;
-					}
-				}
-			}
-
-			&.error {
-				td, th {
-					background: #ffcdcd;
-				}
-
-				&.alternate {
-					td, th {
-						background: #fcbbbb;
-					}
-				}
-
-				a {
-					text-decoration: none;
-				}
-			}
-		}
-	}
-}
-
-/**
 * Gutenberg Meta Boxes
 */
 body.block-editor-page {
+
 	#social-post-flow,
 	#social-post-flow-log {
 		margin-bottom: 20px;
@@ -163,42 +187,56 @@ body.block-editor-page {
 * Settings (Post Meta and Settings Screen)
 */
 #social-post-flow {
+
 	ul.wpzinc-nav-tabs {
-		li {		
+
+		li {
+
 			/**
 			* Settings
 			*/
 			&.image {
+
 				a {
 					background-image: url(../../_modules/dashboard/feather/image.svg);
 					background-size: 16px 16px;
 				}
 			}
+
 			&.lock {
+
 				a {
 					background-image: url(../../_modules/dashboard/feather/lock.svg);
 					background-size: 16px 16px;
 				}
 			}
+
 			&.arrow-right-circle {
+
 				a {
 					background-image: url(../../_modules/dashboard/feather/arrow-right-circle.svg);
 					background-size: 16px 16px;
 				}
 			}
+
 			&.file-text {
+
 				a {
 					background-image: url(../../_modules/dashboard/feather/file-text.svg);
 					background-size: 16px 16px;
 				}
 			}
+
 			&.users {
+
 				a {
 					background-image: url(../../_modules/dashboard/feather/users.svg);
 					background-size: 16px 16px;
 				}
 			}
+
 			&.tag {
+
 				a {
 					background-image: url(../../_modules/dashboard/feather/tag.svg);
 					background-size: 16px 16px;
@@ -209,66 +247,87 @@ body.block-editor-page {
 			* Profile Types
 			*/
 			&.default {
+
 				a {
 					background-image: url(../../_modules/dashboard/feather/settings.svg);
 					background-size: 16px 16px;
 				}
 			}
+
 			&.facebook {
+
 				a {
 					background-image: url(../../_modules/dashboard/feather/facebook.svg);
 					background-size: 16px 16px;
 				}
 			}
+
 			&.threads {
+
 				a {
 					background-image: url(../../_modules/dashboard/feather/at-sign.svg);
 					background-size: 16px 16px;
 				}
 			}
+
 			&.instagram {
+
 				a {
 					background-image: url(../../_modules/dashboard/feather/instagram.svg);
 					background-size: 16px 16px;
 				}
 			}
+
 			&.linkedin {
+
 				a {
 					background-image: url(../../_modules/dashboard/feather/linkedin.svg);
 					background-size: 16px 16px;
 				}
 			}
+
 			&.x {
+
 				a {
 					background-image: url(../../_modules/dashboard/feather/x.svg);
 					background-size: 16px 16px;
 				}
 			}
+
 			&.mastodon {
+
 				a {
 					background-image: url(../../_modules/dashboard/feather/mastodon.svg);
 					background-size: 16px 16px;
 				}
 			}
+
 			&.bluesky {
+
 				a {
 					background-image: url(../../_modules/dashboard/feather/bluesky.svg);
 					background-size: 16px 16px;
 				}
 			}
+
 			&.pinterest {
+
 				a {
 					background-image: url(../../_modules/dashboard/feather/pinterest.svg);
 					background-size: 16px 16px;
 				}
 			}
+
 			&.tiktok {
+
 				a {
 					background-image: url(../../_modules/dashboard/feather/tiktok.svg);
 					background-size: 16px 16px;
 				}
 			}
+
 			&.external-link {
+
 				a {
 					background-image: url(../../_modules/dashboard/feather/external-link.svg);
 					background-size: 16px 16px;
@@ -279,12 +338,17 @@ body.block-editor-page {
 
 	ul.wpzinc-nav-tabs,
 	ul.wpzinc-nav-tabs-horizontal {
+
 		li {
+
 			a {
+
 				span.dashicons.dashicons-yes {
 					display: none;
 				}
+
 				&.enabled {
+
 					span.dashicons.dashicons-yes {
 						display: inline-block;
 					}
@@ -310,15 +374,19 @@ body.block-editor-page {
 		* Statuses
 		*/
 		div.statuses {
+
 			/**
 			* Status
 			*/
 			tr.status {
+
 				/**
 				* Don't display first status' delete button
-				*/		
+				*/
 				&.first {
+
 					td.actions {
+
 						a.delete-status {
 							display: none;
 						}
@@ -329,23 +397,13 @@ body.block-editor-page {
 				* Columns
 				*/
 				td {
+
 					&.count {
 						width: 20px;
 					}
+
 					&.actions {
 						width: 80px;
-					}
-					&.text {
-
-					}
-					&.image {
-
-					}
-					&.schedule {
-
-					}
-					&.conditions {
-
 					}
 				}
 			}
@@ -354,6 +412,7 @@ body.block-editor-page {
 			 * Status Form Container Row
 			 */
 			tr.status-form-container {
+
 				> td {
 					padding: 0;
 				}
@@ -366,8 +425,11 @@ body.block-editor-page {
 * Status Form
 */
 body.wpzinc {
+
 	.wrap {
+
 		#social-post-flow-status-form {
+
 			> .wpzinc-option {
 				padding: 20px 30px;
 			}
@@ -379,7 +441,7 @@ body.wpzinc {
 				border-bottom: 1px solid #ccd0d4;
 
 				p {
-					margin: .5em 0;
+					margin: 0.5em 0;
 				}
 			}
 
@@ -416,8 +478,9 @@ body.wpzinc {
 			div.googlebusiness,
 			div.images,
 			div.text-to-image {
+
 				select,
-				input[type=text],
+				input[type="text"],
 				textarea {
 					margin: 0 0 7px 0;
 				}
@@ -427,13 +490,14 @@ body.wpzinc {
 			 * Scheduling
 			 */
 			div.schedule {
+
 				label,
 				.custom {
 					display: inline-block;
 					vertical-align: middle;
 				}
 
-				input[type=number] {
+				input[type="number"] {
 					width: 50px;
 				}
 			}
@@ -447,6 +511,7 @@ body.wpzinc {
 				border-top: 1px solid #dfdfdf;
 
 				table {
+
 					th.actions,
 					td.actions {
 						width: 71px;
@@ -455,22 +520,89 @@ body.wpzinc {
 			}
 		}
 	}
+
+	/**
+	* Progress Bar
+	*/
+	.wpzinc-option.progressbar {
+
+		/**
+		* jQuery UI ProgressBar
+		*/
+		.ui-progressbar {
+			height: 2em;
+			text-align: left;
+			overflow: hidden;
+		}
+
+		.ui-progressbar .ui-progressbar-value {
+			margin: -1px;
+			height: 100%;
+		}
+
+		.ui-progressbar .ui-progressbar-overlay {
+			background: #008000;
+			height: 100%;
+			filter: alpha(opacity=25); /* support: IE8 */
+			opacity: 0.25;
+		}
+
+		.ui-progressbar-indeterminate .ui-progressbar-value {
+			background-image: none;
+		}
+
+		.ui-widget {
+			font-family: "Trebuchet MS", Tahoma, Verdana, Arial, sans-serif;
+			font-size: 1.1em;
+		}
+
+		.ui-widget .ui-widget {
+			font-size: 1em;
+		}
+
+		.ui-widget input,
+		.ui-widget select,
+		.ui-widget textarea,
+		.ui-widget button {
+			font-family: "Trebuchet MS", Tahoma, Verdana, Arial, sans-serif;
+			font-size: 1em;
+		}
+
+		.ui-widget-content {
+			border: 1px solid #ddd;
+			background: #eee;
+			color: #333;
+		}
+
+		.ui-widget-content a {
+			color: #333;
+		}
+
+		.ui-widget-header {
+			border: 1px solid #e78f08;
+			background: #008000;
+			color: #fff;
+			font-weight: 700;
+		}
+
+		.ui-widget-header a {
+			color: #fff;
+		}
+	}
 }
 
 /**
 * Table Row Repeaters (Custom Fields, Custom Tags)
 */
 table {
+
 	tr.hide-delete-button {
+
 		td {
+
 			.wpzinc-delete-table-row {
 				display: none;
 			}
 		}
 	}
 }
-
-/**
-* Responsive
-*/
-@import "responsive";
