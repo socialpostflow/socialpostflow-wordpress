@@ -445,6 +445,7 @@ Social Post Flow offers a 7-day free trial so you can test all features before p
 = 1.2.3 (2026-02-23) =
 * Added: CSS: WordPress Coding Standards
 * Added: JS: WordPress Coding Standards
+* Fix: Status: First Comment: Show tags when entering opening curly brace `{`
 * Fix: Quick Edit: Remove all hidden inputs when a search is performed, to prevent errors on some nginx configurations
 
 = 1.2.2 (2026-02-07) =

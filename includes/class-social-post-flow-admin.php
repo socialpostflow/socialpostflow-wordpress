@@ -511,6 +511,7 @@ class Social_Post_Flow_Admin {
 			array(
 				'fields'   => array(
 					'textarea.text',
+					'textarea.first_comment',
 					'input.url',
 					'textarea.text-to-image',
 				),
