@@ -62,8 +62,8 @@ jQuery(document).ready(function ($) {
 			// If the button doesn't have an action and a target, it's not an AJAX request.
 			// Let the request through.
 			if (
-				typeof $(button).data('action') === undefined ||
-				$(button).data('target') === undefined
+				typeof $(button).data('action') === 'undefined' ||
+				typeof $(button).data('target') === 'undefined'
 			) {
 				return true;
 			}
