@@ -23,6 +23,13 @@
         "phpcbf": "vendor/bin/phpcbf ./ -s -v",
         "phpcs-tests": "vendor/bin/phpcs ./tests --standard=phpcs.tests.xml -s -v",
         "phpcbf-tests": "vendor/bin/phpcbf ./tests --standard=phpcs.tests.xml -s -v",
+        "lint-css": "npm run lint:css",
+        "fix-css": "npm run fix:css",
+        "build-css": "npm run build:css",
+        "lint-js": "npm run lint:js",
+        "fix-js": "npm run fix:js",
+        "build-js": "npm run build:js",
+        "build": "npm run build",
         "phpstan": "vendor/bin/phpstan analyse --memory-limit=1250M",
         "test": [
             "vendor/bin/codecept build",
