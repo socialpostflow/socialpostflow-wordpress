@@ -17,7 +17,7 @@ function socialPostFlowReinitAutosize() {
 	(function ($) {
 		// Bail if no autosize instances exist.
 		if (
-			$('.wpzinc-autosize-js', $(social_post_flow.status_form)).length ==
+			$('.wpzinc-autosize-js', $(social_post_flow.status_form)).length ===
 			0
 		) {
 			return;
@@ -47,19 +47,19 @@ function socialPostFlowReinitAutocomplete() {
 function socialPostFlowInitTags() {
 	(function ($) {
 		// Bail if no tag instances exist.
-		if ($('select.tags', $(social_post_flow.status_form)).length == 0) {
+		if ($('select.tags', $(social_post_flow.status_form)).length === 0) {
 			return;
 		}
 
 		$('select.tags', $(social_post_flow.status_form)).each(function () {
-			$(this).on('change.social-post-flow', function (e) {
+			$(this).on('change.social-post-flow', function () {
 				// Insert tag into required textarea.
-				let tag = $(this).val(),
-					textarea = $(this).attr('data-textarea'),
-					option = $('option:selected', $(this)),
-					status = $(this).closest('#social-post-flow-status-form'),
-					sel = $(textarea, $(status)),
-					val = $(sel).val();
+				let tag = $(this).val();
+				const textarea = $(this).attr('data-textarea');
+				const option = $('option:selected', $(this));
+				const status = $(this).closest('#social-post-flow-status-form');
+				const sel = $(textarea, $(status));
+				const val = $(sel).val();
 
 				// If the selected option contains data attributes, we need to show a prompt to fetch an input
 				// before inserting the tag.
@@ -71,7 +71,7 @@ function socialPostFlowInitTags() {
 					);
 
 					// If no answer was given, use the default.
-					if (tag_replacement.length == 0) {
+					if (tag_replacement.length === 0) {
 						tag_replacement = $(option).data('default-value');
 					}
 
@@ -88,10 +88,10 @@ function socialPostFlowInitTags() {
 				// Pad tag if cursor not at start and the character immediately preceding and/or following
 				// the cursor isn't a space.
 				if (pos > 0) {
-					if (val.substring(pos - 1, pos) != ' ') {
+					if (val.substring(pos - 1, pos) !== ' ') {
 						tag = ' ' + tag;
 					}
-					if (val.substring(pos, pos + 1) != ' ') {
+					if (val.substring(pos, pos + 1) !== ' ') {
 						tag = tag + ' ';
 					}
 				}
@@ -116,12 +116,10 @@ function socialPostFlowInitTags() {
  *
  * @since 	1.0.0
  *
- * @param selector
- * @param profile_id
- * @param action
- * @param status_index
- * @param string       selector 	Initialize .wpzinc-selectize instances within the given DOM selector.
- * @param object       options 	Options for each selectize instance, keyed by input ID.
+ * @param {string} selector     Initialize .wpzinc-selectize instances within the given DOM selector.
+ * @param {number} profile_id   Profile ID.
+ * @param {string} action       Action (publish,update,repost,bulk_publish).
+ * @param {number} status_index Zero based index of this status relative to all statuses for the Profile ID and Action.
  */
 function socialPostFlowInitSelectize(
 	selector,
@@ -131,8 +129,8 @@ function socialPostFlowInitSelectize(
 ) {
 	(function ($) {
 		$('.wpzinc-selectize', $(selector)).each(function () {
-			var field_id = $(this).attr('id'),
-				statuses_container = false,
+			const field_id = $(this).attr('id');
+			let statuses_container = false,
 				row = false,
 				options = {},
 				selectize_options = [];
@@ -140,22 +138,22 @@ function socialPostFlowInitSelectize(
 			// If we're initializing selectize on a status, fetch the status which contains JSON to prepopulate existing values
 			// for this selectize instance.
 			if (profile_id && action) {
-				var statuses_container = $(
-						'div.statuses[data-profile-id="' +
-							profile_id +
-							'"][data-action="' +
-							action +
-							'"]'
-					),
-					row = $(
-						'tr[data-status-index="' + status_index + '"]',
-						$(statuses_container)
-					),
-					options = JSON.parse($(row).attr('data-labels')),
-					selectize_options =
-						typeof options[field_id] !== typeof undefined
-							? options[field_id]
-							: [];
+				statuses_container = $(
+					'div.statuses[data-profile-id="' +
+						profile_id +
+						'"][data-action="' +
+						action +
+						'"]'
+				);
+				row = $(
+					'tr[data-status-index="' + status_index + '"]',
+					$(statuses_container)
+				);
+				options = JSON.parse($(row).attr('data-labels'));
+				selectize_options =
+					typeof options[field_id] !== typeof undefined
+						? options[field_id]
+						: [];
 			}
 
 			// Init selectize.
@@ -174,23 +172,19 @@ function socialPostFlowInitSelectize(
 						return callback();
 					}
 
-					// Get action, taxonomy and nonce key.
-					// taxonomy will only exist for search_terms action.
-					const action = this.$input.data('action'),
-						taxonomy = this.$input.data('taxonomy'),
-						nonce_key = this.$input.data('nonce-key');
-
 					// Perform AJAX request.
 					$.ajax({
 						url: ajaxurl,
 						data: {
-							action,
-							taxonomy,
-							nonce: social_post_flow[nonce_key],
+							action: this.$input.data('action'),
+							taxonomy: this.$input.data('taxonomy'),
+							nonce: social_post_flow[
+								this.$input.data('nonce-key')
+							],
 							q: query,
 							page: 10,
 						},
-						error(jqXHR, textStatus, errorThrown) {
+						error() {
 							callback();
 						},
 						success(result) {
@@ -198,7 +192,7 @@ function socialPostFlowInitSelectize(
 						},
 					});
 				},
-				onChange(value) {
+				onChange() {
 					// If we're editing a status, assign a JSON string of this selectize instance's
 					// IDs and values back to the status row.
 					if (row) {
@@ -214,7 +208,7 @@ function socialPostFlowInitSelectize(
 						}
 
 						// Add to options object and inject back into the data-labels status row.
-						const options = JSON.parse($(row).attr('data-labels'));
+						options = JSON.parse($(row).attr('data-labels'));
 						options[field_id] = labels;
 						$(row)
 							.data('labels', JSON.stringify(options))
@@ -229,8 +223,9 @@ function socialPostFlowInitSelectize(
 /**
  * Destroys selectize instances
  *
- * @param selector
  * @since 	1.0.0
+ *
+ * @param {string} selector Destroy .wpzinc-selectize instances within the given DOM selector.
  */
 function socialPostFlowDestroySelectize(selector) {
 	(function ($) {
@@ -246,9 +241,8 @@ function socialPostFlowDestroySelectize(selector) {
  * Reindexes statuses
  *
  * @since 	1.0.0
- * @param statuses_container
  *
- * @param string             statuses_container 	Profile and Action Statuses Container, containing the statuses to reindex.
+ * @param {string} statuses_container Profile and Action Statuses Container, containing the statuses to reindex.
  */
 function socialPostFlowReindexStatuses(statuses_container) {
 	(function ($) {
@@ -262,7 +256,7 @@ function socialPostFlowReindexStatuses(statuses_container) {
 			$('td.count ', $(this)).html('#' + (i + 1));
 
 			// Set 'first' class.
-			if (i == 0) {
+			if (i === 0) {
 				$(this).addClass('first');
 			} else {
 				$(this).removeClass('first');
@@ -275,14 +269,15 @@ function socialPostFlowReindexStatuses(statuses_container) {
  * Show/hide schedule options based on the chosen schedule
  *
  * @since 	1.0.0
- * @param action
  *
- * @param string action 	Action (publish,update,repost,bulk_publish)
+ * @param {string} action Action (publish,update,repost,bulk_publish)
  */
 function socialPostFlowUpdateScheduleOptions(action) {
 	(function ($) {
 		// Bail if no schedule dropdowns exist.
-		if ($('select.schedule', $(social_post_flow.status_form)).length == 0) {
+		if (
+			$('select.schedule', $(social_post_flow.status_form)).length === 0
+		) {
 			return;
 		}
 
@@ -519,7 +514,7 @@ function socialPostFlowUpdateScheduleOptions(action) {
 function socialPostFlowUpdateImageOptions() {
 	(function ($) {
 		// Bail if no image dropdowns exist.
-		if ($('select.image', $(social_post_flow.status_form)).length == 0) {
+		if ($('select.image', $(social_post_flow.status_form)).length === 0) {
 			return;
 		}
 
@@ -555,9 +550,8 @@ function socialPostFlowUpdateImageOptions() {
  * Update post type options based on the profile provider.
  *
  * @since 	1.0.0
- * @param profile
  *
- * @param object  profile 	Profile.
+ * @param {Object} profile Profile.
  */
 function socialPostFlowUpdatePostTypeOptions(profile) {
 	(function ($) {
@@ -657,10 +651,8 @@ function socialPostFlowUpdateStatusSections() {
  *
  * @since 	1.0.0
  *
- * @param profile_id
- * @param action
- * @param string     profile_id 	Profile ID.
- * @param string     Action 		Action.
+ * @param {string} profile_id Profile ID.
+ * @param {string} action     Action (publish,update,repost,bulk_publish).
  */
 function socialPostFlowAddStatus(profile_id, action) {
 	(function ($) {
@@ -693,17 +685,11 @@ function socialPostFlowAddStatus(profile_id, action) {
  *
  * @since 	1.0.0
  *
- * @param string       profile_id 		Profile ID.
- * @param object       profile 		Profile (from API).
- * @param string       action 			Action (publish,update,repost,bulk_publish).
- * @param int          status_index 	Zero based index of this status relative to all statuses for the Profile ID and Action.
- * @param profile_id
- * @param profile
- * @param action
- * @param status_index
- * @param status
- * @param object       status 			Status.
- * @param object       label 			Labels for selectize inputs.
+ * @param {string} profile_id   Profile ID.
+ * @param {Object} profile      Profile (from API).
+ * @param {string} action       Action (publish,update,repost,bulk_publish).
+ * @param {number} status_index Zero based index of this status relative to all statuses for the Profile ID and Action.
+ * @param {Object} status       Status.
  */
 function socialPostFlowEditStatus(
 	profile_id,
@@ -759,12 +745,9 @@ function socialPostFlowEditStatus(
  *
  * @since 	1.0.0
  *
- * @param string       profile_id 		Profile ID.
- * @param profile_id
- * @param action
- * @param status_index
- * @param string       action 			Action (publish,update,repost,bulk_publish).
- * @param int          status_index 	Zero based index of this status relative to all statuses for the Profile ID and Action.
+ * @param {string} profile_id   Profile ID.
+ * @param {string} action       Action (publish,update,repost,bulk_publish).
+ * @param {number} status_index Zero based index of this status relative to all statuses for the Profile ID and Action.
  */
 function socialPostFlowDeleteStatus(profile_id, action, status_index) {
 	(function ($) {
@@ -803,28 +786,25 @@ function socialPostFlowDeleteStatus(profile_id, action, status_index) {
  *
  * @since 	1.0.0
  *
- * @param string       profile_id 		Profile ID.
- * @param profile_id
- * @param action
- * @param status_index
- * @param string       Action 			Action.
- * @param int          status_index 	Zero based index of this status relative to all statuses for the Profile ID and Action.
+ * @param {string} profile_id   Profile ID.
+ * @param {string} action       Action (publish,update,repost,bulk_publish).
+ * @param {number} status_index Zero based index of this status relative to all statuses for the Profile ID and Action.
  */
 function socialPostFlowUpdateStatus(profile_id, action, status_index) {
 	(function ($) {
 		// Get row.
-		let row = $(
-				'div.statuses[data-profile-id="' +
-					profile_id +
-					'"][data-action="' +
-					action +
-					'"] tr[data-status-index="' +
-					status_index +
-					'"]'
-			),
-			status_custom_fields_index = -1,
-			status_authors_custom_fields_index = -1,
-			status = JSON.parse($(row).attr('data-status'));
+		const row = $(
+			'div.statuses[data-profile-id="' +
+				profile_id +
+				'"][data-action="' +
+				action +
+				'"] tr[data-status-index="' +
+				status_index +
+				'"]'
+		);
+		let status_custom_fields_index = -1;
+		let status_authors_custom_fields_index = -1;
+		const status = JSON.parse($(row).attr('data-status'));
 
 		// Reset some status elements.
 		status.conditions = {};
@@ -852,7 +832,7 @@ function socialPostFlowUpdateStatus(profile_id, action, status_index) {
 						status_custom_fields_index++;
 
 						// Ignore if no key specified.
-						if (field.value == '') {
+						if (field.value === '') {
 							break;
 						}
 
@@ -892,7 +872,7 @@ function socialPostFlowUpdateStatus(profile_id, action, status_index) {
 					 * Authors
 					 */
 					case 'authors':
-						if (field.value == 'false') {
+						if (field.value === 'false') {
 							break;
 						}
 
@@ -903,7 +883,7 @@ function socialPostFlowUpdateStatus(profile_id, action, status_index) {
 					 * Authors Roles
 					 */
 					case 'authors_roles':
-						if (field.value == 'false') {
+						if (field.value === 'false') {
 							break;
 						}
 
@@ -917,7 +897,7 @@ function socialPostFlowUpdateStatus(profile_id, action, status_index) {
 						status_authors_custom_fields_index++;
 
 						// Ignore if no key specified.
-						if (field.value == '') {
+						if (field.value === '') {
 							break;
 						}
 
@@ -964,7 +944,7 @@ function socialPostFlowUpdateStatus(profile_id, action, status_index) {
 						/**
 						 * Conditions: Taxonomy Conditions
 						 */
-						var taxonomy = field.name.match(
+						const taxonomy = field.name.match(
 							/conditions\[([^)]+)\]/
 						);
 						if (taxonomy) {
@@ -975,25 +955,25 @@ function socialPostFlowUpdateStatus(profile_id, action, status_index) {
 						/**
 						 * Conditions: Terms
 						 */
-						var term = field.name.match(/terms\[([^)]+)\]/);
+						const term = field.name.match(/terms\[([^)]+)\]/);
 						if (term) {
 							status.terms[term[1]] = field.value.split(',');
 							break;
 						}
 
 						// Cast booleans.
-						if (field.value == 'true') {
+						if (field.value === 'true') {
 							field.value = true;
 						}
-						if (field.value == 'false') {
+						if (field.value === 'false') {
 							field.value = false;
 						}
 
 						/**
 						 * Handle array fields.
 						 */
-						var matches = field.name.match(/(.*?)\[(.*?)\]/);
-						if (matches != null) {
+						const matches = field.name.match(/(.*?)\[(.*?)\]/);
+						if (matches !== null) {
 							status[matches[1]][matches[2]] = field.value;
 						} else {
 							status[field.name] = field.value;
@@ -1023,7 +1003,7 @@ function socialPostFlowUpdateStatus(profile_id, action, status_index) {
 				post_action: action,
 				status: JSON.stringify(status),
 			},
-			error(xhr, status, error) {
+			error(xhr) {
 				alert(
 					'socialPostFlowUpdateStatus(): error: ' +
 						xhr.status +
@@ -1055,16 +1035,11 @@ function socialPostFlowUpdateStatus(profile_id, action, status_index) {
  *
  * @since 	1.0.0
  *
- * @param string       profile_id 		Profile ID.
- * @param object       profile 		Profile (from API).
- * @param string       action 			Action (publish,update,repost,bulk_publish).
- * @param profile_id
- * @param profile
- * @param action
- * @param status_index
- * @param status
- * @param int          status_index 	Zero based index of this status relative to all statuses for the Profile ID and Action.
- * @param object       status 			Status.
+ * @param {string} profile_id   Profile ID.
+ * @param {Object} profile      Profile (from API).
+ * @param {string} action       Action (publish,update,repost,bulk_publish).
+ * @param {number} status_index Zero based index of this status relative to all statuses for the Profile ID and Action.
+ * @param {Object} status       Status.
  */
 function socialPostFlowPopulateStatusForm(
 	profile_id,
@@ -1082,8 +1057,7 @@ function socialPostFlowPopulateStatusForm(
 		// Iterate through form fields.
 		$('input, select, textarea', $(social_post_flow.status_form)).each(
 			function () {
-				let field = $(this).attr('name'),
-					type = $(this).prop('nodeName').toLowerCase();
+				let field = $(this).attr('name');
 
 				// Skip if the field doesn't have a name, as it doesn't need to be populated.
 				if (typeof field === 'undefined') {
@@ -1284,7 +1258,7 @@ function socialPostFlowPopulateStatusForm(
 						/**
 						 * Conditions: Taxonomy Conditions
 						 */
-						var taxonomy = field.match(/conditions\[([^)]+)\]/);
+						const taxonomy = field.match(/conditions\[([^)]+)\]/);
 						if (taxonomy) {
 							if (
 								typeof status.conditions[taxonomy[1]] !==
@@ -1298,7 +1272,7 @@ function socialPostFlowPopulateStatusForm(
 						/**
 						 * Conditions: Terms
 						 */
-						var term = field.match(/terms\[([^)]+)\]/);
+						const term = field.match(/terms\[([^)]+)\]/);
 						if (term) {
 							if (
 								typeof status.terms[term[1]] !==
@@ -1312,8 +1286,8 @@ function socialPostFlowPopulateStatusForm(
 						/**
 						 * Array fields.
 						 */
-						var matches = field.match(/(.*?)\[(.*?)\]/);
-						if (matches != null) {
+						const matches = field.match(/(.*?)\[(.*?)\]/);
+						if (matches !== null) {
 							$(this).val(status[matches[1]][matches[2]]);
 							break;
 						}
@@ -1348,12 +1322,9 @@ function socialPostFlowPopulateStatusForm(
  *
  * @since 	1.0.0
  *
- * @param string       profile_id 		Profile ID.
- * @param profile_id
- * @param action
- * @param status_index
- * @param string       action 			Action (publish,update,repost,bulk_publish).
- * @param int          status_index 	Zero based index of this status relative to all statuses for the Profile ID and Action.
+ * @param {string} profile_id   Profile ID.
+ * @param {string} action       Action (publish,update,repost,bulk_publish).
+ * @param {number} status_index Zero based index of this status relative to all statuses for the Profile ID and Action.
  */
 function socialPostFlowDisplayStatusForm(profile_id, action, status_index) {
 	(function ($) {
@@ -1476,7 +1447,7 @@ function socialPostFlowGetStatuses() {
 
 			const profile = $(this).attr('href').split('#profile-').pop();
 
-			if (profile == 'default') {
+			if (profile === 'default') {
 				statuses[profile] = {};
 			} else {
 				statuses[profile] = {
@@ -1515,7 +1486,14 @@ function socialPostFlowGetStatuses() {
 								'[' +
 								profile +
 								'][override]"]'
-						).val() == '1'
+						).val() === '1' ||
+						$(
+							'input[type="hidden"][name="' +
+								social_post_flow.plugin_name +
+								'[' +
+								profile +
+								'][override]"]'
+						).val() === 1
 							? true
 							: false;
 				}
@@ -1588,10 +1566,9 @@ function socialPostFlowUpdateStatuses() {
  * Saves all statuses and their settings for the Post Type
  *
  * @since 	1.0.0
- * @param post_type
- * @param tab
  *
- * @param string    post_type 	Post Type
+ * @param {string} post_type Post Type
+ * @param {string} tab       Tab (auth, profiles-error, profiles-missing, post-type-error, post-type-missing, post-type-enabled, post-type-disabled).
  */
 function socialPostFlowSaveStatuses(post_type, tab) {
 	let statuses;
@@ -1614,7 +1591,7 @@ function socialPostFlowSaveStatuses(post_type, tab) {
 				post_type,
 				statuses: JSON.stringify(statuses),
 			},
-			error(xhr, status, error) {
+			error(xhr) {
 				wpzinc_modal_show_error_message_and_exit(
 					'socialPostFlowSaveStatuses(): error: ' +
 						xhr.status +
@@ -1652,14 +1629,10 @@ function socialPostFlowSaveStatuses(post_type, tab) {
  *
  * @since 	1.0.0
  *
- * @param int               post_id 			Post ID.
- * @param int               override 			Override Setting.
- * @param post_id
- * @param override
- * @param featured_image
- * @param additional_images
- * @param int               featured_image 		Featured Image.
- * @param array             additional_images 	Additonal Images.
+ * @param {number} post_id           Post ID.
+ * @param {number} override          Override Setting.
+ * @param {number} featured_image    Featured Image.
+ * @param {Array}  additional_images Additonal Images.
  */
 function socialPostFlowSavePostStatuses(
 	post_id,
@@ -1690,7 +1663,7 @@ function socialPostFlowSavePostStatuses(
 				additional_images,
 				statuses: JSON.stringify(statuses),
 			},
-			error(a, b, c) {
+			error() {
 				// Close modal and overlay.
 				wpzinc_modal_close();
 			},
@@ -1713,8 +1686,9 @@ let socialPostFlowCharacterCounting = false;
 /**
  * Character Count
  *
- * @param textarea
  * @since 	1.0.0
+ *
+ * @param {string} textarea Textarea to count characters in.
  */
 function socialPostFlowCharacterCount(textarea) {
 	(function ($) {
@@ -1788,7 +1762,7 @@ jQuery(document).ready(function ($) {
 	$(social_post_flow.status_form).on(
 		'change.' + social_post_flow.status_form,
 		'select.post_type',
-		function (e) {
+		function () {
 			socialPostFlowUpdateStatusSections();
 		}
 	);
@@ -1797,7 +1771,7 @@ jQuery(document).ready(function ($) {
 	$(social_post_flow.status_form).on(
 		'change.' + social_post_flow.status_form,
 		'select.schedule',
-		function (e) {
+		function () {
 			socialPostFlowUpdateScheduleOptions(
 				$(this).closest('div.statuses').data('action')
 			);
@@ -1808,7 +1782,7 @@ jQuery(document).ready(function ($) {
 	$(social_post_flow.status_form).on(
 		'change.' + social_post_flow.status_form,
 		'select.image',
-		function (e) {
+		function () {
 			socialPostFlowUpdateImageOptions();
 		}
 	);
@@ -1816,7 +1790,7 @@ jQuery(document).ready(function ($) {
 	/**
 	 * Enable/Disable Profile or Action
 	 */
-	$('input.enable', $('#profiles-container')).on('change', function (e) {
+	$('input.enable', $('#profiles-container')).on('change', function () {
 		// Get Tab related to this checkbox and the checkbox's Enabled state.
 		const tab_href = $(this).data('tab'),
 			enabled = $(this).prop('checked');
@@ -1839,7 +1813,7 @@ jQuery(document).ready(function ($) {
 	/**
 	 * Enable/Disable Override Defaults
 	 */
-	$('input.override', $('#profiles-container')).on('change', function (e) {
+	$('input.override', $('#profiles-container')).on('change', function () {
 		socialPostFlowSaveAndHideStatusForm();
 
 		socialPostFlowClearStatusForm();
@@ -1903,7 +1877,7 @@ jQuery(document).ready(function ($) {
 	$(social_post_flow.status_form).on(
 		'change',
 		'input, select, textarea',
-		function (e) {
+		function () {
 			socialPostFlowUpdateStatus(
 				$(social_post_flow.status_form).data('profile-id'),
 				$(social_post_flow.status_form).data('action'),
@@ -1914,7 +1888,7 @@ jQuery(document).ready(function ($) {
 		}
 	);
 
-	$('body').on('wpzinc-media-library-attachment-added', function (e) {
+	$('body').on('wpzinc-media-library-attachment-added', function () {
 		// Ignore Media Library events outside of the status form.
 		if (
 			typeof $(social_post_flow.status_form).data('profile-id') ===
@@ -1932,7 +1906,7 @@ jQuery(document).ready(function ($) {
 		socialPostFlowEnableNotSavedPrompt();
 	});
 
-	$('body').on('wpzinc-table-row-delete', function (e) {
+	$('body').on('wpzinc-table-row-delete', function () {
 		socialPostFlowUpdateStatus(
 			$(social_post_flow.status_form).data('profile-id'),
 			$(social_post_flow.status_form).data('action'),
@@ -2004,7 +1978,7 @@ jQuery(document).ready(function ($) {
 	if (social_post_flow.post_id > 0) {
 		$('textarea.text', $(social_post_flow.status_form)).on(
 			'keyup change',
-			function (e) {
+			function () {
 				socialPostFlowCharacterCount(this);
 			}
 		);
