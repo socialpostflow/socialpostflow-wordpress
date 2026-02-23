@@ -12,25 +12,13 @@
 	<!-- Exclude some directories. -->
 	<exclude-pattern>/.scripts/*</exclude-pattern>
 	<exclude-pattern>/.wordpress-org/*</exclude-pattern>
+	<exclude-pattern>/node_modules/*</exclude-pattern>
 	<exclude-pattern>/tests/*</exclude-pattern>
 	<exclude-pattern>/vendor/*</exclude-pattern>
 
-	<!-- Exclude libraries. -->
-	<exclude-pattern>autosize.js</exclude-pattern>
-	<exclude-pattern>jquery.ui-contextmenu.js</exclude-pattern>
-	<exclude-pattern>jstree.js</exclude-pattern>
-	<exclude-pattern>resize-sensor.js</exclude-pattern>
-	<exclude-pattern>selectize.js</exclude-pattern>
-	<exclude-pattern>sticky-sidebar.js</exclude-pattern>
-	<exclude-pattern>tribute.js</exclude-pattern>
-	
-	<!-- Exclude minified CSS and Javascript files. -->
+	<!-- Exclude CSS and JS, which are linted using wp-scripts. -->
+	<exclude-pattern>*.js</exclude-pattern>
 	<exclude-pattern>*.css</exclude-pattern>
-	<exclude-pattern>*.min.js</exclude-pattern>
-
-	<!-- Exclude some Plugin-specific files for now. -->
-	<exclude-pattern>assets/js/frontend.js</exclude-pattern>
-	<exclude-pattern>includes/admin/integrations/divi/scripts/builder-bundle.js</exclude-pattern>
 
 	<!-- Check that code meets WordPress standards - this includes core, docs and extra. -->
 	<rule ref="WordPress">
