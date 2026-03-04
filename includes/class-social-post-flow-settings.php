@@ -103,6 +103,9 @@ class Social_Post_Flow_Settings {
 	 */
 	public function update_settings( $type, $settings ) {
 
+		// Get old settings.
+		$existing_settings = $this->get_settings( $type );
+
 		// Iterate through array of Post Type Settings to strip HTML tags.
 		$settings = $this->strip_tags_deep( $settings );
 
@@ -111,13 +114,67 @@ class Social_Post_Flow_Settings {
 		 *
 		 * @since   1.0.0
 		 *
-		 * @param   array   $settings   Settings.
-		 * @param   string  $type       Post Type.
+		 * @param   array   $settings            Settings.
+		 * @param   string  $type                Post Type.
+		 * @param   array   $existing_settings   Existing Settings.
 		 */
-		$settings = apply_filters( 'social_post_flow_update_settings', $settings, $type );
+		$settings = apply_filters( 'social_post_flow_update_settings', $settings, $type, $existing_settings );
 
 		// Save.
-		return $this->update_option( $type, $settings );
+		$result = $this->update_option( $type, $settings );
+
+		// If update_option failed, either no settings were changed, or they were changeed but the DB collation is wrong.
+		if ( ! $result ) {
+			// Check if the existing and new settings differ i.e. the user actually made a change.
+			if ( md5( maybe_serialize( $existing_settings ) ) !== md5( maybe_serialize( $settings ) ) ) {
+				// Settings were changed, but could not be saved using update_option.
+				// Check the DB collation.
+				if ( ! social_post_flow()->get_class( 'common' )->is_table_charset_and_collation_correct( 'options', 'utf8mb4' ) ) {
+					return new WP_Error(
+						'social_post_flow_settings_update_settings_db_collation_error',
+						sprintf(
+							/* translators: %1$s: Documentation URL */
+							__( 'Unable to save settings due to an invalid database collation and charset on the options table. Please refer to the <a href="%1$s" target="_blank">Documentation</a>.', 'social-post-flow' ),
+							'https://www.socialpostflow.com/documentation/wordpress-plugin/debugging-issues/#unable-to-save-settings-due-to-an-invalid-database-collation-and-charset-on-the-options-table'
+						),
+					);
+				}
+
+				// No changes were made to the settings.
+				return new WP_Error(
+					'social_post_flow_settings_update_settings_no_changes',
+					__( 'Unable to save settings due to an error. Please try again.', 'social-post-flow' )
+				);
+			}
+		}
+
+		// Check for duplicate statuses.
+		$duplicates = social_post_flow()->get_class( 'validation' )->check_for_duplicates( $settings );
+		if ( is_array( $duplicates ) ) {
+			// Fetch Post Type Name, Profile Name and Action Name.
+			$post_type_object = get_post_type_object( $type );
+			if ( $duplicates['profile_id'] === 'default' ) {
+				$profile = __( 'Defaults', 'social-post-flow' );
+			} elseif ( isset( $profiles[ $profile_id ] ) ) {
+				$profile = $profiles[ $profile_id ]['formatted_service'] . ': ' . $profiles[ $profile_id ]['formatted_username'];
+			}
+			$post_actions = social_post_flow()->get_class( 'common' )->get_post_actions();
+			$action       = $post_actions[ $duplicates['action'] ];
+
+			// Return error object.
+			return new WP_Error(
+				'social_post_flow_settings_update_settings_duplicates',
+				sprintf(
+					/* translators: %1$s: Post Type Name, %2$s: Profile Name, %3$s: Action Name */
+					__( 'Two or more statuses defined in %1$s > %2$s > %3$s are the same. Please correct this to ensure each status update is unique, otherwise your status updates will NOT publish to Social Post Flow as they will be seen as duplicates, which violate Facebook and Twitter\'s Terms of Service.', 'social-post-flow' ),
+					$post_type_object->label,
+					$profile,
+					$action
+				)
+			);
+		}
+
+		return true;
 
 	}
 
@@ -804,9 +861,7 @@ class Social_Post_Flow_Settings {
 		$value = apply_filters( 'social_post_flow_update_option', $value, $key );
 
 		// Update.
-		update_option( $this->settings_name . '-' . $key, $value );
-
-		return true;
+		return update_option( $this->settings_name . '-' . $key, $value );
 
 	}
 
