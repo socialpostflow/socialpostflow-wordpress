@@ -445,6 +445,7 @@ Social Post Flow offers a 7-day free trial so you can test all features before p
 = 1.2.5 (2026-03-24) =
 * Fix: Post: Log: Ensure `No log entries exist` spans table columns
 * Fix: Post: Log: Only display `Export Log` and `Clear Log` buttons if log entries exist
+* Fix: Post: Featured and Additional Images: Updated description to clarify functionality
 
 = 1.2.4 (2026-03-04) =
 * Added: Status: Display notice if settings do not save and WordPress options table charset and default collation are invalid

@@ -50,29 +50,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<p class="description">
 		<?php
-		if ( $supports_opengraph ) {
-			echo esc_html(
-				sprintf(
-				/* translators: Post Type Singular */
-					__( 'The first image only replaces the Featured Image in a status where a status\' option is not set to "Use OpenGraph Settings". Additional images only work where a status\' option is set to "Use Featured Image, not Linked to %s".', 'social-post-flow' ),
-					$post_type_object->labels->singular_name
-				)
-			);
-		} else {
-			echo esc_html(
-				sprintf(
-				/* translators: Post Type Singular */
-					__( 'The first image only replaces the Featured Image in a status where a status\' option is not set to "No Image". Additional images only work where a status\' option is set to "Use Featured Image, not Linked to %s".', 'social-post-flow' ),
-					$post_type_object->labels->singular_name
-				)
-			);
-		}
+		echo esc_html__( 'First image will be used instead of the Featured Image where a status\' type = Image, Story or Pin.', 'social-post-flow' );
+		?>
+	</p>
+	<p class="description">
+		<?php
+		echo esc_html__( 'Additional images will be used where a status\' type = Image.', 'social-post-flow' );
 		?>
 	</p>
 	<p class="description">
 		<?php
 		esc_html_e( 'Drag and drop images to reorder. The number of additional images included in a status will depend on the social network. Refer to the ', 'social-post-flow' );
 		?>
-		<a href="https://www.socialpostflow.com/documentation/wordpress/featured-image-settings/" target="_blank"><?php esc_html_e( 'Documentation', 'social-post-flow' ); ?></a>
+		<a href="https://www.socialpostflow.com/documentation/wordpress-plugin/image-statuses/" target="_blank"><?php esc_html_e( 'Documentation', 'social-post-flow' ); ?></a>
 	</p>
 </div>

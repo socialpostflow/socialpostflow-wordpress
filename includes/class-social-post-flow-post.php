@@ -250,9 +250,6 @@ class Social_Post_Flow_Post {
 		// Get post type object.
 		$post_type_object = get_post_type_object( $post->post_type );
 
-		// Check if "Use OpenGraph Settings" is available.
-		$supports_opengraph = social_post_flow()->get_class( 'image' )->supports_opengraph();
-
 		// Render view.
 		require SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/settings-post-image.php';
 

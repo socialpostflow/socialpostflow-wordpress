@@ -151,25 +151,6 @@ class Social_Post_Flow_Image {
 	}
 
 	/**
-	 * Determines if "Use OpenGraph Settings" is an option available for the Status Image dropdown
-	 *
-	 * @since   1.0.0
-	 *
-	 * @return  bool    Supports OpenGraph
-	 */
-	public function supports_opengraph() {
-
-		$featured_image_options = $this->get_status_image_options();
-
-		if ( isset( $featured_image_options[0] ) ) {
-			return true;
-		}
-
-		return false;
-
-	}
-
-	/**
 	 * Determines if the WordPress installations has a Plugin installed that outputs
 	 * OpenGraph metadata
 	 *
