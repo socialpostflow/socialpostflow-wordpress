@@ -31,10 +31,30 @@ jQuery(document).ready(function ($) {
 					nonce: social_post_flow.get_log_nonce,
 				},
 				function (response) {
+					// If the response failed, the Post ID is invalid or there are no log entries.
+					if (!response.success) {
+						// Hide the Export and Clear Log buttons.
+						$(
+							'a.' + social_post_flow.plugin_name + '-export-log'
+						).addClass('hidden');
+						$(
+							'a.' + social_post_flow.plugin_name + '-clear-log'
+						).addClass('hidden');
+						return;
+					}
+
 					// Replace the table data with the response data.
 					$('table.widefat tbody', $($(button).data('target'))).html(
 						response.data
 					);
+
+					// Show the Export and Clear Log buttons.
+					$(
+						'a.' + social_post_flow.plugin_name + '-export-log'
+					).removeClass('hidden');
+					$(
+						'a.' + social_post_flow.plugin_name + '-clear-log'
+					).removeClass('hidden');
 				}
 			);
 		}
@@ -86,6 +106,14 @@ jQuery(document).ready(function ($) {
 							social_post_flow.clear_log_completed +
 							'</td></tr>'
 					);
+
+					// Hide Export and Clear Log buttons.
+					$(
+						'a.' + social_post_flow.plugin_name + '-export-log'
+					).addClass('hidden');
+					$(
+						'a.' + social_post_flow.plugin_name + '-clear-log'
+					).addClass('hidden');
 				}
 			);
 		}

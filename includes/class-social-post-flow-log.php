@@ -1033,7 +1033,7 @@ class Social_Post_Flow_Log {
 			$html = '
                     <tr>
                         <td colspan="' . $colspan . '">' .
-							__( 'No log entries exist, or no status updates have been sent to Social Post Flow.', 'social-post-flow' ) .
+							__( 'No log entries exist, or no status updates have been sent to Social Post Flow', 'social-post-flow' ) .
 						'</td>
                     </tr>';
 

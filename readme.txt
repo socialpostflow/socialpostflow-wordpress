@@ -5,7 +5,7 @@ Tags: auto post, social media, twitter, instagram, linkedin
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.2.4
+Stable tag: 1.2.5
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -441,6 +441,10 @@ Social Post Flow offers a 7-day free trial so you can test all features before p
 4. Post-level Logging.
 
 == Changelog ==
+
+= 1.2.5 (2026-03-24) =
+* Fix: Post: Log: Ensure `No log entries exist` spans table columns
+* Fix: Post: Log: Only display `Export Log` and `Clear Log` buttons if log entries exist
 
 = 1.2.4 (2026-03-04) =
 * Added: Status: Display notice if settings do not save and WordPress options table charset and default collation are invalid

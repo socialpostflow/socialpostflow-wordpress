@@ -253,8 +253,16 @@ class Social_Post_Flow_Ajax {
 		// Get Post ID.
 		$post_id = absint( $_REQUEST['post'] );
 
+		// Get Log.
+		$log = social_post_flow()->get_class( 'log' )->get( $post_id );
+
+		// Bail if no log entries exist.
+		if ( ! $log || ! is_array( $log ) || count( $log ) === 0 ) {
+			wp_send_json_error( __( 'No log entries exist.', 'social-post-flow' ) );
+		}
+
 		// Return log table output.
-		wp_send_json_success( social_post_flow()->get_class( 'log' )->build_log_table_output( social_post_flow()->get_class( 'log' )->get( $post_id ) ) );
+		wp_send_json_success( social_post_flow()->get_class( 'log' )->build_log_table_output( $log ) );
 
 	}
 
