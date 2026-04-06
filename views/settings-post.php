@@ -32,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				$profile_enabled = $this->get_setting( $post_type, '[' . $profile['id'] . '][enabled]', 0 );
 				?>
 				<li class="wpzinc-nav-tab <?php echo esc_attr( $profile['provider'] ); ?>">
-					<a href="#profile-<?php echo esc_attr( $profile['id'] ); ?>"<?php echo ( $profile_enabled ? ' class="enabled"' : '' ); ?> title="<?php echo esc_attr( $profile['provider'] . ': ' . $profile['profile_name'] ); ?>">
+					<a href="#profile-<?php echo esc_attr( $profile['id'] ); ?>"<?php echo ( $profile_enabled ? ' class="enabled"' : '' ); ?> title="<?php echo esc_attr( $profile['provider_name'] . ': ' . $profile['profile_name'] ); ?>">
 						<span class="formatted-username"><?php echo esc_html( $profile['profile_name'] ); ?></span>
 						<span class="dashicons dashicons-yes"></span>
 					</a>

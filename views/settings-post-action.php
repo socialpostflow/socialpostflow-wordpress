@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					)
 				);
 			} else {
-				echo esc_html( sprintf( '%s: %s: %s', $profile['provider'], $profile['profile_name'], $action_label ) );
+				echo esc_html( sprintf( '%s: %s: %s', $profile['provider_name'], $profile['profile_name'], $action_label ) );
 			}
 			?>
 

@@ -391,7 +391,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 												echo esc_html(
 													sprintf(
 														'%1$s: %2$s',
-														$profile['provider'],
+														$profile['provider_name'],
 														$profile['profile_name']
 													)
 												);
@@ -1113,7 +1113,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 													<li>
 														<label for="roles_<?php echo esc_attr( $role_name ); ?>_<?php echo esc_attr( $profile['id'] ); ?>" class="selectit">
 															<input type="checkbox" name="roles[<?php echo esc_attr( $role_name ); ?>][<?php echo esc_attr( $profile['id'] ); ?>]" id="roles_<?php echo esc_attr( $role_name ); ?>_<?php echo esc_attr( $profile['id'] ); ?>" value="1" <?php checked( $this->get_setting( 'roles', '[' . $role_name . '][' . $profile['id'] . ']' ), 1 ); ?> />
-															<?php echo esc_html( $profile['provider'] . ': ' . $profile['profile_name'] ); ?>
+															<?php echo esc_html( $profile['provider_name'] . ': ' . $profile['profile_name'] ); ?>
 														</label>
 													</li>
 													<?php

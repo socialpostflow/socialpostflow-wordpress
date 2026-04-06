@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				sprintf(
 				/* translators: %1$s: Social Media Service (Facebook, Twitter etc.), %2$s: Social Media Profile Name */
 					__( '%1$s: %2$s: Settings', 'social-post-flow' ),
-					$profile['provider'],
+					$profile['provider_name'],
 					$profile['profile_name']
 				)
 			);
