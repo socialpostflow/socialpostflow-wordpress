@@ -5,7 +5,7 @@ Tags: auto post, social media, telegram, instagram, linkedin
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.2.8
+Stable tag: 1.2.9
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -445,6 +445,9 @@ Social Post Flow offers a 7-day free trial so you can test all features before p
 4. Post-level Logging.
 
 == Changelog ==
+
+= 1.2.9 (2026-04-09) =
+* Added: Import & Export: Export: Choose which settings to export
 
 = 1.2.8 (2026-04-06) =
 * Fix: Settings: Text to Image: PHP Warning for Telegram accounts 
