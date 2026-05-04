@@ -1598,6 +1598,13 @@ class Social_Post_Flow_Publish {
 				break;
 
 			/**
+			 * Pinterest: Change post type to `pin`.
+			 */
+			case 'pinterest':
+				$status['post_type'] = 'pin';
+				break;
+
+			/**
 			 * Other services.
 			 * - If `story` is specified, change to `image`.
 			 */
@@ -1612,8 +1619,8 @@ class Social_Post_Flow_Publish {
 		$args = array(
 			'post_type'     => ( $service === 'pinterest' ? 'pin' : $status['post_type'] ),
 			'profile_ids'   => array( $profile_id ),
-			'text'          => $this->parse_text( $post, $status['text'] ),
-			'first_comment' => ( $service !== 'mastodon' ? $this->parse_text( $post, $status['first_comment'] ) : null ),
+			'text'          => $this->parse_text( $post, $status['text'], ( $service === 'instagram' ? true : false ) ),
+			'first_comment' => ( $service !== 'mastodon' ? $this->parse_text( $post, $status['first_comment'], ( $service === 'instagram' ? true : false ) ) : null ),
 		);
 
 		// URL.
@@ -1686,7 +1693,7 @@ class Social_Post_Flow_Publish {
 						break;
 
 					case 'text_to_image':
-						$text_to_image = $this->parse_text( $post, $status['text_to_image'] );
+						$text_to_image = $this->parse_text( $post, $status['text_to_image'], true );
 
 						// Generate Image from Text.
 						$image = $this->get_text_to_image( $text_to_image, $service, $profile_id, $post->ID, $status, $status['post_type'] );
@@ -1854,7 +1861,8 @@ class Social_Post_Flow_Publish {
 				);
 
 				// Return UTC date and time.
-				$args['scheduled_at'] = social_post_flow()->get_class( 'date' )->get_utc_date_time( $date_time );
+				$args['schedule_type'] = 'scheduled';
+				$args['scheduled_at']  = social_post_flow()->get_class( 'date' )->get_utc_date_time( $date_time );
 				break;
 
 			/**
@@ -2332,9 +2340,10 @@ class Social_Post_Flow_Publish {
 	 *
 	 * @param   WP_Post $post               Post.
 	 * @param   string  $message            Status Message to parse.
-	 * @return  string                          Parsed Status Message
+	 * @param   bool    $strip_urls         Whether to strip URLs from the status message.
+	 * @return  string                      Parsed Status Message
 	 */
-	public function parse_text( $post, $message ) {
+	public function parse_text( $post, $message, $strip_urls = false ) {
 
 		// Get Author.
 		$author = get_user_by( 'id', $post->post_author );
@@ -2654,7 +2663,7 @@ class Social_Post_Flow_Publish {
 		$text = do_shortcode( $text );
 
 		// Convert to plain text.
-		$text = $this->convert_to_plain_text( $text );
+		$text = $this->convert_to_plain_text( $text, true, $strip_urls );
 
 		/**
 		 * Filters the parsed status message text on a status.
@@ -3435,9 +3444,10 @@ class Social_Post_Flow_Publish {
 	 * @param   string $text                           Text.
 	 * @param   bool   $convert_links_to_inline        true: Convert e.g. `<a href="http://foo.com">text</a>` to `text (http://foo.com)`.
 	 *                                                 false: Convert e.g. `<a href="http://foo.com">text</a>` to `text`.
-	 * @return  string                                      Text
+	 * @param   bool   $strip_urls                     Whether to strip URLs from the text.
+	 * @return  string                                 Text
 	 */
-	private function convert_to_plain_text( $text, $convert_links_to_inline = true ) {
+	private function convert_to_plain_text( $text, $convert_links_to_inline = true, $strip_urls = false ) {
 
 		// Strip any shortcodes still remaining.
 		// If shortcodes need to be processed, they should be processed before calling this function.
@@ -3467,7 +3477,8 @@ class Social_Post_Flow_Publish {
 		$text = $html->saveHTML();
 
 		// Remove HTML, except breaklines, links and unordered list items.
-		$text = strip_tags( $text, '<br><a><li>' );
+		$retain_tags = ( $strip_urls ? '<br><li>' : '<br><a><li>' );
+		$text        = strip_tags( $text, $retain_tags );
 
 		// Decode excerpt to avoid encoding issues on status output.
 		$text = html_entity_decode( $text );
@@ -3482,6 +3493,11 @@ class Social_Post_Flow_Publish {
 		} else {
 			// Just extract the text from the link and output it.
 			$text = preg_replace( '/<a[^>]+href=\"(.*?)\"[^>]*>(.*?)<\/a>/i', '$2', $text );
+		}
+
+		// If URLs are to be stripped, remove them.
+		if ( $strip_urls ) {
+			$text = preg_replace( '/https?:\/\/[^\s]+/', '', $text );
 		}
 
 		// Convert <li> to hyphenated.

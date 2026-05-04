@@ -12,6 +12,7 @@ zip -r social-post-flow.zip . \
 -x ".devcontainer/*" \
 -x ".scripts/*" \
 -x ".wordpress-org/*" \
+-x "node_modules/*" \
 -x "tests/*" \
 -x "vendor/*" \
 -x "*.distignore" \
