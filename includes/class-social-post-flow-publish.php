@@ -1603,21 +1603,11 @@ class Social_Post_Flow_Publish {
 			case 'pinterest':
 				$status['post_type'] = 'pin';
 				break;
-
-			/**
-			 * Other services.
-			 * - If `story` is specified, change to `image`.
-			 */
-			default:
-				if ( $status['post_type'] === 'story' ) {
-					$status['post_type'] = 'image';
-				}
-				break;
 		}
 
 		// Build API compatible arguments.
 		$args = array(
-			'post_type'     => ( $service === 'pinterest' ? 'pin' : $status['post_type'] ),
+			'post_type'     => $status['post_type'],
 			'profile_ids'   => array( $profile_id ),
 			'text'          => $this->parse_text( $post, $status['text'], ( $service === 'instagram' ? true : false ) ),
 			'first_comment' => ( $service !== 'mastodon' ? $this->parse_text( $post, $status['first_comment'], ( $service === 'instagram' ? true : false ) ) : null ),
@@ -1998,6 +1988,7 @@ class Social_Post_Flow_Publish {
 				break;
 
 			case 'x':
+			case 'twitter':
 			case 'mastodon':
 			case 'bluesky':
 				// 3 additional images (4 total).
@@ -2038,17 +2029,17 @@ class Social_Post_Flow_Publish {
 						break;
 
 					case 'post_settings':
+						// Fetch additional images specified in Post's settings only.
+						$images = $this->get_images_from_post_settings( $post, $service );
+						break;
+
+					case 'post_content':
 						// Fetch additional images specified in the Post's settings
 						// and from the Post's content.
 						$images = array_merge(
 							$this->get_images_from_post_settings( $post, $service ),
 							$this->get_images_from_post_content( $post, $service )
 						);
-						break;
-
-					case 'post_content':
-						// Fetch additional images specified in Post's settings only.
-						$images = $this->get_images_from_post_settings( $post, $service );
 						break;
 
 					default:

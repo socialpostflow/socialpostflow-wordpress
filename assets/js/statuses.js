@@ -561,6 +561,7 @@ function socialPostFlowUpdatePostTypeOptions(profile) {
 			$('select.post_type', $(social_post_flow.status_form))
 		).attr('disabled', true);
 
+		// Enable options based on the profile provider.
 		switch (profile.provider) {
 			case 'instagram':
 				$(
@@ -620,12 +621,12 @@ function socialPostFlowUpdatePostTypeOptions(profile) {
  */
 function socialPostFlowUpdateStatusSections() {
 	(function ($) {
-		switch ($('select.post_type', $(social_post_flow.status_form)).val()) {
-			case 'text':
-				$('.link', $(social_post_flow.status_form)).hide();
-				$('.images', $(social_post_flow.status_form)).hide();
-				break;
+		// Hide all sections.
+		$('.link', $(social_post_flow.status_form)).hide();
+		$('.images', $(social_post_flow.status_form)).hide();
 
+		// Show sections based on the chosen status post type.
+		switch ($('select.post_type', $(social_post_flow.status_form)).val()) {
 			case 'link':
 				$('.link', $(social_post_flow.status_form)).show();
 				$('.images', $(social_post_flow.status_form)).hide();
@@ -1049,11 +1050,6 @@ function socialPostFlowPopulateStatusForm(
 	status
 ) {
 	(function ($) {
-		// Hide all conditional elements.
-		$('div.conditional', $(social_post_flow.status_form)).addClass(
-			'hidden'
-		);
-
 		// Iterate through form fields.
 		$('input, select, textarea', $(social_post_flow.status_form)).each(
 			function () {

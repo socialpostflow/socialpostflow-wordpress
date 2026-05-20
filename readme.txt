@@ -3,9 +3,9 @@ Contributors: socialpostflow
 Donate link: https://www.socialpostflow.com/integrations/wordpress
 Tags: auto post, social media, telegram, instagram, linkedin
 Requires at least: 6.0
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -445,6 +445,10 @@ Social Post Flow offers a 7-day free trial so you can test all features before p
 4. Post-level Logging.
 
 == Changelog ==
+
+= 1.3.1 (2026-05-20) =
+* Fix: Status: Defaults
+* Fix: Status: Improve performance
 
 = 1.3.0 (2026-05-04) =
 * Added: Status: Instagram: Strip URLs from text, as Instagram does not support linking URLs

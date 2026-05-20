@@ -462,6 +462,8 @@ class Social_Post_Flow_Settings {
 			'url'                            => '{url}',
 			'schedule'                       => $default_schedule,
 			'image'                          => 'featured_image',
+			'image_additional'               => '',
+			'image_additional_limit'         => '',
 			'days'                           => 0,
 			'hours'                          => 0,
 			'minutes'                        => 0,
