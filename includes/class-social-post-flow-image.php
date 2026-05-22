@@ -67,26 +67,6 @@ class Social_Post_Flow_Image {
 	}
 
 	/**
-	 * Helper method to retrieve Additional Image Options that are supported by the given network and post type.
-	 *
-	 * @since   1.0.0
-	 *
-	 * @param   bool   $network    Network (false = defaults).
-	 * @param   string $post_type  Post Type.
-	 * @return  array              Image Options
-	 */
-	public function get_status_image_options_supporting_additional_images( $network = false, $post_type = false ) {
-
-		return array_filter(
-			$this->get_status_image_options( $network, $post_type ),
-			function ( $option ) {
-				return $option['additional_images'];
-			}
-		);
-
-	}
-
-	/**
 	 * Helper method to retrieve Text to Image Options that are supported by the given network and post type.
 	 *
 	 * @since   1.0.0
