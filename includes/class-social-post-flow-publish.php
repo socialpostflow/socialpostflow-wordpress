@@ -1622,7 +1622,6 @@ class Social_Post_Flow_Publish {
 		// First Comment.
 		switch ( $service ) {
 			case 'mastodon':
-			case 'pinterest':
 			case 'tiktok':
 			case 'telegram':
 			case 'google':
@@ -1631,6 +1630,7 @@ class Social_Post_Flow_Publish {
 
 			default:
 				// First comment is supported for these services.
+				// Pinterest: uses this for the description field on the Pin.
 				$args['first_comment'] = $this->parse_text( $post, $status['first_comment'], ( $service === 'instagram' ? true : false ) );
 				break;
 		}

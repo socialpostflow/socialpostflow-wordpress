@@ -285,7 +285,6 @@ function socialPostFlowUpdateFirstCommentOption(profile) {
 		// Hide the first comment option if the profile provider is not supported.
 		switch (profile.provider) {
 			case 'mastodon':
-			case 'pinterest':
 			case 'tiktok':
 			case 'telegram':
 			case 'google':

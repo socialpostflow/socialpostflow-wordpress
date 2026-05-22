@@ -60,7 +60,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<div class="full">
 				<h3><?php esc_html_e( 'First Comment', 'social-post-flow' ); ?></h3>
 				<p class="description">
-					<?php esc_html_e( 'Optional: Define the first comment to include below the status. Ignored for Mastodon, Telegram, TikTok and Google, which do not support this feature.', 'social-post-flow' ); ?>
+					<?php esc_html_e( 'Optional: Define the first comment to include below the status. For Pinterest, this forms the description of the Pin. Ignored for Mastodon, Telegram, TikTok and Google, which do not support this feature.', 'social-post-flow' ); ?>
 				</p>
 
 				<?php

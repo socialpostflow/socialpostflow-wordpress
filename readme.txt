@@ -453,7 +453,6 @@ Social Post Flow offers a 7-day free trial so you can test all features before p
 = 1.3.3 (2026-05-23) =
 * Added: Status: Google Post Type. See Docs: []
 * Fix: Status: Image: Additional Images: Don't permit selecting option when Post Type only supports a single image (Instagram Story, Pinterest Pin, Google Post). See Docs: []
-* Fix: Status: First Comment: Don't display field if defining a status for a Pinterest board
 
 = 1.3.2 (2026-05-22) =
 * Added: Google Business Profile support
