@@ -451,8 +451,8 @@ Social Post Flow offers a 7-day free trial so you can test all features before p
 == Changelog ==
 
 = 1.3.3 (2026-05-23) =
-* Added: Status: Google Post Type. See Docs: []
-* Fix: Status: Image: Additional Images: Don't permit selecting option when Post Type only supports a single image (Instagram Story, Pinterest Pin, Google Post). See Docs: []
+* Added: Status: Google Post Type. See Docs: https://www.socialpostflow.com/documentation/wordpress-plugin/status-configuration-and-types/#type
+* Fix: Status: Image: Additional Images: Don't permit selecting option when Post Type only supports a single image (Instagram Story, Pinterest Pin, Google Post). See Docs: https://www.socialpostflow.com/documentation/wordpress-plugin/image-statuses/
 
 = 1.3.2 (2026-05-22) =
 * Added: Google Business Profile support
