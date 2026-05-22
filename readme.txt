@@ -5,7 +5,7 @@ Tags: auto post, social media, google business, instagram, linkedin
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.3.2
+Stable tag: 1.3.3
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -449,6 +449,11 @@ Social Post Flow offers a 7-day free trial so you can test all features before p
 4. Post-level Logging.
 
 == Changelog ==
+
+= 1.3.3 (2026-05-23) =
+* Added: Status: Google Post Type. See Docs: []
+* Fix: Status: Image: Additional Images: Don't permit selecting option when Post Type only supports a single image (Instagram Story, Pinterest Pin, Google Post). See Docs: []
+* Fix: Status: First Comment: Don't display field if defining a status for a Pinterest board
 
 = 1.3.2 (2026-05-22) =
 * Added: Google Business Profile support

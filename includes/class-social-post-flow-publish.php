@@ -1603,6 +1603,13 @@ class Social_Post_Flow_Publish {
 			case 'pinterest':
 				$status['post_type'] = 'pin';
 				break;
+
+			/**
+			 * Google: Change post type to `google`.
+			 */
+			case 'google':
+				$status['post_type'] = 'google';
+				break;
 		}
 
 		// Build API compatible arguments.
@@ -1615,6 +1622,7 @@ class Social_Post_Flow_Publish {
 		// First Comment.
 		switch ( $service ) {
 			case 'mastodon':
+			case 'pinterest':
 			case 'tiktok':
 			case 'telegram':
 			case 'google':
@@ -1643,8 +1651,10 @@ class Social_Post_Flow_Publish {
 
 			/**
 			 * Pinterest
+			 * Google
 			 */
 			case 'pin':
+			case 'google':
 				// Get URL.
 				$url = $this->parse_text( $post, $status['url'] );
 
@@ -1669,6 +1679,7 @@ class Social_Post_Flow_Publish {
 		// Image(s).
 		switch ( $args['post_type'] ) {
 			case 'pin':
+			case 'google':
 			case 'story':
 			case 'image':
 				switch ( $status['image'] ) {
@@ -2010,6 +2021,7 @@ class Social_Post_Flow_Publish {
 				break;
 
 			case 'google':
+			case 'pinterest':
 			case 'telegram':
 			default:
 				// A network that does not support additional images.
@@ -2025,11 +2037,13 @@ class Social_Post_Flow_Publish {
 			 * Text
 			 * Link
 			 * Pin
+			 * Google
 			 * Story
 			 */
 			case 'text':
 			case 'link':
 			case 'pin':
+			case 'google':
 			case 'story':
 				// No additional images supported.
 				break;

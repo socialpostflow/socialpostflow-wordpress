@@ -285,6 +285,7 @@ function socialPostFlowUpdateFirstCommentOption(profile) {
 		// Hide the first comment option if the profile provider is not supported.
 		switch (profile.provider) {
 			case 'mastodon':
+			case 'pinterest':
 			case 'tiktok':
 			case 'telegram':
 			case 'google':
@@ -554,25 +555,98 @@ function socialPostFlowUpdateImageOptions() {
 			$(social_post_flow.status_form)
 		).val();
 
-		// Hide additional and text to image options.
+		// Hide additional images, limit and text to image options.
 		$(
-			'tr.additional-images, tr.text-to-image',
+			'tr.additional-images, tr.additional-images-limit, tr.text-to-image',
 			$(social_post_flow.status_form)
 		).hide();
 
-		// Show additional and text to image options, based on the selected image option.
-		$(
-			'tr.additional-images, tr.text-to-image',
+		switch (selected_image_option) {
+			case 'featured_image':
+				$(
+					'tr.additional-images',
+					$(social_post_flow.status_form)
+				).show();
+				$(
+					'tr.additional-images-limit',
+					$(social_post_flow.status_form)
+				).show();
+				break;
+			case 'text_to_image':
+				$('tr.text-to-image', $(social_post_flow.status_form)).show();
+				break;
+		}
+
+		// Enable options based on the Post Type.
+		const post_type = $(
+			'select.post_type',
 			$(social_post_flow.status_form)
-		).each(function () {
-			const conditionalValues = $(this)
-				.data('conditional-value')
-				.toString()
-				.split(','); // .toString() prevents errors when splitting a single integer e.g. 2.
-			if (conditionalValues.indexOf(selected_image_option) !== -1) {
-				$(this).show();
-			}
-		});
+		).val();
+		switch (post_type) {
+			case 'image':
+				// Enable all options in Additional Images.
+				$(
+					'option',
+					$(
+						'select.additional-images',
+						$(social_post_flow.status_form)
+					)
+				).attr('disabled', false);
+				break;
+
+			case 'story':
+			case 'pin':
+			case 'google':
+				// Disable all options in Additional Images.
+				$(
+					'option',
+					$(
+						'select.additional-images',
+						$(social_post_flow.status_form)
+					)
+				).attr('disabled', true);
+
+				// Enable the "None" Additional Images option.
+				$(
+					'option[value=""]',
+					$(
+						'select.additional-images',
+						$(social_post_flow.status_form)
+					)
+				).attr('disabled', false);
+
+				// Hide the row.
+				$(
+					'tr.additional-images',
+					$(social_post_flow.status_form)
+				).hide();
+				$(
+					'tr.additional-images-limit',
+					$(social_post_flow.status_form)
+				).hide();
+				break;
+		}
+	})(jQuery);
+}
+
+function socialPostFlowUpdateAdditionalImagesLimitOption() {
+	(function ($) {
+		// Hide Limit option.
+		$('tr.additional-images-limit', $(social_post_flow.status_form)).hide();
+
+		// Show Limit option if Additional Images has more than one option that is enabled
+		// i.e. "None" and other option(s) enabled by socialPostFlowUpdateImageOptions().
+		if (
+			$(
+				'option:enabled',
+				$('select.additional-images', $(social_post_flow.status_form))
+			).length > 1
+		) {
+			$(
+				'tr.additional-images-limit',
+				$(social_post_flow.status_form)
+			).show();
+		}
 	})(jQuery);
 }
 
@@ -607,6 +681,25 @@ function socialPostFlowUpdatePostTypeOptions(profile) {
 			case 'pinterest':
 				$(
 					'option[value="pin"]',
+					$('select.post_type', $(social_post_flow.status_form))
+				).attr('disabled', false);
+				break;
+
+			case 'google':
+				$(
+					'option[value="text"]',
+					$('select.post_type', $(social_post_flow.status_form))
+				).attr('disabled', false);
+				$(
+					'option[value="link"]',
+					$('select.post_type', $(social_post_flow.status_form))
+				).attr('disabled', false);
+				$(
+					'option[value="image"]',
+					$('select.post_type', $(social_post_flow.status_form))
+				).attr('disabled', false);
+				$(
+					'option[value="google"]',
 					$('select.post_type', $(social_post_flow.status_form))
 				).attr('disabled', false);
 				break;
@@ -669,6 +762,7 @@ function socialPostFlowUpdateStatusSections() {
 				break;
 
 			case 'pin':
+			case 'google':
 				$('.link', $(social_post_flow.status_form)).show();
 				$('.images', $(social_post_flow.status_form)).show();
 				break;
@@ -752,6 +846,9 @@ function socialPostFlowEditStatus(
 
 	// Update image options.
 	socialPostFlowUpdateImageOptions();
+
+	// Update additional images limit option.
+	socialPostFlowUpdateAdditionalImagesLimitOption();
 
 	// Update status sections to display, depending on the status' post type.
 	socialPostFlowUpdateStatusSections();
@@ -1793,6 +1890,8 @@ jQuery(document).ready(function ($) {
 		'select.post_type',
 		function () {
 			socialPostFlowUpdateStatusSections();
+			socialPostFlowUpdateImageOptions();
+			socialPostFlowUpdateAdditionalImagesLimitOption();
 		}
 	);
 
@@ -1813,6 +1912,15 @@ jQuery(document).ready(function ($) {
 		'select.image',
 		function () {
 			socialPostFlowUpdateImageOptions();
+		}
+	);
+
+	// Additional Images dropdown.
+	$(social_post_flow.status_form).on(
+		'change.' + social_post_flow.status_form,
+		'select.additional-images',
+		function () {
+			socialPostFlowUpdateAdditionalImagesLimitOption();
 		}
 	);
 

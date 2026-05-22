@@ -192,14 +192,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 								</select>
 							</td>
 						</tr>
-						<tr class="additional-images" data-conditional-value="<?php echo esc_attr( implode( ',', array_keys( social_post_flow()->get_class( 'image' )->get_status_image_options_supporting_additional_images( false, $post_type ) ) ) ); ?>">
+						<tr class="additional-images">
 							<td width="20%">
 								<label for="social-post-flow_image_additional">
 									<?php esc_html_e( 'Additional Images', 'social-post-flow' ); ?>
 								</label>
 							</td>
 							<td>
-								<select id="social-post-flow_image_additional" name="social-post-flow_image_additional" size="1">
+								<select id="social-post-flow_image_additional" name="social-post-flow_image_additional" size="1" class="additional-images">
 									<?php
 									foreach ( social_post_flow()->get_class( 'image' )->get_status_additional_image_options( false, $post_type ) as $value => $label ) {
 										?>
@@ -227,7 +227,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 								</p>
 							</td>
 						</tr>
-						<tr class="additional-images" data-conditional-value="<?php echo esc_attr( implode( ',', array_keys( social_post_flow()->get_class( 'image' )->get_status_image_options_supporting_additional_images( false, $post_type ) ) ) ); ?>">
+						<tr class="additional-images-limit">
 							<td width="20%">
 								<label for="social-post-flow_image_additional_limit">
 									<?php esc_html_e( 'Limit', 'social-post-flow' ); ?>
@@ -242,7 +242,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 								</p>
 							</td>
 						</tr>
-						<tr class="text-to-image" data-conditional-value="<?php echo esc_attr( implode( ',', array_keys( social_post_flow()->get_class( 'image' )->get_status_image_options_supporting_text_to_image( false, $post_type ) ) ) ); ?>">
+						<tr class="text-to-image">
 							<td width="20%">
 								<label for="social-post-flow_text_to_image">
 									<?php esc_html_e( 'Text to Image', 'social-post-flow' ); ?>

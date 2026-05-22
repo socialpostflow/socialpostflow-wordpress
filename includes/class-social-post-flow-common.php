@@ -59,11 +59,12 @@ class Social_Post_Flow_Common {
 
 		// Build status post type options.
 		$status_post_type_options = array(
-			'text'  => __( 'Text', 'social-post-flow' ),
-			'link'  => __( 'Link', 'social-post-flow' ),
-			'image' => __( 'Image', 'social-post-flow' ),
-			'story' => __( 'Story', 'social-post-flow' ),
-			'pin'   => __( 'Pin', 'social-post-flow' ),
+			'text'   => __( 'Text', 'social-post-flow' ),
+			'link'   => __( 'Link', 'social-post-flow' ),
+			'image'  => __( 'Image', 'social-post-flow' ),
+			'story'  => __( 'Story', 'social-post-flow' ),
+			'pin'    => __( 'Pin', 'social-post-flow' ),
+			'google' => __( 'Google Post', 'social-post-flow' ),
 		);
 
 		/**
