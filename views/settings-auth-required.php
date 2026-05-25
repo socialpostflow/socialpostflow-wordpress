@@ -52,6 +52,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 									<a href="<?php echo esc_url( $oauth_url ); ?>" class="button button-primary">
 										<?php esc_html_e( 'Authorize Plugin', 'social-post-flow' ); ?>
 									</a>
+									<a href="<?php echo esc_attr( social_post_flow()->get_class( 'api' )->get_registration_url() ); ?>" class="button button-secondary">
+										<?php esc_html_e( 'Register Account', 'social-post-flow' ); ?>
+									</a>
 								</div>
 							</div>
 						</div>

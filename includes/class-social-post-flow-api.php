@@ -21,7 +21,7 @@ class Social_Post_Flow_API {
 	 *
 	 * @var     string.
 	 */
-	private $app_endpoint = 'https://app.socialpostflow.com';
+	private $app_endpoint = 'https://app.socialpostflow.com/';
 
 	/**
 	 * Holds the API endpoint

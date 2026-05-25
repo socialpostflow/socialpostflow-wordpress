@@ -5,7 +5,7 @@ Tags: auto post, social media, google business, instagram, linkedin
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.3.4
+Stable tag: 1.3.5
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -449,6 +449,9 @@ Social Post Flow offers a 7-day free trial so you can test all features before p
 4. Post-level Logging.
 
 == Changelog ==
+
+= 1.3.5 (2026-05-25) =
+* Fix: Registration, Billing and Profile URLs
 
 = 1.3.4 (2026-05-23) =
 * Fix: API: Endpoints
