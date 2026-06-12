@@ -1,7 +1,7 @@
 === Social Media Auto Poster - Schedule & Publish to Social Post Flow ===
 Contributors: socialpostflow
 Donate link: https://www.socialpostflow.com/integrations/wordpress
-Tags: auto post, social media, google business, instagram, linkedin
+Tags: auto post, social media automation, social media scheduler, auto publish, social media posting
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
@@ -13,11 +13,21 @@ Auto publish WordPress posts to Facebook, X/Twitter, Threads, Instagram, LinkedI
 
 == Description ==
 
-Auto Post to Social Media is a powerful WordPress plugin that automatically publishes your Posts, Pages, Events, Products and Custom Post Types to Facebook, X/Twitter, Threads, Instagram, LinkedIn, Google Business, Pinterest, TikTok, Mastodon, Bluesky and Telegram. Connect your social media accounts in minutes and start scheduling posts with unique, dynamic content for each platform.
+Social Post Flow is a powerful WordPress social media automation plugin that handles auto posting, scheduling and publishing of your WordPress content to every major social network. Auto post your Posts, Pages, Events, Products and Custom Post Types to Facebook, X/Twitter, Threads, Instagram, LinkedIn, Google Business Profile, Pinterest, TikTok, Mastodon, Bluesky and Telegram.
 
-Don't have a Social Post Flow account? Pricing starts at $49/year for 5 social accounts, and you can [sign up for a free 7 day trial](https://app.socialpostflow.com/register)
+**Automatic Social Media Publishing** - Set it once and your WordPress content is auto published to social media whenever you create or update a post.
 
-See our quick start tutorial to auto publish your WordPress content:
+**Social Media Scheduling** - Schedule social media posts for a specific date and time, or add them to a queue for optimal posting times. Full control over when each post goes live.
+
+**Social Media Automation Across 11 Networks** - One WordPress plugin, one $49/year subscription, every major social network. No per-network add-ons, no per-month fees.
+
+**Auto Publish with Dynamic Content** - Auto publish unique social media posts for each network using dynamic tags that pull your post title, content, excerpt, custom fields, taxonomy terms and more.
+
+**Repost and Recycle Evergreen Content** - Auto post older WordPress content back to social media on a schedule you control, keeping your social feeds active without manual work.
+
+Don't have a Social Post Flow account? Pricing starts at $49/year for 5 social accounts, and you can [sign up for a free 7 day trial](https://app.socialpostflow.com/register).
+
+See our quick start tutorial to auto publish your WordPress content to social media:
 
 [youtube https://www.youtube.com/watch?v=IFjYKMjnRB4]
 
@@ -48,37 +58,37 @@ Our technology prevents accidental duplicate posts and includes protection to ke
 
 === Auto Post to Multiple Social Networks ===
 
-**Facebook Auto Post**
+**Facebook Auto Posting**
 Automatically share WordPress posts to Facebook Pages with custom messaging, images, and link previews. Perfect for business pages and community management.
 
-**Twitter / X Auto Post**
+**Twitter / X Auto Posting**
 Still working after the Twitter API changes! Auto publish to Twitter/X with character count optimization, hashtag support, and media attachments.
 
-**Instagram Auto Post**
+**Instagram Auto Posting**
 Share your WordPress content to Instagram with image optimization and caption formatting specifically designed for Instagram's requirements.
 
-**LinkedIn Auto Post**
+**LinkedIn Auto Posting**
 Publish professional content to LinkedIn company pages and personal profiles with full image and link preview support.
 
-**Google Business Profile Auto Post**
+**Google Business Profile Auto Posting**
 Automatically publish your WordPress content to your Google Business Profile, keeping your business listing fresh with updates that appear directly in Google Search and Maps.
 
-**Threads Auto Post**
+**Threads Auto Posting**
 Automatically cross-post your WordPress content to Meta's Threads platform with optimized formatting for the Threads audience.
 
-**Pinterest Auto Post**
+**Pinterest Auto Posting**
 Share visual content from your WordPress site to Pinterest boards automatically with proper image optimization and pin descriptions.
 
-**TikTok Auto Post**
+**TikTok Auto Posting**
 Automatically share your WordPress content to TikTok with video and image support optimized for TikTok's vertical format and engagement-focused audience.
 
-**Mastodon Auto Post**
+**Mastodon Auto Posting**
 Connect to any Mastodon instance and auto publish your WordPress posts to the federated social network.
 
-**Bluesky Auto Post**
+**Bluesky Auto Posting**
 Connect to any Bluesky instance and auto publish your WordPress posts to Bluesky.
 
-**Telegram Auto Post**
+**Telegram Auto Posting**
 Connect to your Telegram channels and groups to auto publish your WordPress posts to Telegram.
 
 === Repost Old Content and Evergreen Posts ===
