@@ -704,7 +704,7 @@ class Social_Post_Flow_API {
 	 */
 	private function enable_ssl_verification() {
 
-		$enable_ssl_verification = false;
+		$enable_ssl_verification = true;
 
 		/**
 		 * Defines whether to enable SSL verification for the Social Post Flow API.
