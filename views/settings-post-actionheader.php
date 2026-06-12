@@ -25,6 +25,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 			);
 			?>
 		</h3>
+
+		<?php
+		if ( ! $profile['connected'] ) {
+			?>
+			<br />
+			<div class="notice notice-error inline">
+				<p>
+					<?php esc_html_e( 'This social media account is not connected to Social Post Flow. Please reconnect it to start sending Posts.', 'social-post-flow' ); ?>
+					<a href="https://app.socialpostflow.com/profiles/<?php echo esc_attr( $profile['id'] ); ?>" class="button button-primary button-small" target="_blank">
+						<?php esc_html_e( 'Reconnect', 'social-post-flow' ); ?>
+					</a>
+				</p>
+			</div>
+			<?php
+		}
+		?>
 	</header>
 
 	<!-- Account Enabled -->

@@ -30,11 +30,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 		if ( ! is_wp_error( $profiles ) ) {
 			foreach ( $profiles as $key => $profile ) {
 				$profile_enabled = $this->get_setting( $post_type, '[' . $profile['id'] . '][enabled]', 0 );
+
+				// Show tick only when profile is connected and enabled in the plugin.
+				// Show warning whenever the profile is not connected, regardless of enabled state.
+				$link_classes = array();
+				if ( $profile['connected'] && $profile_enabled ) {
+					$link_classes[] = 'enabled';
+				}
+				if ( ! $profile['connected'] ) {
+					$link_classes[] = 'error';
+				}
 				?>
 				<li class="wpzinc-nav-tab <?php echo esc_attr( $profile['provider'] ); ?>">
-					<a href="#profile-<?php echo esc_attr( $profile['id'] ); ?>"<?php echo ( $profile_enabled ? ' class="enabled"' : '' ); ?> title="<?php echo esc_attr( $profile['provider_name'] . ': ' . $profile['profile_name'] ); ?>">
-						<span class="formatted-username"><?php echo esc_html( $profile['profile_name'] ); ?></span>
-						<span class="dashicons dashicons-yes"></span>
+					<a href="#profile-<?php echo esc_attr( $profile['id'] ); ?>"<?php echo ( ! empty( $link_classes ) ? ' class="' . esc_attr( implode( ' ', $link_classes ) ) . '"' : '' ); ?> title="<?php echo esc_attr( $profile['provider_name'] . ': ' . $profile['profile_name'] ); ?>">
+						<span class="formatted-username" data-text="<?php echo esc_attr( $profile['profile_name'] ); ?>"><?php echo esc_html( $profile['profile_name'] ); ?></span>
+						<?php if ( ! $profile['connected'] ) { ?>
+							<span class="dashicons dashicons-warning"></span>
+						<?php } else { ?>
+							<span class="dashicons dashicons-yes"></span>
+						<?php } ?>
 					</a>
 				</li>
 				<?php
