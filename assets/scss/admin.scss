@@ -381,31 +381,25 @@ body.block-editor-page {
 						display: inline-block;
 					}
 
-					// Never show the tick if disconnected, even if .enabled is also applied.
 					span.dashicons.dashicons-yes {
 						display: none;
 					}
 				}
 			}
 		}
-	}
-
-	/**
-	 * Profile tabs (vertical) - tweaks for icon spacing and bold-on-active overflow.
-	 */
-	ul.wpzinc-nav-tabs {
 
 		li.wpzinc-nav-tab {
 
-			a {
-				// Add space between the provider icon and the profile name.
+			/**
+			 * Profile tabs only: scoped via :has(span.formatted-username) so
+			 * these padding overrides only apply to tabs that display a
+			 * connected social profile. Other wpzinc-nav-tabs (e.g. the
+			 * Settings screen's left-hand menu) are left untouched.
+			 */
+			a:has(span.formatted-username) {
 				padding-left: 32px;
-
-				// Reserve enough room on the right so the tick / warning icon
-				// doesn't overlap a long profile name.
 				padding-right: 28px;
 
-				// Allow the profile name to truncate rather than overflow the tab.
 				span.formatted-username {
 					display: inline-block;
 					max-width: 100%;
@@ -430,9 +424,8 @@ body.block-editor-page {
 				}
 			}
 
-			a.wpzinc-nav-tab-vertical-active,
-			a:hover {
-				// Keep our wider padding-left when active / hovered.
+			a.wpzinc-nav-tab-vertical-active:has(span.formatted-username),
+			a:hover:has(span.formatted-username) {
 				padding-left: 45px;
 			}
 		}
@@ -500,189 +493,189 @@ body.block-editor-page {
 			}
 		}
 	}
-}
 
-/**
+	/**
 * Status Form
 */
-body.wpzinc {
+	body.wpzinc {
 
-	.wrap {
+		.wrap {
 
-		#social-post-flow-status-form {
+			#social-post-flow-status-form {
 
-			> .wpzinc-option {
-				padding: 20px 30px;
-			}
-
-			div.notice-inline {
-				margin: 5px 0 15px 0;
-				border-top: 1px solid #ccd0d4;
-				border-right: 1px solid #ccd0d4;
-				border-bottom: 1px solid #ccd0d4;
-
-				p {
-					margin: 0.5em 0;
-				}
-			}
-
-			div.images {
-				margin: 0 0 10px 0;
-
-				select.right {
-					margin: 0 0 0 5px;
-				}
-			}
-
-			div.tags {
-				margin: 0 0 10px 0;
-			}
-
-			/**
-			 * Character Count
-			 */
-			small.characters {
-				display: inline-block;
-				line-height: 1;
-			}
-
-			h3 {
-				margin: 0;
-			}
-
-			/**
-			 * Status
-			 */
-			div.status,
-			div.scheduling,
-			div.pinterest,
-			div.googlebusiness,
-			div.images,
-			div.text-to-image {
-
-				select,
-				input[type="text"],
-				textarea {
-					margin: 0 0 7px 0;
-				}
-			}
-
-			/**
-			 * Scheduling
-			 */
-			div.schedule {
-
-				label,
-				.custom {
-					display: inline-block;
-					vertical-align: middle;
+				> .wpzinc-option {
+					padding: 20px 30px;
 				}
 
-				input[type="number"] {
-					width: 50px;
-				}
-			}
+				div.notice-inline {
+					margin: 5px 0 15px 0;
+					border-top: 1px solid #ccd0d4;
+					border-right: 1px solid #ccd0d4;
+					border-bottom: 1px solid #ccd0d4;
 
-			/**
-			* Section divider
-			*/
-			div.section {
-				margin: 15px 0 0 0;
-				padding: 15px 0 0 0;
-				border-top: 1px solid #dfdfdf;
-
-				table {
-
-					th.actions,
-					td.actions {
-						width: 71px;
+					p {
+						margin: 0.5em 0;
 					}
 				}
+
+				div.images {
+					margin: 0 0 10px 0;
+
+					select.right {
+						margin: 0 0 0 5px;
+					}
+				}
+
+				div.tags {
+					margin: 0 0 10px 0;
+				}
+
+				/**
+			 * Character Count
+			 */
+				small.characters {
+					display: inline-block;
+					line-height: 1;
+				}
+
+				h3 {
+					margin: 0;
+				}
+
+				/**
+			 * Status
+			 */
+				div.status,
+				div.scheduling,
+				div.pinterest,
+				div.googlebusiness,
+				div.images,
+				div.text-to-image {
+
+					select,
+					input[type="text"],
+					textarea {
+						margin: 0 0 7px 0;
+					}
+				}
+
+				/**
+			 * Scheduling
+			 */
+				div.schedule {
+
+					label,
+					.custom {
+						display: inline-block;
+						vertical-align: middle;
+					}
+
+					input[type="number"] {
+						width: 50px;
+					}
+				}
+
+				/**
+			* Section divider
+			*/
+				div.section {
+					margin: 15px 0 0 0;
+					padding: 15px 0 0 0;
+					border-top: 1px solid #dfdfdf;
+
+					table {
+
+						th.actions,
+						td.actions {
+							width: 71px;
+						}
+					}
+				}
+			}
+		}
+
+		/**
+	* Progress Bar
+	*/
+		.wpzinc-option.progressbar {
+
+			/**
+		* jQuery UI ProgressBar
+		*/
+			.ui-progressbar {
+				height: 2em;
+				text-align: left;
+				overflow: hidden;
+			}
+
+			.ui-progressbar .ui-progressbar-value {
+				margin: -1px;
+				height: 100%;
+			}
+
+			.ui-progressbar .ui-progressbar-overlay {
+				background: #008000;
+				height: 100%;
+				filter: alpha(opacity=25); /* support: IE8 */
+				opacity: 0.25;
+			}
+
+			.ui-progressbar-indeterminate .ui-progressbar-value {
+				background-image: none;
+			}
+
+			.ui-widget {
+				font-family: "Trebuchet MS", Tahoma, Verdana, Arial, sans-serif;
+				font-size: 1.1em;
+			}
+
+			.ui-widget .ui-widget {
+				font-size: 1em;
+			}
+
+			.ui-widget input,
+			.ui-widget select,
+			.ui-widget textarea,
+			.ui-widget button {
+				font-family: "Trebuchet MS", Tahoma, Verdana, Arial, sans-serif;
+				font-size: 1em;
+			}
+
+			.ui-widget-content {
+				border: 1px solid #ddd;
+				background: #eee;
+				color: #333;
+			}
+
+			.ui-widget-content a {
+				color: #333;
+			}
+
+			.ui-widget-header {
+				border: 1px solid #e78f08;
+				background: #008000;
+				color: #fff;
+				font-weight: 700;
+			}
+
+			.ui-widget-header a {
+				color: #fff;
 			}
 		}
 	}
 
 	/**
-	* Progress Bar
-	*/
-	.wpzinc-option.progressbar {
-
-		/**
-		* jQuery UI ProgressBar
-		*/
-		.ui-progressbar {
-			height: 2em;
-			text-align: left;
-			overflow: hidden;
-		}
-
-		.ui-progressbar .ui-progressbar-value {
-			margin: -1px;
-			height: 100%;
-		}
-
-		.ui-progressbar .ui-progressbar-overlay {
-			background: #008000;
-			height: 100%;
-			filter: alpha(opacity=25); /* support: IE8 */
-			opacity: 0.25;
-		}
-
-		.ui-progressbar-indeterminate .ui-progressbar-value {
-			background-image: none;
-		}
-
-		.ui-widget {
-			font-family: "Trebuchet MS", Tahoma, Verdana, Arial, sans-serif;
-			font-size: 1.1em;
-		}
-
-		.ui-widget .ui-widget {
-			font-size: 1em;
-		}
-
-		.ui-widget input,
-		.ui-widget select,
-		.ui-widget textarea,
-		.ui-widget button {
-			font-family: "Trebuchet MS", Tahoma, Verdana, Arial, sans-serif;
-			font-size: 1em;
-		}
-
-		.ui-widget-content {
-			border: 1px solid #ddd;
-			background: #eee;
-			color: #333;
-		}
-
-		.ui-widget-content a {
-			color: #333;
-		}
-
-		.ui-widget-header {
-			border: 1px solid #e78f08;
-			background: #008000;
-			color: #fff;
-			font-weight: 700;
-		}
-
-		.ui-widget-header a {
-			color: #fff;
-		}
-	}
-}
-
-/**
 * Table Row Repeaters (Custom Fields, Custom Tags)
 */
-table {
+	table {
 
-	tr.hide-delete-button {
+		tr.hide-delete-button {
 
-		td {
+			td {
 
-			.wpzinc-delete-table-row {
-				display: none;
+				.wpzinc-delete-table-row {
+					display: none;
+				}
 			}
 		}
 	}
