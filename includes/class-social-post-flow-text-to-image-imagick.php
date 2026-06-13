@@ -422,6 +422,19 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 		$draw->setFont( $this->font_face );
 		$draw->setFontSize( $this->text_size );
 
+		// Fetch canvas dimensions once so we can bounds-check each line below.
+		// If the calculated text position falls outside the canvas, ImageMagick
+		// throws "no pixels defined in cache" - we skip those lines to avoid
+		// a fatal error when the text overflows the available space (e.g. a
+		// very long status combined with a narrow background image and large
+		// font size).
+		try {
+			$canvas_width  = $this->im->getImageWidth();
+			$canvas_height = $this->im->getImageHeight();
+		} catch ( Exception $e ) {
+			return new WP_Error( 'social_post_flow_imagick_text_draw_canvas_error', $e->getMessage() );
+		}
+
 		foreach ( $lines as $current_line => $line ) {
 
 			// Get text bounding box.
@@ -444,6 +457,19 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 			$current_line_x_pos = $this->box['x'] + $text_align_x;
 			$current_line_y_pos = $this->box['y'] + $text_align_y + ( $line_height_pixels * ( 1 - $this->baseline ) ) + ( $current_line * $line_height_pixels );
 
+			// Skip lines that fall outside the image canvas. Without this check,
+			// Imagick's annotateImage() will throw a fatal "no pixels defined in
+			// cache" exception when asked to draw at coordinates with no
+			// underlying pixel data.
+			if (
+				$current_line_y_pos < 0
+				|| $current_line_y_pos > $canvas_height
+				|| $current_line_x_pos > $canvas_width
+				|| ( $current_line_x_pos + $box_width ) < 0
+			) {
+				continue;
+			}
+
 			// Draw text background if specified.
 			if ( $this->text_background_color ) {
 				$rect = new ImagickDraw();
@@ -458,14 +484,22 @@ class Social_Post_Flow_Text_To_Image_Imagick {
 			}
 
 			// Draw the text.
+			// Wrapped in try/catch as a final safety net: if Imagick still
+			// raises an exception for any reason (e.g. font / glyph issues),
+			// fail gracefully with a WP_Error instead of a fatal error that
+			// would prevent the post from publishing.
 			$draw->setFillColor( $this->rgba_to_string( $this->text_color ) );
-			$this->im->annotateImage(
-				$draw,
-				$current_line_x_pos,
-				$current_line_y_pos,
-				0,
-				$line
-			);
+			try {
+				$this->im->annotateImage(
+					$draw,
+					$current_line_x_pos,
+					$current_line_y_pos,
+					0,
+					$line
+				);
+			} catch ( Exception $e ) {
+				return new WP_Error( 'social_post_flow_imagick_text_draw_annotate_error', $e->getMessage() );
+			}
 		}
 
 	}
