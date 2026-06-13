@@ -5,7 +5,7 @@ Tags: auto post, social media automation, social media scheduler, auto publish, 
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.3.6
+Stable tag: 1.3.7
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -459,6 +459,9 @@ Social Post Flow offers a 7-day free trial so you can test all features before p
 4. Post-level Logging.
 
 == Changelog ==
+
+= 1.3.7 (2026-06-13) =
+* Fix: Text to Image: Uncaught ImagickException: no pixels defined in cache
 
 = 1.3.6 (2026-06-12) =
 * Added: Profiles: Display warning and reconnect button when a profile disconnects from Social Post Flow
