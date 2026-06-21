@@ -3,7 +3,9 @@
 Auto-publish your WordPress Posts, Pages, WooCommerce products and Custom Post Types to **Facebook, X/Twitter, Threads, Instagram, LinkedIn, Google Business Profile, Pinterest, TikTok, Mastodon, Bluesky and Telegram**.
  
 🔗 **Website:** [socialpostflow.com](https://www.socialpostflow.com/)
+
 📦 **Download (free) on WordPress.org:** [wordpress.org/plugins/social-post-flow](https://wordpress.org/plugins/social-post-flow/)
+
 📚 **Documentation:** [socialpostflow.com/documentation/wordpress-plugin](https://www.socialpostflow.com/documentation/wordpress-plugin/)
  
 Welcome to the Social Post Flow Plugin repository on GitHub. Here you can view the plugin source code, review open issues, and see releases of the plugin.
@@ -55,6 +57,7 @@ Additional developer documentation on socialpostflow.com:
 - [WP-CLI commands](https://www.socialpostflow.com/documentation/wordpress-plugin/wp-cli/)
 - [REST API reference](https://www.socialpostflow.com/documentation/api/)
 - [MCP server reference](https://www.socialpostflow.com/documentation/mcp/)
+
 For Social Post Flow, there is a separate guide to deploying new versions to WordPress.org:
  
 - [Deployment](DEPLOYMENT.md) - how to deploy a new Plugin version to [WordPress.org](https://wordpress.org/plugins/social-post-flow/)
