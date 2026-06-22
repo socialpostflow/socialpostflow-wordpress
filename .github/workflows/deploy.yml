@@ -17,7 +17,7 @@ jobs:
     steps:
       # Checkout (copy) this repository's Plugin to this VM.
       - name: Checkout Plugin
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       # Deploy to wordpress.org, if expected files exist.
       - name: WordPress Plugin Deploy
