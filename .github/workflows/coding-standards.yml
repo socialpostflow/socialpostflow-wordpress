@@ -27,10 +27,11 @@ jobs:
     # Environment Variables.
     # Accessible by using ${{ env.NAME }}
     # Use ${{ secrets.NAME }} to include any GitHub Secrets in ${{ env.NAME }}
-    # The base folder will always be /home/runner/work/github-repo-name/github-repo-name
+    # The base folder will always be /home/runner/work/{repo-name}/{repo-name}.
+    # Use github.workspace so these paths work regardless of the GitHub repo name.
     env:
-      ROOT_DIR: /home/runner/work/wp-social-post-flow/wp-social-post-flow/wordpress
-      PLUGIN_DIR: /home/runner/work/wp-social-post-flow/wp-social-post-flow/wordpress/wp-content/plugins/wp-social-post-flow
+      ROOT_DIR: ${{ github.workspace }}/wordpress
+      PLUGIN_DIR: ${{ github.workspace }}/wordpress/wp-content/plugins/wp-social-post-flow
       DB_NAME: test
       DB_USER: root
       DB_PASS: root

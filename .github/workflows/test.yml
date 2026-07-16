@@ -30,7 +30,9 @@ jobs:
     env:
       ROOT_DIR: /var/www/html
       PLUGIN_DIR: /var/www/html/wp-content/plugins/wp-social-post-flow
-      WORKING_DIR: /home/runner/work/wp-social-post-flow/wp-social-post-flow/wp-social-post-flow
+      # The base folder will always be /home/runner/work/{repo-name}/{repo-name}.
+      # Use github.workspace so this works regardless of the GitHub repo name.
+      WORKING_DIR: ${{ github.workspace }}/wp-social-post-flow
       DB_NAME: test
       DB_USER: root
       DB_PASS: root
