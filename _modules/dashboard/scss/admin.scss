@@ -11,10 +11,10 @@
 /**
  * Vars
  */
-$wpzinc-option-label-width: 				140px;
-$wpzinc-vertical-tabbed-ui-width: 			180px;
-$wpzinc-vertical-tabbed-ui-width-mobile: 	60px;
-$wpzinc-border-color: 						#e5e5e5;
+$wpzinc-option-label-width: 140px;
+$wpzinc-vertical-tabbed-ui-width: 180px;
+$wpzinc-vertical-tabbed-ui-width-mobile: 60px;
+$wpzinc-border-color: #e5e5e5;
 
 /**
  * wp_die() Screen
@@ -27,12 +27,14 @@ body#wpzinc-error-page {
 		background: #fff;
 		border: 1px solid #ccd0d4;
 		color: #444;
-		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+		font-family:
+			-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans,
+			Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 		margin: 2em auto;
 		padding: 1em 2em;
 		max-width: 700px;
-		-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
-		box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
+		-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
 	}
 }
 
@@ -47,13 +49,13 @@ body.wpzinc {
  	 * Screen Options
  	 * - Add left margin so it's not tight to the admin menu
  	 */
- 	#screen-meta {
- 		margin-left: 22px;
- 	}
+	#screen-meta {
+		margin-left: 22px;
+	}
 
 	#wpcontent {
- 		padding-left: 0;
- 	
+		padding-left: 0;
+
 		#wpbody-content {
 			padding-left: 0;
 
@@ -70,7 +72,7 @@ body.wpzinc {
 				background-size: 40px auto;
 				background-position: 30px 50%;
 				background-repeat: no-repeat;
-				background-color: var(--wpzinc-header-background-color, #ffffff);
+				background-color: var(--wpzinc-header-background-color, #fff);
 
 				h1 {
 					float: left;
@@ -83,7 +85,10 @@ body.wpzinc {
 					text-indent: 70px;
 
 					span {
-						color: var(--wpzinc-header-secondary-text-color, #6e6e6e);
+						color: var(
+							--wpzinc-header-secondary-text-color,
+							#6e6e6e
+						);
 					}
 				}
 
@@ -112,6 +117,7 @@ body.wpzinc {
 					margin: 5px 15px 2px 15px;
 				}
 
+				/* stylelint-disable-next-line no-invalid-position-at-import-rule */
 				@import "custom-post-tax-types";
 
 				/**
@@ -120,8 +126,8 @@ body.wpzinc {
 				span.subtitle {
 					position: absolute;
 					left: 0;
-						right: 0;
-						margin: 20px 0;
+					right: 0;
+					margin: 20px 0;
 					font-style: italic;
 					max-width: 50%;
 				}
@@ -150,6 +156,7 @@ body.wpzinc {
 				 * Modern Settings Sections
 				 */
 				form.wpzinc-settings-ui {
+
 					.postbox {
 						margin: 0 0 30px 0;
 						padding: 30px;
@@ -159,11 +166,11 @@ body.wpzinc {
 
 						h2 {
 							margin: 0 0 30px 0;
-						    padding: 0 0 30px 0;
-						    font-size: 24px;
-						    font-weight: 600;
-						    border-bottom: 1px solid #e3e3e3;
-						    color: #3d3d3d;
+							padding: 0 0 30px 0;
+							font-size: 24px;
+							font-weight: 600;
+							border-bottom: 1px solid #e3e3e3;
+							color: #3d3d3d;
 						}
 					}
 				}
@@ -175,7 +182,6 @@ body.wpzinc {
 					margin-bottom: 20px;
 					padding: 0;
 				}
-				
 			}
 		}
 	}
@@ -184,11 +190,14 @@ body.wpzinc {
 /**
 * Settings UI: Gutenberg
 */
+/* stylelint-disable-next-line no-duplicate-selectors */
 body.wpzinc {
+
 	/**
 	 * Force selectize elements to be 100% width
 	 */
 	.components-base-control {
+
 		&.wpzinc-selectize-freeform,
 		&.wpzinc-selectize-drag-drop,
 		&.wpzinc-selectize-search,
@@ -222,45 +231,50 @@ ul.wpzinc-tinymce-autocomplete {
 	padding: 16px;
 	background-color: #fff;
 	border: 1px solid #ccc;
-	box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 	border-radius: 2px;
 }
+
 .tribute-container ul,
 ul.wpzinc-tinymce-autocomplete {
 	margin: 0;
 	list-style: none;
 }
+
 .tribute-container ul li,
 ul.wpzinc-tinymce-autocomplete li {
-    width: 100%;
-    line-height: 24px;
-    margin: 0;
-    padding: 6px 12px;
-    font-size: 13px;
-    text-align: left;
-    border: 0;
-    border-radius: 2px;
-    color: #1e1e1e;
-    text-decoration: none;
-    cursor: pointer;
-    background: none;
-	transition: box-shadow .1s linear;
+	width: 100%;
+	line-height: 24px;
+	margin: 0;
+	padding: 6px 12px;
+	font-size: 13px;
+	text-align: left;
+	border: 0;
+	border-radius: 2px;
+	color: #1e1e1e;
+	text-decoration: none;
+	cursor: pointer;
+	background: none;
+	transition: box-shadow 0.1s linear;
 	box-sizing: border-box;
 
 	&:hover {
-    	color: #007cba;
-    }
-    &:focus,
-    &.highlight {
-    	color: #007cba;
+		color: #007cba;
+	}
+
+	&:focus,
+	&.highlight {
+		color: #007cba;
 		box-shadow: 0 0 0 2px #007cba;
-    	outline: 3px solid transparent;
-    }
-    &.highlight:hover {
-    	box-shadow: none;
-    	outline: 0;
-    }
+		outline: 3px solid transparent;
+	}
+
+	&.highlight:hover {
+		box-shadow: none;
+		outline: 0;
+	}
 }
+
 ul.wpzinc-tinymce-autocomplete {
 	display: none;
 
@@ -269,7 +283,7 @@ ul.wpzinc-tinymce-autocomplete {
 	}
 
 	li {
-		display: none; 
+		display: none;
 
 		&.displayed {
 			display: block;
@@ -283,27 +297,30 @@ ul.wpzinc-tinymce-autocomplete {
  * - Scroll results
  */
 .ui-autocomplete {
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !important;
+	font-family:
+		-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans,
+		Ubuntu, Cantarell, "Helvetica Neue", sans-serif !important;
 	font-size: 15px !important;
 	z-index: 9999999 !important;
 	max-height: 120px !important;
 	overflow-x: hidden !important;
 	overflow-y: auto !important;
-	border: 1px solid #dddddd !important;
+	border: 1px solid #ddd !important;
 	background: #f2f2f2 !important;
-	color: #333333 !important;
+	color: #333 !important;
 }
 
 /**
  * Media Library: Insert/Delete Image
  */
- .wpzinc-media-library-selector {
- 	ul {
- 		margin: 0;
- 		padding: 0;
- 	}
- 	
- 	/**
+.wpzinc-media-library-selector {
+
+	ul {
+		margin: 0;
+		padding: 0;
+	}
+
+	/**
  	 * Individual Attachment
  	 */
 	li.wpzinc-media-library-attachment {
@@ -313,6 +330,7 @@ ul.wpzinc-tinymce-autocomplete {
 		padding: 5px 10px;
 
 		.wpzinc-media-library-insert {
+
 			img {
 				position: relative;
 				z-index: 2;
@@ -361,6 +379,7 @@ ul.wpzinc-tinymce-autocomplete {
 	 * Sortable Attachments
 	 */
 	ul.ui-sortable {
+
 		li.wpzinc-media-library-attachment {
 			cursor: move;
 		}
@@ -369,25 +388,27 @@ ul.wpzinc-tinymce-autocomplete {
 	/**
 	 * Multiple Attachments
 	 */
-	&[data-multiple=true] {
+	&[data-multiple="true"] {
+
 		ul {
 			display: grid;
-	    	grid-gap: 10px;
-	    	grid-template-columns: 1fr 1fr;
-	    }
+			grid-gap: 10px;
+			grid-template-columns: 1fr 1fr;
+		}
 	}
 
 	/**
 	 * Image Attachments
 	 */
-	&[data-file-type=image] {
+	&[data-file-type="image"] {
+
 		li.wpzinc-media-library-attachment {
 			--aspect-ratio: 1/1;
 			border: 1px dashed #dfdfdf;
 			background-color: #fff;
 			padding: 0;
 
-			&:before {
+			&::before {
 				content: "";
 				display: inline-block;
 				width: 1px;
@@ -435,18 +456,26 @@ h2.wpzinc-horizontal-tabbed-ui.nav-tab-wrapper {
 
 		&:hover {
 			color: #144264;
-			background: #e7e7e7
+			background: #e7e7e7;
 		}
+
 		&.nav-tab-active {
 			color: #144264;
 			border-bottom: 1px solid #4c596d;
 		}
+
 		&.enabled {
-			color: green;
+			color: #008000;
+
+			span.dashicons.dashicons-yes {
+				display: inline-block;
+			}
 		}
+
 		&.error {
-			color: red;
+			color: #f00;
 		}
+
 		&.last {
 			float: right;
 			margin: 0;
@@ -479,17 +508,12 @@ h2.wpzinc-horizontal-tabbed-ui.nav-tab-wrapper {
 			display: none;
 			top: -8px;
 			right: -8px;
-			background-color: green;
-			color: white;
+			background-color: #008000;
+			color: #fff;
 			border-radius: 50%;
 
 			&::before {
 				margin-left: -2px;
-			}
-		}
-		&.enabled {
-			span.dashicons.dashicons-yes {
-				display: inline-block;
 			}
 		}
 
@@ -501,7 +525,7 @@ h2.wpzinc-horizontal-tabbed-ui.nav-tab-wrapper {
 			display: inline-block;
 			top: -8px;
 			right: -8px;
-			color: red;
+			color: #f00;
 			border-radius: 50%;
 		}
 	}
@@ -518,7 +542,7 @@ div.wpzinc-vertical-tabbed-ui {
 	/**
 	 * We force styles here as Gutenberg meta boxes might not have borders etc
 	 */
-    border: 1px solid $wpzinc-border-color !important;
+	border: 1px solid $wpzinc-border-color !important;
 	background: #f7f7f7 !important;
 
 	&.no-border {
@@ -548,12 +572,15 @@ div.wpzinc-vertical-tabbed-ui {
 			 * Icons for dashboard elements e.g. Import & Export
 			 */
 			&.download {
+
 				a {
 					background-image: url(../feather/download.svg);
 					background-size: 16px 16px;
 				}
 			}
+
 			&.upload {
+
 				a {
 					background-image: url(../feather/upload.svg);
 					background-size: 16px 16px;
@@ -563,15 +590,15 @@ div.wpzinc-vertical-tabbed-ui {
 			a {
 				position: relative;
 				display: block;
-	    		width: $wpzinc-vertical-tabbed-ui-width - 40;
-	    		margin: 0 20px;
-	    		padding: 20px 0 20px 25px;
-			    text-decoration: none;
-			    color: #999;
-			    border-bottom: 1px solid $wpzinc-border-color;
-			    box-sizing: border-box;
-			    transition: none;
-			    background-position: 0 50%;
+				width: $wpzinc-vertical-tabbed-ui-width - 40;
+				margin: 0 20px;
+				padding: 20px 0 20px 25px;
+				text-decoration: none;
+				color: #999;
+				border-bottom: 1px solid $wpzinc-border-color;
+				box-sizing: border-box;
+				transition: none;
+				background-position: 0 50%;
 				background-repeat: no-repeat;
 
 				/**
@@ -589,12 +616,12 @@ div.wpzinc-vertical-tabbed-ui {
 					}
 
 					&.dashicons-yes {
-						background-color: green;
-						color: white;
+						background-color: #008000;
+						color: #fff;
 					}
 
 					&.dashicons-warning {
-						color: red;
+						color: #f00;
 					}
 
 					&.hidden {
@@ -620,37 +647,40 @@ div.wpzinc-vertical-tabbed-ui {
 				/**
 			     * Enabled + Error Styles
 			     */
-			    &.enabled {
-					color: green;
+				&.enabled {
+					color: #008000;
 
 					span.dashicons {
+
 						&.hidden {
 							display: inline-block;
 						}
 					}
 				}
+
 				&.error {
-					color: red;
+					color: #f00;
 
 					span.dashicons {
+
 						&.hidden {
 							display: inline-block;
 						}
 					}
 				}
 
-			    &.wpzinc-nav-tab-vertical-active,
-			    &:hover {
-			    	width: $wpzinc-vertical-tabbed-ui-width + 1;
-				    margin: -1px 0 0 0;
-				    padding: 20px 20px 20px 45px;
-				    text-decoration: none;
-				    color: #444;
-				    border-top: 1px solid $wpzinc-border-color;
-				    border-bottom: 1px solid $wpzinc-border-color;
-				    border-right: 1px solid #f9f7f4;
-				    background-color: #fff;
-				    background-position: 20px 50%;
+				&.wpzinc-nav-tab-vertical-active,
+				&:hover {
+					width: $wpzinc-vertical-tabbed-ui-width + 1;
+					margin: -1px 0 0 0;
+					padding: 20px 20px 20px 45px;
+					text-decoration: none;
+					color: #444;
+					border-top: 1px solid $wpzinc-border-color;
+					border-bottom: 1px solid $wpzinc-border-color;
+					border-right: 1px solid #f9f7f4;
+					background-color: #fff;
+					background-position: 20px 50%;
 					background-repeat: no-repeat;
 
 					span.dashicons {
@@ -659,24 +689,25 @@ div.wpzinc-vertical-tabbed-ui {
 
 					span.tag {
 						right: 20px;
-						font-weight: normal;
+						font-weight: 400;
 					}
-			    }
+				}
 
-			    &.wpzinc-nav-tab-vertical-active {
-			    	font-weight: 700;
-			    }
+				&.wpzinc-nav-tab-vertical-active {
+					font-weight: 700;
+				}
 
-			    &:hover {
-			    	background-color: #f9f7f4;
-			    }
+				&:hover {
+					background-color: #f9f7f4;
+				}
 
-			    &:focus {
-			    	box-shadow: none;
-			    }
+				&:focus {
+					box-shadow: none;
+				}
 			}
 
 			&:last-child {
+
 				a {
 					border-bottom: none;
 				}
@@ -691,48 +722,50 @@ div.wpzinc-vertical-tabbed-ui {
 		grid-area: content;
 		margin: 0;
 		background: #fff;
-	    border-left: 1px solid $wpzinc-border-color;
+		border-left: 1px solid $wpzinc-border-color;
 
-	    &:after {
-	    	content: "";
-    		display: table;
-    		clear: both;
-	    }
+		&::after {
+			content: "";
+			display: table;
+			clear: both;
+		}
 
-	    div.postbox {
-	    	margin: 0;
-	    	padding: 0;
-	    	border: none;
-	    	background-color: transparent;
+		div.postbox {
+			margin: 0;
+			padding: 0;
+			border: none;
+			background-color: transparent;
 
-	    	+ div.postbox {
-    			border-top: 1px solid $wpzinc-border-color;
-    		}
+			+ div.postbox {
+				border-top: 1px solid $wpzinc-border-color;
+			}
 
-	    	header {
-	    		padding: 19px 15px 18px 15px;
+			header {
+				padding: 19px 15px 18px 15px;
 
-	    		h3 {
-	    			/* Defined so h3's style consistently in TinyMCE modals */
-	    			display: block;
-	    			margin: 0;
-	    			font-size: 1.3em;
-	    			font-weight: 600;
-	    			color: #23282d;
-	    		
+				h3 {
+
+					/* Defined so h3's style consistently in TinyMCE modals */
+					display: block;
+					margin: 0;
+					font-size: 1.3em;
+					font-weight: 600;
+					color: #23282d;
+
 					/**
 					* Checkboxes in Titles
 					*/
 					label {
 						float: right;
-						font-weight: normal;
+						font-weight: 400;
 					}
-	    		}
-	    		p.description {
-	    			margin: 10px 0 0 0;
-	    		}
-	    	}
-	    }
+				}
+
+				p.description {
+					margin: 10px 0 0 0;
+				}
+			}
+		}
 	}
 
 	/**
@@ -749,30 +782,31 @@ div.wpzinc-vertical-tabbed-ui {
 			float: left;
 			margin: 0;
 			padding: 0;
-		
+
 			a {
 				position: relative;
 				float: left;
 				height: 54px;
 				line-height: 54px;
-	    		margin: 0;
-	    		padding: 0 20px;
-			    text-decoration: none;
-			    color: #999;
-			    
-			    box-sizing: border-box;
-			    transition: none;
-			    background-position: 0 50%;
+				margin: 0;
+				padding: 0 20px;
+				text-decoration: none;
+				color: #999;
+
+				box-sizing: border-box;
+				transition: none;
+				background-position: 0 50%;
 				background-repeat: no-repeat;
 
 				/**
 			    * Enabled + Error Styles
 			    */
-			    &.enabled {
-					color: green;
+				&.enabled {
+					color: #008000;
 				}
+
 				&.error {
-					color: red;
+					color: #f00;
 				}
 
 				/**
@@ -792,36 +826,36 @@ div.wpzinc-vertical-tabbed-ui {
 
 					&.dashicons-yes {
 						margin: 18px 0 0 10px;
-						background-color: green;
-						color: white;
+						background-color: #008000;
+						color: #fff;
 					}
 
 					&.dashicons-warning {
 						margin: 18px 0 0 10px;
-						color: red;
+						color: #f00;
 					}
 				}
 
-			    &.wpzinc-nav-tab-horizontal-active,
-			    &:hover {
-				    text-decoration: none;
-				    color: #444;
-				    background-color: #fff;
-				    background-position: 20px 50%;
+				&.wpzinc-nav-tab-horizontal-active,
+				&:hover {
+					text-decoration: none;
+					color: #444;
+					background-color: #fff;
+					background-position: 20px 50%;
 					background-repeat: no-repeat;
 
 					span.dashicons {
 						right: 20px;
 					}
-			    }
+				}
 
-			    &.wpzinc-nav-tab-horizontal-active {
-			    	font-weight: 700;
-			    }
+				&.wpzinc-nav-tab-horizontal-active {
+					font-weight: 700;
+				}
 
-			    &:focus {
-			    	box-shadow: none;
-			    }
+				&:focus {
+					box-shadow: none;
+				}
 			}
 		}
 	}
@@ -830,6 +864,7 @@ div.wpzinc-vertical-tabbed-ui {
 /**
  * Settings UI - Admin Interface
  */
+/* stylelint-disable-next-line no-invalid-position-at-import-rule */
 @import "option";
 
 /**
@@ -838,7 +873,7 @@ div.wpzinc-vertical-tabbed-ui {
 .wpzinc-horizontal-selection {
 	display: flex;
 	flex-wrap: wrap;
-	
+
 	label {
 		width: 300px;
 		text-align: center;
@@ -855,7 +890,7 @@ div.wpzinc-vertical-tabbed-ui {
 
 		span {
 			display: block;
-			
+
 			&.description {
 				margin: 20px 0 0 0;
 				color: #646970;
@@ -863,7 +898,7 @@ div.wpzinc-vertical-tabbed-ui {
 			}
 		}
 
-		input[type=radio] {
+		input[type="radio"] {
 			margin: 20px 0 0 0;
 		}
 	}
@@ -873,7 +908,9 @@ div.wpzinc-vertical-tabbed-ui {
 * Settings UI - Items in Headers
 */
 .postbox {
+
 	.hndle {
+
 		.right {
 			float: right;
 
@@ -891,7 +928,7 @@ div.wpzinc-vertical-tabbed-ui {
 		input.right,
 		select.right {
 			margin-top: -3px;
-		}	
+		}
 	}
 }
 
@@ -899,14 +936,15 @@ div.wpzinc-vertical-tabbed-ui {
 * Settings UI - TinyMCE Popups
 */
 #wpzinc-tinymce-modal {
+
 	#wpzinc-tinymce-modal-body {
+
 		/* Scroll inner contents so that modal height doesn't need to exceed screen resolution. */
 		overflow-y: auto;
 	}
+
 	div.mce-foot {
-		div.mce-insert {
-			
-		}
+
 		div.mce-cancel {
 			left: 10px !important;
 		}
@@ -917,8 +955,10 @@ div.wpzinc-vertical-tabbed-ui {
 * Settings UI - TinyMCE and QuickTags
 */
 form.wpzinc-tinymce-popup {
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-	
+	font-family:
+		-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans,
+		Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+
 	/**
 	 * Vertical Tabbed UI
 	 */
@@ -932,9 +972,9 @@ form.wpzinc-tinymce-popup {
 	p.description {
 		white-space: normal;
 		margin: 2px 0 5px;
-    	color: #666;
+		color: #666;
 		font-size: 13px;
-    	font-style: italic;
+		font-style: italic;
 	}
 
 	/**
@@ -942,13 +982,16 @@ form.wpzinc-tinymce-popup {
 	 * - Settings UI
 	 * - Selectize
 	 */
+	/* stylelint-disable no-invalid-position-at-import-rule, no-duplicate-at-import-rules */
 	@import "option";
 	@import "selectize";
+	/* stylelint-enable no-invalid-position-at-import-rule, no-duplicate-at-import-rules */
 
 	/**
 	 * Settings UI
 	 */
 	div.wpzinc-option {
+
 		&:last-child {
 			border-bottom: none;
 		}
@@ -965,8 +1008,9 @@ form.wpzinc-tinymce-popup {
 		select {
 			background-color: #fff;
 		}
+
 		textarea {
-			padding: 5px; 
+			padding: 5px;
 			background-color: #fff;
 			border: 1px solid #7e8993;
 		}
@@ -1011,7 +1055,7 @@ form.wpzinc-tinymce-popup {
 * TinyMCE - dashicons for Visual Editor Buttons
 */
 i.mce-i-wpzinc-icon {
-	font: normal 20px/1 'dashicons';
+	font: 400 20px/1 dashicons;
 	padding: 0;
 	vertical-align: top;
 	speak: none;
@@ -1035,6 +1079,7 @@ div.notice.warning {
 	padding: 20px 0 0 0;
 	border-bottom: none;
 }
+
 .wpzinc-upgrade {
 	background: #f7f7f7;
 	border: 1px solid #e5e5e5;
@@ -1055,7 +1100,6 @@ div.notice.warning {
 			background: url(../feather/check-circle.svg) top left no-repeat;
 			background-size: 20px 20px;
 			padding: 0 0 0 30px;
-			
 
 			strong {
 				display: block;
@@ -1077,6 +1121,7 @@ div.notice.warning {
  */
 body.wpzinc.gutenberg-editor-page,
 body.wpzinc.block-editor-page {
+
 	.edit-post-layout__metaboxes:not(:empty) {
 		margin: 0;
 		padding: 0;
@@ -1086,11 +1131,14 @@ body.wpzinc.block-editor-page {
 		margin: 0;
 
 		#poststuff {
+
 			.handlediv {
+
 				/* Required so open/close button sits above and isn't covered by background color below */
 				position: relative;
 				z-index: 2;
 			}
+
 			h2.hndle {
 				z-index: 1; /* Required so open/close button sits above and isn't covered by background color below */
 				background-color: #fcfcfc;
@@ -1100,9 +1148,9 @@ body.wpzinc.block-editor-page {
 		.wpzinc-option {
 			background-color: transparent;
 			border: none;
-			
+
 			&:nth-child(odd) {
-				background-color: transparent;	
+				background-color: transparent;
 			}
 		}
 	}
@@ -1117,32 +1165,44 @@ body.wpzinc.block-editor-page {
 	z-index: 99999999;
 	top: 0;
 	left: 0;
-	opacity: 0.5;
 	width: 100vw;
 	height: 100vh;
-	background-color: #000;
+	background: rgba(0, 0, 0, 0.5);
 }
+
 .wpzinc-modal {
 	display: none;
 	position: fixed;
 	z-index: 100000000;
 
-	top: 50vh;
-	left: 50vw;
-	width: 50vw;
-	height: 180px;
-	margin: -90px 0 0 -25vw;
+	top: 60px;
+	left: 50%;
+	transform: translateX(-50%);
+	max-width: 720px;
+	width: calc(100vw - 40px);
+	height: auto;
+	max-height: calc(100vh - 120px);
+	margin: 0;
+	overflow-y: auto;
 
 	box-sizing: border-box;
-	background-color: #f7f7f7;
-	padding: 20px;
+	background-color: #fff;
+	padding: 30px 30px 20px;
+	border-radius: 4px;
+	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 
 	&.wpzinc-modal-mini {
-		top: 50vh;
-		left: 50vw;
-		width: 200px;
-		height: 70px;
-		margin: -35px 0 0 -85px;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: auto;
+		min-width: 240px;
+		max-width: 360px;
+		height: auto;
+		max-height: none;
+		margin: 0;
+		padding: 20px 25px;
+		overflow: hidden;
 	}
 
 	h2 {
@@ -1167,7 +1227,7 @@ body.wpzinc.block-editor-page {
 			margin: 4px 10px 0 4px;
 		}
 	}
-	
+
 	p.message {
 		margin: 0 0 20px 0;
 		padding: 0;
@@ -1179,7 +1239,7 @@ body.wpzinc.block-editor-page {
 		padding: 10px;
 
 		&.warning {
-			border-left-color: orange;
+			border-left-color: #ffa500;
 		}
 
 		p {
@@ -1198,30 +1258,33 @@ body.wpzinc.block-editor-page {
 * - override styles set by WordPress
 */
 .wpzinc-backbone-modal {
+
 	.media-modal {
 		position: absolute;
-  		left: 50%;
-  		top: 50%;
-  		transform: translate(-50%, -50%);
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
 
-  		.media-frame-title {
-  			left: 0;
-  			height: 30px;
-  		}
-  		.media-frame-content {
-  			left: 0;
-  			top: 54px;
-  			bottom: 54px; /* 34px + .media-toolbar top and bottom padding */
-  		}
-  		.media-frame-toolbar {
-  			left: 0;
-  			bottom: 47px;
-  			background: #fff;
+		.media-frame-title {
+			left: 0;
+			height: 30px;
+		}
 
-  			.media-toolbar {
-  				padding: 10px;
-  			}
-  		}
+		.media-frame-content {
+			left: 0;
+			top: 54px;
+			bottom: 54px; /* 34px + .media-toolbar top and bottom padding */
+		}
+
+		.media-frame-toolbar {
+			left: 0;
+			bottom: 47px;
+			background: #fff;
+
+			.media-toolbar {
+				padding: 10px;
+			}
+		}
 	}
 }
 
@@ -1238,37 +1301,44 @@ body.wpzinc.block-editor-page {
 	background-color: #585e65;
 
 	padding: 10px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    box-shadow: 0 20px 30px -16px rgba(9,9,16,0.8);
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	box-shadow: 0 20px 30px -16px rgba(9, 9, 16, 0.8);
 
-    &.wpzinc-notification-success {
-    	border-left: 4px solid #46b450;
-    }
- 	&.wpzinc-notification-warning {
- 		border-left: 4px solid orange;
-    }
-    &.wpzinc-notification-error {
-    	border-left: 4px solid #dc3232;
-    }
+	&.wpzinc-notification-success {
+		border-left: 4px solid #46b450;
+	}
+
+	&.wpzinc-notification-warning {
+		border-left: 4px solid #ffa500;
+	}
+
+	&.wpzinc-notification-error {
+		border-left: 4px solid #dc3232;
+	}
 }
 
 /**
  * Red Button
  */
 .wp-core-ui {
+	/* stylelint-disable-next-line no-invalid-position-at-import-rule */
 	@import "buttons";
 }
+
+/* stylelint-disable no-invalid-position-at-import-rule, no-duplicate-at-import-rules */
 @import "buttons";
+/* stylelint-enable no-invalid-position-at-import-rule, no-duplicate-at-import-rules */
 
 /**
 * Taxonomy Term Checkboxes
 */
 .tax-selection {
-	.tabs-panel { 
+
+	.tabs-panel {
 		height: 200px !important;
-		overflow: auto; 
+		overflow: auto;
 		padding: 10px 15px;
 		border-left: none;
 		border-top: none;
@@ -1290,7 +1360,7 @@ body.wpzinc.block-editor-page {
 	max-width: 900px;
 	margin: 0 auto;
 	padding: 40px 0;
-	
+
 	#wpzinc-onboarding-progress {
 		text-align: center;
 		padding: 40px 0;
@@ -1310,7 +1380,7 @@ body.wpzinc.block-editor-page {
 				/**
 				 * Lines
 				 */
-				&:after {
+				&::after {
 					position: absolute;
 					display: block;
 					z-index: 1;
@@ -1325,7 +1395,7 @@ body.wpzinc.block-editor-page {
 				/**
 				 * Bullets
 				 */
-				&:before {
+				&::before {
 					position: absolute;
 					z-index: 2;
 					top: -6px;
@@ -1339,35 +1409,39 @@ body.wpzinc.block-editor-page {
 					background-color: #dfdfdf;
 				}
 
-	  			&:first-child {
-	    			&:after {
-	      				display: none;
-	    			}
-	  			}
+				&:first-child {
 
-	  			/**
+					&::after {
+						display: none;
+					}
+				}
+
+				/**
 	  			 * Completed Item
 	  			 */
-	  			&.done {
-	  				color: #1c9bd7;
+				&.done {
+					color: #1c9bd7;
 
-	  				&:after,
-	  				&:before {
-	  					background-color: #1c9bd7;
-	  				}
-	  			}
+					&::after,
+					&::before {
+						background-color: #1c9bd7;
+					}
+				}
 			}
 		}
 	}
+
 	#wpzinc-onboarding-form {
 		padding: 20px 80px 80px 80px;
 		background-color: #fff;
 		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 
 		#wpzinc-onboarding-content {
+
 			h1 {
 				margin: 60px 0 20px 0;
 			}
+
 			p {
 				font-size: 16px;
 
@@ -1375,9 +1449,10 @@ body.wpzinc.block-editor-page {
 					font-size: 13px;
 				}
 			}
+
 			> div {
 				margin: 0 0 20px 0;
-			
+
 				label {
 					display: block;
 					margin-bottom: 10px;
@@ -1385,11 +1460,11 @@ body.wpzinc.block-editor-page {
 					font-weight: 500;
 				}
 			}
-			
 		}
+
 		#wpzinc-onboarding-footer {
 			display: grid;
-			grid-template-columns: repeat(2,1fr);
+			grid-template-columns: repeat(2, 1fr);
 			grid-template-areas: "left right";
 			padding: 40px 0 0 0;
 
@@ -1397,10 +1472,11 @@ body.wpzinc.block-editor-page {
 				grid-area: left;
 				text-align: left;
 			}
+
 			.right {
 				grid-area: right;
 				text-align: right;
-			} 
+			}
 		}
 	}
 }
@@ -1408,4 +1484,5 @@ body.wpzinc.block-editor-page {
 /**
 * Responsive
 */
+/* stylelint-disable-next-line no-invalid-position-at-import-rule */
 @import "responsive";

@@ -13,8 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 <!-- JS Overlay -->
-<div id="social-post-flow-modal-overlay" class="wpzinc-modal-overlay"></div>
-<div id="social-post-flow-modal" class="wpzinc-modal">
+<div id="<?php echo esc_attr( $this->base->plugin->name ); ?>-modal-overlay" class="wpzinc-modal-overlay"></div>
+<div id="<?php echo esc_attr( $this->base->plugin->name ); ?>-modal" class="wpzinc-modal">
 	<h2 class="title">
 		<span class="text">Saving</span>
 		<div class="spinner"></div>

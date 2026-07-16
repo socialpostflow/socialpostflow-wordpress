@@ -1,20 +1,24 @@
 .wpzinc-button-red {
 	background: #b30000;
 	border-color: #b30000;
- 	color: #fff;
+	color: #fff;
 	text-decoration: none;
 	text-shadow: none;
 }
+
 .wpzinc-button-red.hover,
 .wpzinc-button-red:hover {
-    background: #990000;
-    border-color: #990000;
-    color: #fff;
+	background: #900;
+	border-color: #900;
+	color: #fff;
 }
+
 .wpzinc-button-red.focus,
 .wpzinc-button-red:focus {
-    background: #990000;
-    border-color: #990000;
-    color: #fff;
-    box-shadow: 0 0 0 1px #fff, 0 0 0 3px #990000;
+	background: #900;
+	border-color: #900;
+	color: #fff;
+	box-shadow:
+		0 0 0 1px #fff,
+		0 0 0 3px #900;
 }

@@ -18,11 +18,11 @@
 	height: 98px;
 	margin: 0 0 10px 0;
 	padding: 0 20px;
-	background-image: var(--wpzinc-logo, url('../images/icons/logo.svg'));
+	background-image: var(--wpzinc-logo, url(../images/icons/logo.svg));
 	background-position: 30px 50%;
 	background-repeat: no-repeat;
 	background-size: 40px auto;
-	background-color: var(--wpzinc-header-background-color, #ffffff);
+	background-color: var(--wpzinc-header-background-color, #fff);
 	font-size: 24px;
 	font-weight: 600;
 	color: var(--wpzinc-header-secondary-text-color, #6e6e6e);
@@ -31,11 +31,11 @@
 	box-sizing: border-box;
 
 	&::before {
-		content: var(--wpzinc-plugin-display-name, 'WP Zinc');
+		content: var(--wpzinc-plugin-display-name, "WP Zinc");
 		color: var(--wpzinc-header-primary-text-color, #3d3d3d);
 	}
 
-	+.page-title-action {
+	+ .page-title-action {
 		margin-left: 20px;
 	}
 }
@@ -63,6 +63,7 @@ form#posts-filter {
 	div.tablenav.top {
 		padding: 6px 0 10px 0;
 	}
+
 	div.tablenav.bottom {
 		padding: 6px 0 0 0;
 	}
@@ -83,6 +84,7 @@ form.search-form {
 	margin-left: 22px;
 	margin-right: 20px;
 }
+
 #col-container {
 	margin-left: 22px;
 	margin-right: 20px;
