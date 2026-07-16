@@ -94,7 +94,7 @@ class Social_Post_Flow_Cron {
 		}
 
 		// Return formatted date/time.
-		return date( $format, $scheduled ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+		return wp_date( $format, $scheduled );
 	}
 
 	/**
@@ -169,7 +169,7 @@ class Social_Post_Flow_Cron {
 		}
 
 		// Return formatted date/time.
-		return date( $format, $scheduled ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+		return wp_date( $format, $scheduled );
 	}
 
 	/**
@@ -250,7 +250,7 @@ class Social_Post_Flow_Cron {
 		}
 
 		// Return formatted date/time.
-		return date( $format, $scheduled ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+		return wp_date( $format, $scheduled );
 	}
 
 	/**
@@ -325,7 +325,7 @@ class Social_Post_Flow_Cron {
 		}
 
 		// Return formatted date/time.
-		return date( $format, $scheduled ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+		return wp_date( $format, $scheduled );
 
 	}
 
@@ -383,10 +383,10 @@ class Social_Post_Flow_Cron {
 		$current_timestamp = current_time( 'timestamp' ); // phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp
 
 		// mon,tue etc.
-		$current_day = strtolower( date( 'D', $current_timestamp ) ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+		$current_day = strtolower( wp_date( 'D', $current_timestamp ) );
 
 		// 00,01 etc.
-		$current_hour = date( 'H', $current_timestamp ) . ':00'; // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+		$current_hour = wp_date( 'H', $current_timestamp ) . ':00';
 
 		// Bail if no Repost Schedule exists for today.
 		if ( ! isset( $repost_schedule[ $current_day ] ) ) {
@@ -426,7 +426,7 @@ class Social_Post_Flow_Cron {
 		}
 
 		// Define the date cutoff.
-		$date_time = date( 'Y-m-d H:i:s', strtotime( '-' . $preserve_days . ' days' ) ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+		$date_time = gmdate( 'Y-m-d H:i:s', strtotime( '-' . $preserve_days . ' days' ) );
 		// Delete log entries older than the date.
 		social_post_flow()->get_class( 'log' )->delete_by_request_sent_cutoff( $date_time );
 

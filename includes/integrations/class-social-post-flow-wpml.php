@@ -66,7 +66,7 @@ class Social_Post_Flow_WPML {
 	 *
 	 * @param   string $post_type  Post Type.
 	 */
-	public function output_status_conditional_fields( $post_type ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
+	public function output_status_conditional_fields( $post_type ) {
 
 		// Bail if WPML not active.
 		// Don't use wpml_get_language_information(), as this is defined in Polylang.

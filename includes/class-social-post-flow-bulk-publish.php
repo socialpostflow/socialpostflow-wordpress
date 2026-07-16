@@ -92,7 +92,7 @@ class Social_Post_Flow_Bulk_Publish {
 							$post_id,
 							array(
 								'action'         => 'bulk_publish',
-								'request_sent'   => date( 'Y-m-d H:i:s' ), // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+								'request_sent'   => gmdate( 'Y-m-d H:i:s' ),
 								'result'         => 'warning',
 								'result_message' => $results->get_error_message(),
 							)

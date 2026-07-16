@@ -2,10 +2,10 @@
 Contributors: socialpostflow
 Donate link: https://www.socialpostflow.com/integrations/wordpress
 Tags: auto post, social media automation, social media scheduler, auto publish, social media posting
-Requires at least: 6.0
+Requires at least: 6.2
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.3.7
+Stable tag: 1.3.8
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -459,6 +459,9 @@ Social Post Flow offers a 7-day free trial so you can test all features before p
 4. Post-level Logging.
 
 == Changelog ==
+
+= 1.3.8 (2026-06-16) =
+* Fix: Coding Standards: Use gmdate() and wp_date() instead of date()
 
 = 1.3.7 (2026-06-13) =
 * Fix: Text to Image: Uncaught ImagickException: no pixels defined in cache

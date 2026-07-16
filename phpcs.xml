@@ -43,6 +43,7 @@
 		<exclude name="PSR2.Classes.ClassDeclaration.CloseBraceAfterBody" />
 		<exclude name="WordPress.Files.FileName.InvalidClassFileName" />
 		<exclude name="WordPress.DB.DirectDatabaseQuery" />
+		<exclude name="Generic.CodeAnalysis.UnusedFunctionParameter" />
 	</rule>
 
 	<!-- Add in some extra rules from other standards. -->

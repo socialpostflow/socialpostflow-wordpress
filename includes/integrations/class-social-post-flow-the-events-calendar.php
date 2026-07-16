@@ -125,7 +125,7 @@ class Social_Post_Flow_The_Events_Calendar {
 	 * @param   array  $schedule   Schedule Options.
 	 * @return  string
 	 */
-	public function get_status_row_schedule( $output, $status, $action, $post_type, $schedule ) {  // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
+	public function get_status_row_schedule( $output, $status, $action, $post_type, $schedule ) {
 
 		// Bail if The Events Calendar isn't active.
 		if ( ! $this->is_active() ) {
@@ -452,7 +452,7 @@ class Social_Post_Flow_The_Events_Calendar {
 	 * @param   WP_Post     $post                   WordPress Post.
 	 * @return  string                              Date
 	 */
-	public function schedule_google_business_start_date( $date, $google_business_args, $status, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
+	public function schedule_google_business_start_date( $date, $google_business_args, $status, $post ) {
 
 		// Bail if The Events Calendar isn't active.
 		if ( ! $this->is_active() ) {
@@ -474,7 +474,7 @@ class Social_Post_Flow_The_Events_Calendar {
 	 * @param   WP_Post     $post                   WordPress Post.
 	 * @return  string                              Date
 	 */
-	public function schedule_google_business_end_date( $date, $google_business_args, $status, $post ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
+	public function schedule_google_business_end_date( $date, $google_business_args, $status, $post ) {
 
 		// Bail if The Events Calendar isn't active.
 		if ( ! $this->is_active() ) {

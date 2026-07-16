@@ -23,7 +23,7 @@ class Social_Post_Flow_CLI_Bulk_Publish {
 	 * @param   array $args           Array of positional arguments (not used).
 	 * @param   array $assoc_args     Array of associative arguments.
 	 */
-	public function __invoke( $args, $assoc_args ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
+	public function __invoke( $args, $assoc_args ) {
 
 		// Get Plugin Instance.
 		$plugin = Social_Post_Flow::get_instance();

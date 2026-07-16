@@ -413,7 +413,7 @@ class Social_Post_Flow_Publish {
 			$post_id,
 			array(
 				'action'         => 'publish',
-				'request_sent'   => date( 'Y-m-d H:i:s' ), // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+				'request_sent'   => gmdate( 'Y-m-d H:i:s' ),
 				'result'         => 'warning',
 				'result_message' => $results->get_error_message(),
 			)
@@ -477,7 +477,7 @@ class Social_Post_Flow_Publish {
 			$post_id,
 			array(
 				'action'         => 'update',
-				'request_sent'   => date( 'Y-m-d H:i:s' ), // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+				'request_sent'   => gmdate( 'Y-m-d H:i:s' ),
 				'result'         => 'warning',
 				'result_message' => $results->get_error_message(),
 			)
@@ -573,7 +573,7 @@ class Social_Post_Flow_Publish {
 		$logs = array(
 			array(
 				'action'         => $action,
-				'request_sent'   => date( 'Y-m-d H:i:s', $schedule_time ), // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+				'request_sent'   => gmdate( 'Y-m-d H:i:s', $schedule_time ),
 				'profile_id'     => false,
 				'profile_name'   => false,
 				'result'         => 'pending',
@@ -1796,7 +1796,7 @@ class Social_Post_Flow_Publish {
 
 					case 'repost':
 					case 'bulk_publish':
-						$post_date = date( 'Y-m-d H:i:s' ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+						$post_date = gmdate( 'Y-m-d H:i:s' );
 						break;
 				}
 
@@ -1805,7 +1805,7 @@ class Social_Post_Flow_Publish {
 
 				// No need to adjust for UTC here, as the date we're using is already UTC/GMT.
 				$args['schedule_type'] = 'scheduled';
-				$args['scheduled_at']  = date( 'Y-m-d H:i:s', $timestamp ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+				$args['scheduled_at']  = gmdate( 'Y-m-d H:i:s', $timestamp );
 				break;
 
 			/**
@@ -1824,7 +1824,7 @@ class Social_Post_Flow_Publish {
 
 					case 'repost':
 					case 'bulk_publish':
-						$post_date = date( 'Y-m-d H:i:s' ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+						$post_date = gmdate( 'Y-m-d H:i:s' );
 						break;
 				}
 
@@ -1842,7 +1842,7 @@ class Social_Post_Flow_Publish {
 
 				// No need to adjust for UTC here, as the date we're using is already UTC/GMT.
 				$args['schedule_type'] = 'scheduled';
-				$args['scheduled_at']  = date( 'Y-m-d H:i:s', $timestamp ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+				$args['scheduled_at']  = gmdate( 'Y-m-d H:i:s', $timestamp );
 				break;
 
 			case 'custom_field':
@@ -1863,7 +1863,7 @@ class Social_Post_Flow_Publish {
 				// If the post date is numeric, it's most likely a timestamp
 				// Convert it to a date and time.
 				if ( is_numeric( $post_date ) ) {
-					$post_date = date( 'Y-m-d H:i:s', $post_date ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+					$post_date = gmdate( 'Y-m-d H:i:s', $post_date );
 				}
 
 				// Get adjusted date and time.
@@ -1893,7 +1893,7 @@ class Social_Post_Flow_Publish {
 				 * datetime.
 				 */
 				$args['schedule_type'] = 'scheduled';
-				$args['scheduled_at']  = social_post_flow()->get_class( 'date' )->get_utc_date_time( date( 'Y-m-d H:i:s', strtotime( $status['schedule_specific'] ) ) ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+				$args['scheduled_at']  = social_post_flow()->get_class( 'date' )->get_utc_date_time( gmdate( 'Y-m-d H:i:s', strtotime( $status['schedule_specific'] ) ) );
 				break;
 
 			default:
@@ -3155,7 +3155,7 @@ class Social_Post_Flow_Publish {
 	 * Returns the given array value as a string, by the query string.
 	 *
 	 * If the value of the full array hierarchy of keys isn't a string,
-	 * nothing will be retu
+	 * nothing will be returned
 	 *
 	 * @since   1.0.0
 	 *
@@ -3172,7 +3172,7 @@ class Social_Post_Flow_Publish {
 		foreach ( $matches[1] as $key ) {
 			// If the meta value is an object, convert it to an array.
 			if ( is_object( $value ) ) {
-				$value = json_decode( json_encode( $value ), true ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+				$value = json_decode( wp_json_encode( $value ), true );
 			}
 
 			// If this key does not exist in the post meta array, bail.
@@ -3739,7 +3739,7 @@ class Social_Post_Flow_Publish {
 				$errors      = true;
 				$logs[]      = array(
 					'action'         => $action,
-					'request_sent'   => date( 'Y-m-d H:i:s' ), // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+					'request_sent'   => gmdate( 'Y-m-d H:i:s' ),
 					'profile_id'     => $status['profile_ids'][0],
 					'profile_name'   => $profiles[ $status['profile_ids'][0] ]['provider'] . ': ' . $profiles[ $status['profile_ids'][0] ]['profile_name'],
 					'result'         => 'error',
@@ -3759,13 +3759,13 @@ class Social_Post_Flow_Publish {
 			if ( $test_mode ) {
 				$logs[] = array(
 					'action'              => $action,
-					'request_sent'        => date( 'Y-m-d H:i:s' ), // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+					'request_sent'        => gmdate( 'Y-m-d H:i:s' ),
 					'profile_id'          => $status['profile_ids'][0],
 					'profile_name'        => $profiles[ $status['profile_ids'][0] ]['provider'] . ': ' . $profiles[ $status['profile_ids'][0] ]['profile_name'],
 					'result'              => 'test',
 					'result_message'      => '',
 					'status_text'         => $status['text'],
-					'status_created_at'   => date( 'Y-m-d H:i:s', strtotime( 'now' ) ), // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+					'status_created_at'   => gmdate( 'Y-m-d H:i:s', strtotime( 'now' ) ),
 					'status_scheduled_at' => ( isset( $status['scheduled_at'] ) ? $status['scheduled_at'] : '' ),
 				);
 
@@ -3781,7 +3781,7 @@ class Social_Post_Flow_Publish {
 				$errors      = true;
 				$logs[]      = array(
 					'action'         => $action,
-					'request_sent'   => date( 'Y-m-d H:i:s' ), // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+					'request_sent'   => gmdate( 'Y-m-d H:i:s' ),
 					'profile_id'     => $status['profile_ids'][0],
 					'profile_name'   => $profiles[ $status['profile_ids'][0] ]['provider'] . ': ' . $profiles[ $status['profile_ids'][0] ]['profile_name'],
 					'result'         => 'error',
@@ -3795,14 +3795,14 @@ class Social_Post_Flow_Publish {
 				foreach ( $result['data'] as $status_result ) {
 					$logs[] = array(
 						'action'              => $action,
-						'request_sent'        => date( 'Y-m-d H:i:s' ), // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+						'request_sent'        => gmdate( 'Y-m-d H:i:s' ),
 						'profile_id'          => $status_result['social_profile_id'],
 						'profile_name'        => $status_result['provider'] . ': ' . $status_result['profile_name'],
 						'result'              => 'success',
 						'result_message'      => $status_result['status'],
 						'status_text'         => $status_result['text'],
-						'status_created_at'   => $status_result['created_at'], // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
-						'status_scheduled_at' => $status_result['scheduled_at'], // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+						'status_created_at'   => $status_result['created_at'],
+						'status_scheduled_at' => $status_result['scheduled_at'],
 					);
 				}
 			}

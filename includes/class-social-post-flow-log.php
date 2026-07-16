@@ -127,7 +127,7 @@ class Social_Post_Flow_Log {
 	 * @param   string $value          The option value.
 	 * @return  string                  The option value
 	 */
-	public function set_screen_options( $screen_option, $option, $value ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
+	public function set_screen_options( $screen_option, $option, $value ) {
 
 		return $value;
 

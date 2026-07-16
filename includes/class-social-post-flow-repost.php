@@ -161,7 +161,7 @@ class Social_Post_Flow_Repost {
 								$post_id,
 								array(
 									'action'         => 'repost',
-									'request_sent'   => date( 'Y-m-d H:i:s' ), // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+									'request_sent'   => gmdate( 'Y-m-d H:i:s' ),
 									'result'         => 'warning',
 									'result_message' => $results->get_error_message(),
 								)
@@ -259,7 +259,7 @@ class Social_Post_Flow_Repost {
 					// Any Posts that have a last reposted meta key value greater than the frequency date.
 					array(
 						'key'     => $this->meta_key,
-						'value'   => date( 'Y-m-d', strtotime( $settings['frequency'] . 'days ago' ) ), // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+						'value'   => gmdate( 'Y-m-d', strtotime( $settings['frequency'] . 'days ago' ) ),
 						'compare' => '<',
 					),
 				),
@@ -282,7 +282,7 @@ class Social_Post_Flow_Repost {
 
 			$args['date_query'][] = array(
 				'column' => 'post_date_gmt',
-				'before' => date( 'Y-m-d', strtotime( $settings['min_age'] . ' days ago' ) ), // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+				'before' => gmdate( 'Y-m-d', strtotime( $settings['min_age'] . ' days ago' ) ),
 			);
 		}
 		if ( $settings['max_age'] > 0 ) {
@@ -292,7 +292,7 @@ class Social_Post_Flow_Repost {
 
 			$args['date_query'][] = array(
 				'column' => 'post_date_gmt',
-				'after'  => date( 'Y-m-d', strtotime( $settings['max_age'] . ' days ago' ) ), // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+				'after'  => gmdate( 'Y-m-d', strtotime( $settings['max_age'] . ' days ago' ) ),
 			);
 		}
 
@@ -324,7 +324,7 @@ class Social_Post_Flow_Repost {
 	 */
 	public function update_last_reposted_date( $post_id ) {
 
-		update_post_meta( $post_id, $this->meta_key, date( 'Y-m-d' ) ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+		update_post_meta( $post_id, $this->meta_key, gmdate( 'Y-m-d' ) );
 
 	}
 

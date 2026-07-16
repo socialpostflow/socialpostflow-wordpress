@@ -482,7 +482,7 @@ class Social_Post_Flow_Post {
 
 		// If override is not enabled, just save the override parameter and featured / additional
 		// image information.
-		if ( isset( $settings['override'] ) && $settings['override'] != '1' ) { // phpcs:ignore Universal.Operators.StrictComparisons.LooseNotEqual
+		if ( isset( $settings['override'] ) && $settings['override'] !== '1' && $settings['override'] !== 1 ) {
 			// Define settings.
 			$post_settings = array(
 				'override' => $settings['override'],

@@ -589,19 +589,19 @@ class Social_Post_Flow_Settings {
 			}
 
 			// Profile action enabled.
-			if ( isset( $profile_settings['publish']['enabled'] ) && $profile_settings['publish']['enabled'] == '1' ) {  // phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
+			if ( isset( $profile_settings['publish']['enabled'] ) && ( $profile_settings['publish']['enabled'] === '1' || $profile_settings['publish']['enabled'] === 1 ) ) {
 				// Post Type is enabled with 1+ Profile with override and publish enabled.
 				return true;
 			}
-			if ( isset( $profile_settings['update']['enabled'] ) && $profile_settings['update']['enabled'] == '1' ) {  // phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
+			if ( isset( $profile_settings['update']['enabled'] ) && ( $profile_settings['update']['enabled'] === '1' || $profile_settings['update']['enabled'] === 1 ) ) {
 				// Post Type is enabled with 1+ Profile with override and update enabled.
 				return true;
 			}
-			if ( isset( $profile_settings['repost']['enabled'] ) && $profile_settings['repost']['enabled'] == '1' ) {  // phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
+			if ( isset( $profile_settings['repost']['enabled'] ) && ( $profile_settings['repost']['enabled'] === '1' || $profile_settings['repost']['enabled'] === 1 ) ) {
 				// Post Type is enabled with 1+ Profile with override and repost enabled.
 				return true;
 			}
-			if ( isset( $profile_settings['bulk_publish']['enabled'] ) && $profile_settings['bulk_publish']['enabled'] == '1' ) {  // phpcs:ignore Universal.Operators.StrictComparisons.LooseEqual
+			if ( isset( $profile_settings['bulk_publish']['enabled'] ) && ( $profile_settings['bulk_publish']['enabled'] === '1' || $profile_settings['bulk_publish']['enabled'] === 1 ) ) {
 				// Post Type is enabled with 1+ Profile with override and bulk publish enabled.
 				return true;
 			}
