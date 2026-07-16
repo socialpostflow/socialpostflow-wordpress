@@ -6,6 +6,11 @@
  * @author Social Post Flow
  */
 
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Runs the installation and update routines when the plugin is activated.
  *

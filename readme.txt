@@ -462,6 +462,7 @@ Social Post Flow offers a 7-day free trial so you can test all features before p
 
 = 1.3.8 (2026-06-16) =
 * Fix: Coding Standards: Use gmdate() and wp_date() instead of date()
+* Fix: Coding Standards: Prevent direct file access to some files
 
 = 1.3.7 (2026-06-13) =
 * Fix: Text to Image: Uncaught ImagickException: no pixels defined in cache

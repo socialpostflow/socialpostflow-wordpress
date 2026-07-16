@@ -6,6 +6,11 @@
  * @author Social Post Flow
  */
 
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Define the WP Cron function to send status updates via the API
  *

@@ -6,6 +6,10 @@
  * @author Social Post Flow
  */
 
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 ?>
 <div class="wpzinc-option">
 	<div class="left">

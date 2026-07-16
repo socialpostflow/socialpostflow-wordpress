@@ -767,7 +767,7 @@ class WPZincDashboardWidget {
 	 */
 	public function get_review_url() {
 
-		$url = 'https://wordpress.org/support/plugin/' . $this->plugin->review_name . '/reviews/?filter=5#new-post';
+		$url = 'https://wordpress.org/support/plugin/' . $this->plugin->review_name . '/reviews/#new-post';
 
 		return $url;
 

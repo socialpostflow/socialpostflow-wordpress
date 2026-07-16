@@ -6,6 +6,11 @@
  * @author Social Post Flow
  */
 
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Runs the uninstallation routines when the plugin is deactivated.
  *
