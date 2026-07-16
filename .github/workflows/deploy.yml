@@ -8,10 +8,15 @@ jobs:
   tag:
     # Name
     name: Plugin Deployment
-    
+
     # Virtual Environment to use
     # @see: https://github.com/actions/virtual-environments
     runs-on: ubuntu-latest
+
+    # Grant the default GITHUB_TOKEN write access to releases so that
+    # softprops/action-gh-release can attach the built .zip to the GitHub Release.
+    permissions:
+      contents: write
 
     # Steps to deploy
     steps:
@@ -29,13 +34,9 @@ jobs:
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
           SLUG: social-post-flow
-          
+
+      # Attach the built .zip to the GitHub Release that triggered this workflow.
       - name: Upload release asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v3
         with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ${{ steps.deploy.outputs.zip-path }}
-          asset_name: ${{ github.event.repository.name }}.zip
-          asset_content_type: application/zip
+          files: ${{ steps.deploy.outputs.zip-path }}
