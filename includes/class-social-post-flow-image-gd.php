@@ -39,7 +39,7 @@ class Social_Post_Flow_Image_GD extends WP_Image_Editor_GD {
 		}
 
 		// Calculate padding for the original image.
-		$padding_top    = ( $dst_h - $this->size['height'] ) / 2;
+		$padding_top    = (int) round( ( $dst_h - $this->size['height'] ) / 2 );
 		$padding_bottom = $dst_h - $this->size['height'] - $padding_top;
 
 		// Copy source image to the target image, centered.
@@ -47,7 +47,7 @@ class Social_Post_Flow_Image_GD extends WP_Image_Editor_GD {
 		imagecopy(
 			$dst,
 			$this->image,
-			( $dst_w - $this->size['width'] ) / 2,
+			(int) round( ( $dst_w - $this->size['width'] ) / 2 ),
 			$padding_top,
 			0,
 			0,
