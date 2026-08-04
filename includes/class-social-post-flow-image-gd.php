@@ -56,7 +56,12 @@ class Social_Post_Flow_Image_GD extends WP_Image_Editor_GD {
 		);
 
 		if ( is_gd_image( $dst ) ) {
-			imagedestroy( $this->image );
+			// On PHP < 8.0, GD images are resources that must be explicitly freed.
+			// On PHP 8.0+, GD images are GdImage objects that are garbage-collected
+			// automatically when reassigned; imagedestroy() is deprecated from PHP 8.5.
+			if ( PHP_VERSION_ID < 80000 ) {
+				imagedestroy( $this->image );
+			}
 			$this->image = $dst;
 			$this->update_size();
 			return true;
