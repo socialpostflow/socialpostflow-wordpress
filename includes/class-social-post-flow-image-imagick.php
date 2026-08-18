@@ -39,14 +39,14 @@ class Social_Post_Flow_Image_Imagick extends WP_Image_Editor_Imagick {
 		$dst->setImageFormat( 'png' );
 
 		// Calculate padding for the original image.
-		$padding_top    = ( $dst_h - $this->size['height'] ) / 2;
+		$padding_top    = (int) round( ( $dst_h - $this->size['height'] ) / 2 );
 		$padding_bottom = $dst_h - $this->size['height'] - $padding_top;
 
 		// Composite the source image onto the target image with padding.
 		$dst->compositeImage(
 			$this->image,
 			Imagick::COMPOSITE_OVER,
-			( $dst_w - $this->image->getImageWidth() ) / 2,
+			(int) round( ( $dst_w - $this->image->getImageWidth() ) / 2 ),
 			$padding_top
 		);
 
