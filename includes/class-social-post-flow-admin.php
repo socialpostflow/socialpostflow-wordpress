@@ -35,7 +35,6 @@ class Social_Post_Flow_Admin {
 
 		// Actions.
 		add_action( 'social_post_flow_api_get_access_token', array( $this, 'save_oauth_tokens' ), 10, 1 );
-		add_action( 'social_post_flow_api_refresh_token', array( $this, 'save_oauth_tokens' ), 10, 1 );
 		add_action( 'init', array( $this, 'maybe_get_access_token' ), 12 );
 		add_action( 'init', array( $this, 'maybe_disconnect' ), 13 );
 		add_action( 'init', array( $this, 'check_plugin_setup' ) );
@@ -104,6 +103,9 @@ class Social_Post_Flow_Admin {
 
 		// Delete tokens.
 		social_post_flow()->get_class( 'settings' )->delete_tokens();
+
+		// Unschedule the token refresh, as there's no longer a token to refresh.
+		social_post_flow()->get_class( 'cron' )->unschedule_refresh_token_event();
 
 		// Redirect to settings page.
 		wp_safe_redirect( add_query_arg( array( 'page' => 'social-post-flow' ), admin_url( 'admin.php' ) ) );

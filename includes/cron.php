@@ -114,3 +114,23 @@ function social_post_flow_user_access_cron() {
 
 }
 add_action( 'social_post_flow_user_access_cron', 'social_post_flow_user_access_cron' );
+
+/**
+ * Define the WP Cron function to refresh the access token before it expires
+ *
+ * @since   1.4.0
+ */
+function social_post_flow_refresh_token_cron() {
+
+	// Initialise Plugin.
+	$social_post_flow = Social_Post_Flow::get_instance();
+	$social_post_flow->initialize();
+
+	// Refresh the access token.
+	$social_post_flow->get_class( 'cron' )->refresh_token();
+
+	// Shutdown.
+	unset( $social_post_flow );
+
+}
+add_action( 'social_post_flow_refresh_token_cron', 'social_post_flow_refresh_token_cron' );

@@ -8,7 +8,7 @@
  * @wordpress-plugin
  * Plugin Name: Social Post Flow
  * Plugin URI: http://www.socialpostflow.com/integrations/wordpress
- * Version: 1.3.9
+ * Version: 1.4.0
  * Author: Social Post Flow
  * Author URI: http://www.socialpostflow.com
  * Description: Send WordPress Pages, Posts or Custom Post Types to social media for scheduled publishing to social networks.
@@ -27,8 +27,8 @@ if ( class_exists( 'Social_Post_Flow' ) ) {
 }
 
 // Define Plugin version and build date.
-define( 'SOCIAL_POST_FLOW_PLUGIN_VERSION', '1.3.9' );
-define( 'SOCIAL_POST_FLOW_PLUGIN_BUILD_DATE', '2026-08-04 13:00:00' );
+define( 'SOCIAL_POST_FLOW_PLUGIN_VERSION', '1.4.0' );
+define( 'SOCIAL_POST_FLOW_PLUGIN_BUILD_DATE', '2026-08-18 13:00:00' );
 
 // Define Plugin paths.
 define( 'SOCIAL_POST_FLOW_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
@@ -92,6 +92,7 @@ spl_autoload_register( 'social_post_flow_autoloader' );
 // Load Activation, Cron and Deactivation functions.
 require_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'includes/activation.php';
 require_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'includes/cron.php';
+require_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'includes/functions.php';
 require_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'includes/deactivation.php';
 register_activation_hook( __FILE__, 'social_post_flow_activate' );
 if ( version_compare( get_bloginfo( 'version' ), '5.1', '>=' ) ) {

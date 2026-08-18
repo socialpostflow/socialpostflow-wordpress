@@ -11,34 +11,38 @@
  *
  * @since   1.4.0
  *
- * @param   array  $result                  New Access Token, Refresh Token and Expiry timestamp.
- * @param   string $client_id               OAuth Client ID used for the Access and Refresh Tokens.
- * @param   string $existing_access_token   Existing Access Token.
+ * @param   array $result New Access Token, Refresh Token and Expiry timestamp.
  */
-function social_post_flow_update_credentials( $result, $client_id, $existing_access_token ) {
+function social_post_flow_update_credentials( $result ) {
 
-	// Get Plugin instance.
-	$social_post_flow = Social_Post_Flow::get_instance();
-
-	// Get the account IDs based on the existing access token.
-	$account_ids = $wp_to_buffer_pro->get_class( 'settings' )->get_account_ids_by_access_token( $existing_access_token );
-
-	// Bail if no accounts are found.
-	if ( count( $account_ids ) === 0 ) {
-		return;
-	}
-
-	// Update the access and refresh tokens for each account.
-	foreach ( $account_ids as $account_id ) {
-		$wp_to_buffer_pro->get_class( 'settings' )->update_account_credentials(
-			$result['access_token'],
-			$result['refresh_token'],
-			$result['token_expires'],
-			$account_id
-		);
-	}
+	social_post_flow()->get_class( 'settings' )->update_tokens(
+		$result['access_token'],
+		$result['refresh_token'],
+		time() + $result['expires_in']
+	);
 
 }
 
 // Update Access Token when refreshed by the API class.
-add_action( 'social_post_flow_api_refresh_token', 'social_post_flow_update_credentials', 10, 3 );
+add_action( 'social_post_flow_api_refresh_token', 'social_post_flow_update_credentials', 10, 1 );
+
+/**
+ * Schedules the WordPress Cron event to refresh the access token before it expires.
+ *
+ * Runs whenever an access token is issued or refreshed, so each token schedules
+ * the refresh of its successor.
+ *
+ * @since   1.4.0
+ *
+ * @param   array $result New Access Token, Refresh Token and Expiry timestamp.
+ */
+function social_post_flow_schedule_refresh_token_event( $result ) {
+
+	social_post_flow()->get_class( 'cron' )->schedule_refresh_token_event( time() + $result['expires_in'] );
+
+}
+
+// Schedule the next token refresh, both when first connecting and on every refresh.
+// Priority 20, so the tokens have been stored before we schedule against them.
+add_action( 'social_post_flow_api_get_access_token', 'social_post_flow_schedule_refresh_token_event', 20, 1 );
+add_action( 'social_post_flow_api_refresh_token', 'social_post_flow_schedule_refresh_token_event', 20, 1 );

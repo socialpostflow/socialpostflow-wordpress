@@ -3,9 +3,9 @@ Contributors: socialpostflow
 Donate link: https://www.socialpostflow.com/integrations/wordpress
 Tags: auto post, social media automation, social media scheduler, auto publish, social media posting
 Requires at least: 6.2
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.9
+Stable tag: 1.4.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -459,6 +459,9 @@ Social Post Flow offers a 7-day free trial so you can test all features before p
 4. Post-level Logging.
 
 == Changelog ==
+
+= 1.4.0 (2026-08-18) =
+* Fix: Automatically refresh tokens
 
 = 1.3.9 (2026-08-04) =
 * Fix: GD Image: Deprecated "Implicit conversion from float to int" warning

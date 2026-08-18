@@ -432,4 +432,127 @@ class Social_Post_Flow_Cron {
 
 	}
 
+	/**
+	 * Schedules a single event in the WordPress CRON to refresh the access token
+	 * shortly before it expires.
+	 *
+	 * Called whenever an access token is issued or refreshed, so each successful
+	 * refresh schedules the next one.
+	 *
+	 * @since   1.4.0
+	 *
+	 * @param   int $token_expires  Timestamp at which the current access token expires.
+	 */
+	public function schedule_refresh_token_event( $token_expires ) {
+
+		// Clear any existing scheduled event, so we don't stack up refreshes.
+		$this->unschedule_refresh_token_event();
+
+		// Bail if the access token has already expired. The refresh token is issued
+		// with the same lifetime, so there's nothing left to refresh with and the
+		// user has to reconnect their account.
+		if ( ! $token_expires || $token_expires <= time() ) {
+			return;
+		}
+
+		/**
+		 * The number of days before an access token expires to refresh it.
+		 *
+		 * @since   1.4.0
+		 *
+		 * @param   int     $days   Days before expiry.
+		 */
+		$days = absint( apply_filters( 'social_post_flow_cron_refresh_token_days_before_expiry', 3 ) );
+
+		$refresh_at = $token_expires - ( $days * DAY_IN_SECONDS );
+
+		// If that point has already passed, we're either inside the window already
+		// or a refresh just failed and we're rescheduling. Either way, try again
+		// shortly rather than scheduling an event in the past.
+		if ( $refresh_at <= time() ) {
+			$refresh_at = time() + HOUR_IN_SECONDS;
+		}
+
+		// Schedule event.
+		wp_schedule_single_event( $refresh_at, 'social_post_flow_refresh_token_cron' );
+
+	}
+
+	/**
+	 * Unschedules the refresh token event in the WordPress CRON.
+	 *
+	 * @since   1.4.0
+	 */
+	public function unschedule_refresh_token_event() {
+
+		wp_clear_scheduled_hook( 'social_post_flow_refresh_token_cron' );
+
+	}
+
+	/**
+	 * Reschedules the refresh token event in the WordPress CRON, based on the
+	 * expiry of the stored access token.
+	 *
+	 * Called on upgrade, so that sites connected before this event existed get
+	 * one scheduled without having to reconnect.
+	 *
+	 * @since   1.4.0
+	 */
+	public function reschedule_refresh_token_event() {
+
+		// schedule_refresh_token_event() clears any existing event before scheduling,
+		// and bails if the site isn't connected or the access token has expired.
+		$this->schedule_refresh_token_event(
+			social_post_flow()->get_class( 'settings' )->get_token_expires()
+		);
+
+	}
+
+	/**
+	 * Returns the scheduled refresh token event's next date and time to run, if it exists
+	 *
+	 * @since   1.4.0
+	 *
+	 * @param   mixed $format     Format Timestamp (false | php date() compat. string).
+	 */
+	public function get_refresh_token_event_next_scheduled( $format = false ) {
+
+		// Get timestamp for when the event will next run.
+		$scheduled = wp_next_scheduled( 'social_post_flow_refresh_token_cron' );
+
+		// If no timestamp or we're not formatting the result, return it now.
+		if ( ! $scheduled || ! $format ) {
+			return $scheduled;
+		}
+
+		// Return formatted date/time.
+		return wp_date( $format, $scheduled );
+
+	}
+
+	/**
+	 * Runs the refresh token CRON event, exchanging the stored refresh token for
+	 * a new access token.
+	 *
+	 * @since   1.4.0
+	 */
+	public function refresh_token() {
+
+		// Set tokens in the API class.
+		social_post_flow()->get_class( 'api' )->set_tokens(
+			social_post_flow()->get_class( 'settings' )->get_access_token(),
+			social_post_flow()->get_class( 'settings' )->get_refresh_token()
+		);
+
+		// Refresh tokens.
+		$result = social_post_flow()->get_class( 'api' )->refresh_token();
+
+		// If the refresh failed, reschedule so we try again while the current access
+		// token is still valid.
+		if ( is_wp_error( $result ) ) {
+			$this->schedule_refresh_token_event( $settings->get_token_expires() );
+		}
+
+	}
+
 }
