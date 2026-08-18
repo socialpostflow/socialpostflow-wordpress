@@ -78,6 +78,7 @@ class Social_Post_Flow_Install {
 		social_post_flow()->get_class( 'cron' )->reschedule_log_cleanup_event();
 		social_post_flow()->get_class( 'cron' )->reschedule_media_cleanup_event();
 		social_post_flow()->get_class( 'cron' )->reschedule_user_access_event();
+		social_post_flow()->get_class( 'cron' )->reschedule_refresh_token_event();
 
 		// Update the version number.
 		update_option( 'social-post-flow-version', SOCIAL_POST_FLOW_PLUGIN_VERSION );
@@ -96,6 +97,7 @@ class Social_Post_Flow_Install {
 		social_post_flow()->get_class( 'cron' )->unschedule_media_cleanup_event();
 		social_post_flow()->get_class( 'cron' )->unschedule_repost_event();
 		social_post_flow()->get_class( 'cron' )->unschedule_user_access_event();
+		social_post_flow()->get_class( 'cron' )->unschedule_refresh_token_event();
 
 	}
 

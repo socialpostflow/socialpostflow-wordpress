@@ -94,7 +94,10 @@ class Social_Post_Flow_User_Access {
 		}
 
 		// Setup API.
-		social_post_flow()->get_class( 'api' )->set_tokens( social_post_flow()->get_class( 'settings' )->get_access_token() );
+		social_post_flow()->get_class( 'api' )->set_tokens(
+			social_post_flow()->get_class( 'settings' )->get_access_token(),
+			social_post_flow()->get_class( 'settings' )->get_refresh_token()
+		);
 
 		// Get user details.
 		$user = social_post_flow()->get_class( 'api' )->user();

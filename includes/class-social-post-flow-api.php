@@ -249,6 +249,14 @@ class Social_Post_Flow_API {
 	 */
 	public function refresh_token() {
 
+		// Bail if no refresh token is available to use.
+		if ( empty( $this->refresh_token ) ) {
+			return new WP_Error(
+				'social_post_flow_api_refresh_token_error',
+				__( 'Cannot refresh the access token, as no refresh token exists in the Plugin settings.', 'social-post-flow' )
+			);
+		}
+
 		// Exchange the code for an access token, refresh token and other data.
 		$response = wp_remote_post(
 			$this->oauth_token_url,
@@ -267,8 +275,20 @@ class Social_Post_Flow_API {
 		);
 
 		// If an error occured, return it now.
-		if ( is_wp_error( $result ) ) {
-			return $result;
+		if ( is_wp_error( $response ) ) {
+			/**
+			 * Perform any actions when refreshing fails.
+			 *
+			 * @since   1.4.0
+			 *
+			 * @param   WP_Error  $result        Error from API.
+			 * @param   string    $client_id     OAuth Client ID.
+			 * @param   string    $access_token  Access Token.
+			 * @param   string    $refresh_token Refresh Token.
+			 */
+			do_action( 'social_post_flow_api_refresh_token_error', $response, $this->client_id, $this->access_token, $this->refresh_token );
+
+			return $response;
 		}
 
 		// Fetch and decode body.
@@ -284,10 +304,6 @@ class Social_Post_Flow_API {
 		$previous_access_token  = $this->access_token;
 		$previous_refresh_token = $this->refresh_token;
 
-		// Update the access and refresh tokens in this class.
-		$this->access_token  = $result['access_token'];
-		$this->refresh_token = $result['refresh_token'];
-
 		/**
 		 * Perform any actions with the new access token, such as saving it.
 		 *
@@ -299,6 +315,9 @@ class Social_Post_Flow_API {
 		 * @param   string  $previous_refresh_token  Existing Refresh Token.
 		 */
 		do_action( 'social_post_flow_api_refresh_token', $result, $this->client_id, $previous_access_token, $previous_refresh_token );
+
+		// Update the access and refresh tokens in this class.
+		$this->set_tokens( $result['access_token'], $result['refresh_token'] );
 
 		// Return.
 		return $result;
@@ -579,12 +598,13 @@ class Social_Post_Flow_API {
 	 *
 	 * @since   1.0.0
 	 *
-	 * @param   string $cmd        Command.
-	 * @param   string $method     Method (get|post).
-	 * @param   array  $params     Parameters (optional).
+	 * @param   string $cmd                    Command.
+	 * @param   string $method                 Method (get|post).
+	 * @param   array  $params                 Parameters (optional).
+	 * @param   bool   $retry_on_unauthorized  Refresh the access token and retry once if the API returns a 401.
 	 * @return  mixed               WP_Error | object
 	 */
-	private function request( $cmd, $method = 'get', $params = array() ) {
+	private function request( $cmd, $method = 'get', $params = array(), $retry_on_unauthorized = true ) {
 
 		// Check required parameters exist.
 		if ( empty( $this->access_token ) ) {
@@ -644,6 +664,19 @@ class Social_Post_Flow_API {
 
 		// Decode response.
 		$body = json_decode( $response, true );
+
+		// If the access token has expired, refresh it and repeat the request.
+		if ( 401 === (int) $http_code && $retry_on_unauthorized && $this->check_refresh_token_exists() ) {
+			$refreshed = $this->refresh_token();
+
+			// Bail if the refresh failed.
+			if ( is_wp_error( $refreshed ) ) {
+				return $refreshed;
+			}
+
+			// Retry the request.
+			return $this->request( $cmd, $method, $params, false );
+		}
 
 		// If the body contains a message, an error occured.
 		if ( isset( $body['message'] ) ) {
