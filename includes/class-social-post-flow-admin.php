@@ -649,7 +649,7 @@ class Social_Post_Flow_Admin {
 		}
 
 		// Authentication.
-		$access_token = social_post_flow()->get_class( 'settings' )->get_access_token();
+		$access_token  = social_post_flow()->get_class( 'settings' )->get_access_token();
 		$refresh_token = social_post_flow()->get_class( 'settings' )->get_refresh_token();
 		if ( ! empty( $access_token ) && ! empty( $refresh_token ) ) {
 			social_post_flow()->get_class( 'api' )->set_tokens( $access_token, $refresh_token );

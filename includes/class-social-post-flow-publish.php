@@ -633,7 +633,7 @@ class Social_Post_Flow_Publish {
 		$this->clear_search_replacements();
 
 		// Check a valid access token exists.
-		$access_token = social_post_flow()->get_class( 'settings' )->get_access_token();
+		$access_token  = social_post_flow()->get_class( 'settings' )->get_access_token();
 		$refresh_token = social_post_flow()->get_class( 'settings' )->get_refresh_token();
 		if ( ! $access_token ) {
 			return new WP_Error(
