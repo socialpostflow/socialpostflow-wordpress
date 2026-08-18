@@ -249,9 +249,7 @@ class Social_Post_Flow_API {
 	 */
 	public function refresh_token() {
 
-		// Bail if no refresh token is available to use, otherwise we'll
-		// send a request to Buffer with an empty refresh_token, which
-		// will fail.
+		// Bail if no refresh token is available to use.
 		if ( empty( $this->refresh_token ) ) {
 			return new WP_Error(
 				'social_post_flow_api_refresh_token_error',
@@ -281,7 +279,7 @@ class Social_Post_Flow_API {
 			/**
 			 * Perform any actions when refreshing fails.
 			 *
-			 * @since   1.0.0
+			 * @since   1.4.0
 			 *
 			 * @param   WP_Error  $result        Error from API.
 			 * @param   string    $client_id     OAuth Client ID.
@@ -671,16 +669,12 @@ class Social_Post_Flow_API {
 		if ( 401 === (int) $http_code && $retry_on_unauthorized && $this->check_refresh_token_exists() ) {
 			$refreshed = $this->refresh_token();
 
-			// If the token couldn't be refreshed, return that error instead of the 401.
-			// It's the more useful of the two, as it tells the user their connection
-			// needs re-establishing, rather than just that the token was rejected.
+			// Bail if the refresh failed.
 			if ( is_wp_error( $refreshed ) ) {
 				return $refreshed;
 			}
 
-			// refresh_token() stored the new access token against this class, so we can
-			// just repeat the request. Don't permit a further retry, so that a token
-			// that's rejected immediately after refreshing can't loop.
+			// Retry the request.
 			return $this->request( $cmd, $method, $params, false );
 		}
 

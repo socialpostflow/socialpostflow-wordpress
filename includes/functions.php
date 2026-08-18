@@ -43,6 +43,5 @@ function social_post_flow_schedule_refresh_token_event( $result ) {
 }
 
 // Schedule the next token refresh, both when first connecting and on every refresh.
-// Priority 20, so the tokens have been stored before we schedule against them.
 add_action( 'social_post_flow_api_get_access_token', 'social_post_flow_schedule_refresh_token_event', 20, 1 );
 add_action( 'social_post_flow_api_refresh_token', 'social_post_flow_schedule_refresh_token_event', 20, 1 );
