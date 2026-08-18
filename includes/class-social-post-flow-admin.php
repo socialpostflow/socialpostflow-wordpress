@@ -122,11 +122,15 @@ class Social_Post_Flow_Admin {
 	 */
 	public function save_oauth_tokens( $tokens ) {
 
-		social_post_flow()->get_class( 'settings' )->update_tokens( $tokens['access_token'], $tokens['refresh_token'], time() + $tokens['expires_in'] );
+		social_post_flow()->get_class( 'settings' )->update_tokens(
+			$tokens['access_token'],
+			$tokens['refresh_token'],
+			time() + $tokens['expires_in']
+		);
 
 		// Automatically enable the Posts > Publish action for all profiles connected to the user's account,
 		// if this is the first time the user has connected their account.
-		$this->enable_profiles_on_first_time_setup( $tokens['access_token'] );
+		$this->enable_profiles_on_first_time_setup( $tokens['access_token'], $tokens['refresh_token'] );
 
 	}
 
@@ -135,9 +139,10 @@ class Social_Post_Flow_Admin {
 	 *
 	 * @since 1.1.6
 	 *
-	 * @param   string $access_token Access Token.
+	 * @param   string $access_token  Access Token.
+	 * @param   string $refresh_token Refresh Token.
 	 */
-	private function enable_profiles_on_first_time_setup( $access_token ) {
+	private function enable_profiles_on_first_time_setup( $access_token, $refresh_token ) {
 
 		// Get statuses for Posts.
 		$statuses = social_post_flow()->get_class( 'settings' )->get_settings( 'post' );
@@ -153,7 +158,7 @@ class Social_Post_Flow_Admin {
 		}
 
 		// Get profiles.
-		social_post_flow()->get_class( 'api' )->set_tokens( $access_token );
+		social_post_flow()->get_class( 'api' )->set_tokens( $access_token, $refresh_token );
 		$profiles = social_post_flow()->get_class( 'api' )->profiles( true, social_post_flow()->get_class( 'common' )->get_transient_expiration_time() );
 
 		// Bail if the Profiles could not be fetched.
@@ -645,8 +650,9 @@ class Social_Post_Flow_Admin {
 
 		// Authentication.
 		$access_token = social_post_flow()->get_class( 'settings' )->get_access_token();
-		if ( ! empty( $access_token ) ) {
-			social_post_flow()->get_class( 'api' )->set_tokens( $access_token );
+		$refresh_token = social_post_flow()->get_class( 'settings' )->get_refresh_token();
+		if ( ! empty( $access_token ) && ! empty( $refresh_token ) ) {
+			social_post_flow()->get_class( 'api' )->set_tokens( $access_token, $refresh_token );
 		}
 
 		// User.

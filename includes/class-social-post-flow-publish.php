@@ -634,6 +634,7 @@ class Social_Post_Flow_Publish {
 
 		// Check a valid access token exists.
 		$access_token = social_post_flow()->get_class( 'settings' )->get_access_token();
+		$refresh_token = social_post_flow()->get_class( 'settings' )->get_refresh_token();
 		if ( ! $access_token ) {
 			return new WP_Error(
 				'social_post_flow_no_access_token',
@@ -642,7 +643,7 @@ class Social_Post_Flow_Publish {
 		}
 
 		// Setup API.
-		social_post_flow()->get_class( 'api' )->set_tokens( $access_token );
+		social_post_flow()->get_class( 'api' )->set_tokens( $access_token, $refresh_token );
 
 		// Get Profiles.
 		$profiles = social_post_flow()->get_class( 'api' )->profiles( false, social_post_flow()->get_class( 'common' )->get_transient_expiration_time() );
@@ -3723,7 +3724,8 @@ class Social_Post_Flow_Publish {
 
 		// Setup API.
 		social_post_flow()->get_class( 'api' )->set_tokens(
-			social_post_flow()->get_class( 'settings' )->get_access_token()
+			social_post_flow()->get_class( 'settings' )->get_access_token(),
+			social_post_flow()->get_class( 'settings' )->get_refresh_token()
 		);
 
 		// Setup logging.

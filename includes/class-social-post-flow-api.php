@@ -249,6 +249,16 @@ class Social_Post_Flow_API {
 	 */
 	public function refresh_token() {
 
+		// Bail if no refresh token is available to use, otherwise we'll
+		// send a request to Buffer with an empty refresh_token, which
+		// will fail.
+		if ( empty( $this->refresh_token ) ) {
+			return new WP_Error(
+				'social_post_flow_api_refresh_token_error',
+				__( 'Cannot refresh the access token, as no refresh token exists in the Plugin settings.', 'social-post-flow' )
+			);
+		}
+
 		// Exchange the code for an access token, refresh token and other data.
 		$response = wp_remote_post(
 			$this->oauth_token_url,
@@ -267,8 +277,20 @@ class Social_Post_Flow_API {
 		);
 
 		// If an error occured, return it now.
-		if ( is_wp_error( $result ) ) {
-			return $result;
+		if ( is_wp_error( $response ) ) {
+			/**
+			 * Perform any actions when refreshing an expired access token fails.
+			 *
+			 * @since   1.0.0
+			 *
+			 * @param   WP_Error  $result        Error from API.
+			 * @param   string    $client_id     OAuth Client ID.
+			 * @param   string    $access_token  Access Token.
+			 * @param   string    $refresh_token Refresh Token.
+			 */
+			do_action( 'social_post_flow_api_refresh_token_error', $response, $this->client_id, $this->access_token, $this->refresh_token );
+
+			return $response;
 		}
 
 		// Fetch and decode body.
@@ -284,10 +306,6 @@ class Social_Post_Flow_API {
 		$previous_access_token  = $this->access_token;
 		$previous_refresh_token = $this->refresh_token;
 
-		// Update the access and refresh tokens in this class.
-		$this->access_token  = $result['access_token'];
-		$this->refresh_token = $result['refresh_token'];
-
 		/**
 		 * Perform any actions with the new access token, such as saving it.
 		 *
@@ -299,6 +317,10 @@ class Social_Post_Flow_API {
 		 * @param   string  $previous_refresh_token  Existing Refresh Token.
 		 */
 		do_action( 'social_post_flow_api_refresh_token', $result, $this->client_id, $previous_access_token, $previous_refresh_token );
+
+		// Update the access and refresh tokens in this class.
+		$this->access_token  = $result['access_token'];
+		$this->refresh_token = $result['refresh_token'];
 
 		// Return.
 		return $result;
