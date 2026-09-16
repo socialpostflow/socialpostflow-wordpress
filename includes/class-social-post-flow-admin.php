@@ -708,7 +708,7 @@ class Social_Post_Flow_Admin {
 			// User was on the load connect profiles screen i.e. had no profiles in Social Post Flow,
 			// but now profiles exist.
 			// Enable the profiles in the Post settings by default.
-			$this->enable_profiles_on_first_time_setup( $access_token );
+			$this->enable_profiles_on_first_time_setup( $access_token, $refresh_token );
 		}
 
 		// Get Settings Tab and Post Type we're managing settings for.

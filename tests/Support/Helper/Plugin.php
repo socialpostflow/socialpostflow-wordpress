@@ -59,7 +59,7 @@ class Plugin extends \Codeception\Module
 		$I->waitForElementVisible('body.plugins-php');
 
 		// Activate the Plugin.
-		$I->checkOption('//*[@data-slug="' . $name . '"]/th/input');
+		$I->checkOption('//*[@data-slug="' . $name . '"]//input[@type="checkbox"]');
 		$I->selectOption('action', 'activate-selected');
 		$I->click('#doaction');
 
@@ -93,7 +93,7 @@ class Plugin extends \Codeception\Module
 		$I->waitForElementVisible('body.plugins-php');
 
 		// Deactivate the Plugin.
-		$I->checkOption('//*[@data-slug="' . $name . '"]/th/input');
+		$I->checkOption('//*[@data-slug="' . $name . '"]//input[@type="checkbox"]');
 		$I->selectOption('action', 'deactivate-selected');
 		$I->click('#doaction');
 	}
