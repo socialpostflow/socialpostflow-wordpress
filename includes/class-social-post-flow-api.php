@@ -95,7 +95,15 @@ class Social_Post_Flow_API {
 	 */
 	public function get_registration_url() {
 
-		return $this->app_endpoint . 'register';
+		return add_query_arg(
+			array(
+				'utm_source'   => 'wordpress',
+				'utm_medium'   => 'link',
+				'utm_content'  => 'register_button',
+				'utm_campaign' => 'general',
+			),
+			$this->app_endpoint . 'register'
+		);
 
 	}
 
@@ -166,6 +174,11 @@ class Social_Post_Flow_API {
 			'state'                 => rawurlencode( $return_url ),
 			'code_challenge'        => $code_challenge,
 			'code_challenge_method' => 'S256',
+
+			'utm_source'            => 'wordpress',
+			'utm_medium'            => 'link',
+			'utm_content'           => 'authorize_button',
+			'utm_campaign'          => 'general',
 		);
 
 		// Return OAuth URL.
