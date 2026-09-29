@@ -461,7 +461,7 @@ Social Post Flow offers a 7-day free trial so you can test all features before p
 == Changelog ==
 
 = 1.4.2 (2026-09-16) =
-* Added: Parameter tracking
+* Fix: Status: Layout/spacing of status form
 
 = 1.4.1 (2026-09-16) =
 * Fix: PHP: Uncaught ArgumentCountError: Too few arguments to function Social_Post_Flow_Admin::enable_profiles_on_first_time_setup()

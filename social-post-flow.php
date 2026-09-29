@@ -28,7 +28,7 @@ if ( class_exists( 'Social_Post_Flow' ) ) {
 
 // Define Plugin version and build date.
 define( 'SOCIAL_POST_FLOW_PLUGIN_VERSION', '1.4.2' );
-define( 'SOCIAL_POST_FLOW_PLUGIN_BUILD_DATE', '2026-09-21 12:00:00' );
+define( 'SOCIAL_POST_FLOW_PLUGIN_BUILD_DATE', '2026-09-29 15:00:00' );
 
 // Define Plugin paths.
 define( 'SOCIAL_POST_FLOW_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
