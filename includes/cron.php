@@ -45,8 +45,11 @@ function social_post_flow_repost_cron() {
 	$social_post_flow = Social_Post_Flow::get_instance();
 	$social_post_flow->initialize();
 
+	// Get Test Mode Flag.
+	$test_mode = (bool) $social_post_flow->get_class( 'settings' )->get_option( 'test_mode', false );
+
 	// Call CRON Repost function.
-	$social_post_flow->get_class( 'cron' )->repost();
+	$social_post_flow->get_class( 'cron' )->repost( $test_mode );
 
 	// Shutdown.
 	unset( $social_post_flow );

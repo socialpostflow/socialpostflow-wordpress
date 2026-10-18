@@ -380,13 +380,21 @@ class Social_Post_Flow_Cron {
 		}
 
 		// Get current day and hour based on the WordPress timezone.
-		$current_timestamp = current_time( 'timestamp' ); // phpcs:ignore WordPress.DateTime.CurrentTimeTimestamp
-
-		// mon,tue etc.
-		$current_day = strtolower( wp_date( 'D', $current_timestamp ) );
+		// mon,tue etc. wp_date( 'N' ) is a locale-independent ISO day number (1=Mon..7=Sun),
+		// mapped to the English schedule keys, so locale translation can't break the lookup.
+		$day_keys    = array(
+			1 => 'mon',
+			2 => 'tue',
+			3 => 'wed',
+			4 => 'thu',
+			5 => 'fri',
+			6 => 'sat',
+			7 => 'sun',
+		);
+		$current_day = $day_keys[ (int) wp_date( 'N' ) ];
 
 		// 00,01 etc.
-		$current_hour = wp_date( 'H', $current_timestamp ) . ':00';
+		$current_hour = wp_date( 'H' ) . ':00';
 
 		// Bail if no Repost Schedule exists for today.
 		if ( ! isset( $repost_schedule[ $current_day ] ) ) {
