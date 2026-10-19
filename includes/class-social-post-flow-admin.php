@@ -35,8 +35,8 @@ class Social_Post_Flow_Admin {
 
 		// Actions.
 		add_action( 'social_post_flow_api_get_access_token', array( $this, 'save_oauth_tokens' ), 10, 1 );
-		add_action( 'init', array( $this, 'maybe_get_access_token' ), 12 );
-		add_action( 'init', array( $this, 'maybe_disconnect' ), 13 );
+		add_action( 'admin_init', array( $this, 'maybe_get_access_token' ), 12 );
+		add_action( 'admin_init', array( $this, 'maybe_disconnect' ), 13 );
 		add_action( 'init', array( $this, 'check_plugin_setup' ) );
 		add_action( 'admin_notices', array( $this, 'admin_notices' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts_css' ) );
@@ -54,6 +54,16 @@ class Social_Post_Flow_Admin {
 
 		// If a code is included in the request, exchange it for an access token.
 		if ( ! filter_has_var( INPUT_GET, 'social-post-flow-code' ) ) {
+			return;
+		}
+
+		// Bail if nonce is not valid.
+		if ( ! isset( $_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'social-post-flow-oauth' ) ) {
+			return;
+		}
+
+		// Bail if the current user cannot manage the Plugin's settings.
+		if ( ! current_user_can( $this->get_minimum_capability() ) ) {
 			return;
 		}
 
@@ -98,6 +108,11 @@ class Social_Post_Flow_Admin {
 
 		// Bail if nonce is not valid.
 		if ( ! wp_verify_nonce( sanitize_key( $_REQUEST['social-post-flow-oauth-disconnect'] ), 'social-post-flow-oauth-disconnect' ) ) {
+			return;
+		}
+
+		// Bail if the current user cannot manage the Plugin's settings.
+		if ( ! current_user_can( $this->get_minimum_capability() ) ) {
 			return;
 		}
 
@@ -566,14 +581,13 @@ class Social_Post_Flow_Admin {
 	}
 
 	/**
-	 * Add the Plugin to the WordPress Administration Menu
+	 * Returns the minimum capability required to access and manage the Plugin's settings.
 	 *
-	 * @since   1.0.0
+	 * @since   1.4.4
+	 *
+	 * @return  string
 	 */
-	public function admin_menu() {
-
-		// Define the minimum capability required to access settings.
-		$minimum_capability = 'manage_options';
+	private function get_minimum_capability() {
 
 		/**
 		 * Defines the minimum capability required to access the Plugin's
@@ -584,7 +598,19 @@ class Social_Post_Flow_Admin {
 		 * @param   string  $capability     Minimum Required Capability.
 		 * @return  string                  Minimum Required Capability
 		 */
-		$minimum_capability = apply_filters( 'social_post_flow_admin_admin_menu_minimum_capability', $minimum_capability );
+		return apply_filters( 'social_post_flow_admin_admin_menu_minimum_capability', 'manage_options' );
+
+	}
+
+	/**
+	 * Add the Plugin to the WordPress Administration Menu
+	 *
+	 * @since   1.0.0
+	 */
+	public function admin_menu() {
+
+		// Define the minimum capability required to access settings.
+		$minimum_capability = $this->get_minimum_capability();
 
 		/**
 		 * Add settings menus and sub menus for the Plugin's settings.

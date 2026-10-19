@@ -146,6 +146,19 @@ class Social_Post_Flow_Repost {
 				$results = social_post_flow()->get_class( 'publish' )->publish( $post_id, 'repost', $test_mode );
 				if ( is_wp_error( $results ) ) {
 					social_post_flow()->get_class( 'log' )->add_to_debug_log( social_post_flow()->plugin->displayName . ': repost(): Post #' . $post_id . ': Error: ' . $results->get_error_message() );
+
+					// Log the error caught before statuses were sent to the API e.g. a connection error.
+					if ( $log_enabled ) {
+						social_post_flow()->get_class( 'log' )->add(
+							$post_id,
+							array(
+								'action'         => 'repost',
+								'request_sent'   => gmdate( 'Y-m-d H:i:s' ),
+								'result'         => 'warning',
+								'result_message' => $results->get_error_message(),
+							)
+						);
+					}
 				} else {
 					social_post_flow()->get_class( 'log' )->add_to_debug_log( social_post_flow()->plugin->displayName . ': repost(): Post #' . $post_id . ': Success' );
 				}
@@ -153,21 +166,6 @@ class Social_Post_Flow_Repost {
 				if ( defined( 'WP_CLI' ) && WP_CLI ) {
 					// If the result is an error, output it and continue.
 					if ( is_wp_error( $results ) ) {
-						// If logging is enabled, log the warning.
-						if ( $log_enabled ) {
-							// The result is a single warning caught before any statuses were sent to the API.
-							// Add the warning to the log so that the user can see why no statuses were sent to API.
-							social_post_flow()->get_class( 'log' )->add(
-								$post_id,
-								array(
-									'action'         => 'repost',
-									'request_sent'   => gmdate( 'Y-m-d H:i:s' ),
-									'result'         => 'warning',
-									'result_message' => $results->get_error_message(),
-								)
-							);
-						}
-
 						WP_CLI::error( str_replace( '  ', '', wp_strip_all_tags( $results->get_error_message() ) ), false );
 						continue;
 					}
