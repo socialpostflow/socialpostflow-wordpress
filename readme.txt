@@ -1,7 +1,7 @@
 === Social Media Auto Poster - Schedule & Publish to Social Post Flow ===
 Contributors: socialpostflow
 Donate link: https://www.socialpostflow.com/integrations/wordpress
-Tags: auto post, social media automation, social media scheduler, auto publish, social media posting
+Tags: social post flow, social media automation, social media scheduling, social media scheduler, social media posting
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 7.4
@@ -9,11 +9,11 @@ Stable tag: 1.4.3
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Auto publish WordPress posts to Facebook, X/Twitter, Threads, Instagram, LinkedIn, Google Business, Pinterest, TikTok, Mastodon, Bluesky and Telegram.
+Social media automation and scheduling to auto publish WordPress posts to Facebook, X/Twitter, Threads, Instagram, LinkedIn, Telegram and more.
 
 == Description ==
 
-Social Post Flow is a powerful WordPress social media automation plugin that handles auto posting, scheduling and publishing of your WordPress content to every major social network. Auto post your Posts, Pages, Events, Products and Custom Post Types to Facebook, X/Twitter, Threads, Instagram, LinkedIn, Google Business Profile, Pinterest, TikTok, Mastodon, Bluesky and Telegram.
+Social Post Flow is a powerful WordPress social media automation plugin for social publishing, social media scheduling and social media auto posting. It handles auto posting, scheduling and publishing of your WordPress content to every major social network. Auto post your Posts, Pages, Events, Products and Custom Post Types to Facebook, X/Twitter, Threads, Instagram, LinkedIn, Google Business Profile, Pinterest, TikTok, Mastodon, Bluesky and Telegram.
 
 **Automatic Social Media Publishing** - Set it once and your WordPress content is auto published to social media whenever you create or update a post.
 
@@ -161,7 +161,7 @@ Once connected, simply select which social profiles to use in the WordPress plug
 
 === How to Schedule Social Media Posts from WordPress ===
 
-The plugin offers three scheduling options:
+The plugin offers three social media scheduling options:
 
 **Immediate Publishing**
 Posts are sent to social media the moment you publish or update your WordPress content.
@@ -362,7 +362,7 @@ Yes! The plugin fully supports WooCommerce. You can auto post products with imag
 
 Absolutely. You can create multiple status configurations, each targeting different social networks with unique messages, images, and scheduling options. Your Facebook posts can look completely different from your X/Twitter posts.
 
-= How do I schedule posts for specific times? =
+= How do I use social media scheduling to post at specific times? =
 
 In your status settings, choose "Specific Date/Time" as your publishing option. You can then set the exact date and time for each social media post. Alternatively, use queue-based publishing to distribute posts according to your optimal posting schedule.
 
