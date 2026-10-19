@@ -345,7 +345,20 @@ class Social_Post_Flow_Cron {
 		$test_mode = social_post_flow()->get_class( 'settings' )->get_option( 'test_mode', false );
 
 		// Send request to the API.
-		social_post_flow()->get_class( 'publish' )->publish( $post_id, $action, $test_mode );
+		$results = social_post_flow()->get_class( 'publish' )->publish( $post_id, $action, $test_mode );
+
+		// Log any error caught before statuses were sent to the API e.g. a connection error.
+		if ( is_wp_error( $results ) && social_post_flow()->get_class( 'log' )->is_enabled() ) {
+			social_post_flow()->get_class( 'log' )->add(
+				$post_id,
+				array(
+					'action'         => $action,
+					'request_sent'   => gmdate( 'Y-m-d H:i:s' ),
+					'result'         => 'warning',
+					'result_message' => $results->get_error_message(),
+				)
+			);
+		}
 
 		// Clear the log of any 'Pending' statuses (i.e. log entries telling the user that the status
 		// was added to the WordPress Cron).

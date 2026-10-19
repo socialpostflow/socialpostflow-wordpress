@@ -80,6 +80,9 @@ class Social_Post_Flow_Install {
 		social_post_flow()->get_class( 'cron' )->reschedule_user_access_event();
 		social_post_flow()->get_class( 'cron' )->reschedule_refresh_token_event();
 
+		// Create the logs table, if it doesn't exist.
+		social_post_flow()->get_class( 'log' )->activate();
+
 		// Update the version number.
 		update_option( 'social-post-flow-version', SOCIAL_POST_FLOW_PLUGIN_VERSION );
 

@@ -5,7 +5,7 @@ Tags: auto post, social media automation, social media scheduler, auto publish, 
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.4.3
+Stable tag: 1.4.4
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -459,6 +459,15 @@ Social Post Flow offers a 7-day free trial so you can test all features before p
 4. Post-level Logging.
 
 == Changelog ==
+
+= 1.4.4 (2026-10-19) =
+* Fix: API: Increase timeout from 20 to 30 seconds
+* Fix: API: Return an error if the API returns a server error or invalid response
+* Fix: API: Set User Agent based on Plugin Version
+* Fix: Authentication: Delete tokens when refreshing a token results in an invalid grant
+* Fix: Authentication: OAuth: Use nonce and capability check for improved security when connecting to Social Post Flow
+* Fix: Logs: Show connection errors
+* Fix: Logs: Create table if it doesn't exist on Plugin version upgrade
 
 = 1.4.3 (2026-10-18) =
 * Fix: Repost: Get current day and hour based on WordPress timezone, to ensure reposts run at correctly configured times

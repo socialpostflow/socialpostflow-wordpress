@@ -166,6 +166,9 @@ class Social_Post_Flow_API {
 		$code_verifier  = $this->generate_and_store_code_verifier();
 		$code_challenge = $this->generate_code_challenge( $code_verifier );
 
+		// Add a nonce to the return URL to protect against OAuth callback CSRF.
+		$return_url = add_query_arg( '_wpnonce', wp_create_nonce( 'social-post-flow-oauth' ), $return_url );
+
 		// Build args.
 		$args = array(
 			'client_id'             => $this->client_id,
@@ -203,18 +206,19 @@ class Social_Post_Flow_API {
 		$response = wp_remote_post(
 			$this->oauth_token_url,
 			array(
-				'headers'   => array(
+				'headers'    => array(
 					'Accept' => 'application/json',
 				),
-				'body'      => array(
+				'body'       => array(
 					'client_id'     => $this->client_id,
 					'grant_type'    => 'authorization_code',
 					'code'          => $authorization_code,
 					'redirect_uri'  => $this->oauth_redirect_uri,
 					'code_verifier' => $this->get_code_verifier(),
 				),
-				'timeout'   => $this->get_timeout(),
-				'sslverify' => $this->enable_ssl_verification(),
+				'timeout'    => $this->get_timeout(),
+				'sslverify'  => $this->enable_ssl_verification(),
+				'user-agent' => $this->get_user_agent(),
 			)
 		);
 
@@ -274,16 +278,17 @@ class Social_Post_Flow_API {
 		$response = wp_remote_post(
 			$this->oauth_token_url,
 			array(
-				'headers'   => array(
+				'headers'    => array(
 					'Accept' => 'application/json',
 				),
-				'body'      => array(
+				'body'       => array(
 					'client_id'     => $this->client_id,
 					'grant_type'    => 'refresh_token',
 					'refresh_token' => $this->refresh_token,
 				),
-				'timeout'   => $this->get_timeout(),
-				'sslverify' => $this->enable_ssl_verification(),
+				'timeout'    => $this->get_timeout(),
+				'sslverify'  => $this->enable_ssl_verification(),
+				'user-agent' => $this->get_user_agent(),
 			)
 		);
 
@@ -310,7 +315,21 @@ class Social_Post_Flow_API {
 
 		// If an error occured, return it now.
 		if ( isset( $result['error'] ) ) {
-			return new WP_Error( $result['error'], $result['error_description'] );
+			$error = new WP_Error( $result['error'], $result['error_description'] );
+
+			/**
+			 * Perform any actions when refreshing fails.
+			 *
+			 * @since   1.4.0
+			 *
+			 * @param   WP_Error  $result        Error from API.
+			 * @param   string    $client_id     OAuth Client ID.
+			 * @param   string    $access_token  Access Token.
+			 * @param   string    $refresh_token Refresh Token.
+			 */
+			do_action( 'social_post_flow_api_refresh_token_error', $error, $this->client_id, $this->access_token, $this->refresh_token );
+
+			return $error;
 		}
 
 		// Store existing access and refresh tokens.
@@ -636,13 +655,14 @@ class Social_Post_Flow_API {
 				$response = wp_remote_get(
 					$url,
 					array(
-						'headers'   => array(
+						'headers'    => array(
 							'Authorization' => 'Bearer ' . $this->access_token,
 							'Accept'        => 'application/json',
 						),
-						'body'      => $params,
-						'timeout'   => $this->get_timeout(),
-						'sslverify' => $this->enable_ssl_verification(),
+						'body'       => $params,
+						'timeout'    => $this->get_timeout(),
+						'sslverify'  => $this->enable_ssl_verification(),
+						'user-agent' => $this->get_user_agent(),
 					)
 				);
 				break;
@@ -654,13 +674,14 @@ class Social_Post_Flow_API {
 				$response = wp_remote_post(
 					$url,
 					array(
-						'headers'   => array(
+						'headers'    => array(
 							'Authorization' => 'Bearer ' . $this->access_token,
 							'Accept'        => 'application/json',
 						),
-						'body'      => $params,
-						'timeout'   => $this->get_timeout(),
-						'sslverify' => $this->enable_ssl_verification(),
+						'body'       => $params,
+						'timeout'    => $this->get_timeout(),
+						'sslverify'  => $this->enable_ssl_verification(),
+						'user-agent' => $this->get_user_agent(),
 					)
 				);
 				break;
@@ -689,6 +710,35 @@ class Social_Post_Flow_API {
 
 			// Retry the request.
 			return $this->request( $cmd, $method, $params, false );
+		}
+
+		// Return an error if the API returned a server error.
+		if ( (int) $http_code >= 500 ) {
+			return new WP_Error(
+				$http_code,
+				sprintf(
+					/* translators: HTTP status code */
+					__( 'Social Post Flow API returned a server error (HTTP %s). Please try again.', 'social-post-flow' ),
+					$http_code
+				)
+			);
+		}
+
+		// An empty successful response has no body to decode.
+		if ( '' === trim( $response ) && (int) $http_code >= 200 && (int) $http_code < 300 ) {
+			return array();
+		}
+
+		// Return an error if the response isn't JSON e.g. a proxy or firewall page.
+		if ( ! is_array( $body ) ) {
+			return new WP_Error(
+				$http_code,
+				sprintf(
+					/* translators: HTTP status code */
+					__( 'Social Post Flow API returned an invalid response (HTTP %s).', 'social-post-flow' ),
+					$http_code
+				)
+			);
 		}
 
 		// If the body contains a message, an error occured.
@@ -726,7 +776,7 @@ class Social_Post_Flow_API {
 	private function get_timeout() {
 
 		// Define the timeout.
-		$timeout = 20;
+		$timeout = 30;
 
 		/**
 		 * Defines the number of seconds before timing out a request to the Social Post Flow API.
@@ -738,6 +788,25 @@ class Social_Post_Flow_API {
 		$timeout = apply_filters( 'social_post_flow_api_get_timeout', $timeout );
 
 		return $timeout;
+
+	}
+
+	/**
+	 * Returns the user agent for requests to the Social Post Flow API.
+	 *
+	 * @since   1.4.4
+	 *
+	 * @return  string
+	 */
+	private function get_user_agent() {
+
+		return sprintf(
+			'SocialPostFlow/%1$s (WordPress/%2$s; PHP/%3$s; %4$s)',
+			SOCIAL_POST_FLOW_PLUGIN_VERSION,
+			get_bloginfo( 'version' ),
+			PHP_VERSION,
+			home_url()
+		);
 
 	}
 
