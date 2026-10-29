@@ -5,7 +5,7 @@ Tags: social post flow, social media automation, social media scheduling, social
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.4.4
+Stable tag: 1.4.5
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -459,6 +459,12 @@ Social Post Flow offers a 7-day free trial so you can test all features before p
 4. Post-level Logging.
 
 == Changelog ==
+
+= 1.4.5 (2026-10-29) =
+* Added: Repost: Log why a Post was not reposted
+* Fix: Repost: Selection query could take minutes and time out on sites with a lot of Post meta, meaning no Posts were reposted. Posts are now fetched in batches using a faster query
+* Fix: Repost: Stop when an error affects every Post (e.g. a connection error), instead of trying every Post
+* Fix: Repost: Posts that send no statuses no longer count towards the per Post Type limit
 
 = 1.4.4 (2026-10-19) =
 * Fix: API: Increase timeout from 20 to 30 seconds

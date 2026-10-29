@@ -36,6 +36,25 @@ class Social_Post_Flow_Publish {
 	private $searches_replacements = false;
 
 	/**
+	 * Holds why the last call to publish() returned false.
+	 *
+	 * @since   1.4.5
+	 *
+	 * @var     string
+	 */
+	private $skip_reason = '';
+
+	/**
+	 * Whether the last call to publish() failed with an error that affects every Post
+	 * e.g. not authorized, or profiles could not be fetched.
+	 *
+	 * @since   1.4.5
+	 *
+	 * @var     bool
+	 */
+	private $global_error = false;
+
+	/**
 	 * Constructor
 	 *
 	 * @since   1.0.0
@@ -608,6 +627,9 @@ class Social_Post_Flow_Publish {
 	 */
 	public function publish( $post_id, $action, $test_mode = false ) {
 
+		$this->skip_reason  = '';
+		$this->global_error = false;
+
 		social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Social Post Flow: publish(): Post ID: #' . $post_id );
 		social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Social Post Flow: publish(): Action: ' . $action );
 		social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Social Post Flow: publish(): Test Mode: ' . ( $test_mode ? 'Yes' : 'No' ) );
@@ -623,6 +645,9 @@ class Social_Post_Flow_Publish {
 
 		// If settings are false, we're not sending this Post, so there's no need to schedule an event.
 		if ( ! $settings ) {
+			if ( ! $this->skip_reason ) {
+				$this->skip_reason = sprintf( 'No Social Post Flow settings exist for the "%s" post type.', get_post_type( $post_id ) );
+			}
 			return false;
 		}
 
@@ -636,6 +661,7 @@ class Social_Post_Flow_Publish {
 		$access_token  = social_post_flow()->get_class( 'settings' )->get_access_token();
 		$refresh_token = social_post_flow()->get_class( 'settings' )->get_refresh_token();
 		if ( ! $access_token ) {
+			$this->global_error = true;
 			return new WP_Error(
 				'social_post_flow_no_access_token',
 				__( 'The Plugin has not been authorized with Social Post Flow. Go to Social Post Flow > Settings to setup the plugin.', 'social-post-flow' )
@@ -651,6 +677,7 @@ class Social_Post_Flow_Publish {
 		// Bail if the Profiles could not be fetched.
 		if ( is_wp_error( $profiles ) ) {
 			social_post_flow()->get_class( 'log' )->add_to_debug_log( 'Social Post Flow: publish(): Profiles Error: ' . $profiles->get_error_message() );
+			$this->global_error = true;
 			return $profiles;
 		}
 
@@ -903,6 +930,7 @@ class Social_Post_Flow_Publish {
 
 		// If no results, we're finished.
 		if ( empty( $results ) || count( $results ) === 0 ) {
+			$this->skip_reason = 'No statuses were sent. The social_post_flow_publish_statuses filter may have removed them.';
 			return false;
 		}
 
@@ -957,6 +985,7 @@ class Social_Post_Flow_Publish {
 		// Post-specific status settings.
 		$supported_post_types = array_keys( social_post_flow()->get_class( 'common' )->get_post_types() );
 		if ( ! in_array( get_post_type( $post ), $supported_post_types, true ) ) {
+			$this->skip_reason = sprintf( 'Post type "%s" is not supported by Social Post Flow (not public, or excluded).', get_post_type( $post ) );
 			return false;
 		}
 
@@ -982,11 +1011,13 @@ class Social_Post_Flow_Publish {
 
 			case '-1':
 				// Do not Post.
+				$this->skip_reason = 'The Post\'s Social Post Flow setting is "Do NOT Post".';
 				return false;
 
 		}
 
 		// Shouldn't ever reach here, but if we do, something went wrong.
+		$this->skip_reason = 'The Post\'s Social Post Flow setting is not recognised.';
 		return false;
 
 	}
@@ -3848,6 +3879,32 @@ class Social_Post_Flow_Publish {
 
 		// Return log results.
 		return $logs;
+
+	}
+
+	/**
+	 * Returns why the last call to publish() returned false.
+	 *
+	 * @since   1.4.5
+	 *
+	 * @return  string
+	 */
+	public function get_skip_reason() {
+
+		return $this->skip_reason ? $this->skip_reason : 'No reason recorded.';
+
+	}
+
+	/**
+	 * Returns whether the last call to publish() failed with an error that affects every Post.
+	 *
+	 * @since   1.4.5
+	 *
+	 * @return  bool
+	 */
+	public function is_global_error() {
+
+		return $this->global_error;
 
 	}
 

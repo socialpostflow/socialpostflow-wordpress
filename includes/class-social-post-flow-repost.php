@@ -124,63 +124,87 @@ class Social_Post_Flow_Repost {
 				continue;
 			}
 
-			// Iterate through Post IDs.
-			foreach ( $post_ids as $post_id ) {
-				// If we've hit the limit, bail.
-				if ( $posted_count >= $limit ) {
-					social_post_flow()->get_class( 'log' )->add_to_debug_log( social_post_flow()->plugin->displayName . ': repost(): Limit of ' . $limit . ' reached for the ' . $post_type . ' post type. Skipping...' );
-					if ( defined( 'WP_CLI' ) && WP_CLI ) {
-						WP_CLI::log( 'Limit of ' . $limit . ' reached for the ' . $post_type . ' post type. Skipping...' );
+			// Iterate through Post IDs, a batch at a time, until the limit is reached.
+			$page = 1;
+			while ( ! empty( $post_ids ) ) {
+				foreach ( $post_ids as $post_id ) {
+					// If we've hit the limit, bail.
+					if ( $posted_count >= $limit ) {
+						social_post_flow()->get_class( 'log' )->add_to_debug_log( social_post_flow()->plugin->displayName . ': repost(): Limit of ' . $limit . ' reached for the ' . $post_type . ' post type. Skipping...' );
+						if ( defined( 'WP_CLI' ) && WP_CLI ) {
+							WP_CLI::log( 'Limit of ' . $limit . ' reached for the ' . $post_type . ' post type. Skipping...' );
+						}
+						break 2;
 					}
+
+					// Repost.
+					social_post_flow()->get_class( 'log' )->add_to_debug_log( social_post_flow()->plugin->displayName . ': repost(): Post #' . $post_id . ': Reposting' );
+					if ( defined( 'WP_CLI' ) && WP_CLI ) {
+						WP_CLI::log( '---' );
+						WP_CLI::log( 'Post #' . $post_id . ': Reposting' );
+					}
+
+					// Attempt to Repost the Post.
+					$results = social_post_flow()->get_class( 'publish' )->publish( $post_id, 'repost', $test_mode );
+					if ( is_wp_error( $results ) ) {
+						social_post_flow()->get_class( 'log' )->add_to_debug_log( social_post_flow()->plugin->displayName . ': repost(): Post #' . $post_id . ': Error: ' . $results->get_error_message() );
+
+						// Log the error caught before statuses were sent to the API e.g. a connection error.
+						if ( $log_enabled ) {
+							social_post_flow()->get_class( 'log' )->add(
+								$post_id,
+								array(
+									'action'         => 'repost',
+									'request_sent'   => gmdate( 'Y-m-d H:i:s' ),
+									'result'         => 'warning',
+									'result_message' => $results->get_error_message(),
+								)
+							);
+						}
+
+						// Stop, as this error e.g. a connection error will happen for every Post.
+						if ( social_post_flow()->get_class( 'publish' )->is_global_error() ) {
+							social_post_flow()->get_class( 'log' )->add_to_debug_log( social_post_flow()->plugin->displayName . ': repost(): Stopped, as this error affects every Post' );
+							if ( defined( 'WP_CLI' ) && WP_CLI ) {
+								WP_CLI::error( str_replace( '  ', '', wp_strip_all_tags( $results->get_error_message() ) ), false );
+							}
+							return $results;
+						}
+					} elseif ( ! is_array( $results ) || count( $results ) === 0 ) {
+						// Nothing was sent e.g. the Post's settings are "Do NOT Post".
+						social_post_flow()->get_class( 'log' )->add_to_debug_log( social_post_flow()->plugin->displayName . ': repost(): Post #' . $post_id . ': Not reposted: ' . social_post_flow()->get_class( 'publish' )->get_skip_reason() );
+					} else {
+						social_post_flow()->get_class( 'log' )->add_to_debug_log( social_post_flow()->plugin->displayName . ': repost(): Post #' . $post_id . ': Success' );
+					}
+
+					if ( defined( 'WP_CLI' ) && WP_CLI ) {
+						// If the result is an error, output it and continue.
+						if ( is_wp_error( $results ) ) {
+							WP_CLI::error( str_replace( '  ', '', wp_strip_all_tags( $results->get_error_message() ) ), false );
+							continue;
+						}
+
+						// If the results are an array, iterate through them, outputting similar to our log.
+						if ( is_array( $results ) && count( $results ) > 0 ) {
+							// Output results table.
+							WP_CLI\Utils\format_items( 'table', $results, array_keys( $results[0] ) );
+						}
+					}
+
+					// Append the count, if statuses were sent. Posts that sent nothing don't count towards the limit.
+					if ( is_array( $results ) && count( $results ) > 0 ) {
+						++$posted_count;
+					}
+				}
+
+				// Stop if this was the last batch.
+				if ( count( $post_ids ) < $this->get_batch_size() ) {
 					break;
 				}
 
-				// Repost.
-				social_post_flow()->get_class( 'log' )->add_to_debug_log( social_post_flow()->plugin->displayName . ': repost(): Post #' . $post_id . ': Reposting' );
-				if ( defined( 'WP_CLI' ) && WP_CLI ) {
-					WP_CLI::log( '---' );
-					WP_CLI::log( 'Post #' . $post_id . ': Reposting' );
-				}
-
-				// Attempt to Repost the Post.
-				$results = social_post_flow()->get_class( 'publish' )->publish( $post_id, 'repost', $test_mode );
-				if ( is_wp_error( $results ) ) {
-					social_post_flow()->get_class( 'log' )->add_to_debug_log( social_post_flow()->plugin->displayName . ': repost(): Post #' . $post_id . ': Error: ' . $results->get_error_message() );
-
-					// Log the error caught before statuses were sent to the API e.g. a connection error.
-					if ( $log_enabled ) {
-						social_post_flow()->get_class( 'log' )->add(
-							$post_id,
-							array(
-								'action'         => 'repost',
-								'request_sent'   => gmdate( 'Y-m-d H:i:s' ),
-								'result'         => 'warning',
-								'result_message' => $results->get_error_message(),
-							)
-						);
-					}
-				} else {
-					social_post_flow()->get_class( 'log' )->add_to_debug_log( social_post_flow()->plugin->displayName . ': repost(): Post #' . $post_id . ': Success' );
-				}
-
-				if ( defined( 'WP_CLI' ) && WP_CLI ) {
-					// If the result is an error, output it and continue.
-					if ( is_wp_error( $results ) ) {
-						WP_CLI::error( str_replace( '  ', '', wp_strip_all_tags( $results->get_error_message() ) ), false );
-						continue;
-					}
-
-					// If the results are an array, iterate through them, outputting similar to our log.
-					if ( is_array( $results ) && count( $results ) > 0 ) {
-						// Output results table.
-						WP_CLI\Utils\format_items( 'table', $results, array_keys( $results[0] ) );
-					}
-				}
-
-				// Append the count, if the post was successful.
-				if ( ! is_wp_error( $results ) ) {
-					++$posted_count;
-				}
+				// Fetch the next batch.
+				++$page;
+				$post_ids = $this->get_post_ids( $post_type, $page );
 			}
 		}
 
@@ -193,9 +217,10 @@ class Social_Post_Flow_Repost {
 	 * @since   1.0.0
 	 *
 	 * @param   string $post_type  Post Type.
+	 * @param   int    $page       Batch number.
 	 * @return  array               Post IDs
 	 */
-	private function get_post_ids( $post_type ) {
+	private function get_post_ids( $post_type, $page = 1 ) {
 
 		// Fetch Repost Settings for the Post Type.
 		$settings = array(
@@ -213,63 +238,28 @@ class Social_Post_Flow_Repost {
 
 		// Build args.
 		$args = array(
-			'post_type'              => $post_type,
-			'post_status'            => 'publish',
+			'post_type'               => $post_type,
+			'post_status'             => 'publish',
 
-			// We deliberately fetch all possible Posts, as status conditions may mean that a Post from this query does not get Reposted.
-			// We can keep working through all matching Posts until we've hit the settings limit.
-			'posts_per_page'         => -1,
+			// Fetch in batches; run() pages through until the limit is reached.
+			'posts_per_page'          => $this->get_batch_size(),
+			'paged'                   => $page,
+			'no_found_rows'           => true,
+			'ignore_sticky_posts'     => true,
 
-			'meta_query'             => array(
-				'relation' => 'AND',
+			// Excludes "Do NOT Post" and recently reposted Posts in posts_where().
+			// NOT EXISTS subqueries are used instead of a meta_query, as a meta_query's joins on
+			// the postmeta table grow with the number of meta rows per Post, which can take minutes
+			// and time out on sites with a lot of Post meta.
+			'social_post_flow_repost' => gmdate( 'Y-m-d', strtotime( $settings['frequency'] . 'days ago' ) ),
 
-				// Exclude Posts where "Do NOT Post" has been set at Post level.
-				// Passing these to publish() won't result in a status error, so reposting
-				// thinks these Posts will have been sent successfully when they were (rightly) ignored
-				// in the publish() process.
-				array(
-					'relation' => 'OR',
-
-					// Any Posts that don't have Post-specific settings.
-					array(
-						'key'     => social_post_flow()->plugin->name,
-						'compare' => 'NOT EXISTS',
-					),
-
-					// Any Posts where override is NOT "Do NOT Post".
-					array(
-						'key'     => social_post_flow()->plugin->name,
-						'value'   => '"override";s:2:"-1";',
-						'compare' => 'NOT LIKE',
-					),
-				),
-
-				// Last Reposted.
-				array(
-					'relation' => 'OR',
-
-					// Any Posts that don't have the last reposted meta key.
-					array(
-						'key'     => $this->meta_key,
-						'compare' => 'NOT EXISTS',
-					),
-
-					// Any Posts that have a last reposted meta key value greater than the frequency date.
-					array(
-						'key'     => $this->meta_key,
-						'value'   => gmdate( 'Y-m-d', strtotime( $settings['frequency'] . 'days ago' ) ),
-						'compare' => '<',
-					),
-				),
-			),
-
-			'order'                  => $settings['order'],
-			'orderby'                => $settings['orderby'],
+			'order'                   => $settings['order'],
+			'orderby'                 => $settings['orderby'],
 
 			// Performance.
-			'fields'                 => 'ids',
-			'update_post_meta_cache' => false,
-			'update_post_term_cache' => false,
+			'fields'                  => 'ids',
+			'update_post_meta_cache'  => false,
+			'update_post_term_cache'  => false,
 		);
 
 		// Build Min/Max Post Date Args if supplied.
@@ -306,10 +296,66 @@ class Social_Post_Flow_Repost {
 		$args = apply_filters( 'social_post_flow_repost_get_post_ids', $args, $post_type );
 
 		// Run query.
+		add_filter( 'posts_where', array( $this, 'posts_where' ), 10, 2 );
 		$posts = new WP_Query( $args );
+		remove_filter( 'posts_where', array( $this, 'posts_where' ), 10 );
 
 		// Return results.
 		return $posts->posts;
+
+	}
+
+	/**
+	 * Returns the number of Posts fetched per query when reposting.
+	 *
+	 * @since   1.4.5
+	 *
+	 * @return  int
+	 */
+	public function get_batch_size() {
+
+		/**
+		 * Number of Posts fetched per query when reposting.
+		 *
+		 * @since   1.4.5
+		 *
+		 * @param   int     $batch_size     Batch size.
+		 */
+		return max( 1, absint( apply_filters( 'social_post_flow_repost_batch_size', 100 ) ) );
+
+	}
+
+	/**
+	 * Excludes Posts set to "Do NOT Post", and Posts reposted within the minimum interval,
+	 * from the repost selection query.
+	 *
+	 * @since   1.4.5
+	 *
+	 * @param   string   $where  WHERE clause.
+	 * @param   WP_Query $query  Query.
+	 * @return  string
+	 */
+	public function posts_where( $where, $query ) {
+
+		global $wpdb;
+
+		$frequency_date = $query->get( 'social_post_flow_repost' );
+		if ( ! $frequency_date ) {
+			return $where;
+		}
+
+		$where .= $wpdb->prepare(
+			" AND NOT EXISTS ( SELECT 1 FROM {$wpdb->postmeta} spf_override WHERE spf_override.post_id = {$wpdb->posts}.ID AND spf_override.meta_key = %s AND spf_override.meta_value LIKE %s )",
+			social_post_flow()->plugin->name,
+			'%' . $wpdb->esc_like( '"override";s:2:"-1";' ) . '%'
+		);
+		$where .= $wpdb->prepare(
+			" AND NOT EXISTS ( SELECT 1 FROM {$wpdb->postmeta} spf_reposted WHERE spf_reposted.post_id = {$wpdb->posts}.ID AND spf_reposted.meta_key = %s AND spf_reposted.meta_value >= %s )",
+			$this->meta_key,
+			$frequency_date
+		);
+
+		return $where;
 
 	}
 
