@@ -202,6 +202,39 @@ class Social_Post_Flow_Admin {
 	}
 
 	/**
+	 * Enables Posts > Publish, using the default status, for each profile that doesn't have Post settings yet.
+	 * Profiles the user has already configured, including disabled ones, are left unchanged.
+	 *
+	 * @since   1.4.6
+	 *
+	 * @param   array $profiles   API Profiles.
+	 * @return  array               Post settings
+	 */
+	private function enable_profiles_for_posts( $profiles ) {
+
+		// Get Post settings, adding the default status if missing e.g. settings were never saved.
+		$statuses = social_post_flow()->get_class( 'settings' )->get_settings( 'post' );
+		if ( ! is_array( $statuses ) ) {
+			$statuses = array();
+		}
+		if ( empty( $statuses['default'] ) ) {
+			$statuses = array_merge( social_post_flow()->get_class( 'settings' )->default_installation_settings( 'post' ), $statuses );
+		}
+
+		// Enable profiles without settings.
+		foreach ( array_keys( $profiles ) as $profile_id ) {
+			if ( ! isset( $statuses[ $profile_id ] ) ) {
+				$statuses[ $profile_id ]['enabled'] = 1;
+			}
+		}
+
+		social_post_flow()->get_class( 'settings' )->update_settings( 'post', $statuses );
+
+		return $statuses;
+
+	}
+
+	/**
 	 * Checks that the oAuth authorization flow has been completed, and that
 	 * at least one Post Type with one Social Media account has been enabled.
 	 *
@@ -725,16 +758,10 @@ class Social_Post_Flow_Admin {
 		$profiles = social_post_flow()->get_class( 'api' )->profiles( true, social_post_flow()->get_class( 'common' )->get_transient_expiration_time() );
 		if ( is_wp_error( $profiles ) ) {
 			social_post_flow()->get_class( 'notices' )->add_error_notice( $profiles->get_error_message() );
-		} elseif ( empty( $profiles ) ) {
-			// Load connect profiles screen.
-			update_option( 'social-post-flow-connect-screen', true );
-			$this->connect_profiles_screen();
+		} elseif ( $this->onboarding_required( $profiles ) ) {
+			// Walk the user through connecting profiles and sharing Posts to them.
+			$this->onboarding_screen( $profiles );
 			return;
-		} elseif ( get_option( 'social-post-flow-connect-screen' ) ) {
-			// User was on the load connect profiles screen i.e. had no profiles in Social Post Flow,
-			// but now profiles exist.
-			// Enable the profiles in the Post settings by default.
-			$this->enable_profiles_on_first_time_setup( $access_token, $refresh_token );
 		}
 
 		// Get Settings Tab and Post Type we're managing settings for.
@@ -879,45 +906,184 @@ class Social_Post_Flow_Admin {
 	}
 
 	/**
-	 * Outputs the connect profiles screen, allowing the user to begin the process of connecting
-	 * their social media accounts to Social Post Flow, without showing other settings.
+	 * Whether the onboarding wizard should be shown instead of the settings screen.
 	 *
-	 * @since   1.1.6
+	 * @since   1.4.6
+	 *
+	 * @param   array $profiles   API Profiles.
+	 * @return  bool
 	 */
-	public function connect_profiles_screen() {
+	private function onboarding_required( $profiles ) {
 
-		$providers = array(
-			'facebook'  => array(
-				'name' => 'Facebook',
-			),
-			'x'         => array(
-				'name' => 'X',
-			),
-			'linkedin'  => array(
-				'name' => 'LinkedIn',
-			),
-			'instagram' => array(
-				'name' => 'Instagram',
-			),
-			'threads'   => array(
-				'name' => 'Threads',
-			),
-			'pinterest' => array(
-				'name' => 'Pinterest',
-			),
-			'bluesky'   => array(
-				'name' => 'Bluesky',
-			),
-			'mastodon'  => array(
-				'name' => 'Mastodon',
-			),
-			'tiktok'    => array(
-				'name' => 'TikTok',
-			),
+		// No profiles connected, or the user is part way through onboarding.
+		if ( empty( $profiles ) || in_array( $this->get_onboarding_step(), array( 'connect', 'share', 'done' ), true ) ) {
+			return true;
+		}
+
+		// Onboarding was completed.
+		if ( get_option( 'social-post-flow-onboarding-complete' ) ) {
+			return false;
+		}
+
+		// Users who have already enabled profiles for Posts don't need onboarding.
+		$statuses = social_post_flow()->get_class( 'settings' )->get_settings( 'post' );
+		return ! is_array( $statuses ) || ! count( array_diff_key( $statuses, array( 'default' => '' ) ) );
+
+	}
+
+	/**
+	 * Outputs the onboarding wizard, which walks the user through connecting profiles (Connect),
+	 * enabling them for Posts (Share) and finishing setup (Done).
+	 *
+	 * @since   1.4.6
+	 *
+	 * @param   array $profiles   API Profiles.
+	 */
+	public function onboarding_screen( $profiles ) {
+
+		// Profiles must be connected before moving past the Connect step.
+		$step = empty( $profiles ) ? 'connect' : $this->get_onboarding_step();
+
+		switch ( $step ) {
+			case 'share':
+				// Enable Posts > Publish for profiles, then list the profiles enabled.
+				$statuses = $this->enable_profiles_for_posts( $profiles );
+				$profiles = array_filter(
+					$profiles,
+					function ( $profile_id ) use ( $statuses ) {
+						return ! empty( $statuses[ $profile_id ]['enabled'] );
+					},
+					ARRAY_FILTER_USE_KEY
+				);
+				break;
+
+			case 'done':
+				update_option( 'social-post-flow-onboarding-complete', 1 );
+				break;
+
+			default:
+				$step      = 'connect';
+				$providers = $this->get_providers();
+
+				// Return here after connecting a profile in Social Post Flow.
+				$return_url = add_query_arg(
+					array(
+						'page'       => 'social-post-flow',
+						'tab'        => 'post',
+						'type'       => 'post',
+						'onboarding' => 'connect',
+					),
+					admin_url( 'admin.php' )
+				);
+
+				// Confirm a profile was just connected.
+				if ( filter_has_var( INPUT_GET, 'social-post-flow-connected' ) && ! empty( $profiles ) ) {
+					social_post_flow()->get_class( 'notices' )->add_success_notice( __( 'Connected! Connect another profile, or continue when you\'re ready.', 'social-post-flow' ) );
+				}
+				break;
+		}
+
+		$steps = array(
+			'connect' => __( 'Connect', 'social-post-flow' ),
+			'share'   => __( 'Share', 'social-post-flow' ),
+			'done'    => __( 'Done', 'social-post-flow' ),
 		);
 
 		// Load View.
-		include_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/settings-connect-profiles.php';
+		include_once SOCIAL_POST_FLOW_PLUGIN_PATH . 'views/onboarding.php';
+
+	}
+
+	/**
+	 * Returns the onboarding step the user has selected.
+	 *
+	 * @since   1.4.6
+	 *
+	 * @return  string  Step
+	 */
+	private function get_onboarding_step() {
+
+		return (string) filter_input( INPUT_GET, 'onboarding', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+
+	}
+
+	/**
+	 * Returns the networks a user can connect to Social Post Flow.
+	 *
+	 * @since   1.4.6
+	 *
+	 * @return  array
+	 */
+	private function get_providers() {
+
+		// Networks supported by Social Post Flow, with icons relative to the plugin URL.
+		return array(
+			'facebook'  => array(
+				'name'     => 'Facebook',
+				'subtitle' => __( 'Page', 'social-post-flow' ),
+				'icon'     => '_modules/dashboard/feather/facebook.svg',
+			),
+			'x'         => array(
+				'name'     => 'X',
+				'subtitle' => __( 'Profile', 'social-post-flow' ),
+				'icon'     => '_modules/dashboard/feather/x.svg',
+			),
+			'linkedin'  => array(
+				'name'     => 'LinkedIn',
+				'subtitle' => __( 'Page or Profile', 'social-post-flow' ),
+				'icon'     => '_modules/dashboard/feather/linkedin.svg',
+			),
+			'instagram' => array(
+				'name'     => 'Instagram',
+				'subtitle' => __( 'Business or Creator', 'social-post-flow' ),
+				'icon'     => '_modules/dashboard/feather/instagram.svg',
+			),
+			'threads'   => array(
+				'name'     => 'Threads',
+				'subtitle' => __( 'Profile', 'social-post-flow' ),
+				'icon'     => '_modules/dashboard/feather/at-sign.svg',
+			),
+			'google'    => array(
+				'name'     => 'Google',
+				'subtitle' => __( 'Business Profile', 'social-post-flow' ),
+				'icon'     => '_modules/dashboard/feather/google.svg',
+			),
+			'pinterest' => array(
+				'name'     => 'Pinterest',
+				'subtitle' => __( 'Board', 'social-post-flow' ),
+				'icon'     => '_modules/dashboard/feather/pinterest.svg',
+			),
+			'bluesky'   => array(
+				'name'     => 'Bluesky',
+				'subtitle' => __( 'Profile', 'social-post-flow' ),
+				'icon'     => '_modules/dashboard/feather/bluesky.svg',
+			),
+			'mastodon'  => array(
+				'name'     => 'Mastodon',
+				'subtitle' => __( 'Profile', 'social-post-flow' ),
+				'icon'     => '_modules/dashboard/feather/mastodon.svg',
+			),
+			'tiktok'    => array(
+				'name'     => 'TikTok',
+				'subtitle' => __( 'Profile', 'social-post-flow' ),
+				'icon'     => '_modules/dashboard/feather/tiktok.svg',
+			),
+			'telegram'  => array(
+				'name'     => 'Telegram',
+				'subtitle' => __( 'Channel', 'social-post-flow' ),
+				'icon'     => '_modules/dashboard/feather/telegram.svg',
+			),
+			'buffer'    => array(
+				'name'     => 'Buffer',
+				'subtitle' => __( 'Multiple channels', 'social-post-flow' ),
+				'icon'     => 'assets/images/icons/buffer.svg',
+			),
+			'postiz'    => array(
+				'name'     => 'Postiz',
+				'subtitle' => __( 'Multiple channels', 'social-post-flow' ),
+				'icon'     => 'assets/images/icons/postiz.svg',
+			),
+		);
 
 	}
 

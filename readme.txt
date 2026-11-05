@@ -5,7 +5,7 @@ Tags: social post flow, social media automation, social media scheduling, social
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.4.5
+Stable tag: 1.4.6
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -502,6 +502,13 @@ Social Post Flow offers a 7-day free trial so you can test all features before p
 4. Post-level Logging.
 
 == Changelog ==
+
+= 1.4.6 (2026-11-05) =
+* Added: Settings: Setup wizard to connect profiles, share Posts to them and finish setup, shown until profiles are enabled for Posts
+* Added: Settings: Setup: Connecting a profile returns to WordPress in the same browser tab, listing connected profiles so more can be connected
+* Added: Settings: Setup: Google Business Profile, Telegram, Buffer and Postiz can be connected
+* Fix: Settings: Setup: Connect Profiles screen was missing its styling
+* Fix: Settings: Setup: Profiles without Post settings are enabled for Posts using the default status, even if settings were never saved or exist for previously connected profiles
 
 = 1.4.5 (2026-10-29) =
 * Added: Repost: Log why a Post was not reposted
