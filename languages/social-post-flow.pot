@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Social Post Flow 1.4.2\n"
+"Project-Id-Version: Social Post Flow 1.4.6\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-social-post-flow\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-09-29T06:25:24+00:00\n"
+"POT-Creation-Date: 2026-11-05T08:59:20+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: social-post-flow\n"
@@ -18,21 +18,21 @@ msgstr ""
 #. Author of the plugin
 #: social-post-flow.php
 #: includes/class-social-post-flow-post.php:143
-#: includes/class-social-post-flow-publish.php:825
-#: includes/class-social-post-flow-publish.php:830
-#: includes/class-social-post-flow-publish.php:832
-#: includes/class-social-post-flow-publish.php:851
-#: includes/class-social-post-flow-publish.php:853
-#: includes/class-social-post-flow-publish.php:856
-#: includes/class-social-post-flow-publish.php:867
-#: includes/class-social-post-flow-publish.php:870
-#: includes/class-social-post-flow-publish.php:873
+#: includes/class-social-post-flow-publish.php:852
+#: includes/class-social-post-flow-publish.php:857
+#: includes/class-social-post-flow-publish.php:859
+#: includes/class-social-post-flow-publish.php:878
+#: includes/class-social-post-flow-publish.php:880
+#: includes/class-social-post-flow-publish.php:883
+#: includes/class-social-post-flow-publish.php:894
+#: includes/class-social-post-flow-publish.php:897
+#: includes/class-social-post-flow-publish.php:900
 #: includes/class-social-post-flow-user-access.php:168
 #: views/bulk-publish-error.php:17
 #: views/bulk-publish.php:17
 #: views/log.php:15
+#: views/onboarding.php:16
 #: views/settings-auth-required.php:16
-#: views/settings-connect-profiles.php:16
 #: views/settings.php:15
 msgid "Social Post Flow"
 msgstr ""
@@ -52,53 +52,53 @@ msgstr ""
 msgid "http://www.socialpostflow.com"
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:78
+#: includes/class-social-post-flow-admin.php:88
 msgid "Thanks! You've connected the Plugin to your Social Post Flow account. Now select profiles below to enable, and define your statuses to start sending Posts to your social media profiles."
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:202
+#: includes/class-social-post-flow-admin.php:250
 msgid "Social Post Flow requires the PHP cURL extension to be installed and enabled by your web host."
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:218
+#: includes/class-social-post-flow-admin.php:266
 msgid "Social Post Flow needs to be authorized before you can start sending Posts."
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:220
+#: includes/class-social-post-flow-admin.php:268
 msgid "Click here to authorize."
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:304
+#: includes/class-social-post-flow-admin.php:352
 msgid "No log entries exist, or no status updates have been sent to Social Post Flow."
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:308
+#: includes/class-social-post-flow-admin.php:356
 msgid "Are you sure you want to delete this condition?"
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:309
+#: includes/class-social-post-flow-admin.php:357
 msgid "Are you sure you want to delete this status?"
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:371
-#: includes/class-social-post-flow-admin.php:453
+#: includes/class-social-post-flow-admin.php:419
+#: includes/class-social-post-flow-admin.php:501
 msgid "Saving"
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:372
-#: includes/class-social-post-flow-admin.php:454
+#: includes/class-social-post-flow-admin.php:420
+#: includes/class-social-post-flow-admin.php:502
 msgid "Saved!"
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:418
+#: includes/class-social-post-flow-admin.php:466
 msgid "Testing"
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:419
+#: includes/class-social-post-flow-admin.php:467
 msgid "Finished"
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:619
+#: includes/class-social-post-flow-admin.php:678
 #: includes/class-social-post-flow.php:139
 #: views/export.php:26
 #: views/settings-auth-required.php:19
@@ -108,33 +108,91 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:644
+#: includes/class-social-post-flow-admin.php:703
 msgid "Settings saved successfully."
 msgstr ""
 
 #. translators: %1$s: Post Type
-#: includes/class-social-post-flow-admin.php:815
+#: includes/class-social-post-flow-admin.php:868
 #, php-format
 msgid "To send %1$s to Social Post Flow, at least one action on the Defaults tab must be enabled with a status defined, and at least one social media profile must be enabled below by clicking the applicable profile name and ticking the \"Account Enabled\" box."
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:819
+#: includes/class-social-post-flow-admin.php:872
 #: views/settings-auth.php:148
 msgid "See Documentation"
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:959
+#: includes/class-social-post-flow-admin.php:981
+msgid "Connected! Connect another profile, or continue when you're ready."
+msgstr ""
+
+#: includes/class-social-post-flow-admin.php:987
+#: views/onboarding-connect.php:53
+msgid "Connect"
+msgstr ""
+
+#: includes/class-social-post-flow-admin.php:988
+msgid "Share"
+msgstr ""
+
+#: includes/class-social-post-flow-admin.php:989
+msgid "Done"
+msgstr ""
+
+#: includes/class-social-post-flow-admin.php:1023
+msgid "Page"
+msgstr ""
+
+#: includes/class-social-post-flow-admin.php:1028
+#: includes/class-social-post-flow-admin.php:1043
+#: includes/class-social-post-flow-admin.php:1058
+#: includes/class-social-post-flow-admin.php:1063
+#: includes/class-social-post-flow-admin.php:1068
+#: includes/class-social-post-flow-log-table.php:199
+#: views/bulk-publish-2.php:43
+#: views/post-log.php:20
+#: views/settings-auth.php:368
+msgid "Profile"
+msgstr ""
+
+#: includes/class-social-post-flow-admin.php:1033
+msgid "Page or Profile"
+msgstr ""
+
+#: includes/class-social-post-flow-admin.php:1038
+msgid "Business or Creator"
+msgstr ""
+
+#: includes/class-social-post-flow-admin.php:1048
+msgid "Business Profile"
+msgstr ""
+
+#: includes/class-social-post-flow-admin.php:1053
+msgid "Board"
+msgstr ""
+
+#: includes/class-social-post-flow-admin.php:1073
+msgid "Channel"
+msgstr ""
+
 #: includes/class-social-post-flow-admin.php:1078
+#: includes/class-social-post-flow-admin.php:1083
+msgid "Multiple channels"
+msgstr ""
+
+#: includes/class-social-post-flow-admin.php:1151
+#: includes/class-social-post-flow-admin.php:1270
 msgid "Nonce field is missing."
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:969
-#: includes/class-social-post-flow-admin.php:1088
+#: includes/class-social-post-flow-admin.php:1161
+#: includes/class-social-post-flow-admin.php:1280
 msgid "Invalid nonce specified."
 msgstr ""
 
 #. translators: Post Type Plural Name
-#: includes/class-social-post-flow-admin.php:1064
+#: includes/class-social-post-flow-admin.php:1256
 #: includes/class-social-post-flow-bulk-publish.php:59
 #: includes/class-social-post-flow-bulk-publish.php:68
 #, php-format
@@ -142,24 +200,24 @@ msgid "No %s found matching the given Bulk Publish conditions. Please adjust / r
 msgstr ""
 
 #. translators: Post Type Singular Name
-#: includes/class-social-post-flow-admin.php:1101
+#: includes/class-social-post-flow-admin.php:1293
 #, php-format
 msgid "Please select at least one %s to publish to Social Post Flow."
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:1133
+#: includes/class-social-post-flow-admin.php:1325
 msgid "Finished."
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:1251
+#: includes/class-social-post-flow-admin.php:1443
 msgid "Nonce field is missing. Settings NOT saved."
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:1259
+#: includes/class-social-post-flow-admin.php:1451
 msgid "Invalid nonce specified. Settings NOT saved."
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:1339
+#: includes/class-social-post-flow-admin.php:1531
 msgid "Statuses field is missing. Settings NOT saved."
 msgstr ""
 
@@ -226,12 +284,24 @@ msgstr ""
 msgid "Error: No response was received."
 msgstr ""
 
-#: includes/class-social-post-flow-api.php:269
+#: includes/class-social-post-flow-api.php:273
 msgid "Cannot refresh the access token, as no refresh token exists in the Plugin settings."
 msgstr ""
 
-#: includes/class-social-post-flow-api.php:624
+#: includes/class-social-post-flow-api.php:643
 msgid "No access token was specified"
+msgstr ""
+
+#. translators: HTTP status code
+#: includes/class-social-post-flow-api.php:721
+#, php-format
+msgid "Social Post Flow API returned a server error (HTTP %s). Please try again."
+msgstr ""
+
+#. translators: HTTP status code
+#: includes/class-social-post-flow-api.php:738
+#, php-format
+msgid "Social Post Flow API returned an invalid response (HTTP %s)."
 msgstr ""
 
 #: includes/class-social-post-flow-bulk-actions.php:72
@@ -239,7 +309,7 @@ msgid "Send to Social Post Flow"
 msgstr ""
 
 #: includes/class-social-post-flow-bulk-publish.php:40
-#: includes/class-social-post-flow-publish.php:641
+#: includes/class-social-post-flow-publish.php:667
 #: includes/class-social-post-flow-repost.php:88
 msgid "The Plugin has not been authorized with Social Post Flow. Go to Social Post Flow > Settings to setup the plugin."
 msgstr ""
@@ -864,13 +934,6 @@ msgstr ""
 msgid "Action"
 msgstr ""
 
-#: includes/class-social-post-flow-log-table.php:199
-#: views/bulk-publish-2.php:43
-#: views/post-log.php:20
-#: views/settings-auth.php:368
-msgid "Profile"
-msgstr ""
-
 #: includes/class-social-post-flow-log-table.php:200
 #: views/bulk-publish-2.php:44
 #: views/post-log.php:21
@@ -996,41 +1059,41 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: includes/class-social-post-flow-publish.php:580
+#: includes/class-social-post-flow-publish.php:599
 msgid "Status added to WordPress Cron for sending to Social Post Flow. Check the Post's Log after the \"Request Sent\" date and time to confirm that the status has been added to Social Post Flow."
 msgstr ""
 
 #. translators: %1$s: Post Type Name, Singular, %2$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot), %3$s: Action (Publish, Update, Repost, Bulk Publish), %4$s, %5$s, %6$s: Post Type Name, Singular, %7$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot), %8$s: Plugin URL, %9$s: Plugin Name, %10$s: Post Type Name, Singular, %11$s: Action (Publish, Update, Repost, Bulk Publish)
-#: includes/class-social-post-flow-publish.php:823
+#: includes/class-social-post-flow-publish.php:850
 #, php-format
 msgid "Status(es) exist for sending this %1$s to %2$s when you %3$s a %4$s, but no status was sent because the %5$s did not meet the status conditions. If you want this %6$s to be sent to %7$s, navigate to <a href=\"%8$s\" target=\"_blank\">%9$s > Settings > %10$s Tab > %11$s Action Tab</a>, ensuring that no Conditions are set on the defined statuses."
 msgstr ""
 
 #. translators: %1$s: Post Type Name, Singular, %2$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot), %3$s: Action (Publish, Update, Repost, Bulk Publish), %4$s, %5$s, %6$s: Post Type Name, Singular, %7$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot), %8$s: Plugin URL, %9$s: Plugin Name, %10$s: Post Type Name, Singular, %11$s: Action (Publish, Update, Repost, Bulk Publish)
-#: includes/class-social-post-flow-publish.php:848
+#: includes/class-social-post-flow-publish.php:875
 #, php-format
 msgid "No %1$s Settings are defined for sending this %2$s to %3$s when you %4$s. To send statuses to %5$s on %6$s, <a href=\"%7$s\" target=\"_blank\">Edit the Post</a>, navigate to %8$s > Defaults > %9$s Action Tab, tick \"Enabled\" and also enable at least one social media profile."
 msgstr ""
 
 #. translators: %1$s: Post Type Name, Singular, %2$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot), %3$s: Action (Publish, Update, Repost, Bulk Publish), %4$s, %5$s, %6$s: Post Type Name, Singular, %7$s: Social Media Service Name (Buffer, Hootsuite, SocialPilot), %8$s: Plugin URL, %9$s: Plugin Name, %10$s: Post Type Name, Singular, %11$s: Action (Publish, Update, Repost, Bulk Publish)
-#: includes/class-social-post-flow-publish.php:865
+#: includes/class-social-post-flow-publish.php:892
 #, php-format
 msgid "No Plugin Settings are defined for sending %1$s to %2$s when you %3$s a %4$s. To send statuses to %5$s on %6$s, navigate to <a href=\"%7$s\" target=\"_blank\">%8$s > Settings > %9$s Tab > %10$s Action Tab</a>, tick \"Enabled\", and also enable at least one social media profile."
 msgstr ""
 
 #. translators: Action
-#: includes/class-social-post-flow-publish.php:935
+#: includes/class-social-post-flow-publish.php:963
 #, php-format
 msgid "The %s action is not supported."
 msgstr ""
 
 #. translators: Post ID
-#: includes/class-social-post-flow-publish.php:948
+#: includes/class-social-post-flow-publish.php:976
 #, php-format
 msgid "No WordPress Post could be found for Post ID %s"
 msgstr ""
 
-#: includes/class-social-post-flow-publish.php:3751
+#: includes/class-social-post-flow-publish.php:3782
 msgid "Plugin Error"
 msgstr ""
 
@@ -1662,6 +1725,73 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
+#: views/onboarding-connect.php:17
+msgid "Where do you want to post?"
+msgstr ""
+
+#: views/onboarding-connect.php:18
+msgid "Pick a network to connect. You'll sign in to it, choose the page or profile to post to, then come back here."
+msgstr ""
+
+#: views/onboarding-connect.php:22
+msgid "Connect more profiles, or continue"
+msgstr ""
+
+#: views/onboarding-connect.php:23
+msgid "Connect every profile you want to share your WordPress content to, then continue."
+msgstr ""
+
+#: views/onboarding-connect.php:69
+#: views/onboarding-share.php:60
+msgid "Continue"
+msgstr ""
+
+#: views/onboarding-done.php:14
+msgid "You're all set!"
+msgstr ""
+
+#: views/onboarding-done.php:15
+msgid "Publish a Post, and Social Post Flow will share it to your profiles."
+msgstr ""
+
+#: views/onboarding-done.php:21
+msgid "View settings"
+msgstr ""
+
+#: views/onboarding-done.php:26
+msgid "Write a new Post"
+msgstr ""
+
+#: views/onboarding-share.php:14
+msgid "Share your Posts"
+msgstr ""
+
+#: views/onboarding-share.php:18
+msgid "None of your profiles are set to share new Posts yet. Enable them in the Post settings."
+msgstr ""
+
+#: views/onboarding-share.php:22
+msgid "When you publish a new Post, it'll be shared to these profiles automatically:"
+msgstr ""
+
+#. translators: Link to Post settings
+#: views/onboarding-share.php:45
+#, php-format
+msgid "Want to change the text, image or schedule? You can customise this in the %s at any time."
+msgstr ""
+
+#: views/onboarding-share.php:46
+msgid "Post settings"
+msgstr ""
+
+#: views/onboarding-share.php:55
+msgid "Back"
+msgstr ""
+
+#: views/onboarding.php:19
+msgid "Setup"
+msgstr ""
+
 #: views/post-log.php:55
 msgid "Refresh Log"
 msgstr ""
@@ -2261,23 +2391,6 @@ msgstr ""
 msgid "My Custom Field"
 msgstr ""
 
-#: views/settings-connect-profiles.php:19
-#: views/settings-profiles-missing.php:28
-msgid "Connect Profiles"
-msgstr ""
-
-#: views/settings-connect-profiles.php:34
-msgid "Connect profiles to Social Post Flow below to start sending WordPress content to social media."
-msgstr ""
-
-#: views/settings-connect-profiles.php:50
-msgid "Connect"
-msgstr ""
-
-#: views/settings-connect-profiles.php:60
-msgid "I've connected profiles to Social Post Flow"
-msgstr ""
-
 #: views/settings-post-action-status-row.php:16
 msgid "Reorder Status"
 msgstr ""
@@ -2564,6 +2677,10 @@ msgstr ""
 
 #: views/settings-profiles-missing.php:23
 msgid "Once complete, refresh this page to enable and configure statuses for each social media account."
+msgstr ""
+
+#: views/settings-profiles-missing.php:28
+msgid "Connect Profiles"
 msgstr ""
 
 #: views/settings.php:95

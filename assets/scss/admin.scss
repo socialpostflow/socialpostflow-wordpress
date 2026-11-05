@@ -680,3 +680,63 @@ table {
 		}
 	}
 }
+
+/**
+* Onboarding
+*/
+.social-post-flow-onboarding {
+
+	.social-post-flow-onboarding-profiles {
+		margin: 0 0 20px 0;
+		padding: 15px 20px;
+		background: #f6f7f7;
+		border-left: 4px solid #00a32a;
+
+		li {
+			margin: 0 0 8px 0;
+			font-size: 14px;
+
+			&:last-child {
+				margin: 0;
+			}
+
+			.dashicons {
+				color: #00a32a;
+			}
+		}
+	}
+
+	.social-post-flow-connect-profiles-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+		gap: 12px;
+		margin: 20px 0 0 0;
+	}
+
+	.social-post-flow-connect-profiles-provider {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		padding: 12px;
+		border: 1px solid #dcdcde;
+		border-radius: 6px;
+
+		img {
+			flex-shrink: 0;
+		}
+
+		.social-post-flow-connect-profiles-provider-name {
+			flex: 1;
+			min-width: 0;
+
+			strong,
+			span {
+				display: block;
+			}
+
+			span {
+				color: #646970;
+			}
+		}
+	}
+}
