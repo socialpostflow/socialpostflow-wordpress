@@ -1,7 +1,7 @@
-=== Social Post Flow – Social Media Automation, Scheduling, Scheduler, Posting & Auto Post ===
+=== Social Post Flow – Social Media Auto Post, Social Media Posting, Social Media Scheduling, Social Media Scheduler and Social Media Automation ===
 Contributors: socialpostflow
 Donate link: https://www.socialpostflow.com/integrations/wordpress
-Tags: social post flow, social media automation, social media scheduling, social media auto post, social publishing
+Tags: social media auto post, social media posting, social media scheduling, social media scheduler, social media automation
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 7.4
@@ -9,11 +9,11 @@ Stable tag: 1.4.6
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Social media automation, social media scheduling and auto publish for WordPress posts to Facebook, X/Twitter, Threads, LinkedIn, Telegram and more.
+Social media auto post, social media posting, social media scheduling, social media scheduler and social media automation for WordPress posts.
 
 == Description ==
 
-Social Post Flow automatically shares your WordPress content to social media. Publish or update a post and it's sent to Facebook, X/Twitter, Threads, Instagram, LinkedIn, Google Business Profile, Pinterest, TikTok, Mastodon, Bluesky and Telegram. It's social media automation, a social media scheduler and an auto poster in one WordPress plugin, so social publishing becomes part of the way you already work.
+Social Post Flow automatically shares your WordPress content to social media. Publish or update a post and it's sent to Facebook, X/Twitter, Threads, Instagram, LinkedIn, Google Business Profile, Pinterest, TikTok, Mastodon, Bluesky and Telegram. It's social media automation, a social media scheduler and an auto poster in one WordPress plugin, so social publishing becomes part of the way you already work. Every social media auto post can use its own message, and social media scheduling decides when it goes out.
 
 Auto post your Posts, Pages, Events, Products and Custom Post Types, each with its own social media post for every network. Social media scheduling lets you choose when each social media post goes live: immediately, at a specific date and time, or through your Social Post Flow queue.
 
@@ -25,10 +25,14 @@ Auto post your Posts, Pages, Events, Products and Custom Post Types, each with i
 * Social media auto post to 11 networks, each with its own unique message
 * Social publishing to LinkedIn, Telegram, Threads, Pinterest and Google Business Profile
 * Auto publish and repost evergreen content to keep your social profiles active
+* A social media auto post for every WordPress post, page, product and event
+* Social publishing rules that share only the content you choose
+* Social media scheduling that spreads each social media post across the week
+* Social media auto post with images, link previews and hashtags
 
-**Automatic Social Publishing** - Set it up once, and your WordPress content is auto published to social media whenever you create or update a post. Social media automation saves hours of manual social media posting every week.
+**Automatic Social Publishing** - Set it up once, and your WordPress content is auto published to social media whenever you create or update a post. Social media automation saves hours of manual social media posting every week. Every social media auto post follows your social publishing settings.
 
-**Social Media Scheduling and Queue** - Schedule each social media post for a specific date and time, or add it to a queue for optimal posting times. Social media scheduling gives you full control over when every social media post goes live, and social media automation sends it to Social Post Flow the moment you publish.
+**Social Media Scheduling and Queue** - Schedule each social media post for a specific date and time, or add it to a queue for optimal posting times. Social media scheduling gives you full control over when every social media post goes live, and social media automation sends it to Social Post Flow the moment you publish. Social media scheduling and social media auto post settings are configured per status.
 
 **A Social Media Scheduler Built into WordPress** - Use Social Post Flow as your social media scheduler to plan social media posting around launches, promotions and events, without copying and pasting between tools.
 
@@ -38,7 +42,7 @@ Auto post your Posts, Pages, Events, Products and Custom Post Types, each with i
 
 **Repost and Recycle Evergreen Content** - Auto post older WordPress content back to social media on a schedule you control, keeping your social feeds active without manual social media posting.
 
-**Social Publishing for Every Kind of Site** - Social publishing works for blogs, online stores, event sites and job boards, with the same simple social media posting workflow on every site.
+**Social Publishing for Every Kind of Site** - Social publishing works for blogs, online stores, event sites and job boards, with the same simple social media posting workflow on every site. Social media auto post and social media scheduling work the same way everywhere, so social publishing stays simple as your site grows.
 
 Don't have a Social Post Flow account? Pricing starts at $49/year for 5 social accounts, and you can [sign up for a free 7 day trial](https://app.socialpostflow.com/register).
 
@@ -46,25 +50,27 @@ See our quick start tutorial to auto publish your WordPress content to social me
 
 [youtube https://www.youtube.com/watch?v=IFjYKMjnRB4]
 
-=== Why Choose This Social Media Auto Poster and Social Media Scheduler? ===
+=== Why Choose This Social Media Auto Post Plugin and Social Media Scheduler? ===
 
 Unlike basic WordPress to Facebook or WordPress to Twitter plugins, this social media automation tool gives you complete control over how your content appears on each platform. Create multiple unique status messages per post type, use social media scheduling to set publication times, or add each social media post to your queue automatically. Whether you need social publishing for a blog, a store or an events site, one social media scheduler covers every network.
 
-Social media automation means less time spent on social media posting, and more time on your content. A reliable social media auto post workflow also keeps your social profiles active when you're busy.
+Social media automation means less time spent on social media posting, and more time on your content. A reliable social media auto post workflow also keeps your social profiles active when you're busy. Social publishing and social media scheduling mean every social media auto post goes out when your audience is online.
 
 === Still Works with Twitter / X ===
 
-If you're looking for a replacement for Jetpack Social, Blog2Social, or NextScripts to auto publish to Twitter/X, this is one of the few WordPress social media plugins that still supports Twitter/X auto posting after the API changes. Social media automation for X/Twitter keeps working, so your social media posting never stops.
+If you're looking for a replacement for Jetpack Social, Blog2Social, or NextScripts to auto publish to Twitter/X, this is one of the few WordPress social media plugins that still supports Twitter/X auto posting after the API changes. Social media automation for X/Twitter keeps working, so your social media posting never stops. A social media auto post to Twitter/X can also use social media scheduling. Social publishing to X stays on schedule.
 
 === Who Is Social Post Flow For? ===
 
 **News sites and high-output blogs** - Social media automation sends a social media auto post for every article as it's published, so your social media posting keeps pace with your newsroom. Social media scheduling spreads posts across the day, and the social media scheduler queue stops your feeds flooding when you publish in bursts.
 
-**Online stores** - Auto post new WooCommerce products to Facebook, Instagram and Pinterest, and auto publish sale announcements to LinkedIn, Telegram and Google Business Profile.
+**Online stores** - Auto post new WooCommerce products to Facebook, Instagram and Pinterest, and auto publish sale announcements to LinkedIn, Telegram and Google Business Profile. A social media auto post for each product and social media scheduling for sales keep social publishing steady.
 
 **Agencies and freelancers** - Connect one Social Post Flow account to every client site. Social media automation, social media scheduling and social publishing are configured per site, so each client's social media post goes to the right profiles.
 
-**Local businesses** - Auto publish news and offers to Google Business Profile, Facebook and Threads, so customers searching on Google see your latest updates.
+**Local businesses** - Auto publish news and offers to Google Business Profile, Facebook and Threads, so customers searching on Google see your latest updates. A social media auto post to Google Business Profile and Threads suits small teams. Social publishing stays simple, and Google Business updates reach local customers.
+
+**Marketers and content teams** - Plan a social media auto post for every campaign, use social media scheduling to line up launches, and keep social publishing consistent across every network.
 
 === Smart Social Media Automation Features ===
 
@@ -78,26 +84,26 @@ Build unique social media posts using dynamic tags that pull in your WordPress P
 Publish posts to social media only when [specific conditions are met](https://www.socialpostflow.com/documentation/wordpress-plugin/status-conditions/). Filter by Post Author, Taxonomy Terms, Custom Field Values, or any combination, so social media automation only shares the content you choose.
 
 **Social Media Scheduler Queue**
-The social media scheduler queue spreads your social media posts across the week, keeping social media posting steady and your followers engaged.
+The social media scheduler queue spreads your social media posts across the week, keeping social media posting steady and your followers engaged. Social media scheduling through the queue means each social media auto post goes out at a good time without extra work.
 
 **Auto Publish on Publish or Update**
-Auto publish a social media post when a WordPress post goes live, or auto publish again when you update it. Auto publish settings are configured per status.
+Auto publish a social media post when a WordPress post goes live, or auto publish again when you update it. Auto publish settings are configured per status. Each social media auto post follows your auto publish settings, and social media scheduling can delay it.
 
 **Built-in Social Media Protection**
 Our technology prevents accidental duplicate posts and includes protection to keep your social media profiles safe from suspension due to over-posting or spam flags.
 
 === Social Media Auto Post to Multiple Social Networks ===
 
-Social media auto posting and social publishing work the same way on every network, and you can mix networks in a single status.
+Social media auto posting and social publishing work the same way on every network, and you can mix networks in a single status. Social media scheduling is available for every social media auto post.
 
 **Facebook Auto Posting**
-Automatically share WordPress posts to Facebook Pages with custom messaging, images, and link previews. Perfect for business pages and community management.
+Automatically share WordPress posts to Facebook Pages with custom messaging, images, and link previews. Perfect for business pages and community management. A Facebook social media auto post uses your own message, and social media scheduling lets you pick the time.
 
 **Twitter / X Auto Posting**
-Still working after the Twitter API changes! Auto publish to Twitter/X with character count optimization, hashtag support, and media attachments.
+Still working after the Twitter API changes! Auto publish to Twitter/X with character count optimization, hashtag support, and media attachments. Each Twitter/X social media auto post can use social media scheduling.
 
 **Instagram Auto Posting**
-Share your WordPress content to Instagram with image optimization and caption formatting specifically designed for Instagram's requirements.
+Share your WordPress content to Instagram with image optimization and caption formatting specifically designed for Instagram's requirements. An Instagram social media auto post with social media scheduling keeps your feed regular.
 
 **LinkedIn Auto Posting**
 Publish professional content to LinkedIn company pages and personal profiles with full image and link preview support. LinkedIn social media posting keeps your professional network up to date, and LinkedIn social publishing builds awareness of your business.
@@ -112,13 +118,13 @@ Automatically cross-post your WordPress content to Meta's Threads platform with 
 Share visual content from your WordPress site to Pinterest boards automatically, with image optimization and pin descriptions. Pinterest auto posting gets your pins in front of the right people, and Pinterest social media automation keeps your Pinterest boards active.
 
 **TikTok Auto Posting**
-Automatically share your WordPress content to TikTok with video and image support optimized for TikTok's vertical format and engagement-focused audience.
+Automatically share your WordPress content to TikTok with video and image support optimized for TikTok's vertical format and engagement-focused audience. TikTok social publishing and social media scheduling work like every other network.
 
 **Mastodon Auto Posting**
-Connect to any Mastodon instance and auto publish your WordPress posts to the federated social network.
+Connect to any Mastodon instance and auto publish your WordPress posts to the federated social network. A Mastodon social media auto post and social media scheduling use the same status settings.
 
 **Bluesky Auto Posting**
-Connect to any Bluesky instance and auto publish your WordPress posts to Bluesky.
+Connect to any Bluesky instance and auto publish your WordPress posts to Bluesky. Bluesky social publishing and social media auto post use the same status settings.
 
 **Telegram Auto Posting**
 Connect your Telegram channels and groups to auto publish your WordPress posts to Telegram. Telegram social media posting lets subscribers see new content the moment it goes live, and Telegram social media automation keeps your channel active.
@@ -129,10 +135,10 @@ Connect your Telegram channels and groups to auto publish your WordPress posts t
 Automatically [revive old posts](https://www.socialpostflow.com/documentation/wordpress-plugin/auto-reposting/) that haven't been updated recently. Set the time period (days, weeks, or years) and let the plugin resurface your evergreen content to grow your social media engagement.
 
 **Bulk Publish Old Posts**
-[Bulk publish](https://www.socialpostflow.com/documentation/wordpress-plugin/bulk-publishing/) multiple older posts and republish them to social media in bulk. Perfect for promoting your best evergreen content or filling gaps in your social media calendar.
+[Bulk publish](https://www.socialpostflow.com/documentation/wordpress-plugin/bulk-publishing/) multiple older posts and republish them to social media in bulk. Perfect for promoting your best evergreen content or filling gaps in your social media calendar. Bulk social publishing sends each social media auto post with the same social media scheduling options.
 
 **Smart Duplicate Prevention**
-The plugin tracks which posts have been shared and prevents accidental duplicate posting, so your social media feeds stay fresh and engaging.
+The plugin tracks which posts have been shared and prevents accidental duplicate posting, so your social media feeds stay fresh and engaging. Duplicate prevention protects every social media auto post and keeps social publishing clean.
 
 === Complete Image Control for Social Media Posting ===
 
@@ -148,11 +154,11 @@ Choose from various image sources for your social media posts:
 - Custom field image URLs
 
 **Automatic Image Optimization**
-Images are automatically formatted and optimized for each social network's requirements, so your visuals look right on Facebook, Instagram, Pinterest, and more.
+Images are automatically formatted and optimized for each social network's requirements, so your visuals look right on Facebook, Instagram, Pinterest, and more. Every social media auto post includes the right image, and social media scheduling sends it on time.
 
 === WordPress Plugin Integrations for Social Media Automation ===
 
-This social media scheduler works with popular WordPress plugins, so social media automation fits the way you already publish:
+This social media scheduler works with popular WordPress plugins, so social media automation and social media auto post fit the way you already publish:
 
 **Event Management Plugins**
 - [The Events Calendar](https://www.socialpostflow.com/documentation/wordpress-plugin/the-events-calendar/) - Auto post events to social media with dates, times, and locations
@@ -178,7 +184,7 @@ Social Post Flow uses the social metadata you've already configured in your SEO 
 === Developer-Friendly Features ===
 
 **WP-Cron Support**
-Enable WP-Cron to send status updates via scheduled tasks, improving UI performance and ensuring reliable social media posting even during high-traffic periods.
+Enable WP-Cron to send status updates via scheduled tasks, improving UI performance and ensuring reliable social media posting even during high-traffic periods. Each social media auto post is handled reliably in the background.
 
 **WP-CLI Integration**
 Use [WordPress CLI](https://www.socialpostflow.com/documentation/wordpress-plugin/wp-cli/) commands to repost old posts, manage social connections, and run social media automation tasks from the command line.
@@ -190,7 +196,7 @@ Extensive action and filter hooks allow developers to customize behavior, integr
 
 Forget about App IDs, OAuth tokens, and complicated authorization processes. Connecting your social media profiles happens in just a few clicks through your Social Post Flow account dashboard. The entire setup takes minutes, not hours.
 
-Once connected, select which social profiles to use in the WordPress plugin, configure your status messages with dynamic tags, and your social media automation is ready to go. From then on, social media automation runs in the background every time you publish. Social media scheduling and social media posting start working right away.
+Once connected, select which social profiles to use in the WordPress plugin, configure your status messages with dynamic tags, and your social media automation is ready to go. From then on, social media automation runs in the background every time you publish. Social media scheduling, social media posting and social media auto post start working right away. Social publishing is ready as soon as you connect your profiles.
 
 === How to Schedule Social Media Posts from WordPress ===
 
@@ -203,9 +209,9 @@ Posts are sent to social media the moment you publish or update your WordPress c
 Use social media scheduling to schedule your social media posts for a specific date and time. Perfect for coordinating launches, promotions, or time-zone optimization.
 
 **Queue-Based Publishing**
-Add posts to your Social Post Flow queue, which distributes them according to the optimal posting schedule configured in your Social Post Flow account (e.g., weekdays at 9am and 3pm). The queue is the easiest way to keep social media posting steady.
+Add posts to your Social Post Flow queue, which distributes them according to the optimal posting schedule configured in your Social Post Flow account (e.g., weekdays at 9am and 3pm). The queue is the easiest way to keep social media posting steady. Queue-based social media scheduling also means every social media auto post goes out at a good time.
 
-=== How to Use Dynamic Tags in Social Posts ===
+=== How to Use Dynamic Tags in Social Posts and Social Media Auto Post Messages ===
 
 [Dynamic tags](https://www.socialpostflow.com/documentation/wordpress-plugin/status-tags/) automatically pull content from your WordPress posts to create a unique social media post for each network:
 
@@ -224,7 +230,7 @@ Available dynamic tags:
 Example status message:
 "New post: {title} - {excerpt} Read more: {url} #blog"
 
-You can also add hashtags directly in your status message, or pull them from custom fields or taxonomy terms.
+You can also add hashtags directly in your status message, or pull them from custom fields or taxonomy terms. Dynamic tags make every social media auto post unique, which helps social publishing feel personal on each network.
 
 === How to Bulk Publish Old WordPress Posts to Social Media ===
 
@@ -235,11 +241,11 @@ You can also add hashtags directly in your status message, or pull them from cus
 5. Configure unique status messages for this bulk action
 6. Click "Bulk Publish" to add posts to your social media queue
 
-Perfect for promoting evergreen content, bringing older posts back to your followers' attention, or filling your social media calendar. Bulk publishing is social media posting at scale, with the same social media scheduling options as every other status.
+Perfect for promoting evergreen content, bringing older posts back to your followers' attention, or filling your social media calendar. Bulk publishing is social media posting at scale, with the same social media scheduling options as every other status. Each bulk social media auto post and social publishing run uses the status you choose.
 
 === How to Repost Old Content Automatically ===
 
-Automatic reposting of evergreen content keeps your social media active:
+Automatic reposting of evergreen content keeps your social media active, and each repost is a social media auto post that follows your social media scheduling rules:
 
 1. Click Social Post Flow in the WordPress admin menu
 2. Click the Repost Settings tab
@@ -249,7 +255,7 @@ Automatic reposting of evergreen content keeps your social media active:
 6. Save settings
 7. For each Post Type, define statuses at Social Post Flow > [Posts/Pages] > Defaults > Repost
 
-The plugin will automatically resurface your older content on the schedule you define.
+The plugin will automatically resurface your older content on the schedule you define. Reposts use your social media scheduling and social publishing settings, so every social media auto post stays on message.
 
 === How to Publish Conditionally Based on Categories or Tags ===
 
@@ -259,7 +265,7 @@ Only publish certain posts to social media based on WordPress taxonomy terms:
 2. Select which terms must be present (or absent) for publishing under Category / Tag
 3. Save your conditional rules
 
-Now only posts matching your criteria will be auto posted to social media.
+Now only posts matching your criteria will be auto posted to social media. Conditional social publishing rules apply to every social media auto post, including reposts.
 
 === How to Stop Auto Posting for Individual Posts ===
 
@@ -270,18 +276,18 @@ Override automatic posting on a per-post basis:
 3. Select "Do NOT Post to Social Post Flow"
 4. Save the post
 
-This only affects that post, giving you complete control over which posts get shared to social media.
+This only affects that post, giving you complete control over which posts get shared to social media. Social media auto post and social media scheduling keep working on all your other posts.
 
 === How to Connect WooCommerce Products to Social Media ===
 
-Automatically promote your WooCommerce products with social media automation:
+Automatically promote your WooCommerce products with social media automation and a social media auto post for each product:
 
 1. Install and activate WooCommerce and this plugin
 2. Configure product-specific status settings
 3. Use dynamic tags for product data: {title}, {price}, {sku}, {short_description}
 4. Include product images automatically
 5. Set conditional rules to only post certain product categories
-6. Products will auto post when published or updated
+6. Products will auto post when published or updated, with social media scheduling if you want a delay
 
 === How to Auto Post Events to Social Media ===
 
@@ -291,7 +297,7 @@ Works with The Events Calendar, Event Manager, and Modern Events Calendar. Socia
 2. Configure event-specific status settings in Social Post Flow by clicking the Events tab
 3. Use event dynamic tags: {event_date}, {event_time}, {event_location} as necessary
 4. Use social media scheduling to go live ahead of your events for maximum promotion
-5. Events auto post when published
+5. Events auto post when published, so every event gets a social media auto post
 
 === How to Auto Post to LinkedIn, Telegram, Threads, Pinterest and Google Business Profile ===
 
@@ -303,7 +309,7 @@ Social media automation for LinkedIn, Telegram, Threads, Pinterest and Google Bu
 4. Choose to auto publish immediately, use social media scheduling or add it to the queue
 5. Publish a WordPress post and watch the social media post go live
 
-LinkedIn, Telegram, Threads, Pinterest and Google Business social media posting can each have a different message. For example, LinkedIn social media automation can share a short professional summary, while Telegram social media automation sends the full excerpt.
+LinkedIn, Telegram, Threads, Pinterest and Google Business social media posting can each have a different message. For example, LinkedIn social media automation can share a short professional summary, while Telegram social media automation sends the full excerpt. Each LinkedIn, Telegram, Threads, Pinterest or Google Business Profile social media auto post can also use social media scheduling. Social publishing rules apply to each one too.
 
 === External Services ===
 
@@ -328,6 +334,7 @@ Support for this WordPress Plugin can be requested on the [WordPress forums](htt
 3. Click "Authorize" to connect your Social Post Flow account
 4. Once connected, configure the Plugin's status settings to auto post to social media
 5. Create or edit a post to test automatic social media publishing and social media automation
+6. Choose social media scheduling or immediate social publishing for each social media auto post
 
 == Frequently Asked Questions ==
 
@@ -337,7 +344,7 @@ Social media automation means your WordPress content is shared to your social ne
 
 = Is social media automation safe for my social profiles? =
 
-Yes. Social media automation in Social Post Flow includes duplicate prevention and over-posting protection, so your social media posting stays within network limits.
+Yes. Social media automation in Social Post Flow includes duplicate prevention and over-posting protection, so your social media posting and social publishing stay within network limits.
 
 = Can Social Post Flow replace my existing social media scheduler? =
 
@@ -353,15 +360,83 @@ Social media posting is sending a social media post to a network. Social media s
 
 = How does social media auto post work? =
 
-When you publish or update a WordPress post, the plugin uses your status settings to send a unique social media auto post to each connected social profile. You choose the networks, the message and the images.
+When you publish or update a WordPress post, the plugin uses your status settings to send a unique social media auto post to each connected social profile. You choose the networks, the message and the images. Social media scheduling lets you choose when each social media auto post goes out, and social publishing rules decide which posts are shared.
 
 = Can I auto post to several social networks at once? =
 
-Yes. One status can send a social media auto post to Facebook, X/Twitter, Threads, LinkedIn, Telegram, Pinterest and your other connected networks, or you can create a separate status for each.
+Yes. One status can send a social media auto post to Facebook, X/Twitter, Threads, LinkedIn, Telegram, Pinterest and your other connected networks, or you can create a separate status for each. Social media scheduling can differ for each network.
 
 = What is social publishing and how do I use it? =
 
 Social publishing is sharing your WordPress content on social networks as part of your normal publishing flow. Connect your profiles, configure a status, and the plugin handles social publishing every time you publish a post. Social publishing combines social media automation with social media scheduling, so each social media auto post goes out at the time you've chosen.
+
+= What is a social media auto post? =
+
+A social media auto post is a message the plugin sends to your social networks when you publish or update a WordPress post. Each social media auto post can include your title, excerpt, image and link, and social media scheduling controls when it goes live.
+
+= How do I set up a social media auto post for each new WordPress post? =
+
+Connect your Social Post Flow account, choose your social profiles and write a message with dynamic tags. From then on, every new post sends a social media auto post without extra work. Social publishing starts as soon as you publish.
+
+= Can I use social media auto post and social media scheduling together? =
+
+Yes. Pick immediate publishing, a specific date and time, or the queue for each social media auto post. Social media scheduling is set per status, so social media automation can treat each network differently.
+
+= How is social publishing different from social media auto post? =
+
+Social publishing is the wider workflow of sharing your WordPress content on social networks. A social media auto post is one message in that workflow. Social publishing also covers reposting, bulk publishing and conditional rules.
+
+= What can I use for social media scheduling in WordPress? =
+
+Social Post Flow gives you social media scheduling by specific date and time or through a queue. This social media scheduler works with posts, pages, products and events, so social media scheduling fits every kind of site.
+
+= Can I do social publishing for an online store? =
+
+Yes. Social publishing for WooCommerce sends a social media auto post for each new product, with the image, price and link. Use social media scheduling to time each social media auto post around sales.
+
+= Does social media auto post work when I update an old post? =
+
+Yes. Update options let you send a new social media auto post when you edit a WordPress post. Social media scheduling and social publishing rules still apply, so you decide whether each update is shared.
+
+= Can I use social media scheduling when I repost old content? =
+
+Yes. Reposting uses the same social media scheduling and queue as new posts, so each reposted social media auto post is spread out over time. Social publishing of evergreen content keeps your profiles active.
+
+= Does social media posting work for agencies? =
+
+Yes. Agencies can run social media posting for every client site from one account, with social media auto post and social media scheduling configured per site. Social publishing stays separate for each client.
+
+= Is a social media auto post better than manual social media posting? =
+
+A social media auto post saves time because it is sent the moment you publish. Manual social media posting means copying links by hand, while social media automation and social media scheduling handle every network for you.
+
+= How often is a social media auto post sent? =
+
+A social media auto post is sent each time you publish or update a post, unless your status uses social media scheduling or the queue. With reposting turned on, an old post is sent again as a new social media auto post on the schedule you set.
+
+= Can I add hashtags to a social media auto post? =
+
+Yes. Add hashtags to your status message, or pull them from custom fields or taxonomy terms, and every social media auto post will include them.
+
+= Can a social media auto post link back to my WordPress post? =
+
+Yes. Add the {url} dynamic tag to your status message and every social media auto post links back to your WordPress post. Social publishing with links also lets networks show a link preview.
+
+= When is the best time for a social media auto post? =
+
+The best time is when your audience is online. Use social media scheduling to choose a specific time for each social media auto post, or use the queue to publish at the optimal times set in your Social Post Flow account.
+
+= Do I need technical skills for social publishing? =
+
+No. Social publishing with Social Post Flow needs no App IDs or OAuth tokens. Connect your profiles in a few clicks, and the plugin does the rest.
+
+= How do I auto publish a WordPress post to Threads and Telegram? =
+
+Connect your Threads and Telegram accounts, select them in your status and publish your post. The plugin will auto publish a social media auto post to Threads and Telegram. Social media scheduling lets you choose the time.
+
+= Can I auto publish to Pinterest and Google Business Profile together? =
+
+Yes. One status can auto publish to Pinterest and Google Business Profile. You can add LinkedIn or X/Twitter too. Each social media auto post can have its own message and social media scheduling.
 
 = Do I need a paid Social Post Flow account? =
 
@@ -387,7 +462,7 @@ You can auto publish to:
 - Bluesky
 - Telegram
 
-= How do I add images to my social media posts? =
+= How do I add images to a social media auto post? =
 
 The plugin offers multiple ways to include images:
 1. WordPress' Featured Image
@@ -399,11 +474,11 @@ You can configure image preferences in each status setting.
 
 = Does this work with WooCommerce products? =
 
-Yes! The plugin fully supports WooCommerce. You can auto post products with images, prices, descriptions, and SKUs. Use dynamic tags to pull product data into your social media posts automatically.
+Yes! The plugin fully supports WooCommerce. You can auto post products with images, prices, descriptions, and SKUs. Use dynamic tags to pull product data into each social media auto post automatically.
 
-= Can I customize the message for each social network? =
+= Can I customize the social media auto post message for each social network? =
 
-Absolutely. You can create multiple status configurations, each targeting different social networks with unique messages, images, and social media scheduling options. Your Facebook posts can look completely different from your X/Twitter posts.
+Absolutely. You can create multiple status configurations, each targeting different social networks with unique messages, images, and social media scheduling options. Your Facebook social media auto post can look completely different from your X/Twitter posts.
 
 = Can I auto post to LinkedIn company pages and personal profiles? =
 
@@ -431,11 +506,11 @@ Regular social media posting keeps your brand in front of followers. Social medi
 
 = Can I post to multiple Facebook pages? =
 
-Yes. Connect multiple Facebook pages in your Social Post Flow account, then select which pages should receive posts in each status configuration. You can send different posts to different pages based on categories, tags, or custom fields, so social media posting to each page stays relevant.
+Yes. Connect multiple Facebook pages in your Social Post Flow account, then select which pages should receive posts in each status configuration. You can send a different social media auto post to each page based on categories, tags, or custom fields, so social media posting to each page stays relevant.
 
-= Does this support custom post types? =
+= Can I send a social media auto post for custom post types? =
 
-Yes! The plugin works with any custom post type including WooCommerce products, events, testimonials, portfolios, and more. Each post type can have its own status configurations and social media automation settings.
+Yes! The plugin works with any custom post type including WooCommerce products, events, testimonials, portfolios, and more. Each post type can have its own status configurations, social media auto post messages and social media automation settings.
 
 = Can I exclude certain posts from auto publishing? =
 
@@ -447,44 +522,44 @@ Yes, in several ways:
 
 = How do I auto post to Instagram from WordPress? =
 
-Connect your Instagram business or creator account through Social Post Flow, enable Instagram in your status settings, and configure your caption with dynamic tags. The plugin automatically formats images for Instagram's requirements. Note that Instagram requires a business or creator account (not personal) for automated posting.
+Connect your Instagram business or creator account through Social Post Flow, enable Instagram in your status settings, and configure the caption of your social media auto post with dynamic tags. The plugin automatically formats images for Instagram's requirements. Note that Instagram requires a business or creator account (not personal) for automated posting.
 
 = Can I repost old content automatically? =
 
 Yes! Enable the "Repost" feature to automatically resurface evergreen posts. Set the minimum age for reposting (e.g., 90 days) and how frequently to repost (e.g., every 30 days). Reposting uses the same social media automation as new posts, and the social media scheduler queue spreads reposts out so they don't all go live at once.
 
-= What happens if a social media post fails? =
+= What happens if a social media auto post fails? =
 
-Failed posts are logged in the plugin's log viewer. You can see the error message, timestamp, and which social network failed. Common issues include network disconnections, rate limits, or content that violates platform policies.
+A failed social media auto post is logged in the plugin's log viewer. You can see the error message, timestamp, and which social network failed. Common issues include network disconnections, rate limits, or content that violates platform policies.
 
-= Can I preview posts before they go live? =
+= Can I preview a social media auto post before it goes live? =
 
-While the plugin doesn't offer a preview feature, you can see exactly what will be posted by looking at your configured status message with dynamic tags. You can also test posts by publishing draft content first, or using the "Disable Auto Post" option while setting up.
+While the plugin doesn't offer a preview feature, you can see exactly what each social media auto post will say by looking at your configured status message with dynamic tags. You can also test posts by publishing draft content first, or using the "Disable Auto Post" option while setting up.
 
-= Does this work with Gutenberg blocks? =
+= Does a social media auto post work with Gutenberg blocks? =
 
-Yes, the plugin works with the WordPress block editor (Gutenberg). Dynamic tags can pull content from any block, and the plugin's meta box appears in the post editor sidebar for easy access.
+Yes, the plugin works with the WordPress block editor (Gutenberg). Dynamic tags can pull content from any block into each social media auto post, and the plugin's meta box appears in the post editor sidebar, so social publishing fits your editing workflow.
 
-= How do I troubleshoot failed posts? =
+= How do I troubleshoot a failed social media auto post? =
 
-1. Check the plugin's log viewer for specific error messages
+1. Check the plugin's log viewer for specific error messages on the social media auto post
 2. Verify your social accounts are still connected in Social Post Flow
 3. Ensure your status message doesn't exceed character limits
 4. Check that images are properly formatted and accessible
 5. Verify your WordPress site can connect to the Social Post Flow API
 6. Review social network-specific requirements (e.g., Instagram business account)
 
-= Is there a posting limit per day? =
+= Is there a daily limit on social media auto posts? =
 
-The plugin itself doesn't impose limits, but social networks have their own rate limits. For example, X/Twitter has daily tweet limits, and Instagram restricts posting frequency. The plugin includes built-in protection to prevent exceeding these limits and risking account suspension.
+The plugin itself doesn't impose limits on social media auto posts, but social networks have their own rate limits. For example, X/Twitter has daily tweet limits, and Instagram restricts posting frequency. The plugin includes built-in protection to prevent exceeding these limits and risking account suspension, so social publishing stays safe.
 
 = Can I use this plugin with multiple WordPress sites? =
 
-Yes! A single Social Post Flow account can be connected to unlimited WordPress sites. Each site can post to the same social media profiles or different ones, giving you complete flexibility for multi-site management. Social media automation is configured separately on each site.
+Yes! A single Social Post Flow account can be connected to unlimited WordPress sites. Each site can post to the same social media profiles or different ones, giving you complete flexibility for multi-site management. Social media automation and social media auto post settings are configured separately on each site, so social publishing stays separate for every site.
 
 = Does this plugin slow down my website? =
 
-No. Social media posting happens asynchronously through the Social Post Flow API, so your WordPress site's performance isn't affected. You can also enable WP-Cron support to further improve performance by processing posts in the background.
+No. Social media posting happens asynchronously through the Social Post Flow API, so your WordPress site's performance isn't affected, and each social media auto post is sent in the background. You can also enable WP-Cron support to further improve performance by processing posts in the background.
 
 = Can I edit posts that were already shared? =
 
