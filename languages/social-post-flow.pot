@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Social Post Flow 1.4.6\n"
+"Project-Id-Version: Social Post Flow 1.4.7\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-social-post-flow\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-05T08:59:20+00:00\n"
+"POT-Creation-Date: 2026-11-27T13:02:40+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: social-post-flow\n"
@@ -113,86 +113,86 @@ msgid "Settings saved successfully."
 msgstr ""
 
 #. translators: %1$s: Post Type
-#: includes/class-social-post-flow-admin.php:868
+#: includes/class-social-post-flow-admin.php:871
 #, php-format
 msgid "To send %1$s to Social Post Flow, at least one action on the Defaults tab must be enabled with a status defined, and at least one social media profile must be enabled below by clicking the applicable profile name and ticking the \"Account Enabled\" box."
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:872
+#: includes/class-social-post-flow-admin.php:875
 #: views/settings-auth.php:148
 msgid "See Documentation"
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:981
+#: includes/class-social-post-flow-admin.php:984
 msgid "Connected! Connect another profile, or continue when you're ready."
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:987
+#: includes/class-social-post-flow-admin.php:990
 #: views/onboarding-connect.php:53
 msgid "Connect"
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:988
+#: includes/class-social-post-flow-admin.php:991
 msgid "Share"
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:989
+#: includes/class-social-post-flow-admin.php:992
 msgid "Done"
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:1023
+#: includes/class-social-post-flow-admin.php:1026
 msgid "Page"
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:1028
-#: includes/class-social-post-flow-admin.php:1043
-#: includes/class-social-post-flow-admin.php:1058
-#: includes/class-social-post-flow-admin.php:1063
-#: includes/class-social-post-flow-admin.php:1068
+#: includes/class-social-post-flow-admin.php:1031
+#: includes/class-social-post-flow-admin.php:1046
+#: includes/class-social-post-flow-admin.php:1061
+#: includes/class-social-post-flow-admin.php:1066
+#: includes/class-social-post-flow-admin.php:1071
 #: includes/class-social-post-flow-log-table.php:199
 #: views/bulk-publish-2.php:43
 #: views/post-log.php:20
-#: views/settings-auth.php:368
+#: views/settings-auth.php:395
 msgid "Profile"
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:1033
+#: includes/class-social-post-flow-admin.php:1036
 msgid "Page or Profile"
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:1038
+#: includes/class-social-post-flow-admin.php:1041
 msgid "Business or Creator"
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:1048
+#: includes/class-social-post-flow-admin.php:1051
 msgid "Business Profile"
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:1053
+#: includes/class-social-post-flow-admin.php:1056
 msgid "Board"
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:1073
+#: includes/class-social-post-flow-admin.php:1076
 msgid "Channel"
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:1078
-#: includes/class-social-post-flow-admin.php:1083
+#: includes/class-social-post-flow-admin.php:1081
+#: includes/class-social-post-flow-admin.php:1086
 msgid "Multiple channels"
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:1151
-#: includes/class-social-post-flow-admin.php:1270
+#: includes/class-social-post-flow-admin.php:1154
+#: includes/class-social-post-flow-admin.php:1273
 msgid "Nonce field is missing."
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:1161
-#: includes/class-social-post-flow-admin.php:1280
+#: includes/class-social-post-flow-admin.php:1164
+#: includes/class-social-post-flow-admin.php:1283
 msgid "Invalid nonce specified."
 msgstr ""
 
 #. translators: Post Type Plural Name
-#: includes/class-social-post-flow-admin.php:1256
+#: includes/class-social-post-flow-admin.php:1259
 #: includes/class-social-post-flow-bulk-publish.php:59
 #: includes/class-social-post-flow-bulk-publish.php:68
 #, php-format
@@ -200,87 +200,102 @@ msgid "No %s found matching the given Bulk Publish conditions. Please adjust / r
 msgstr ""
 
 #. translators: Post Type Singular Name
-#: includes/class-social-post-flow-admin.php:1293
+#: includes/class-social-post-flow-admin.php:1296
 #, php-format
 msgid "Please select at least one %s to publish to Social Post Flow."
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:1325
+#: includes/class-social-post-flow-admin.php:1328
 msgid "Finished."
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:1443
+#: includes/class-social-post-flow-admin.php:1446
 msgid "Nonce field is missing. Settings NOT saved."
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:1451
+#: includes/class-social-post-flow-admin.php:1454
 msgid "Invalid nonce specified. Settings NOT saved."
 msgstr ""
 
-#: includes/class-social-post-flow-admin.php:1531
+#: includes/class-social-post-flow-admin.php:1535
 msgid "Statuses field is missing. Settings NOT saved."
 msgstr ""
 
 #: includes/class-social-post-flow-ajax.php:53
-#: includes/class-social-post-flow-ajax.php:309
-#: includes/class-social-post-flow-ajax.php:360
-#: includes/class-social-post-flow-ajax.php:406
+#: includes/class-social-post-flow-ajax.php:98
+#: includes/class-social-post-flow-ajax.php:164
+#: includes/class-social-post-flow-ajax.php:196
+#: includes/class-social-post-flow-ajax.php:241
+#: includes/class-social-post-flow-ajax.php:283
+#: includes/class-social-post-flow-ajax.php:319
+#: includes/class-social-post-flow-ajax.php:341
+#: includes/class-social-post-flow-ajax.php:400
+#: includes/class-social-post-flow-ajax.php:453
+#: includes/class-social-post-flow-ajax.php:492
+#: includes/class-social-post-flow-ajax.php:588
+msgid "You do not have permission to perform this action."
+msgstr ""
+
+#: includes/class-social-post-flow-ajax.php:58
+#: includes/class-social-post-flow-ajax.php:349
+#: includes/class-social-post-flow-ajax.php:405
+#: includes/class-social-post-flow-ajax.php:457
 msgid "No search term was provided."
 msgstr ""
 
-#: includes/class-social-post-flow-ajax.php:93
-#: includes/class-social-post-flow-ajax.php:184
+#: includes/class-social-post-flow-ajax.php:103
+#: includes/class-social-post-flow-ajax.php:204
 msgid "No post type was provided."
 msgstr ""
 
-#: includes/class-social-post-flow-ajax.php:96
+#: includes/class-social-post-flow-ajax.php:106
 msgid "No statuses were provided."
 msgstr ""
 
-#: includes/class-social-post-flow-ajax.php:136
-#: includes/class-social-post-flow-ajax.php:213
-#: includes/class-social-post-flow-ajax.php:250
-#: includes/class-social-post-flow-ajax.php:281
+#: includes/class-social-post-flow-ajax.php:146
+#: includes/class-social-post-flow-ajax.php:233
+#: includes/class-social-post-flow-ajax.php:275
+#: includes/class-social-post-flow-ajax.php:311
 msgid "No post ID was provided."
 msgstr ""
 
-#: includes/class-social-post-flow-ajax.php:181
-#: includes/class-social-post-flow-ajax.php:216
+#: includes/class-social-post-flow-ajax.php:201
+#: includes/class-social-post-flow-ajax.php:236
 msgid "No status was provided."
 msgstr ""
 
-#: includes/class-social-post-flow-ajax.php:187
+#: includes/class-social-post-flow-ajax.php:207
 msgid "No post action was provided."
 msgstr ""
 
-#: includes/class-social-post-flow-ajax.php:261
+#: includes/class-social-post-flow-ajax.php:291
 msgid "No log entries exist."
 msgstr ""
 
-#: includes/class-social-post-flow-ajax.php:306
+#: includes/class-social-post-flow-ajax.php:346
 msgid "No taxonomy was provided."
 msgstr ""
 
-#: includes/class-social-post-flow-ajax.php:443
-#: includes/class-social-post-flow-ajax.php:450
-#: includes/class-social-post-flow-ajax.php:457
+#: includes/class-social-post-flow-ajax.php:499
+#: includes/class-social-post-flow-ajax.php:506
+#: includes/class-social-post-flow-ajax.php:513
 #: includes/class-social-post-flow-log.php:539
 msgid "Error"
 msgstr ""
 
-#: includes/class-social-post-flow-ajax.php:444
+#: includes/class-social-post-flow-ajax.php:500
 msgid "Error: current_index parameter missing from request."
 msgstr ""
 
-#: includes/class-social-post-flow-ajax.php:451
+#: includes/class-social-post-flow-ajax.php:507
 msgid "Error: id parameter missing from request."
 msgstr ""
 
-#: includes/class-social-post-flow-ajax.php:458
+#: includes/class-social-post-flow-ajax.php:514
 msgid "Error: number_requests parameter missing from request."
 msgstr ""
 
-#: includes/class-social-post-flow-ajax.php:478
+#: includes/class-social-post-flow-ajax.php:534
 msgid "Error: No response was received."
 msgstr ""
 
@@ -328,37 +343,37 @@ msgid "Bulk Publish the given Post IDs to social media based on the status setti
 msgstr ""
 
 #: includes/class-social-post-flow-common.php:28
-#: views/settings-auth.php:658
+#: views/settings-auth.php:685
 msgid "Monday"
 msgstr ""
 
 #: includes/class-social-post-flow-common.php:29
-#: views/settings-auth.php:659
+#: views/settings-auth.php:686
 msgid "Tuesday"
 msgstr ""
 
 #: includes/class-social-post-flow-common.php:30
-#: views/settings-auth.php:660
+#: views/settings-auth.php:687
 msgid "Wednesday"
 msgstr ""
 
 #: includes/class-social-post-flow-common.php:31
-#: views/settings-auth.php:661
+#: views/settings-auth.php:688
 msgid "Thursday"
 msgstr ""
 
 #: includes/class-social-post-flow-common.php:32
-#: views/settings-auth.php:662
+#: views/settings-auth.php:689
 msgid "Friday"
 msgstr ""
 
 #: includes/class-social-post-flow-common.php:33
-#: views/settings-auth.php:663
+#: views/settings-auth.php:690
 msgid "Saturday"
 msgstr ""
 
 #: includes/class-social-post-flow-common.php:34
-#: views/settings-auth.php:664
+#: views/settings-auth.php:691
 msgid "Sunday"
 msgstr ""
 
@@ -827,7 +842,7 @@ msgid "Raleway (Regular)"
 msgstr ""
 
 #: includes/class-social-post-flow-export.php:43
-#: views/settings-auth.php:578
+#: views/settings-auth.php:605
 msgid "General"
 msgstr ""
 
@@ -844,13 +859,13 @@ msgstr ""
 
 #: includes/class-social-post-flow-export.php:59
 #: views/settings-auth.php:48
-#: views/settings-auth.php:1002
+#: views/settings-auth.php:1029
 msgid "User Access"
 msgstr ""
 
 #: includes/class-social-post-flow-export.php:63
 #: views/settings-auth.php:56
-#: views/settings-auth.php:1184
+#: views/settings-auth.php:1211
 msgid "Custom Tags"
 msgstr ""
 
@@ -863,6 +878,7 @@ msgid "Feat. Image"
 msgstr ""
 
 #: includes/class-social-post-flow-image.php:101
+#: includes/class-social-post-flow-publish.php:1813
 msgid "Post"
 msgstr ""
 
@@ -965,9 +981,9 @@ msgid "Social Post Flow: Status Scheduled For"
 msgstr ""
 
 #: includes/class-social-post-flow-log-table.php:242
-#: views/settings-auth.php:707
-#: views/settings-auth.php:1237
-#: views/settings-auth.php:1255
+#: views/settings-auth.php:734
+#: views/settings-auth.php:1264
+#: views/settings-auth.php:1282
 msgid "Delete"
 msgstr ""
 
@@ -1003,7 +1019,7 @@ msgid "Success"
 msgstr ""
 
 #: includes/class-social-post-flow-log.php:537
-#: views/settings-auth.php:758
+#: views/settings-auth.php:785
 msgid "Test"
 msgstr ""
 
@@ -1027,12 +1043,12 @@ msgstr ""
 msgid "Errors"
 msgstr ""
 
-#: includes/class-social-post-flow-log.php:1036
+#: includes/class-social-post-flow-log.php:1055
 msgid "No log entries exist, or no status updates have been sent to Social Post Flow"
 msgstr ""
 
-#: includes/class-social-post-flow-log.php:1066
-#: includes/class-social-post-flow-log.php:1067
+#: includes/class-social-post-flow-log.php:1085
+#: includes/class-social-post-flow-log.php:1086
 msgid "N/A"
 msgstr ""
 
@@ -1040,6 +1056,36 @@ msgstr ""
 #: includes/class-social-post-flow-media-library.php:49
 #, php-format
 msgid "Could not identify MIME type of source image %s. Is this an image?"
+msgstr ""
+
+#: includes/class-social-post-flow-opengraph.php:49
+msgid "Auto"
+msgstr ""
+
+#: includes/class-social-post-flow-opengraph.php:50
+msgid "Always"
+msgstr ""
+
+#: includes/class-social-post-flow-opengraph.php:51
+msgid "Never"
+msgstr ""
+
+#: includes/class-social-post-flow-opengraph.php:230
+msgid "Social Post Flow outputs OpenGraph tags. If an SEO plugin also outputs them, Posts will have duplicate tags."
+msgstr ""
+
+#: includes/class-social-post-flow-opengraph.php:233
+msgid "Social Post Flow does not output OpenGraph tags."
+msgstr ""
+
+#. translators: Plugin name
+#: includes/class-social-post-flow-opengraph.php:240
+#, php-format
+msgid "%s detected. It outputs OpenGraph tags, so Social Post Flow won't."
+msgstr ""
+
+#: includes/class-social-post-flow-opengraph.php:245
+msgid "No SEO plugin detected. Social Post Flow outputs OpenGraph tags."
 msgstr ""
 
 #: includes/class-social-post-flow-post.php:79
@@ -1093,8 +1139,18 @@ msgstr ""
 msgid "No WordPress Post could be found for Post ID %s"
 msgstr ""
 
-#: includes/class-social-post-flow-publish.php:3782
+#. translators: %1$s: Social Media Service, %2$s: Post Type Singular Name
+#: includes/class-social-post-flow-publish.php:1811
+#, php-format
+msgid "%1$s needs an image, but none was found. Set a Featured Image on this %2$s."
+msgstr ""
+
+#: includes/class-social-post-flow-publish.php:3806
 msgid "Plugin Error"
+msgstr ""
+
+#: includes/class-social-post-flow-publish.php:3846
+msgid "Passed"
 msgstr ""
 
 #: includes/class-social-post-flow-repost.php:100
@@ -1207,13 +1263,13 @@ msgid "Logs"
 msgstr ""
 
 #. translators: %1$s: Plugin Name, %2$s: PHP class name
-#: includes/class-social-post-flow.php:240
+#: includes/class-social-post-flow.php:241
 #, php-format
 msgid "%1$s: Error: Could not load Plugin class %2$s"
 msgstr ""
 
 #. translators: Plugin Name
-#: includes/class-social-post-flow.php:253
+#: includes/class-social-post-flow.php:254
 #, php-format
 msgid "%s: Error"
 msgstr ""
@@ -1225,17 +1281,17 @@ msgstr ""
 msgid "ACF: %s"
 msgstr ""
 
-#: includes/integrations/class-social-post-flow-aioseo.php:74
-#: includes/integrations/class-social-post-flow-rank-math.php:74
+#: includes/integrations/class-social-post-flow-aioseo.php:53
+#: includes/integrations/class-social-post-flow-rank-math.php:53
 #: includes/integrations/class-social-post-flow-seopress.php:53
-#: includes/integrations/class-social-post-flow-yoast-seo.php:74
+#: includes/integrations/class-social-post-flow-yoast-seo.php:53
 msgid "Meta Title"
 msgstr ""
 
-#: includes/integrations/class-social-post-flow-aioseo.php:75
-#: includes/integrations/class-social-post-flow-rank-math.php:75
+#: includes/integrations/class-social-post-flow-aioseo.php:54
+#: includes/integrations/class-social-post-flow-rank-math.php:54
 #: includes/integrations/class-social-post-flow-seopress.php:54
-#: includes/integrations/class-social-post-flow-yoast-seo.php:75
+#: includes/integrations/class-social-post-flow-yoast-seo.php:54
 msgid "Meta Description"
 msgstr ""
 
@@ -1530,19 +1586,19 @@ msgstr ""
 msgid "(Any Language)"
 msgstr ""
 
-#: includes/integrations/class-social-post-flow-yoast-seo.php:76
+#: includes/integrations/class-social-post-flow-yoast-seo.php:55
 msgid "Twitter Title"
 msgstr ""
 
-#: includes/integrations/class-social-post-flow-yoast-seo.php:77
+#: includes/integrations/class-social-post-flow-yoast-seo.php:56
 msgid "Twitter Description"
 msgstr ""
 
-#: includes/integrations/class-social-post-flow-yoast-seo.php:78
+#: includes/integrations/class-social-post-flow-yoast-seo.php:57
 msgid "Facebook Title"
 msgstr ""
 
-#: includes/integrations/class-social-post-flow-yoast-seo.php:79
+#: includes/integrations/class-social-post-flow-yoast-seo.php:58
 msgid "Facebook Description"
 msgstr ""
 
@@ -1585,8 +1641,8 @@ msgid "Value"
 msgstr ""
 
 #: views/bulk-publish-0.php:68
-#: views/settings-auth.php:665
-#: views/settings-auth.php:1205
+#: views/settings-auth.php:692
+#: views/settings-auth.php:1232
 #: views/settings-post-action-status.php:336
 #: views/settings-post-action-status.php:563
 #: views/settings-post-action.php:63
@@ -1612,8 +1668,8 @@ msgstr ""
 
 #: views/bulk-publish-0.php:107
 #: views/bulk-publish-0.php:135
-#: views/settings-auth.php:289
-#: views/settings-auth.php:420
+#: views/settings-auth.php:316
+#: views/settings-auth.php:447
 #: views/settings-post-action-status.php:291
 #: views/settings-post-action-status.php:538
 #: views/settings-post-action-status.php:638
@@ -1835,7 +1891,7 @@ msgid "General Settings"
 msgstr ""
 
 #: views/settings-auth.php:34
-#: views/settings-auth.php:463
+#: views/settings-auth.php:490
 msgid "Log Settings"
 msgstr ""
 
@@ -1864,7 +1920,7 @@ msgid "Enable Test Mode"
 msgstr ""
 
 #: views/settings-auth.php:112
-msgid "If enabled, status(es) are not sent to Social Post Flow, but will appear in the Log, if logging is enabled. This is useful to test status text, conditions etc."
+msgid "If enabled, status(es) are checked by Social Post Flow without being created or published, and the result appears in the Log, if logging is enabled. This is useful to test status text, conditions, images etc."
 msgstr ""
 
 #: views/settings-auth.php:120
@@ -1939,455 +1995,463 @@ msgstr ""
 msgid "Determines the default option to be selected in the Social Post Flow metabox when adding/editing Pages, Posts and Custom Post Types.  A user can always change this on a per-Post basis."
 msgstr ""
 
-#: views/settings-auth.php:227
+#: views/settings-auth.php:223
+msgid "OpenGraph Tags"
+msgstr ""
+
+#: views/settings-auth.php:240
+msgid "OpenGraph tags define the title, description and image social networks show when a Post's link is shared. Auto outputs them unless an SEO plugin that outputs them is active."
+msgstr ""
+
+#: views/settings-auth.php:254
 msgid "Text to Image Settings"
 msgstr ""
 
-#: views/settings-auth.php:230
+#: views/settings-auth.php:257
 msgid ""
 "Provides options for automatically generating images from text, when a Status' image option is set to Use Text to Image\n"
 "                        and a status has Text to Image defined."
 msgstr ""
 
-#: views/settings-auth.php:241
+#: views/settings-auth.php:268
 msgid "Text Font"
 msgstr ""
 
-#: views/settings-auth.php:255
+#: views/settings-auth.php:282
 msgid "Custom Font"
 msgstr ""
 
-#: views/settings-auth.php:262
+#: views/settings-auth.php:289
 msgid "If the text will include emojis, the Open Sans (Regular, with Emoji Support) font must be selected."
 msgstr ""
 
-#: views/settings-auth.php:264
+#: views/settings-auth.php:291
 msgid "The Imagick PHP extension is not installed. Emojis in text to image will automatically be removed, as they are not supported by PHP's GD extension."
 msgstr ""
 
-#: views/settings-auth.php:268
+#: views/settings-auth.php:295
 msgid "If you require emoji support, have your web host enable the PHP Imagick extension."
 msgstr ""
 
-#: views/settings-auth.php:297
+#: views/settings-auth.php:324
 msgid "Add/Replace Custom Font"
 msgstr ""
 
-#: views/settings-auth.php:301
+#: views/settings-auth.php:328
 msgid "Upload a TTF to use. If no font is specified, Open Sans will be used."
 msgstr ""
 
-#: views/settings-auth.php:309
+#: views/settings-auth.php:336
 msgid "Text Size"
 msgstr ""
 
-#: views/settings-auth.php:313
+#: views/settings-auth.php:340
 msgid "px"
 msgstr ""
 
-#: views/settings-auth.php:319
+#: views/settings-auth.php:346
 msgid "Text Color"
 msgstr ""
 
-#: views/settings-auth.php:328
+#: views/settings-auth.php:355
 msgid "Text Background Color"
 msgstr ""
 
-#: views/settings-auth.php:335
+#: views/settings-auth.php:362
 msgid ""
 "If specified, the text will have the chosen background color applied to it.  This is different to the entire image's Background\n"
 "                            Color and Background Image options below, which apply to the whole image."
 msgstr ""
 
-#: views/settings-auth.php:347
+#: views/settings-auth.php:374
 msgid "Background Color"
 msgstr ""
 
-#: views/settings-auth.php:353
+#: views/settings-auth.php:380
 msgid "Used if a Featured Image doesn't exist or a Background Image isn't defined."
 msgstr ""
 
-#: views/settings-auth.php:361
-#: views/settings-auth.php:369
+#: views/settings-auth.php:388
+#: views/settings-auth.php:396
 #: views/settings-post-action-status.php:268
 msgid "Background Image"
 msgstr ""
 
-#: views/settings-auth.php:370
+#: views/settings-auth.php:397
 msgid "Recommended Dimensions"
 msgstr ""
 
-#: views/settings-auth.php:402
+#: views/settings-auth.php:429
 #: views/settings-post-action-status.php:274
 msgid "Use Post's Featured Image"
 msgstr ""
 
-#: views/settings-auth.php:403
+#: views/settings-auth.php:430
 #: views/settings-post-action-status.php:275
 msgid "Use Background Image"
 msgstr ""
 
-#: views/settings-auth.php:420
+#: views/settings-auth.php:447
 #: views/settings-post-action-status.php:291
 msgid "Remove Background Image"
 msgstr ""
 
-#: views/settings-auth.php:428
+#: views/settings-auth.php:455
 #: views/settings-post-action-status.php:296
 msgid "Select Background Image"
 msgstr ""
 
 #. translators: %1$s: Width, %2$s: Height
-#: views/settings-auth.php:438
+#: views/settings-auth.php:465
 #, php-format
 msgid "%1$spx width x %2$spx height"
 msgstr ""
 
-#: views/settings-auth.php:465
+#: views/settings-auth.php:492
 msgid "Provides options to enable logging, display logs on Posts and how long to keep logs for."
 msgstr ""
 
-#: views/settings-auth.php:471
+#: views/settings-auth.php:498
 msgid "Enable Logging?"
 msgstr ""
 
-#: views/settings-auth.php:480
+#: views/settings-auth.php:507
 msgid "If enabled, the"
 msgstr ""
 
-#: views/settings-auth.php:482
 #: views/settings-auth.php:509
+#: views/settings-auth.php:536
 msgid "Plugin Logs"
 msgstr ""
 
-#: views/settings-auth.php:483
+#: views/settings-auth.php:510
 msgid "will detail status(es) sent to Social Post Flow, including any errors or reasons why no status(es) were sent."
 msgstr ""
 
-#: views/settings-auth.php:487
+#: views/settings-auth.php:514
 msgid "If enabled, the Plugin Logs will detail status(es) sent to Social Post Flow, including any errors or reasons why no status(es) were sent."
 msgstr ""
 
-#: views/settings-auth.php:497
+#: views/settings-auth.php:524
 msgid "Display on Posts?"
 msgstr ""
 
-#: views/settings-auth.php:507
+#: views/settings-auth.php:534
 msgid "If enabled, a Log will be displayed when editing a Post.  Logs are always available through the"
 msgstr ""
 
-#: views/settings-auth.php:510
+#: views/settings-auth.php:537
 msgid "screen"
 msgstr ""
 
-#: views/settings-auth.php:514
+#: views/settings-auth.php:541
 msgid "If enabled, a Log will be displayed when editing a Post.  Logs are always available through the Plugin Logs screen."
 msgstr ""
 
-#: views/settings-auth.php:523
+#: views/settings-auth.php:550
 msgid "Log Level"
 msgstr ""
 
-#: views/settings-auth.php:548
+#: views/settings-auth.php:575
 msgid "Defines which log results to save to the Log database. Errors will always be logged."
 msgstr ""
 
-#: views/settings-auth.php:555
+#: views/settings-auth.php:582
 msgid "Preserve Logs"
 msgstr ""
 
-#: views/settings-auth.php:559
-#: views/settings-auth.php:866
-#: views/settings-auth.php:899
-#: views/settings-auth.php:930
+#: views/settings-auth.php:586
+#: views/settings-auth.php:893
+#: views/settings-auth.php:926
+#: views/settings-auth.php:957
 msgid "days"
 msgstr ""
 
-#: views/settings-auth.php:563
+#: views/settings-auth.php:590
 msgid "The number of days to preserve logs for.  Zero means logs are kept indefinitely."
 msgstr ""
 
-#: views/settings-auth.php:619
+#: views/settings-auth.php:646
 msgid "Repost Settings: General"
 msgstr ""
 
-#: views/settings-auth.php:621
+#: views/settings-auth.php:648
 msgid "Provides general options for when to run the WordPress Repost Cron Event on this WordPress installation, and to disable the Repost cron entirely."
 msgstr ""
 
-#: views/settings-auth.php:625
+#: views/settings-auth.php:652
 msgid "When Post(s) are scheduled on Social Post Flow will depend on the"
 msgstr ""
 
-#: views/settings-auth.php:626
+#: views/settings-auth.php:653
 msgid "Repost Status Settings"
 msgstr ""
 
-#: views/settings-auth.php:634
+#: views/settings-auth.php:661
 msgid "Status"
 msgstr ""
 
-#: views/settings-auth.php:640
+#: views/settings-auth.php:667
 msgid "Disabled"
 msgstr ""
 
-#: views/settings-auth.php:644
+#: views/settings-auth.php:671
 #: views/settings-post-action.php:33
 msgid "Enabled"
 msgstr ""
 
-#: views/settings-auth.php:652
+#: views/settings-auth.php:679
 msgid "Repost Times"
 msgstr ""
 
-#: views/settings-auth.php:671
+#: views/settings-auth.php:698
 msgid "Add Repost Time"
 msgstr ""
 
-#: views/settings-auth.php:687
+#: views/settings-auth.php:714
 msgid "Don't Repost"
 msgstr ""
 
-#: views/settings-auth.php:720
+#: views/settings-auth.php:747
 msgid "For each day(s) and time(s) specified, repost statuses will be sent to Social Post Flow via this Plugin's WordPress Cron event."
 msgstr ""
 
-#: views/settings-auth.php:723
+#: views/settings-auth.php:750
 msgid "Use \"Don't Repost\" for a given day if you do not want to repost statuses."
 msgstr ""
 
-#: views/settings-auth.php:725
+#: views/settings-auth.php:752
 msgid "If your site has low traffic volumes, the Repost WordPress Cron event may take several minutes, even hours, to trigger."
 msgstr ""
 
-#: views/settings-auth.php:732
+#: views/settings-auth.php:759
 msgid "Disable Repost Cron?"
 msgstr ""
 
-#: views/settings-auth.php:741
+#: views/settings-auth.php:768
 msgid "Check this option if you do NOT want Automatic Reposting or prefer to manually run Reposting via the"
 msgstr ""
 
-#: views/settings-auth.php:743
+#: views/settings-auth.php:770
 msgid "Cron event /"
 msgstr ""
 
-#: views/settings-auth.php:746
+#: views/settings-auth.php:773
 msgid "CLI"
 msgstr ""
 
-#: views/settings-auth.php:747
+#: views/settings-auth.php:774
 msgid "command"
 msgstr ""
 
-#: views/settings-auth.php:751
+#: views/settings-auth.php:778
 msgid "If you're disabling the Repost Cron and running it manually, you'll need to trigger either the Cron event or CLI command to run hourly."
 msgstr ""
 
-#: views/settings-auth.php:761
+#: views/settings-auth.php:788
 msgid "Test Repost Cron Now"
 msgstr ""
 
-#: views/settings-auth.php:767
+#: views/settings-auth.php:794
 msgid "Once you have defined a Repost schedule and settings for each Post Type, click Save, and then optionally click the Test button above to simulate what the Repost Cron event would do if run by WordPress now. This does"
 msgstr ""
 
-#: views/settings-auth.php:768
+#: views/settings-auth.php:795
 msgid "not"
 msgstr ""
 
-#: views/settings-auth.php:769
+#: views/settings-auth.php:796
 msgid "post to Social Post Flow"
 msgstr ""
 
 #. translators: Post Type Name
-#: views/settings-auth.php:788
+#: views/settings-auth.php:815
 #, php-format
 msgid "Repost Settings: %s"
 msgstr ""
 
 #. translators: %1$s: Post Type Name
-#: views/settings-auth.php:799
+#: views/settings-auth.php:826
 #, php-format
 msgid "Defines conditions for when %1$s are eligible to be automatically reposted to Social Post Flow."
 msgstr ""
 
 #. translators: %1$s: Post Type Name
-#: views/settings-auth.php:810
+#: views/settings-auth.php:837
 #, php-format
 msgid "To enable Automatic Reposting of %1$s, and define the status(es) to send to Social Post Flow, visit"
 msgstr ""
 
 #. translators: Post Type Name, Plural
-#: views/settings-auth.php:816
+#: views/settings-auth.php:843
 #, php-format
 msgid "%s &gt; Repost"
 msgstr ""
 
 #. translators: Post Type Name
-#: views/settings-auth.php:831
+#: views/settings-auth.php:858
 #, php-format
 msgid "Max %s"
 msgstr ""
 
-#: views/settings-auth.php:841
+#: views/settings-auth.php:868
 msgid "per run"
 msgstr ""
 
 #. translators: %1$s: Post Type Name
-#: views/settings-auth.php:848
+#: views/settings-auth.php:875
 #, php-format
 msgid "The maximum number of %1$s to automatically repost to Social Post Flow each time the Repost Cron event is run.  This limit applies across the entire Post Type."
 msgstr ""
 
-#: views/settings-auth.php:860
+#: views/settings-auth.php:887
 msgid "Minimum Interval between Reposting"
 msgstr ""
 
 #. translators: Post Type Nme
-#: views/settings-auth.php:873
+#: views/settings-auth.php:900
 #, php-format
 msgid "Define the minimum number of days before an already reposted %s is eligible for automatic reposting."
 msgstr ""
 
 #. translators: Post Type Name
-#: views/settings-auth.php:890
+#: views/settings-auth.php:917
 #, php-format
 msgid "Minimum %s Age"
 msgstr ""
 
 #. translators: Post Type Name
-#: views/settings-auth.php:906
+#: views/settings-auth.php:933
 #, php-format
 msgid "The minimum age of %s available for sharing, in days."
 msgstr ""
 
 #. translators: Post Type Name
-#: views/settings-auth.php:921
+#: views/settings-auth.php:948
 #, php-format
 msgid "Maximum %s Age"
 msgstr ""
 
 #. translators: Post Type Name
-#: views/settings-auth.php:937
+#: views/settings-auth.php:964
 #, php-format
 msgid "The maximum age of %s available for sharing, in days.  Zero means no maximum."
 msgstr ""
 
-#: views/settings-auth.php:949
+#: views/settings-auth.php:976
 msgid "Repost Order"
 msgstr ""
 
 #. translators: Post Type Name
-#: views/settings-auth.php:978
+#: views/settings-auth.php:1005
 #, php-format
 msgid "The order to go through %s when reposting."
 msgstr ""
 
-#: views/settings-auth.php:1004
+#: views/settings-auth.php:1031
 msgid "Optionally define which of your connected social media account(s) should be available for configuration and publication based on each WordPress User Role."
 msgstr ""
 
-#: views/settings-auth.php:1011
+#: views/settings-auth.php:1038
 msgid "Enable Specific Post Types?"
 msgstr ""
 
-#: views/settings-auth.php:1017
+#: views/settings-auth.php:1044
 msgid ""
 "If enabled, options are displayed below by WordPress Role to define which Post Types to enable. \n"
 "                            If you have several Post Types, some of which you don't want to use for social media, we recommend using \n"
 "                            this option for performance."
 msgstr ""
 
-#: views/settings-auth.php:1068
+#: views/settings-auth.php:1095
 msgid "Enable Specific Profiles?"
 msgstr ""
 
-#: views/settings-auth.php:1073
+#: views/settings-auth.php:1100
 msgid "If enabled, options are displayed below by WordPress Role to define which social media profiles:"
 msgstr ""
 
-#: views/settings-auth.php:1075
+#: views/settings-auth.php:1102
 msgid "- The Administrator can configure in the Plugin's Status Settings,"
 msgstr ""
 
-#: views/settings-auth.php:1077
+#: views/settings-auth.php:1104
 msgid "- The Post's Author's Role can configure on Per-Post Settings, if Per-Post Settings are not hidden,"
 msgstr ""
 
-#: views/settings-auth.php:1079
+#: views/settings-auth.php:1106
 msgid "- The Post's Author's Role can send statuses to, when a Post is Published, Updated, Reposted or Bulk Published."
 msgstr ""
 
-#: views/settings-auth.php:1084
+#: views/settings-auth.php:1111
 msgid "To hide"
 msgstr ""
 
-#: views/settings-auth.php:1086
-#: views/settings-auth.php:1156
+#: views/settings-auth.php:1113
+#: views/settings-auth.php:1183
 msgid "Per-Post Settings"
 msgstr ""
 
-#: views/settings-auth.php:1087
+#: views/settings-auth.php:1114
 msgid "by the"
 msgstr ""
 
-#: views/settings-auth.php:1088
-#: views/settings-auth.php:1167
+#: views/settings-auth.php:1115
+#: views/settings-auth.php:1194
 msgid "Post's Author's Role"
 msgstr ""
 
-#: views/settings-auth.php:1089
+#: views/settings-auth.php:1116
 msgid ", use the \"Hide Per-Post Settings\" option below."
 msgstr ""
 
-#: views/settings-auth.php:1136
+#: views/settings-auth.php:1163
 msgid "Hide Per-Post Settings"
 msgstr ""
 
-#: views/settings-auth.php:1157
+#: views/settings-auth.php:1184
 msgid ", Additional Images and the Log are hidden when editing Posts and the"
 msgstr ""
 
-#: views/settings-auth.php:1158
+#: views/settings-auth.php:1185
 msgid "logged in WordPress User's Role"
 msgstr ""
 
-#: views/settings-auth.php:1159
+#: views/settings-auth.php:1186
 msgid "matches a Role selected above."
 msgstr ""
 
-#: views/settings-auth.php:1166
+#: views/settings-auth.php:1193
 msgid "To control which social media profiles to send statuses to by the"
 msgstr ""
 
-#: views/settings-auth.php:1168
+#: views/settings-auth.php:1195
 msgid "use the \"Enable Specific Profiles\" option above."
 msgstr ""
 
-#: views/settings-auth.php:1186
+#: views/settings-auth.php:1213
 msgid "If your site uses Custom Fields, ACF or similar, you can specify additional tags to be added to the \"Insert Tag\" dropdown for each of your Post Types.  These can then be used by Users, instead of having to remember the template tag text to use."
 msgstr ""
 
-#: views/settings-auth.php:1203
+#: views/settings-auth.php:1230
 msgid "Custom Field Key"
 msgstr ""
 
-#: views/settings-auth.php:1204
+#: views/settings-auth.php:1231
 msgid "Custom Field Label"
 msgstr ""
 
-#: views/settings-auth.php:1212
+#: views/settings-auth.php:1239
 msgid "Add Custom Tag"
 msgstr ""
 
-#: views/settings-auth.php:1229
-#: views/settings-auth.php:1247
+#: views/settings-auth.php:1256
+#: views/settings-auth.php:1274
 msgid "my_custom_field"
 msgstr ""
 
-#: views/settings-auth.php:1232
-#: views/settings-auth.php:1250
+#: views/settings-auth.php:1259
+#: views/settings-auth.php:1277
 msgid "My Custom Field"
 msgstr ""
 

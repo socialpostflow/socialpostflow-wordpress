@@ -184,6 +184,7 @@ class Social_Post_Flow {
 		$this->classes->media_library = new Social_Post_Flow_Media_Library();
 		$this->classes->log           = new Social_Post_Flow_Log();
 		$this->classes->notices       = new Social_Post_Flow_Notices();
+		$this->classes->opengraph     = new Social_Post_Flow_OpenGraph();
 		$this->classes->post          = new Social_Post_Flow_Post();
 		$this->classes->publish       = new Social_Post_Flow_Publish();
 		$this->classes->repost        = new Social_Post_Flow_Repost();

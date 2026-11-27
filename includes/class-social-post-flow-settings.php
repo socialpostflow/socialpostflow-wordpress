@@ -885,6 +885,7 @@ class Social_Post_Flow_Settings {
 			$this->settings_name . '-disable_excerpt_fallback',
 			$this->settings_name . '-hide_meta_box_by_roles',
 			$this->settings_name . '-log',
+			$this->settings_name . '-opengraph',
 			$this->settings_name . '-override',
 			$this->settings_name . '-refresh-token',
 			$this->settings_name . '-repost',

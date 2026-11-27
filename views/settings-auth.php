@@ -109,7 +109,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 						<p class="description">
 							<?php
-							esc_html_e( 'If enabled, status(es) are not sent to Social Post Flow, but will appear in the Log, if logging is enabled. This is useful to test status text, conditions etc.', 'social-post-flow' );
+							esc_html_e( 'If enabled, status(es) are checked by Social Post Flow without being created or published, and the result appears in the Log, if logging is enabled. This is useful to test status text, conditions, images etc.', 'social-post-flow' );
 							?>
 						</p>
 					</div>
@@ -214,6 +214,33 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<?php
 							esc_html_e( 'Determines the default option to be selected in the Social Post Flow metabox when adding/editing Pages, Posts and Custom Post Types.  A user can always change this on a per-Post basis.', 'social-post-flow' );
 							?>
+						</p>
+					</div>
+				</div>
+
+				<div class="wpzinc-option">
+					<div class="left">
+						<label for="opengraph"><?php esc_html_e( 'OpenGraph Tags', 'social-post-flow' ); ?></label>
+					</div>
+					<div class="right">
+						<select name="opengraph" size="1" id="opengraph">
+							<?php
+							foreach ( (array) $opengraph_options as $value => $label ) {
+								?>
+								<option value="<?php echo esc_attr( $value ); ?>"<?php selected( social_post_flow()->get_class( 'opengraph' )->get_setting(), $value ); ?>>
+									<?php echo esc_html( $label ); ?>
+								</option>
+								<?php
+							}
+							?>
+						</select>
+
+						<p class="description">
+							<?php
+							esc_html_e( 'OpenGraph tags define the title, description and image social networks show when a Post\'s link is shared. Auto outputs them unless an SEO plugin that outputs them is active.', 'social-post-flow' );
+							?>
+							<br />
+							<strong><?php echo esc_html( social_post_flow()->get_class( 'opengraph' )->get_status_description() ); ?></strong>
 						</p>
 					</div>
 				</div>

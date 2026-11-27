@@ -48,6 +48,11 @@ class Social_Post_Flow_Ajax {
 		// Run a security check first.
 		check_ajax_referer( 'social-post-flow-usernames-search-facebook', 'nonce' );
 
+		// Bail if the user does not have permission.
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			wp_send_json_error( __( 'You do not have permission to perform this action.', 'social-post-flow' ) );
+		}
+
 		// Bail if no search term was provided.
 		if ( ! isset( $_REQUEST['search'] ) ) {
 			wp_send_json_error( __( 'No search term was provided.', 'social-post-flow' ) );
@@ -87,6 +92,11 @@ class Social_Post_Flow_Ajax {
 
 		// Run a security check first.
 		check_ajax_referer( 'social-post-flow-save-statuses', 'nonce' );
+
+		// Bail if the user does not have permission.
+		if ( ! current_user_can( social_post_flow()->get_class( 'admin' )->get_minimum_capability() ) ) {
+			wp_send_json_error( __( 'You do not have permission to perform this action.', 'social-post-flow' ) );
+		}
 
 		// Bail if no post type was provided.
 		if ( ! isset( $_REQUEST['post_type'] ) ) {
@@ -149,6 +159,11 @@ class Social_Post_Flow_Ajax {
 		);
 		// phpcs:enable
 
+		// Bail if the user does not have permission.
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+			wp_send_json_error( __( 'You do not have permission to perform this action.', 'social-post-flow' ) );
+		}
+
 		// Save and return.
 		$result = social_post_flow()->get_class( 'post' )->save_settings( $post_id, $settings );
 
@@ -175,6 +190,11 @@ class Social_Post_Flow_Ajax {
 
 		// Run a security check first.
 		check_ajax_referer( 'social-post-flow-get-status-row', 'nonce' );
+
+		// Bail if the user does not have permission.
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			wp_send_json_error( __( 'You do not have permission to perform this action.', 'social-post-flow' ) );
+		}
 
 		// Bail if expect parameters were not was provided.
 		if ( ! isset( $_REQUEST['status'] ) ) {
@@ -216,6 +236,11 @@ class Social_Post_Flow_Ajax {
 			wp_send_json_error( __( 'No status was provided.', 'social-post-flow' ) );
 		}
 
+		// Bail if the user does not have permission.
+		if ( ! current_user_can( 'edit_post', absint( $_REQUEST['post_id'] ) ) ) {
+			wp_send_json_error( __( 'You do not have permission to perform this action.', 'social-post-flow' ) );
+		}
+
 		// Get post and status.
 		$post   = get_post( absint( $_REQUEST['post_id'] ) );
 		$status = sanitize_text_field( wp_unslash( $_REQUEST['status'] ) );
@@ -253,6 +278,11 @@ class Social_Post_Flow_Ajax {
 		// Get Post ID.
 		$post_id = absint( $_REQUEST['post'] );
 
+		// Bail if the user does not have permission.
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+			wp_send_json_error( __( 'You do not have permission to perform this action.', 'social-post-flow' ) );
+		}
+
 		// Get Log.
 		$log = social_post_flow()->get_class( 'log' )->get( $post_id );
 
@@ -284,6 +314,11 @@ class Social_Post_Flow_Ajax {
 		// Get Post ID.
 		$post_id = absint( $_REQUEST['post'] );
 
+		// Bail if the user does not have permission.
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+			wp_send_json_error( __( 'You do not have permission to perform this action.', 'social-post-flow' ) );
+		}
+
 		// Clear log.
 		social_post_flow()->get_class( 'log' )->delete_by_post_id( $post_id );
 
@@ -300,6 +335,11 @@ class Social_Post_Flow_Ajax {
 
 		// Run a security check first.
 		check_ajax_referer( 'social-post-flow-search-terms', 'nonce' );
+
+		// Bail if the user does not have permission.
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			wp_send_json_error( __( 'You do not have permission to perform this action.', 'social-post-flow' ) );
+		}
 
 		// Bail if expected parameters were not provided.
 		if ( ! isset( $_REQUEST['taxonomy'] ) ) {
@@ -355,6 +395,11 @@ class Social_Post_Flow_Ajax {
 		// Run a security check first.
 		check_ajax_referer( 'social-post-flow-search-authors', 'nonce' );
 
+		// Bail if the user does not have permission.
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			wp_send_json_error( __( 'You do not have permission to perform this action.', 'social-post-flow' ) );
+		}
+
 		// Bail if expected parameters were not provided.
 		if ( ! isset( $_REQUEST['q'] ) ) {
 			return wp_send_json_error( __( 'No search term was provided.', 'social-post-flow' ) );
@@ -366,7 +411,8 @@ class Social_Post_Flow_Ajax {
 		// Get results.
 		$users = new WP_User_Query(
 			array(
-				'search' => '*' . $query . '*',
+				'search'         => '*' . $query . '*',
+				'search_columns' => array( 'user_login', 'user_nicename', 'display_name' ),
 			)
 		);
 
@@ -402,6 +448,11 @@ class Social_Post_Flow_Ajax {
 		// Run a security check first.
 		check_ajax_referer( 'social-post-flow-search-roles', 'nonce' );
 
+		// Bail if the user does not have permission.
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			wp_send_json_error( __( 'You do not have permission to perform this action.', 'social-post-flow' ) );
+		}
+
 		if ( ! isset( $_REQUEST['q'] ) ) {
 			return wp_send_json_error( __( 'No search term was provided.', 'social-post-flow' ) );
 		}
@@ -435,6 +486,11 @@ class Social_Post_Flow_Ajax {
 
 		// Run a security check first.
 		check_ajax_referer( 'social-post-flow-bulk-publish', 'nonce' );
+
+		// Bail if the user does not have permission.
+		if ( ! current_user_can( social_post_flow()->get_class( 'admin' )->get_minimum_capability() ) ) {
+			wp_send_json_error( __( 'You do not have permission to perform this action.', 'social-post-flow' ) );
+		}
 
 		// Check required POST variables have been set.
 		if ( ! isset( $_POST['current_index'] ) ) {
@@ -526,6 +582,11 @@ class Social_Post_Flow_Ajax {
 
 		// Run a security check first.
 		check_ajax_referer( 'social-post-flow-repost-test', 'nonce' );
+
+		// Bail if the user does not have permission.
+		if ( ! current_user_can( social_post_flow()->get_class( 'admin' )->get_minimum_capability() ) ) {
+			wp_send_json_error( __( 'You do not have permission to perform this action.', 'social-post-flow' ) );
+		}
 
 		social_post_flow()->get_class( 'cron' )->repost( true );
 		wp_send_json_success( social_post_flow()->get_class( 'log' )->get_debug_log() );

@@ -750,6 +750,11 @@ class WPZincDashboardWidget {
 		// Check nonce.
 		check_ajax_referer( 'wpzinc_admin_review_notice_dismiss_review', 'nonce' );
 
+		// Bail if the user cannot see the review notice.
+		if ( ! current_user_can( 'activate_plugins' ) ) {
+			wp_send_json_error();
+		}
+
 		// Mark review as dismissed.
 		update_option( $this->plugin->review_name . '-review-dismissed', 1 );
 
@@ -1036,6 +1041,11 @@ class WPZincDashboardWidget {
 
 		if ( ! wp_verify_nonce( sanitize_key( $_POST[ $this->plugin->name . '_nonce' ] ), $this->plugin->name ) ) {
 			// Invalid nonce.
+			return;
+		}
+
+		// Bail if the user cannot access the Plugin's settings.
+		if ( ! current_user_can( apply_filters( str_replace( '-', '_', $this->plugin->name ) . '_admin_admin_menu_minimum_capability', 'manage_options' ) ) ) { // phpcs:ignore WordPress.NamingConventions.ValidHookName
 			return;
 		}
 

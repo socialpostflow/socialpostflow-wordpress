@@ -5,7 +5,7 @@ Tags: social media auto post, social media posting, social media scheduling, soc
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.4.6
+Stable tag: 1.4.7
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -142,8 +142,8 @@ The plugin tracks which posts have been shared and prevents accidental duplicate
 
 === Complete Image Control for Social Media Posting ===
 
-**OpenGraph Integration**
-Use your SEO plugin's OpenGraph metadata to create social sharing cards automatically. Works with Yoast SEO, Rank Math, All-in-One SEO Pack, and SEOPress.
+**OpenGraph Tags**
+Link previews on Facebook, X, Threads, LinkedIn and Bluesky need OpenGraph tags. Social Post Flow outputs them automatically, with your Post's title, excerpt and image, unless an SEO plugin such as Yoast SEO, Rank Math, All in One SEO or SEOPress already does.
 
 **Multiple Image Sources**
 Choose from various image sources for your social media posts:
@@ -175,11 +175,11 @@ This social media scheduler works with popular WordPress plugins, so social medi
 - WPeMatico - Auto post imported content from RSS feeds
 
 **SEO Plugin Integration**
-Social Post Flow uses the social metadata you've already configured in your SEO plugin, falling back to your post content if none is set:
-- Yoast SEO - Uses Yoast's Facebook title and description, Twitter card data and OpenGraph image
-- Rank Math - Uses Rank Math's social titles, descriptions, Twitter card configuration and social images
-- All-in-One SEO Pack - Uses AIOSEO's Facebook metadata, Twitter card settings and OpenGraph image
-- SEOPress - Uses SEOPress social titles, OpenGraph configuration and Twitter card data
+Use the titles and descriptions you've already written in your SEO plugin in your statuses, with status tags:
+- Yoast SEO - Meta, Twitter and Facebook titles and descriptions
+- Rank Math - Meta titles and descriptions
+- All in One SEO - Meta titles and descriptions
+- SEOPress - Meta titles and descriptions
 
 === Developer-Friendly Features ===
 
@@ -577,6 +577,14 @@ Social Post Flow offers a 7-day free trial so you can test all features before p
 4. Post-level Logging.
 
 == Changelog ==
+
+= 1.4.7 (2026-11-27) =
+* Added: Settings: General: OpenGraph Tags option. Auto (default) outputs OpenGraph and Twitter Card tags on Posts, unless an SEO or OpenGraph plugin is active that outputs them
+* Added: Settings: Test Mode: Statuses are checked by Social Post Flow without being created, so the Log shows whether they would publish, or why not
+* Fix: Publish: Log a clear error when a status needs an image and none was found, instead of a `media_urls.0 field must be a valid URL` error
+* Fix: Security: Check user capabilities on all AJAX requests, including viewing or clearing a Post's Log, saving a Post's statuses, character counts, Bulk Publish and Repost testing
+* Fix: Security: Check the user can access the Plugin's settings before exporting them
+* Fix: Security: Escape status text, profile names and API responses when displaying Logs
 
 = 1.4.6 (2026-11-05) =
 * Added: Settings: Setup wizard to connect profiles, share Posts to them and finish setup, shown until profiles are enabled for Posts

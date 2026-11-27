@@ -131,40 +131,6 @@ class Social_Post_Flow_Image {
 	}
 
 	/**
-	 * Determines if the WordPress installations has a Plugin installed that outputs
-	 * OpenGraph metadata
-	 *
-	 * @since   1.0.0
-	 *
-	 * @return  bool    Supports OpenGraph
-	 */
-	public function is_opengraph_plugin_active() {
-
-		// Load function if required.
-		if ( ! function_exists( 'is_plugin_active' ) ) {
-			include_once ABSPATH . 'wp-admin/includes/plugin.php';
-		}
-
-		// Fetch OpenGraph supported SEO Plugins and Fetured Image Options.
-		$featured_image_options = array_keys( $this->get_status_image_options() );
-
-		// If the Plugin only offers "Use OpenGraph Settings", no need to check for SEO Plugin availability.
-		if ( count( $featured_image_options ) === 1 && ! $featured_image_options[0] ) {
-			return false;
-		}
-
-		foreach ( $this->get_opengraph_seo_plugins() as $seo_plugin ) {
-			// If plugin active, use OpenGraph for images.
-			if ( is_plugin_active( $seo_plugin ) ) {
-				return true;
-			}
-		}
-
-		return false;
-
-	}
-
-	/**
 	 * Helper method to retrieve the image size for the given service.
 	 *
 	 * @since   1.0.0
@@ -266,34 +232,6 @@ class Social_Post_Flow_Image {
 
 		// Return filtered results.
 		return $image_sizes;
-
-	}
-
-	/**
-	 * Return an array of Plugins that output OpenGraph data
-	 * which can be used by this Plugin for sharing the Featured Image
-	 *
-	 * @since   1.0.0
-	 *
-	 * @return  array   Plugins
-	 */
-	private function get_opengraph_seo_plugins() {
-
-		// Define Plugins.
-		$plugins = array();
-
-		/**
-		 * Defines the Plugins that output OpenGraph metadata on Posts, Pages
-		 * and Custom Post Types.
-		 *
-		 * @since   1.0.0
-		 *
-		 * @param   array   $plugins    Plugins
-		 */
-		$plugins = apply_filters( 'social_post_flow_get_opengraph_seo_plugins', $plugins );
-
-		// Return filtered results.
-		return $plugins;
 
 	}
 
