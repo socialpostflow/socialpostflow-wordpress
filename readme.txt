@@ -578,8 +578,10 @@ Social Post Flow offers a 7-day free trial so you can test all features before p
 
 == Changelog ==
 
-= 1.4.7 (2026-11-20) =
+= 1.4.7 (2026-11-27) =
 * Added: Settings: General: OpenGraph Tags option. Auto (default) outputs OpenGraph and Twitter Card tags on Posts, unless an SEO or OpenGraph plugin is active that outputs them
+* Added: Settings: Test Mode: Statuses are checked by Social Post Flow without being created, so the Log shows whether they would publish, or why not
+* Fix: Publish: Log a clear error when a status needs an image and none was found, instead of a `media_urls.0 field must be a valid URL` error
 * Fix: Security: Check user capabilities on all AJAX requests, including viewing or clearing a Post's Log, saving a Post's statuses, character counts, Bulk Publish and Repost testing
 * Fix: Security: Check the user can access the Plugin's settings before exporting them
 * Fix: Security: Escape status text, profile names and API responses when displaying Logs

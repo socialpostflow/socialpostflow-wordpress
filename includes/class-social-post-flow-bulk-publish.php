@@ -28,7 +28,7 @@ class Social_Post_Flow_Bulk_Publish {
 	 *
 	 * @param   string $post_type      Post Type.
 	 * @param   array  $params         Search Parameters.
-	 * @param   bool   $test_mode      Test Mode (don't send to API).
+	 * @param   bool   $test_mode      Test Mode (the API validates statuses without creating them).
 	 */
 	public function run( $post_type = false, $params = false, $test_mode = false ) {
 

@@ -76,7 +76,7 @@ class Social_Post_Flow_Repost {
 	 * @since   1.0.0
 	 *
 	 * @param   mixed $post_types     Limit to the given Post Types (false = all public Post Types).
-	 * @param   bool  $test_mode      Test Mode (don't send to API).
+	 * @param   bool  $test_mode      Test Mode (the API validates statuses without creating them).
 	 */
 	public function run( $post_types = false, $test_mode = false ) {
 

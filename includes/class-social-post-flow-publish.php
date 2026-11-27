@@ -622,7 +622,7 @@ class Social_Post_Flow_Publish {
 	 *
 	 * @param   int    $post_id                Post ID.
 	 * @param   string $action                 Action (publish|update|repost|bulk_publish).
-	 * @param   bool   $test_mode              Test Mode (won't send to API).
+	 * @param   bool   $test_mode              Test Mode (the API validates statuses without creating them).
 	 * @return  mixed                               WP_Error | API Results array
 	 */
 	public function publish( $post_id, $action, $test_mode = false ) {
@@ -1791,6 +1791,30 @@ class Social_Post_Flow_Publish {
 						break;
 
 				}
+
+				// Remove images that couldn't be found.
+				$args['media_urls'] = array_values( array_filter( $args['media_urls'] ) );
+
+				// Google Business Profile posts don't need an image.
+				if ( ! count( $args['media_urls'] ) && $args['post_type'] === 'google' ) {
+					unset( $args['media_urls'] );
+					break;
+				}
+
+				// Other post types need an image, so explain why the status can't be sent.
+				if ( ! count( $args['media_urls'] ) ) {
+					$post_type_object = get_post_type_object( $post->post_type );
+					return new WP_Error(
+						'social_post_flow_publish_build_args_no_image',
+						sprintf(
+							/* translators: %1$s: Social Media Service, %2$s: Post Type Singular Name */
+							__( '%1$s needs an image, but none was found. Set a Featured Image on this %2$s.', 'social-post-flow' ),
+							ucfirst( $service ),
+							( $post_type_object ? $post_type_object->labels->singular_name : __( 'Post', 'social-post-flow' ) )
+						)
+					);
+				}
+				break;
 		}
 
 		// Scheduling.
@@ -3745,7 +3769,7 @@ class Social_Post_Flow_Publish {
 	 * @param   int    $post_id    Post ID.
 	 * @param   string $action     Action.
 	 * @param   array  $profiles   All Enabled Profiles.
-	 * @param   bool   $test_mode  Test Mode (won't send to API).
+	 * @param   bool   $test_mode  Test Mode (the API validates statuses without creating them).
 	 * @return  array               API Result for each status
 	 */
 	public function send( $statuses, $post_id, $action, $profiles, $test_mode = false ) {
@@ -3788,21 +3812,9 @@ class Social_Post_Flow_Publish {
 				continue;
 			}
 
-			// If this is a test, add to the log array only.
+			// In test mode, the API validates the status without creating it.
 			if ( $test_mode ) {
-				$logs[] = array(
-					'action'              => $action,
-					'request_sent'        => gmdate( 'Y-m-d H:i:s' ),
-					'profile_id'          => $status['profile_ids'][0],
-					'profile_name'        => $profiles[ $status['profile_ids'][0] ]['provider'] . ': ' . $profiles[ $status['profile_ids'][0] ]['profile_name'],
-					'result'              => 'test',
-					'result_message'      => '',
-					'status_text'         => $status['text'],
-					'status_created_at'   => gmdate( 'Y-m-d H:i:s', strtotime( 'now' ) ),
-					'status_scheduled_at' => ( isset( $status['scheduled_at'] ) ? $status['scheduled_at'] : '' ),
-				);
-
-				continue;
+				$status['test_mode'] = true;
 			}
 
 			// Send request.
@@ -3822,6 +3834,21 @@ class Social_Post_Flow_Publish {
 					'status_text'    => $status['text'],
 				);
 				$log_error[] = ( $profiles[ $status['profile_ids'][0] ]['provider'] . ': ' . $profiles[ $status['profile_ids'][0] ]['profile_name'] . ': ' . $result->get_error_message() );
+			} elseif ( $test_mode ) {
+				// Test passed, noting anything that would stop the status publishing, such as a disconnected profile.
+				foreach ( $result['data'] as $status_result ) {
+					$logs[] = array(
+						'action'              => $action,
+						'request_sent'        => gmdate( 'Y-m-d H:i:s' ),
+						'profile_id'          => $status_result['social_profile_id'],
+						'profile_name'        => $status_result['provider'] . ': ' . $status_result['profile_name'],
+						'result'              => 'test',
+						'result_message'      => ( ! empty( $result['warnings'] ) ? implode( "\n", $result['warnings'] ) : __( 'Passed', 'social-post-flow' ) ),
+						'status_text'         => $status_result['text'],
+						'status_created_at'   => gmdate( 'Y-m-d H:i:s' ),
+						'status_scheduled_at' => $status_result['scheduled_at'],
+					);
+				}
 			} else {
 				// OK.
 				// Iterate through the results (as more than one post may have been sent in this request, as the API always returns a collection).

@@ -371,7 +371,7 @@ class Social_Post_Flow_Cron {
 	 *
 	 * @since   1.0.0
 	 *
-	 * @param   bool $test_mode      Test Mode (don't send to API).
+	 * @param   bool $test_mode      Test Mode (the API validates statuses without creating them).
 	 */
 	public function repost( $test_mode = false ) {
 

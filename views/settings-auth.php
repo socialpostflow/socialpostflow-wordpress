@@ -109,7 +109,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 						<p class="description">
 							<?php
-							esc_html_e( 'If enabled, status(es) are not sent to Social Post Flow, but will appear in the Log, if logging is enabled. This is useful to test status text, conditions etc.', 'social-post-flow' );
+							esc_html_e( 'If enabled, status(es) are checked by Social Post Flow without being created or published, and the result appears in the Log, if logging is enabled. This is useful to test status text, conditions, images etc.', 'social-post-flow' );
 							?>
 						</p>
 					</div>
