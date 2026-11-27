@@ -21,32 +21,11 @@ class Social_Post_Flow_Yoast_SEO {
 	 */
 	public function __construct() {
 
-		// Register this integration as supporting OpenGraph.
-		add_filter( 'social_post_flow_get_opengraph_seo_plugins', array( $this, 'register_opengraph_seo_plugins' ) );
-
 		// Register Status Tags.
 		add_filter( 'social_post_flow_get_tags', array( $this, 'register_status_tags' ), 10, 1 );
 
 		// Replace Tags with Values.
 		add_filter( 'social_post_flow_publish_get_all_possible_searches_replacements', array( $this, 'register_searches_replacements' ), 10, 3 );
-
-	}
-
-	/**
-	 * Register this integration as supporting OpenGraph, so that the Plugin
-	 * can check if it's active, and if so offer the "Use OpenGraph Settings"
-	 * image option on statuses.
-	 *
-	 * @since   1.0.0
-	 *
-	 * @param   array $plugins    Plugins supporting OpenGraph.
-	 * @return  array               Plugins
-	 */
-	public function register_opengraph_seo_plugins( $plugins ) {
-
-		$plugins[] = 'wordpress-seo/wp-seo.php';
-		$plugins[] = 'wordpress-seo-premium/wp-seo-premium.php';
-		return $plugins;
 
 	}
 

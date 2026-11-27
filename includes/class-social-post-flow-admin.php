@@ -620,7 +620,7 @@ class Social_Post_Flow_Admin {
 	 *
 	 * @return  string
 	 */
-	private function get_minimum_capability() {
+	public function get_minimum_capability() {
 
 		/**
 		 * Defines the minimum capability required to access the Plugin's
@@ -797,6 +797,9 @@ class Social_Post_Flow_Admin {
 
 				// General Settings.
 				$override_options = social_post_flow()->get_class( 'common' )->get_override_options();
+
+				// OpenGraph Settings.
+				$opengraph_options = social_post_flow()->get_class( 'opengraph' )->get_options();
 
 				// Text to Image Settings.
 				$fonts = social_post_flow()->get_class( 'common' )->get_fonts();
@@ -1471,6 +1474,7 @@ class Social_Post_Flow_Admin {
 				social_post_flow()->get_class( 'settings' )->update_option( 'cron', ( isset( $settings['cron'] ) ? 1 : 0 ) );
 				social_post_flow()->get_class( 'settings' )->update_option( 'cron_delay', ( isset( $settings['cron_delay'] ) ? absint( $settings['cron_delay'] ) : 30 ) );
 				social_post_flow()->get_class( 'settings' )->update_option( 'override', ( isset( $settings['override'] ) ? $settings['override'] : 0 ) );
+				social_post_flow()->get_class( 'settings' )->update_option( 'opengraph', ( isset( $settings['opengraph'] ) && array_key_exists( $settings['opengraph'], social_post_flow()->get_class( 'opengraph' )->get_options() ) ? $settings['opengraph'] : 'auto' ) );
 
 				// Image Settings.
 				social_post_flow()->get_class( 'settings' )->update_option( 'text_to_image', ( isset( $settings['text_to_image'] ) ? $settings['text_to_image'] : array() ) );

@@ -217,6 +217,33 @@ if ( ! defined( 'ABSPATH' ) ) {
 						</p>
 					</div>
 				</div>
+
+				<div class="wpzinc-option">
+					<div class="left">
+						<label for="opengraph"><?php esc_html_e( 'OpenGraph Tags', 'social-post-flow' ); ?></label>
+					</div>
+					<div class="right">
+						<select name="opengraph" size="1" id="opengraph">
+							<?php
+							foreach ( (array) $opengraph_options as $value => $label ) {
+								?>
+								<option value="<?php echo esc_attr( $value ); ?>"<?php selected( social_post_flow()->get_class( 'opengraph' )->get_setting(), $value ); ?>>
+									<?php echo esc_html( $label ); ?>
+								</option>
+								<?php
+							}
+							?>
+						</select>
+
+						<p class="description">
+							<?php
+							esc_html_e( 'OpenGraph tags define the title, description and image social networks show when a Post\'s link is shared. Auto outputs them unless an SEO plugin that outputs them is active.', 'social-post-flow' );
+							?>
+							<br />
+							<strong><?php echo esc_html( social_post_flow()->get_class( 'opengraph' )->get_status_description() ); ?></strong>
+						</p>
+					</div>
+				</div>
 			</div>
 		</div>
 

@@ -1001,6 +1001,25 @@ class Social_Post_Flow_Log {
 	}
 
 	/**
+	 * Returns the HTML tags permitted in a log entry's result message.
+	 *
+	 * @since   1.4.7
+	 *
+	 * @return  array
+	 */
+	private function get_result_message_allowed_html() {
+
+		return array(
+			'a'  => array(
+				'href'   => array(),
+				'target' => array(),
+			),
+			'br' => array(),
+		);
+
+	}
+
+	/**
 	 * Takes a given array of log results, and builds HTML table row output
 	 * that can be used by:
 	 * - Posts > Log Meta Box
@@ -1063,25 +1082,25 @@ class Social_Post_Flow_Log {
                 ' . ( $is_wp_list_table ? $checkbox_id : '' ) . '
                 <td class="request_sent column-request_sent' . ( in_array( 'request_sent', $hidden, true ) ? ' hidden' : '' ) . '">' . get_date_from_gmt( $result['request_sent'], get_option( 'date_format' ) . ' H:i:s' ) . '</td>
                 <td class="action column-action' . ( in_array( 'action', $hidden, true ) ? ' hidden' : '' ) . '">' . ( isset( $post_actions[ $result['action'] ] ) ? $post_actions[ $result['action'] ] : '&nbsp;' ) . '</td>
-                <td class="profile_name column-profile_name' . ( in_array( 'profile_name', $hidden, true ) ? ' hidden' : '' ) . '">' . ( empty( $result['profile_name'] ) ? __( 'N/A', 'social-post-flow' ) : $result['profile_name'] ) . '</td>
-                <td class="status_text column-status_text' . ( in_array( 'status_text', $hidden, true ) ? ' hidden' : '' ) . '">' . ( empty( $result['status_text'] ) ? __( 'N/A', 'social-post-flow' ) : nl2br( $result['status_text'] ) ) . '</td>
+                <td class="profile_name column-profile_name' . ( in_array( 'profile_name', $hidden, true ) ? ' hidden' : '' ) . '">' . ( empty( $result['profile_name'] ) ? __( 'N/A', 'social-post-flow' ) : esc_html( $result['profile_name'] ) ) . '</td>
+                <td class="status_text column-status_text' . ( in_array( 'status_text', $hidden, true ) ? ' hidden' : '' ) . '">' . ( empty( $result['status_text'] ) ? __( 'N/A', 'social-post-flow' ) : nl2br( esc_html( $result['status_text'] ) ) ) . '</td>
                 <td class="result column-result' . ( in_array( 'result', $hidden, true ) ? ' hidden' : '' ) . '">' . ucfirst( $result['result'] ) . '</td>';
 
 			switch ( $result['result'] ) {
 				case 'success':
-					$html .= '  <td class="result_message column-result_message' . ( in_array( 'result_message', $hidden, true ) ? ' hidden' : '' ) . '">' . $result['result_message'] . '</td>
+					$html .= '  <td class="result_message column-result_message' . ( in_array( 'result_message', $hidden, true ) ? ' hidden' : '' ) . '">' . wp_kses( $result['result_message'], $this->get_result_message_allowed_html() ) . '</td>
                                 <td class="status_created_at column-status_created_at' . ( in_array( 'status_created_at', $hidden, true ) ? ' hidden' : '' ) . '">' . get_date_from_gmt( $result['status_created_at'], get_option( 'date_format' ) . ' H:i:s' ) . '</td>
                                 <td class="status_scheduled_at column-status_scheduled_at' . ( in_array( 'status_scheduled_at', $hidden, true ) ? ' hidden' : '' ) . '">' . ( ( $result['status_scheduled_at'] !== '0000-00-00 00:00:00' ) ? get_date_from_gmt( $result['status_scheduled_at'], get_option( 'date_format' ) . ' H:i:s' ) : '' ) . '</td>';
 					break;
 
 				case 'test':
-					$html .= '  <td class="result_message column-result_message' . ( in_array( 'result_message', $hidden, true ) ? ' hidden' : '' ) . '">' . $result['result_message'] . '</td>
+					$html .= '  <td class="result_message column-result_message' . ( in_array( 'result_message', $hidden, true ) ? ' hidden' : '' ) . '">' . wp_kses( $result['result_message'], $this->get_result_message_allowed_html() ) . '</td>
                                 <td class="status_created_at column-status_created_at' . ( in_array( 'status_created_at', $hidden, true ) ? ' hidden' : '' ) . '">' . get_date_from_gmt( $result['status_created_at'], get_option( 'date_format' ) . ' H:i:s' ) . '</td>
                                 <td class="status_scheduled_at column-status_scheduled_at' . ( in_array( 'status_scheduled_at', $hidden, true ) ? ' hidden' : '' ) . '">' . ( ( $result['status_scheduled_at'] !== '0000-00-00 00:00:00' ) ? get_date_from_gmt( $result['status_scheduled_at'], get_option( 'date_format' ) . ' H:i:s' ) : '' ) . '</td>';
 					break;
 
 				default:
-					$html .= '  <td class="result_message column-result_message' . ( in_array( 'result_message', $hidden, true ) ? ' hidden' : '' ) . '">' . nl2br( $result['result_message'] ) . '</td>
+					$html .= '  <td class="result_message column-result_message' . ( in_array( 'result_message', $hidden, true ) ? ' hidden' : '' ) . '">' . nl2br( wp_kses( $result['result_message'], $this->get_result_message_allowed_html() ) ) . '</td>
                                 <td class="status_created_at column-status_created_at' . ( in_array( 'status_created_at', $hidden, true ) ? ' hidden' : '' ) . '">&nbsp;</td>
                                 <td class="status_scheduled_at column-status_scheduled_at' . ( in_array( 'status_scheduled_at', $hidden, true ) ? ' hidden' : '' ) . '">&nbsp;</td>';
 					break;
